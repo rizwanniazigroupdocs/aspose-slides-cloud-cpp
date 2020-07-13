@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{080971BB-B462-4400-A2E3-B36D0338AED4}</ProjectGuid>
+    <RootNamespace>AsposeSlidesCloud</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>ASPOSE_DLL_EXPORT_SDK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>ASPOSE_DLL_EXPORT_SDK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>ASPOSE_DLL_EXPORT_SDK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>ASPOSE_DLL_EXPORT_SDK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ApiConfiguration.cpp" />
+    <ClCompile Include="ApiClient.cpp" />
+    <ClCompile Include="JsonBody.cpp" />
+    <ClCompile Include="StringBody.cpp" />
+    <ClCompile Include="HttpContent.cpp" />
+    <ClCompile Include="ModelBase.cpp" />
+    <ClCompile Include="MultipartFormData.cpp" />
+    <ClCompile Include="ApiException.cpp" />
+    <ClCompile Include="api\SlidesApi.cpp" />
+    <ClCompile Include="api\SlidesApiRequests.cpp" />
+    <ClCompile Include="model\ApiInfo.cpp" />
+    <ClCompile Include="model\ArrowHeadProperties.cpp" />
+    <ClCompile Include="model\Axes.cpp" />
+    <ClCompile Include="model\Axis.cpp" />
+    <ClCompile Include="model\BlurEffect.cpp" />
+    <ClCompile Include="model\ChartCategory.cpp" />
+    <ClCompile Include="model\ChartTitle.cpp" />
+    <ClCompile Include="model\ChartWall.cpp" />
+    <ClCompile Include="model\CommonSlideViewProperties.cpp" />
+    <ClCompile Include="model\CustomDashPattern.cpp" />
+    <ClCompile Include="model\DiscUsage.cpp" />
+    <ClCompile Include="model\Effect.cpp" />
+    <ClCompile Include="model\EffectFormat.cpp" />
+    <ClCompile Include="model\EntityExists.cpp" />
+    <ClCompile Include="model\Error.cpp" />
+    <ClCompile Include="model\ErrorDetails.cpp" />
+    <ClCompile Include="model\ExportFormat.cpp" />
+    <ClCompile Include="model\ExportOptions.cpp" />
+    <ClCompile Include="model\FileVersions.cpp" />
+    <ClCompile Include="model\FilesList.cpp" />
+    <ClCompile Include="model\FilesUploadResult.cpp" />
+    <ClCompile Include="model\FillFormat.cpp" />
+    <ClCompile Include="model\FillOverlayEffect.cpp" />
+    <ClCompile Include="model\FontSet.cpp" />
+    <ClCompile Include="model\GlowEffect.cpp" />
+    <ClCompile Include="model\GradientFillStop.cpp" />
+    <ClCompile Include="model\IShapeExportOptions.cpp" />
+    <ClCompile Include="model\ImageExportFormat.cpp" />
+    <ClCompile Include="model\InnerShadowEffect.cpp" />
+    <ClCompile Include="model\Input.cpp" />
+    <ClCompile Include="model\InputFile.cpp" />
+    <ClCompile Include="model\InteractiveSequence.cpp" />
+    <ClCompile Include="model\Legend.cpp" />
+    <ClCompile Include="model\LineFormat.cpp" />
+    <ClCompile Include="model\MergingSource.cpp" />
+    <ClCompile Include="model\NormalViewRestoredProperties.cpp" />
+    <ClCompile Include="model\NotesSlideExportFormat.cpp" />
+    <ClCompile Include="model\ObjectExist.cpp" />
+    <ClCompile Include="model\OneValueChartDataPoint.cpp" />
+    <ClCompile Include="model\OrderedMergeRequest.cpp" />
+    <ClCompile Include="model\OuterShadowEffect.cpp" />
+    <ClCompile Include="model\OutputFile.cpp" />
+    <ClCompile Include="model\Pipeline.cpp" />
+    <ClCompile Include="model\PlotArea.cpp" />
+    <ClCompile Include="model\PresentationToMerge.cpp" />
+    <ClCompile Include="model\PresentationsMergeRequest.cpp" />
+    <ClCompile Include="model\PresetShadowEffect.cpp" />
+    <ClCompile Include="model\ReflectionEffect.cpp" />
+    <ClCompile Include="model\ResourceBase.cpp" />
+    <ClCompile Include="model\ResourceUri.cpp" />
+    <ClCompile Include="model\ResourceUriElement.cpp" />
+    <ClCompile Include="model\ScaleType.cpp" />
+    <ClCompile Include="model\ScatterChartDataPoint.cpp" />
+    <ClCompile Include="model\Series.cpp" />
+    <ClCompile Include="model\SeriesMarker.cpp" />
+    <ClCompile Include="model\ShapeExportFormat.cpp" />
+    <ClCompile Include="model\ShapeImageExportOptions.cpp" />
+    <ClCompile Include="model\ShapeThumbnailBounds.cpp" />
+    <ClCompile Include="model\SizeType.cpp" />
+    <ClCompile Include="model\SlideComment.cpp" />
+    <ClCompile Include="model\SlideExportFormat.cpp" />
+    <ClCompile Include="model\SmartArtNode.cpp" />
+    <ClCompile Include="model\SoftEdgeEffect.cpp" />
+    <ClCompile Include="model\StorageExist.cpp" />
+    <ClCompile Include="model\StorageFile.cpp" />
+    <ClCompile Include="model\TableCell.cpp" />
+    <ClCompile Include="model\TableColumn.cpp" />
+    <ClCompile Include="model\TableRow.cpp" />
+    <ClCompile Include="model\Task.cpp" />
+    <ClCompile Include="model\TextItem.cpp" />
+    <ClCompile Include="model\AddLayoutSlide.cpp" />
+    <ClCompile Include="model\AddMasterSlide.cpp" />
+    <ClCompile Include="model\AddShape.cpp" />
+    <ClCompile Include="model\AddSlide.cpp" />
+    <ClCompile Include="model\Base64InputFile.cpp" />
+    <ClCompile Include="model\BubbleChartDataPoint.cpp" />
+    <ClCompile Include="model\BubbleSeries.cpp" />
+    <ClCompile Include="model\ColorScheme.cpp" />
+    <ClCompile Include="model\Document.cpp" />
+    <ClCompile Include="model\DocumentProperties.cpp" />
+    <ClCompile Include="model\DocumentProperty.cpp" />
+    <ClCompile Include="model\FileVersion.cpp" />
+    <ClCompile Include="model\FontScheme.cpp" />
+    <ClCompile Include="model\FormatScheme.cpp" />
+    <ClCompile Include="model\GradientFill.cpp" />
+    <ClCompile Include="model\HtmlExportOptions.cpp" />
+    <ClCompile Include="model\Image.cpp" />
+    <ClCompile Include="model\ImageExportOptions.cpp" />
+    <ClCompile Include="model\Images.cpp" />
+    <ClCompile Include="model\LayoutSlide.cpp" />
+    <ClCompile Include="model\LayoutSlides.cpp" />
+    <ClCompile Include="model\MasterSlide.cpp" />
+    <ClCompile Include="model\MasterSlides.cpp" />
+    <ClCompile Include="model\Merge.cpp" />
+    <ClCompile Include="model\NoFill.cpp" />
+    <ClCompile Include="model\NotesSlide.cpp" />
+    <ClCompile Include="model\OneValueSeries.cpp" />
+    <ClCompile Include="model\Paragraph.cpp" />
+    <ClCompile Include="model\Paragraphs.cpp" />
+    <ClCompile Include="model\PathInputFile.cpp" />
+    <ClCompile Include="model\PathOutputFile.cpp" />
+    <ClCompile Include="model\PatternFill.cpp" />
+    <ClCompile Include="model\PdfExportOptions.cpp" />
+    <ClCompile Include="model\PictureFill.cpp" />
+    <ClCompile Include="model\Placeholder.cpp" />
+    <ClCompile Include="model\Placeholders.cpp" />
+    <ClCompile Include="model\Portion.cpp" />
+    <ClCompile Include="model\Portions.cpp" />
+    <ClCompile Include="model\PptxExportOptions.cpp" />
+    <ClCompile Include="model\RemoveShape.cpp" />
+    <ClCompile Include="model\RemoveSlide.cpp" />
+    <ClCompile Include="model\ReorderSlide.cpp" />
+    <ClCompile Include="model\ReplaceText.cpp" />
+    <ClCompile Include="model\RequestInputFile.cpp" />
+    <ClCompile Include="model\ResetSlide.cpp" />
+    <ClCompile Include="model\ResponseOutputFile.cpp" />
+    <ClCompile Include="model\Save.cpp" />
+    <ClCompile Include="model\SaveShape.cpp" />
+    <ClCompile Include="model\SaveSlide.cpp" />
+    <ClCompile Include="model\ScatterSeries.cpp" />
+    <ClCompile Include="model\ShapeBase.cpp" />
+    <ClCompile Include="model\Shapes.cpp" />
+    <ClCompile Include="model\Slide.cpp" />
+    <ClCompile Include="model\SlideAnimation.cpp" />
+    <ClCompile Include="model\SlideBackground.cpp" />
+    <ClCompile Include="model\SlideComments.cpp" />
+    <ClCompile Include="model\Slides.cpp" />
+    <ClCompile Include="model\SolidFill.cpp" />
+    <ClCompile Include="model\SplitDocumentResult.cpp" />
+    <ClCompile Include="model\SvgExportOptions.cpp" />
+    <ClCompile Include="model\SwfExportOptions.cpp" />
+    <ClCompile Include="model\TextItems.cpp" />
+    <ClCompile Include="model\Theme.cpp" />
+    <ClCompile Include="model\TiffExportOptions.cpp" />
+    <ClCompile Include="model\UpdateBackground.cpp" />
+    <ClCompile Include="model\UpdateShape.cpp" />
+    <ClCompile Include="model\ViewProperties.cpp" />
+    <ClCompile Include="model\XpsExportOptions.cpp" />
+    <ClCompile Include="model\BoxAndWhiskerSeries.cpp" />
+    <ClCompile Include="model\Chart.cpp" />
+    <ClCompile Include="model\DocumentReplaceResult.cpp" />
+    <ClCompile Include="model\GeometryShape.cpp" />
+    <ClCompile Include="model\GraphicalObject.cpp" />
+    <ClCompile Include="model\GroupShape.cpp" />
+    <ClCompile Include="model\OleObjectFrame.cpp" />
+    <ClCompile Include="model\SlideReplaceResult.cpp" />
+    <ClCompile Include="model\SmartArt.cpp" />
+    <ClCompile Include="model\SmartArtShape.cpp" />
+    <ClCompile Include="model\Table.cpp" />
+    <ClCompile Include="model\WaterfallSeries.cpp" />
+    <ClCompile Include="model\AudioFrame.cpp" />
+    <ClCompile Include="model\Connector.cpp" />
+    <ClCompile Include="model\PictureFrame.cpp" />
+    <ClCompile Include="model\Shape.cpp" />
+    <ClCompile Include="model\VideoFrame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="ApiConfiguration.h" />
+    <ClInclude Include="ApiClient.h" />
+    <ClInclude Include="IHttpBody.h" />
+    <ClInclude Include="JsonBody.h" />
+    <ClInclude Include="StringBody.h" />
+    <ClInclude Include="HttpContent.h" />
+    <ClInclude Include="ModelBase.h" />
+    <ClInclude Include="MultipartFormData.h" />
+    <ClInclude Include="ApiException.h" />
+    <ClInclude Include="api\SlidesApi.h" />
+    <ClInclude Include="api\SlidesApiRequests.h" />
+    <ClInclude Include="model\ApiInfo.h" />
+    <ClInclude Include="model\ArrowHeadProperties.h" />
+    <ClInclude Include="model\Axes.h" />
+    <ClInclude Include="model\Axis.h" />
+    <ClInclude Include="model\BlurEffect.h" />
+    <ClInclude Include="model\ChartCategory.h" />
+    <ClInclude Include="model\ChartTitle.h" />
+    <ClInclude Include="model\ChartWall.h" />
+    <ClInclude Include="model\CommonSlideViewProperties.h" />
+    <ClInclude Include="model\CustomDashPattern.h" />
+    <ClInclude Include="model\DiscUsage.h" />
+    <ClInclude Include="model\Effect.h" />
+    <ClInclude Include="model\EffectFormat.h" />
+    <ClInclude Include="model\EntityExists.h" />
+    <ClInclude Include="model\Error.h" />
+    <ClInclude Include="model\ErrorDetails.h" />
+    <ClInclude Include="model\ExportFormat.h" />
+    <ClInclude Include="model\ExportOptions.h" />
+    <ClInclude Include="model\FileVersions.h" />
+    <ClInclude Include="model\FilesList.h" />
+    <ClInclude Include="model\FilesUploadResult.h" />
+    <ClInclude Include="model\FillFormat.h" />
+    <ClInclude Include="model\FillOverlayEffect.h" />
+    <ClInclude Include="model\FontSet.h" />
+    <ClInclude Include="model\GlowEffect.h" />
+    <ClInclude Include="model\GradientFillStop.h" />
+    <ClInclude Include="model\IShapeExportOptions.h" />
+    <ClInclude Include="model\ImageExportFormat.h" />
+    <ClInclude Include="model\InnerShadowEffect.h" />
+    <ClInclude Include="model\Input.h" />
+    <ClInclude Include="model\InputFile.h" />
+    <ClInclude Include="model\InteractiveSequence.h" />
+    <ClInclude Include="model\Legend.h" />
+    <ClInclude Include="model\LineFormat.h" />
+    <ClInclude Include="model\MergingSource.h" />
+    <ClInclude Include="model\NormalViewRestoredProperties.h" />
+    <ClInclude Include="model\NotesSlideExportFormat.h" />
+    <ClInclude Include="model\ObjectExist.h" />
+    <ClInclude Include="model\OneValueChartDataPoint.h" />
+    <ClInclude Include="model\OrderedMergeRequest.h" />
+    <ClInclude Include="model\OuterShadowEffect.h" />
+    <ClInclude Include="model\OutputFile.h" />
+    <ClInclude Include="model\Pipeline.h" />
+    <ClInclude Include="model\PlotArea.h" />
+    <ClInclude Include="model\PresentationToMerge.h" />
+    <ClInclude Include="model\PresentationsMergeRequest.h" />
+    <ClInclude Include="model\PresetShadowEffect.h" />
+    <ClInclude Include="model\ReflectionEffect.h" />
+    <ClInclude Include="model\ResourceBase.h" />
+    <ClInclude Include="model\ResourceUri.h" />
+    <ClInclude Include="model\ResourceUriElement.h" />
+    <ClInclude Include="model\ScaleType.h" />
+    <ClInclude Include="model\ScatterChartDataPoint.h" />
+    <ClInclude Include="model\Series.h" />
+    <ClInclude Include="model\SeriesMarker.h" />
+    <ClInclude Include="model\ShapeExportFormat.h" />
+    <ClInclude Include="model\ShapeImageExportOptions.h" />
+    <ClInclude Include="model\ShapeThumbnailBounds.h" />
+    <ClInclude Include="model\SizeType.h" />
+    <ClInclude Include="model\SlideComment.h" />
+    <ClInclude Include="model\SlideExportFormat.h" />
+    <ClInclude Include="model\SmartArtNode.h" />
+    <ClInclude Include="model\SoftEdgeEffect.h" />
+    <ClInclude Include="model\StorageExist.h" />
+    <ClInclude Include="model\StorageFile.h" />
+    <ClInclude Include="model\TableCell.h" />
+    <ClInclude Include="model\TableColumn.h" />
+    <ClInclude Include="model\TableRow.h" />
+    <ClInclude Include="model\Task.h" />
+    <ClInclude Include="model\TextItem.h" />
+    <ClInclude Include="model\AddLayoutSlide.h" />
+    <ClInclude Include="model\AddMasterSlide.h" />
+    <ClInclude Include="model\AddShape.h" />
+    <ClInclude Include="model\AddSlide.h" />
+    <ClInclude Include="model\Base64InputFile.h" />
+    <ClInclude Include="model\BubbleChartDataPoint.h" />
+    <ClInclude Include="model\BubbleSeries.h" />
+    <ClInclude Include="model\ColorScheme.h" />
+    <ClInclude Include="model\Document.h" />
+    <ClInclude Include="model\DocumentProperties.h" />
+    <ClInclude Include="model\DocumentProperty.h" />
+    <ClInclude Include="model\FileVersion.h" />
+    <ClInclude Include="model\FontScheme.h" />
+    <ClInclude Include="model\FormatScheme.h" />
+    <ClInclude Include="model\GradientFill.h" />
+    <ClInclude Include="model\HtmlExportOptions.h" />
+    <ClInclude Include="model\Image.h" />
+    <ClInclude Include="model\ImageExportOptions.h" />
+    <ClInclude Include="model\Images.h" />
+    <ClInclude Include="model\LayoutSlide.h" />
+    <ClInclude Include="model\LayoutSlides.h" />
+    <ClInclude Include="model\MasterSlide.h" />
+    <ClInclude Include="model\MasterSlides.h" />
+    <ClInclude Include="model\Merge.h" />
+    <ClInclude Include="model\NoFill.h" />
+    <ClInclude Include="model\NotesSlide.h" />
+    <ClInclude Include="model\OneValueSeries.h" />
+    <ClInclude Include="model\Paragraph.h" />
+    <ClInclude Include="model\Paragraphs.h" />
+    <ClInclude Include="model\PathInputFile.h" />
+    <ClInclude Include="model\PathOutputFile.h" />
+    <ClInclude Include="model\PatternFill.h" />
+    <ClInclude Include="model\PdfExportOptions.h" />
+    <ClInclude Include="model\PictureFill.h" />
+    <ClInclude Include="model\Placeholder.h" />
+    <ClInclude Include="model\Placeholders.h" />
+    <ClInclude Include="model\Portion.h" />
+    <ClInclude Include="model\Portions.h" />
+    <ClInclude Include="model\PptxExportOptions.h" />
+    <ClInclude Include="model\RemoveShape.h" />
+    <ClInclude Include="model\RemoveSlide.h" />
+    <ClInclude Include="model\ReorderSlide.h" />
+    <ClInclude Include="model\ReplaceText.h" />
+    <ClInclude Include="model\RequestInputFile.h" />
+    <ClInclude Include="model\ResetSlide.h" />
+    <ClInclude Include="model\ResponseOutputFile.h" />
+    <ClInclude Include="model\Save.h" />
+    <ClInclude Include="model\SaveShape.h" />
+    <ClInclude Include="model\SaveSlide.h" />
+    <ClInclude Include="model\ScatterSeries.h" />
+    <ClInclude Include="model\ShapeBase.h" />
+    <ClInclude Include="model\Shapes.h" />
+    <ClInclude Include="model\Slide.h" />
+    <ClInclude Include="model\SlideAnimation.h" />
+    <ClInclude Include="model\SlideBackground.h" />
+    <ClInclude Include="model\SlideComments.h" />
+    <ClInclude Include="model\Slides.h" />
+    <ClInclude Include="model\SolidFill.h" />
+    <ClInclude Include="model\SplitDocumentResult.h" />
+    <ClInclude Include="model\SvgExportOptions.h" />
+    <ClInclude Include="model\SwfExportOptions.h" />
+    <ClInclude Include="model\TextItems.h" />
+    <ClInclude Include="model\Theme.h" />
+    <ClInclude Include="model\TiffExportOptions.h" />
+    <ClInclude Include="model\UpdateBackground.h" />
+    <ClInclude Include="model\UpdateShape.h" />
+    <ClInclude Include="model\ViewProperties.h" />
+    <ClInclude Include="model\XpsExportOptions.h" />
+    <ClInclude Include="model\BoxAndWhiskerSeries.h" />
+    <ClInclude Include="model\Chart.h" />
+    <ClInclude Include="model\DocumentReplaceResult.h" />
+    <ClInclude Include="model\GeometryShape.h" />
+    <ClInclude Include="model\GraphicalObject.h" />
+    <ClInclude Include="model\GroupShape.h" />
+    <ClInclude Include="model\OleObjectFrame.h" />
+    <ClInclude Include="model\SlideReplaceResult.h" />
+    <ClInclude Include="model\SmartArt.h" />
+    <ClInclude Include="model\SmartArtShape.h" />
+    <ClInclude Include="model\Table.h" />
+    <ClInclude Include="model\WaterfallSeries.h" />
+    <ClInclude Include="model\AudioFrame.h" />
+    <ClInclude Include="model\Connector.h" />
+    <ClInclude Include="model\PictureFrame.h" />
+    <ClInclude Include="model\Shape.h" />
+    <ClInclude Include="model\VideoFrame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\cpprestsdk.v141.2.10.12.1\build\native\cpprestsdk.v141.targets" Condition="Exists('..\packages\cpprestsdk.v141.2.10.12.1\build\native\cpprestsdk.v141.targets')" />
+    <Import Project="..\packages\boost.1.72.0.0\build\boost.targets" Condition="Exists('..\packages\boost.1.72.0.0\build\boost.targets')" />
+    <Import Project="..\packages\boost_filesystem-vc141.1.72.0.0\build\boost_filesystem-vc141.targets" Condition="Exists('..\packages\boost_filesystem-vc141.1.72.0.0\build\boost_filesystem-vc141.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cpprestsdk.v141.2.10.12.1\build\native\cpprestsdk.v141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpprestsdk.v141.2.10.12.1\build\native\cpprestsdk.v141.targets'))" />
+    <Error Condition="!Exists('..\packages\boost.1.72.0.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.72.0.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_filesystem-vc141.1.72.0.0\build\boost_filesystem-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_filesystem-vc141.1.72.0.0\build\boost_filesystem-vc141.targets'))" />
+  </Target>
+</Project>
