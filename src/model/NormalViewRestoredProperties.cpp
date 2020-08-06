@@ -104,7 +104,7 @@ void NormalViewRestoredProperties::fromJson(web::json::value& val)
 		setAutoAdjust(ModelBase::boolFromJson(*jsonForAutoAdjust));
 	}
 	web::json::value* jsonForDimensionSize = ModelBase::getField(val, "DimensionSize");
-	if(jsonForDimensionSize != nullptr && !jsonForDimensionSize->is_null())
+	if(jsonForDimensionSize != nullptr && !jsonForDimensionSize->is_null() && jsonForDimensionSize->is_number())
 	{
 		setDimensionSize(ModelBase::doubleFromJson(*jsonForDimensionSize));
 	}

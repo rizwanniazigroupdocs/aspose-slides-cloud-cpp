@@ -72,12 +72,12 @@ void ReorderSlide::fromJson(web::json::value& val)
 {
 	this->Task::fromJson(val);
 	web::json::value* jsonForOldPosition = ModelBase::getField(val, "OldPosition");
-	if(jsonForOldPosition != nullptr && !jsonForOldPosition->is_null())
+	if(jsonForOldPosition != nullptr && !jsonForOldPosition->is_null() && jsonForOldPosition->is_number())
 	{
 		setOldPosition(ModelBase::int32_tFromJson(*jsonForOldPosition));
 	}
 	web::json::value* jsonForNewPosition = ModelBase::getField(val, "NewPosition");
-	if(jsonForNewPosition != nullptr && !jsonForNewPosition->is_null())
+	if(jsonForNewPosition != nullptr && !jsonForNewPosition->is_null() && jsonForNewPosition->is_number())
 	{
 		setNewPosition(ModelBase::int32_tFromJson(*jsonForNewPosition));
 	}

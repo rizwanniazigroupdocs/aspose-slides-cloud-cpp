@@ -34,10 +34,10 @@
 
 #include "ResourceBase.h"
 
+#include "../model/Portion.h"
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -57,11 +57,11 @@ public:
 	/// <summary>
 	/// List of portion links.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUriElement>> getPortionLinks() const;
-	ASPOSE_DLL_EXPORT void setPortionLinks(std::vector<std::shared_ptr<ResourceUriElement>> value);
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<Portion>> getItems() const;
+	ASPOSE_DLL_EXPORT void setItems(std::vector<std::shared_ptr<Portion>> value);
 
 protected:
-	std::vector<std::shared_ptr<ResourceUriElement>> m_PortionLinks;
+	std::vector<std::shared_ptr<Portion>> m_Items;
 };
 
 }

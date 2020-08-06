@@ -60,7 +60,7 @@ void RequestInputFile::fromJson(web::json::value& val)
 {
 	this->InputFile::fromJson(val);
 	web::json::value* jsonForIndex = ModelBase::getField(val, "Index");
-	if(jsonForIndex != nullptr && !jsonForIndex->is_null())
+	if(jsonForIndex != nullptr && !jsonForIndex->is_null() && jsonForIndex->is_number())
 	{
 		setIndex(ModelBase::int32_tFromJson(*jsonForIndex));
 	}

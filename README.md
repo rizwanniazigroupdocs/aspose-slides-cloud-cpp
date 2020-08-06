@@ -25,11 +25,11 @@ To use Aspose Slides Cloud SDK you need to register an account with [Aspose Clou
 
 From the command line:
 
-	nuget install aspose.slides.sdk.v141
+	nuget install Aspose.Slides-Cloud.Cpp
 
 From Package Manager:
 
-	PM> Install-Package aspose.slides.sdk.v141
+	PM> Install-Package Aspose.Slides-Cloud.Cpp
 
 ### Sample usage
 

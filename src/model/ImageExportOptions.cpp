@@ -115,7 +115,7 @@ void ImageExportOptions::fromJson(web::json::value& val)
 		setCommentsPosition(ModelBase::stringFromJson(*jsonForCommentsPosition));
 	}
 	web::json::value* jsonForCommentsAreaWidth = ModelBase::getField(val, "CommentsAreaWidth");
-	if(jsonForCommentsAreaWidth != nullptr && !jsonForCommentsAreaWidth->is_null())
+	if(jsonForCommentsAreaWidth != nullptr && !jsonForCommentsAreaWidth->is_null() && jsonForCommentsAreaWidth->is_number())
 	{
 		setCommentsAreaWidth(ModelBase::int32_tFromJson(*jsonForCommentsAreaWidth));
 	}

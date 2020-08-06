@@ -109,12 +109,12 @@ void AddSlide::fromJson(web::json::value& val)
 		setCloneFromFile(newItem);
 	}
 	web::json::value* jsonForCloneFromPosition = ModelBase::getField(val, "CloneFromPosition");
-	if(jsonForCloneFromPosition != nullptr && !jsonForCloneFromPosition->is_null())
+	if(jsonForCloneFromPosition != nullptr && !jsonForCloneFromPosition->is_null() && jsonForCloneFromPosition->is_number())
 	{
 		setCloneFromPosition(ModelBase::int32_tFromJson(*jsonForCloneFromPosition));
 	}
 	web::json::value* jsonForPosition = ModelBase::getField(val, "Position");
-	if(jsonForPosition != nullptr && !jsonForPosition->is_null())
+	if(jsonForPosition != nullptr && !jsonForPosition->is_null() && jsonForPosition->is_number())
 	{
 		setPosition(ModelBase::int32_tFromJson(*jsonForPosition));
 	}

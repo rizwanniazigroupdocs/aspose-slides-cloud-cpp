@@ -59,18 +59,12 @@ public:
 	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
 
 	/// <summary>
-	/// Data point type.
-	/// </summary>
-	ASPOSE_DLL_EXPORT utility::string_t getDataPointType() const;
-	ASPOSE_DLL_EXPORT void setDataPointType(utility::string_t value);
-	/// <summary>
 	/// Gets or sets the values.
 	/// </summary>
 	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<BubbleChartDataPoint>> getDataPoints() const;
 	ASPOSE_DLL_EXPORT void setDataPoints(std::vector<std::shared_ptr<BubbleChartDataPoint>> value);
 
 protected:
-	utility::string_t m_DataPointType;
 	std::vector<std::shared_ptr<BubbleChartDataPoint>> m_DataPoints;
 };
 

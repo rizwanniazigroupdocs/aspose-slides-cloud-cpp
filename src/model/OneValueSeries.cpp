@@ -38,17 +38,6 @@ OneValueSeries::~OneValueSeries()
 {
 }
 
-utility::string_t OneValueSeries::getDataPointType() const
-{
-	return m_DataPointType;
-}
-
-void OneValueSeries::setDataPointType(utility::string_t value)
-{
-	m_DataPointType = value;
-	
-}
-
 std::vector<std::shared_ptr<OneValueChartDataPoint>> OneValueSeries::getDataPoints() const
 {
 	return m_DataPoints;
@@ -63,10 +52,6 @@ void OneValueSeries::setDataPoints(std::vector<std::shared_ptr<OneValueChartData
 web::json::value OneValueSeries::toJson() const
 {
 	web::json::value val = this->Series::toJson();
-	if (!m_DataPointType.empty())
-	{
-		val[utility::conversions::to_string_t("DataPointType")] = ModelBase::toJson(m_DataPointType);
-	}
 	{
 		std::vector<web::json::value> jsonArray;
 		for (auto& item : m_DataPoints)
@@ -84,11 +69,6 @@ web::json::value OneValueSeries::toJson() const
 void OneValueSeries::fromJson(web::json::value& val)
 {
 	this->Series::fromJson(val);
-	web::json::value* jsonForDataPointType = ModelBase::getField(val, "DataPointType");
-	if(jsonForDataPointType != nullptr && !jsonForDataPointType->is_null())
-	{
-		setDataPointType(ModelBase::stringFromJson(*jsonForDataPointType));
-	}
 	web::json::value* jsonForDataPoints = ModelBase::getField(val, "DataPoints");
 	if(jsonForDataPoints != nullptr && !jsonForDataPoints->is_null())
 	{

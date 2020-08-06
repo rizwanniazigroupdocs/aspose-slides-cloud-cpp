@@ -163,6 +163,84 @@ void CreateFolderRequest::setStorageName(utility::string_t value)
 	m_storageName = value;
 }
 
+DeleteChartSeriesRequest::DeleteChartSeriesRequest()
+{
+}
+
+DeleteChartSeriesRequest::~DeleteChartSeriesRequest()
+{
+}
+
+utility::string_t DeleteChartSeriesRequest::getName() const
+{
+	return m_name;
+}
+
+void DeleteChartSeriesRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t DeleteChartSeriesRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void DeleteChartSeriesRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t DeleteChartSeriesRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void DeleteChartSeriesRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+int32_t DeleteChartSeriesRequest::getSeriesIndex() const
+{
+	return m_seriesIndex;
+}
+
+void DeleteChartSeriesRequest::setSeriesIndex(int32_t value)
+{
+	m_seriesIndex = value;
+}
+
+utility::string_t DeleteChartSeriesRequest::getPassword() const
+{
+	return m_password;
+}
+
+void DeleteChartSeriesRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t DeleteChartSeriesRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void DeleteChartSeriesRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t DeleteChartSeriesRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void DeleteChartSeriesRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 DeleteFileRequest::DeleteFileRequest()
 {
 }
@@ -3609,6 +3687,7 @@ void GetParagraphPortionsRequest::setStorage(utility::string_t value)
 
 GetSlideAnimationRequest::GetSlideAnimationRequest()
 {
+	m_shapeIndexIsSet = false;
 }
 
 GetSlideAnimationRequest::~GetSlideAnimationRequest()
@@ -3643,6 +3722,17 @@ int32_t GetSlideAnimationRequest::getShapeIndex() const
 void GetSlideAnimationRequest::setShapeIndex(int32_t value)
 {
 	m_shapeIndex = value;
+	m_shapeIndexIsSet = true;
+}
+
+bool GetSlideAnimationRequest::shapeIndexIsSet() const
+{
+	return m_shapeIndexIsSet;
+}
+
+void GetSlideAnimationRequest::unsetShapeIndex()
+{
+	m_shapeIndexIsSet = false;
 }
 
 utility::string_t GetSlideAnimationRequest::getPassword() const
@@ -6495,6 +6585,84 @@ void PostAddNotesSlideRequest::setStorage(utility::string_t value)
 	m_storage = value;
 }
 
+PostChartSeriesRequest::PostChartSeriesRequest()
+{
+}
+
+PostChartSeriesRequest::~PostChartSeriesRequest()
+{
+}
+
+utility::string_t PostChartSeriesRequest::getName() const
+{
+	return m_name;
+}
+
+void PostChartSeriesRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PostChartSeriesRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PostChartSeriesRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t PostChartSeriesRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void PostChartSeriesRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+std::shared_ptr<Series> PostChartSeriesRequest::getSeries() const
+{
+	return m_series;
+}
+
+void PostChartSeriesRequest::setSeries(std::shared_ptr<Series> value)
+{
+	m_series = value;
+}
+
+utility::string_t PostChartSeriesRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PostChartSeriesRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PostChartSeriesRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PostChartSeriesRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PostChartSeriesRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PostChartSeriesRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 PostCopyLayoutSlideFromSourcePresentationRequest::PostCopyLayoutSlideFromSourcePresentationRequest()
 {
 }
@@ -9269,6 +9437,94 @@ utility::string_t PostSubshapeSaveAsRequest::getFontsFolder() const
 void PostSubshapeSaveAsRequest::setFontsFolder(utility::string_t value)
 {
 	m_fontsFolder = value;
+}
+
+PutChartSeriesRequest::PutChartSeriesRequest()
+{
+}
+
+PutChartSeriesRequest::~PutChartSeriesRequest()
+{
+}
+
+utility::string_t PutChartSeriesRequest::getName() const
+{
+	return m_name;
+}
+
+void PutChartSeriesRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PutChartSeriesRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PutChartSeriesRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t PutChartSeriesRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void PutChartSeriesRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+int32_t PutChartSeriesRequest::getSeriesIndex() const
+{
+	return m_seriesIndex;
+}
+
+void PutChartSeriesRequest::setSeriesIndex(int32_t value)
+{
+	m_seriesIndex = value;
+}
+
+std::shared_ptr<Series> PutChartSeriesRequest::getSeries() const
+{
+	return m_series;
+}
+
+void PutChartSeriesRequest::setSeries(std::shared_ptr<Series> value)
+{
+	m_series = value;
+}
+
+utility::string_t PutChartSeriesRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutChartSeriesRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutChartSeriesRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutChartSeriesRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PutChartSeriesRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutChartSeriesRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
 }
 
 PutLayoutSlideRequest::PutLayoutSlideRequest()

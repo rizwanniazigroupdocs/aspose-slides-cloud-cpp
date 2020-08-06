@@ -59,7 +59,7 @@ web::json::value TableColumn::toJson() const
 void TableColumn::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForWidth = ModelBase::getField(val, "Width");
-	if(jsonForWidth != nullptr && !jsonForWidth->is_null())
+	if(jsonForWidth != nullptr && !jsonForWidth->is_null() && jsonForWidth->is_number())
 	{
 		setWidth(ModelBase::doubleFromJson(*jsonForWidth));
 	}

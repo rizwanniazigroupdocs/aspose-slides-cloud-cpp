@@ -98,17 +98,17 @@ web::json::value OuterShadowEffect::toJson() const
 void OuterShadowEffect::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForDirection = ModelBase::getField(val, "Direction");
-	if(jsonForDirection != nullptr && !jsonForDirection->is_null())
+	if(jsonForDirection != nullptr && !jsonForDirection->is_null() && jsonForDirection->is_number())
 	{
 		setDirection(ModelBase::doubleFromJson(*jsonForDirection));
 	}
 	web::json::value* jsonForDistance = ModelBase::getField(val, "Distance");
-	if(jsonForDistance != nullptr && !jsonForDistance->is_null())
+	if(jsonForDistance != nullptr && !jsonForDistance->is_null() && jsonForDistance->is_number())
 	{
 		setDistance(ModelBase::doubleFromJson(*jsonForDistance));
 	}
 	web::json::value* jsonForBlurRadius = ModelBase::getField(val, "BlurRadius");
-	if(jsonForBlurRadius != nullptr && !jsonForBlurRadius->is_null())
+	if(jsonForBlurRadius != nullptr && !jsonForBlurRadius->is_null() && jsonForBlurRadius->is_number())
 	{
 		setBlurRadius(ModelBase::doubleFromJson(*jsonForBlurRadius));
 	}

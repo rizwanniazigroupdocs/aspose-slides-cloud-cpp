@@ -218,62 +218,62 @@ web::json::value ReflectionEffect::toJson() const
 void ReflectionEffect::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForDirection = ModelBase::getField(val, "Direction");
-	if(jsonForDirection != nullptr && !jsonForDirection->is_null())
+	if(jsonForDirection != nullptr && !jsonForDirection->is_null() && jsonForDirection->is_number())
 	{
 		setDirection(ModelBase::doubleFromJson(*jsonForDirection));
 	}
 	web::json::value* jsonForFadeDirection = ModelBase::getField(val, "FadeDirection");
-	if(jsonForFadeDirection != nullptr && !jsonForFadeDirection->is_null())
+	if(jsonForFadeDirection != nullptr && !jsonForFadeDirection->is_null() && jsonForFadeDirection->is_number())
 	{
 		setFadeDirection(ModelBase::doubleFromJson(*jsonForFadeDirection));
 	}
 	web::json::value* jsonForDistance = ModelBase::getField(val, "Distance");
-	if(jsonForDistance != nullptr && !jsonForDistance->is_null())
+	if(jsonForDistance != nullptr && !jsonForDistance->is_null() && jsonForDistance->is_number())
 	{
 		setDistance(ModelBase::doubleFromJson(*jsonForDistance));
 	}
 	web::json::value* jsonForBlurRadius = ModelBase::getField(val, "BlurRadius");
-	if(jsonForBlurRadius != nullptr && !jsonForBlurRadius->is_null())
+	if(jsonForBlurRadius != nullptr && !jsonForBlurRadius->is_null() && jsonForBlurRadius->is_number())
 	{
 		setBlurRadius(ModelBase::doubleFromJson(*jsonForBlurRadius));
 	}
 	web::json::value* jsonForScaleHorizontal = ModelBase::getField(val, "ScaleHorizontal");
-	if(jsonForScaleHorizontal != nullptr && !jsonForScaleHorizontal->is_null())
+	if(jsonForScaleHorizontal != nullptr && !jsonForScaleHorizontal->is_null() && jsonForScaleHorizontal->is_number())
 	{
 		setScaleHorizontal(ModelBase::doubleFromJson(*jsonForScaleHorizontal));
 	}
 	web::json::value* jsonForScaleVertical = ModelBase::getField(val, "ScaleVertical");
-	if(jsonForScaleVertical != nullptr && !jsonForScaleVertical->is_null())
+	if(jsonForScaleVertical != nullptr && !jsonForScaleVertical->is_null() && jsonForScaleVertical->is_number())
 	{
 		setScaleVertical(ModelBase::doubleFromJson(*jsonForScaleVertical));
 	}
 	web::json::value* jsonForSkewHorizontal = ModelBase::getField(val, "SkewHorizontal");
-	if(jsonForSkewHorizontal != nullptr && !jsonForSkewHorizontal->is_null())
+	if(jsonForSkewHorizontal != nullptr && !jsonForSkewHorizontal->is_null() && jsonForSkewHorizontal->is_number())
 	{
 		setSkewHorizontal(ModelBase::doubleFromJson(*jsonForSkewHorizontal));
 	}
 	web::json::value* jsonForSkewVertical = ModelBase::getField(val, "SkewVertical");
-	if(jsonForSkewVertical != nullptr && !jsonForSkewVertical->is_null())
+	if(jsonForSkewVertical != nullptr && !jsonForSkewVertical->is_null() && jsonForSkewVertical->is_number())
 	{
 		setSkewVertical(ModelBase::doubleFromJson(*jsonForSkewVertical));
 	}
 	web::json::value* jsonForStartPosAlpha = ModelBase::getField(val, "StartPosAlpha");
-	if(jsonForStartPosAlpha != nullptr && !jsonForStartPosAlpha->is_null())
+	if(jsonForStartPosAlpha != nullptr && !jsonForStartPosAlpha->is_null() && jsonForStartPosAlpha->is_number())
 	{
 		setStartPosAlpha(ModelBase::doubleFromJson(*jsonForStartPosAlpha));
 	}
 	web::json::value* jsonForEndPosAlpha = ModelBase::getField(val, "EndPosAlpha");
-	if(jsonForEndPosAlpha != nullptr && !jsonForEndPosAlpha->is_null())
+	if(jsonForEndPosAlpha != nullptr && !jsonForEndPosAlpha->is_null() && jsonForEndPosAlpha->is_number())
 	{
 		setEndPosAlpha(ModelBase::doubleFromJson(*jsonForEndPosAlpha));
 	}
 	web::json::value* jsonForStartReflectionOpacity = ModelBase::getField(val, "StartReflectionOpacity");
-	if(jsonForStartReflectionOpacity != nullptr && !jsonForStartReflectionOpacity->is_null())
+	if(jsonForStartReflectionOpacity != nullptr && !jsonForStartReflectionOpacity->is_null() && jsonForStartReflectionOpacity->is_number())
 	{
 		setStartReflectionOpacity(ModelBase::doubleFromJson(*jsonForStartReflectionOpacity));
 	}
 	web::json::value* jsonForEndReflectionOpacity = ModelBase::getField(val, "EndReflectionOpacity");
-	if(jsonForEndReflectionOpacity != nullptr && !jsonForEndReflectionOpacity->is_null())
+	if(jsonForEndReflectionOpacity != nullptr && !jsonForEndReflectionOpacity->is_null() && jsonForEndReflectionOpacity->is_number())
 	{
 		setEndReflectionOpacity(ModelBase::doubleFromJson(*jsonForEndReflectionOpacity));
 	}

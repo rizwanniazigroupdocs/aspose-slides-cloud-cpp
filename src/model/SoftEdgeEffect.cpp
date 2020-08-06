@@ -59,7 +59,7 @@ web::json::value SoftEdgeEffect::toJson() const
 void SoftEdgeEffect::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForRadius = ModelBase::getField(val, "Radius");
-	if(jsonForRadius != nullptr && !jsonForRadius->is_null())
+	if(jsonForRadius != nullptr && !jsonForRadius->is_null() && jsonForRadius->is_number())
 	{
 		setRadius(ModelBase::doubleFromJson(*jsonForRadius));
 	}

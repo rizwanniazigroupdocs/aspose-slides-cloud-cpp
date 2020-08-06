@@ -358,32 +358,32 @@ void TableCell::fromJson(web::json::value& val)
 		setText(ModelBase::stringFromJson(*jsonForText));
 	}
 	web::json::value* jsonForRowSpan = ModelBase::getField(val, "RowSpan");
-	if(jsonForRowSpan != nullptr && !jsonForRowSpan->is_null())
+	if(jsonForRowSpan != nullptr && !jsonForRowSpan->is_null() && jsonForRowSpan->is_number())
 	{
 		setRowSpan(ModelBase::int32_tFromJson(*jsonForRowSpan));
 	}
 	web::json::value* jsonForColSpan = ModelBase::getField(val, "ColSpan");
-	if(jsonForColSpan != nullptr && !jsonForColSpan->is_null())
+	if(jsonForColSpan != nullptr && !jsonForColSpan->is_null() && jsonForColSpan->is_number())
 	{
 		setColSpan(ModelBase::int32_tFromJson(*jsonForColSpan));
 	}
 	web::json::value* jsonForMarginTop = ModelBase::getField(val, "MarginTop");
-	if(jsonForMarginTop != nullptr && !jsonForMarginTop->is_null())
+	if(jsonForMarginTop != nullptr && !jsonForMarginTop->is_null() && jsonForMarginTop->is_number())
 	{
 		setMarginTop(ModelBase::doubleFromJson(*jsonForMarginTop));
 	}
 	web::json::value* jsonForMarginRight = ModelBase::getField(val, "MarginRight");
-	if(jsonForMarginRight != nullptr && !jsonForMarginRight->is_null())
+	if(jsonForMarginRight != nullptr && !jsonForMarginRight->is_null() && jsonForMarginRight->is_number())
 	{
 		setMarginRight(ModelBase::doubleFromJson(*jsonForMarginRight));
 	}
 	web::json::value* jsonForMarginLeft = ModelBase::getField(val, "MarginLeft");
-	if(jsonForMarginLeft != nullptr && !jsonForMarginLeft->is_null())
+	if(jsonForMarginLeft != nullptr && !jsonForMarginLeft->is_null() && jsonForMarginLeft->is_number())
 	{
 		setMarginLeft(ModelBase::doubleFromJson(*jsonForMarginLeft));
 	}
 	web::json::value* jsonForMarginBottom = ModelBase::getField(val, "MarginBottom");
-	if(jsonForMarginBottom != nullptr && !jsonForMarginBottom->is_null())
+	if(jsonForMarginBottom != nullptr && !jsonForMarginBottom->is_null() && jsonForMarginBottom->is_number())
 	{
 		setMarginBottom(ModelBase::doubleFromJson(*jsonForMarginBottom));
 	}

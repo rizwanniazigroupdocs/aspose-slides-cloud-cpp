@@ -117,7 +117,7 @@ void ReplaceText::fromJson(web::json::value& val)
 		setIgnoreCase(ModelBase::boolFromJson(*jsonForIgnoreCase));
 	}
 	web::json::value* jsonForSlidePosition = ModelBase::getField(val, "SlidePosition");
-	if(jsonForSlidePosition != nullptr && !jsonForSlidePosition->is_null())
+	if(jsonForSlidePosition != nullptr && !jsonForSlidePosition->is_null() && jsonForSlidePosition->is_number())
 	{
 		setSlidePosition(ModelBase::int32_tFromJson(*jsonForSlidePosition));
 	}

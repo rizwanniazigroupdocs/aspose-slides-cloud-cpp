@@ -168,27 +168,27 @@ void PictureFill::fromJson(web::json::value& val)
 {
 	this->FillFormat::fromJson(val);
 	web::json::value* jsonForCropBottom = ModelBase::getField(val, "CropBottom");
-	if(jsonForCropBottom != nullptr && !jsonForCropBottom->is_null())
+	if(jsonForCropBottom != nullptr && !jsonForCropBottom->is_null() && jsonForCropBottom->is_number())
 	{
 		setCropBottom(ModelBase::doubleFromJson(*jsonForCropBottom));
 	}
 	web::json::value* jsonForCropLeft = ModelBase::getField(val, "CropLeft");
-	if(jsonForCropLeft != nullptr && !jsonForCropLeft->is_null())
+	if(jsonForCropLeft != nullptr && !jsonForCropLeft->is_null() && jsonForCropLeft->is_number())
 	{
 		setCropLeft(ModelBase::doubleFromJson(*jsonForCropLeft));
 	}
 	web::json::value* jsonForCropRight = ModelBase::getField(val, "CropRight");
-	if(jsonForCropRight != nullptr && !jsonForCropRight->is_null())
+	if(jsonForCropRight != nullptr && !jsonForCropRight->is_null() && jsonForCropRight->is_number())
 	{
 		setCropRight(ModelBase::doubleFromJson(*jsonForCropRight));
 	}
 	web::json::value* jsonForCropTop = ModelBase::getField(val, "CropTop");
-	if(jsonForCropTop != nullptr && !jsonForCropTop->is_null())
+	if(jsonForCropTop != nullptr && !jsonForCropTop->is_null() && jsonForCropTop->is_number())
 	{
 		setCropTop(ModelBase::doubleFromJson(*jsonForCropTop));
 	}
 	web::json::value* jsonForDpi = ModelBase::getField(val, "Dpi");
-	if(jsonForDpi != nullptr && !jsonForDpi->is_null())
+	if(jsonForDpi != nullptr && !jsonForDpi->is_null() && jsonForDpi->is_number())
 	{
 		setDpi(ModelBase::int32_tFromJson(*jsonForDpi));
 	}

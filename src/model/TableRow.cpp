@@ -114,12 +114,12 @@ void TableRow::fromJson(web::json::value& val)
         	}
 	}
 	web::json::value* jsonForMinimalHeight = ModelBase::getField(val, "MinimalHeight");
-	if(jsonForMinimalHeight != nullptr && !jsonForMinimalHeight->is_null())
+	if(jsonForMinimalHeight != nullptr && !jsonForMinimalHeight->is_null() && jsonForMinimalHeight->is_number())
 	{
 		setMinimalHeight(ModelBase::doubleFromJson(*jsonForMinimalHeight));
 	}
 	web::json::value* jsonForHeight = ModelBase::getField(val, "Height");
-	if(jsonForHeight != nullptr && !jsonForHeight->is_null())
+	if(jsonForHeight != nullptr && !jsonForHeight->is_null() && jsonForHeight->is_number())
 	{
 		setHeight(ModelBase::doubleFromJson(*jsonForHeight));
 	}

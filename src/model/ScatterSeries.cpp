@@ -38,17 +38,6 @@ ScatterSeries::~ScatterSeries()
 {
 }
 
-utility::string_t ScatterSeries::getDataPointType() const
-{
-	return m_DataPointType;
-}
-
-void ScatterSeries::setDataPointType(utility::string_t value)
-{
-	m_DataPointType = value;
-	
-}
-
 std::vector<std::shared_ptr<ScatterChartDataPoint>> ScatterSeries::getDataPoints() const
 {
 	return m_DataPoints;
@@ -63,10 +52,6 @@ void ScatterSeries::setDataPoints(std::vector<std::shared_ptr<ScatterChartDataPo
 web::json::value ScatterSeries::toJson() const
 {
 	web::json::value val = this->Series::toJson();
-	if (!m_DataPointType.empty())
-	{
-		val[utility::conversions::to_string_t("DataPointType")] = ModelBase::toJson(m_DataPointType);
-	}
 	{
 		std::vector<web::json::value> jsonArray;
 		for (auto& item : m_DataPoints)
@@ -84,11 +69,6 @@ web::json::value ScatterSeries::toJson() const
 void ScatterSeries::fromJson(web::json::value& val)
 {
 	this->Series::fromJson(val);
-	web::json::value* jsonForDataPointType = ModelBase::getField(val, "DataPointType");
-	if(jsonForDataPointType != nullptr && !jsonForDataPointType->is_null())
-	{
-		setDataPointType(ModelBase::stringFromJson(*jsonForDataPointType));
-	}
 	web::json::value* jsonForDataPoints = ModelBase::getField(val, "DataPoints");
 	if(jsonForDataPoints != nullptr && !jsonForDataPoints->is_null())
 	{

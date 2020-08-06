@@ -170,7 +170,7 @@ void GradientFill::fromJson(web::json::value& val)
         	}
 	}
 	web::json::value* jsonForLinearAngle = ModelBase::getField(val, "LinearAngle");
-	if(jsonForLinearAngle != nullptr && !jsonForLinearAngle->is_null())
+	if(jsonForLinearAngle != nullptr && !jsonForLinearAngle->is_null() && jsonForLinearAngle->is_number())
 	{
 		setLinearAngle(ModelBase::doubleFromJson(*jsonForLinearAngle));
 	}

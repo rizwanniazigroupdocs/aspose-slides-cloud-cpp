@@ -357,7 +357,7 @@ void Effect::fromJson(web::json::value& val)
 		setPresetClassType(ModelBase::stringFromJson(*jsonForPresetClassType));
 	}
 	web::json::value* jsonForShapeIndex = ModelBase::getField(val, "ShapeIndex");
-	if(jsonForShapeIndex != nullptr && !jsonForShapeIndex->is_null())
+	if(jsonForShapeIndex != nullptr && !jsonForShapeIndex->is_null() && jsonForShapeIndex->is_number())
 	{
 		setShapeIndex(ModelBase::int32_tFromJson(*jsonForShapeIndex));
 	}
@@ -367,7 +367,7 @@ void Effect::fromJson(web::json::value& val)
 		setTriggerType(ModelBase::stringFromJson(*jsonForTriggerType));
 	}
 	web::json::value* jsonForAccelerate = ModelBase::getField(val, "Accelerate");
-	if(jsonForAccelerate != nullptr && !jsonForAccelerate->is_null())
+	if(jsonForAccelerate != nullptr && !jsonForAccelerate->is_null() && jsonForAccelerate->is_number())
 	{
 		setAccelerate(ModelBase::doubleFromJson(*jsonForAccelerate));
 	}
@@ -377,22 +377,22 @@ void Effect::fromJson(web::json::value& val)
 		setAutoReverse(ModelBase::boolFromJson(*jsonForAutoReverse));
 	}
 	web::json::value* jsonForDecelerate = ModelBase::getField(val, "Decelerate");
-	if(jsonForDecelerate != nullptr && !jsonForDecelerate->is_null())
+	if(jsonForDecelerate != nullptr && !jsonForDecelerate->is_null() && jsonForDecelerate->is_number())
 	{
 		setDecelerate(ModelBase::doubleFromJson(*jsonForDecelerate));
 	}
 	web::json::value* jsonForDuration = ModelBase::getField(val, "Duration");
-	if(jsonForDuration != nullptr && !jsonForDuration->is_null())
+	if(jsonForDuration != nullptr && !jsonForDuration->is_null() && jsonForDuration->is_number())
 	{
 		setDuration(ModelBase::doubleFromJson(*jsonForDuration));
 	}
 	web::json::value* jsonForRepeatCount = ModelBase::getField(val, "RepeatCount");
-	if(jsonForRepeatCount != nullptr && !jsonForRepeatCount->is_null())
+	if(jsonForRepeatCount != nullptr && !jsonForRepeatCount->is_null() && jsonForRepeatCount->is_number())
 	{
 		setRepeatCount(ModelBase::doubleFromJson(*jsonForRepeatCount));
 	}
 	web::json::value* jsonForRepeatDuration = ModelBase::getField(val, "RepeatDuration");
-	if(jsonForRepeatDuration != nullptr && !jsonForRepeatDuration->is_null())
+	if(jsonForRepeatDuration != nullptr && !jsonForRepeatDuration->is_null() && jsonForRepeatDuration->is_number())
 	{
 		setRepeatDuration(ModelBase::doubleFromJson(*jsonForRepeatDuration));
 	}
@@ -402,12 +402,12 @@ void Effect::fromJson(web::json::value& val)
 		setRestart(ModelBase::stringFromJson(*jsonForRestart));
 	}
 	web::json::value* jsonForSpeed = ModelBase::getField(val, "Speed");
-	if(jsonForSpeed != nullptr && !jsonForSpeed->is_null())
+	if(jsonForSpeed != nullptr && !jsonForSpeed->is_null() && jsonForSpeed->is_number())
 	{
 		setSpeed(ModelBase::doubleFromJson(*jsonForSpeed));
 	}
 	web::json::value* jsonForTriggerDelayTime = ModelBase::getField(val, "TriggerDelayTime");
-	if(jsonForTriggerDelayTime != nullptr && !jsonForTriggerDelayTime->is_null())
+	if(jsonForTriggerDelayTime != nullptr && !jsonForTriggerDelayTime->is_null() && jsonForTriggerDelayTime->is_number())
 	{
 		setTriggerDelayTime(ModelBase::doubleFromJson(*jsonForTriggerDelayTime));
 	}

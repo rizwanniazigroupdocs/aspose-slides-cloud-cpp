@@ -35,6 +35,7 @@
 #include "../defines.h"
 
 #include "../model/ApiInfo.h"
+#include "../model/Chart.h"
 #include "../model/ColorScheme.h"
 #include "../model/DiscUsage.h"
 #include "../model/Document.h"
@@ -68,6 +69,7 @@
 #include "../model/Portion.h"
 #include "../model/Portions.h"
 #include "../model/PresentationsMergeRequest.h"
+#include "../model/Series.h"
 #include "../model/ShapeBase.h"
 #include "../model/Shapes.h"
 #include "../model/Slide.h"
@@ -154,6 +156,42 @@ public:
 protected:
 	utility::string_t m_path;
 	utility::string_t m_storageName;
+};
+
+class  DeleteChartSeriesRequest
+{
+public:
+	ASPOSE_DLL_EXPORT DeleteChartSeriesRequest();
+	ASPOSE_DLL_EXPORT virtual ~DeleteChartSeriesRequest();
+
+	ASPOSE_DLL_EXPORT utility::string_t getName() const;
+	ASPOSE_DLL_EXPORT void setName(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getSlideIndex() const;
+	ASPOSE_DLL_EXPORT void setSlideIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getShapeIndex() const;
+	ASPOSE_DLL_EXPORT void setShapeIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getSeriesIndex() const;
+	ASPOSE_DLL_EXPORT void setSeriesIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getPassword() const;
+	ASPOSE_DLL_EXPORT void setPassword(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getFolder() const;
+	ASPOSE_DLL_EXPORT void setFolder(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getStorage() const;
+	ASPOSE_DLL_EXPORT void setStorage(utility::string_t value);
+protected:
+	utility::string_t m_name;
+	int32_t m_slideIndex;
+	int32_t m_shapeIndex;
+	int32_t m_seriesIndex;
+	utility::string_t m_password;
+	utility::string_t m_folder;
+	utility::string_t m_storage;
 };
 
 class  DeleteFileRequest
@@ -1787,6 +1825,8 @@ public:
 
 	ASPOSE_DLL_EXPORT int32_t getShapeIndex() const;
 	ASPOSE_DLL_EXPORT void setShapeIndex(int32_t value);
+	ASPOSE_DLL_EXPORT bool shapeIndexIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetShapeIndex();
 
 	ASPOSE_DLL_EXPORT utility::string_t getPassword() const;
 	ASPOSE_DLL_EXPORT void setPassword(utility::string_t value);
@@ -1800,6 +1840,7 @@ protected:
 	utility::string_t m_name;
 	int32_t m_slideIndex;
 	int32_t m_shapeIndex;
+	bool m_shapeIndexIsSet;
 	utility::string_t m_password;
 	utility::string_t m_folder;
 	utility::string_t m_storage;
@@ -3107,6 +3148,42 @@ protected:
 	utility::string_t m_storage;
 };
 
+class  PostChartSeriesRequest
+{
+public:
+	ASPOSE_DLL_EXPORT PostChartSeriesRequest();
+	ASPOSE_DLL_EXPORT virtual ~PostChartSeriesRequest();
+
+	ASPOSE_DLL_EXPORT utility::string_t getName() const;
+	ASPOSE_DLL_EXPORT void setName(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getSlideIndex() const;
+	ASPOSE_DLL_EXPORT void setSlideIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getShapeIndex() const;
+	ASPOSE_DLL_EXPORT void setShapeIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT std::shared_ptr<Series> getSeries() const;
+	ASPOSE_DLL_EXPORT void setSeries(std::shared_ptr<Series> value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getPassword() const;
+	ASPOSE_DLL_EXPORT void setPassword(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getFolder() const;
+	ASPOSE_DLL_EXPORT void setFolder(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getStorage() const;
+	ASPOSE_DLL_EXPORT void setStorage(utility::string_t value);
+protected:
+	utility::string_t m_name;
+	int32_t m_slideIndex;
+	int32_t m_shapeIndex;
+	std::shared_ptr<Series> m_series;
+	utility::string_t m_password;
+	utility::string_t m_folder;
+	utility::string_t m_storage;
+};
+
 class  PostCopyLayoutSlideFromSourcePresentationRequest
 {
 public:
@@ -4321,6 +4398,46 @@ protected:
 	bool m_scaleYIsSet;
 	utility::string_t m_bounds;
 	utility::string_t m_fontsFolder;
+};
+
+class  PutChartSeriesRequest
+{
+public:
+	ASPOSE_DLL_EXPORT PutChartSeriesRequest();
+	ASPOSE_DLL_EXPORT virtual ~PutChartSeriesRequest();
+
+	ASPOSE_DLL_EXPORT utility::string_t getName() const;
+	ASPOSE_DLL_EXPORT void setName(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getSlideIndex() const;
+	ASPOSE_DLL_EXPORT void setSlideIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getShapeIndex() const;
+	ASPOSE_DLL_EXPORT void setShapeIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT int32_t getSeriesIndex() const;
+	ASPOSE_DLL_EXPORT void setSeriesIndex(int32_t value);
+
+	ASPOSE_DLL_EXPORT std::shared_ptr<Series> getSeries() const;
+	ASPOSE_DLL_EXPORT void setSeries(std::shared_ptr<Series> value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getPassword() const;
+	ASPOSE_DLL_EXPORT void setPassword(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getFolder() const;
+	ASPOSE_DLL_EXPORT void setFolder(utility::string_t value);
+
+	ASPOSE_DLL_EXPORT utility::string_t getStorage() const;
+	ASPOSE_DLL_EXPORT void setStorage(utility::string_t value);
+protected:
+	utility::string_t m_name;
+	int32_t m_slideIndex;
+	int32_t m_shapeIndex;
+	int32_t m_seriesIndex;
+	std::shared_ptr<Series> m_series;
+	utility::string_t m_password;
+	utility::string_t m_folder;
+	utility::string_t m_storage;
 };
 
 class  PutLayoutSlideRequest

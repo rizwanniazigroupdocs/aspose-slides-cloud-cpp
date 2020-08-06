@@ -38,14 +38,14 @@ Portions::~Portions()
 {
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> Portions::getPortionLinks() const
+std::vector<std::shared_ptr<Portion>> Portions::getItems() const
 {
-	return m_PortionLinks;
+	return m_Items;
 }
 
-void Portions::setPortionLinks(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void Portions::setItems(std::vector<std::shared_ptr<Portion>> value)
 {
-	m_PortionLinks = value;
+	m_Items = value;
 	
 }
 
@@ -54,13 +54,13 @@ web::json::value Portions::toJson() const
 	web::json::value val = this->ResourceBase::toJson();
 	{
 		std::vector<web::json::value> jsonArray;
-		for (auto& item : m_PortionLinks)
+		for (auto& item : m_Items)
 		{
 			jsonArray.push_back(ModelBase::toJson(item));
 		}
 		if (jsonArray.size() > 0)
 		{
-			val[utility::conversions::to_string_t("PortionLinks")] = web::json::value::array(jsonArray);
+			val[utility::conversions::to_string_t("Items")] = web::json::value::array(jsonArray);
 		}
 	}
 	return val;
@@ -69,23 +69,23 @@ web::json::value Portions::toJson() const
 void Portions::fromJson(web::json::value& val)
 {
 	this->ResourceBase::fromJson(val);
-	web::json::value* jsonForPortionLinks = ModelBase::getField(val, "PortionLinks");
-	if(jsonForPortionLinks != nullptr && !jsonForPortionLinks->is_null())
+	web::json::value* jsonForItems = ModelBase::getField(val, "Items");
+	if(jsonForItems != nullptr && !jsonForItems->is_null())
 	{
 		{
-			m_PortionLinks.clear();
+			m_Items.clear();
 			std::vector<web::json::value> jsonArray;
-			for(auto& item : jsonForPortionLinks->as_array())
+			for(auto& item : jsonForItems->as_array())
 			{
 				if(item.is_null())
 				{
-					m_PortionLinks.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_Items.push_back(std::shared_ptr<Portion>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<Portion> newItem(new Portion());
 					newItem->fromJson(item);
-					m_PortionLinks.push_back( newItem );
+					m_Items.push_back( newItem );
 				}
 			}
         	}

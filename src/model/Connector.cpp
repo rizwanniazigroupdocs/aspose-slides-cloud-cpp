@@ -137,7 +137,7 @@ void Connector::fromJson(web::json::value& val)
 		setStartShapeConnectedTo(newItem);
 	}
 	web::json::value* jsonForStartShapeConnectedToIndex = ModelBase::getField(val, "StartShapeConnectedToIndex");
-	if(jsonForStartShapeConnectedToIndex != nullptr && !jsonForStartShapeConnectedToIndex->is_null())
+	if(jsonForStartShapeConnectedToIndex != nullptr && !jsonForStartShapeConnectedToIndex->is_null() && jsonForStartShapeConnectedToIndex->is_number())
 	{
 		setStartShapeConnectedToIndex(ModelBase::int32_tFromJson(*jsonForStartShapeConnectedToIndex));
 	}
@@ -149,7 +149,7 @@ void Connector::fromJson(web::json::value& val)
 		setEndShapeConnectedTo(newItem);
 	}
 	web::json::value* jsonForEndShapeConnectedToIndex = ModelBase::getField(val, "EndShapeConnectedToIndex");
-	if(jsonForEndShapeConnectedToIndex != nullptr && !jsonForEndShapeConnectedToIndex->is_null())
+	if(jsonForEndShapeConnectedToIndex != nullptr && !jsonForEndShapeConnectedToIndex->is_null() && jsonForEndShapeConnectedToIndex->is_number())
 	{
 		setEndShapeConnectedToIndex(ModelBase::int32_tFromJson(*jsonForEndShapeConnectedToIndex));
 	}

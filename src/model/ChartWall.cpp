@@ -154,7 +154,7 @@ void ChartWall::fromJson(web::json::value& val)
 		setLineFormat(newItem);
 	}
 	web::json::value* jsonForThickness = ModelBase::getField(val, "Thickness");
-	if(jsonForThickness != nullptr && !jsonForThickness->is_null())
+	if(jsonForThickness != nullptr && !jsonForThickness->is_null() && jsonForThickness->is_number())
 	{
 		setThickness(ModelBase::int32_tFromJson(*jsonForThickness));
 	}

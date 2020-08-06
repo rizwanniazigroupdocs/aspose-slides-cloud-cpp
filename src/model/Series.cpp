@@ -291,6 +291,17 @@ void Series::setLineFormat(std::shared_ptr<LineFormat> value)
 	
 }
 
+utility::string_t Series::getDataPointType() const
+{
+	return m_DataPointType;
+}
+
+void Series::setDataPointType(utility::string_t value)
+{
+	m_DataPointType = value;
+	
+}
+
 web::json::value Series::toJson() const
 {
 	web::json::value val = web::json::value::object();
@@ -362,6 +373,10 @@ web::json::value Series::toJson() const
 	{
 		val[utility::conversions::to_string_t("LineFormat")] = ModelBase::toJson(m_LineFormat);
 	}
+	if (!m_DataPointType.empty())
+	{
+		val[utility::conversions::to_string_t("DataPointType")] = ModelBase::toJson(m_DataPointType);
+	}
 	return val;
 }
 
@@ -398,7 +413,7 @@ void Series::fromJson(web::json::value& val)
 		setPlotOnSecondAxis(ModelBase::boolFromJson(*jsonForPlotOnSecondAxis));
 	}
 	web::json::value* jsonForOrder = ModelBase::getField(val, "Order");
-	if(jsonForOrder != nullptr && !jsonForOrder->is_null())
+	if(jsonForOrder != nullptr && !jsonForOrder->is_null() && jsonForOrder->is_number())
 	{
 		setOrder(ModelBase::int32_tFromJson(*jsonForOrder));
 	}
@@ -428,7 +443,7 @@ void Series::fromJson(web::json::value& val)
 		setInvertIfNegative(ModelBase::boolFromJson(*jsonForInvertIfNegative));
 	}
 	web::json::value* jsonForExplosion = ModelBase::getField(val, "Explosion");
-	if(jsonForExplosion != nullptr && !jsonForExplosion->is_null())
+	if(jsonForExplosion != nullptr && !jsonForExplosion->is_null() && jsonForExplosion->is_number())
 	{
 		setExplosion(ModelBase::int32_tFromJson(*jsonForExplosion));
 	}
@@ -459,6 +474,11 @@ void Series::fromJson(web::json::value& val)
 		std::shared_ptr<LineFormat> newItem(new LineFormat());
 		newItem->fromJson(*jsonForLineFormat);
 		setLineFormat(newItem);
+	}
+	web::json::value* jsonForDataPointType = ModelBase::getField(val, "DataPointType");
+	if(jsonForDataPointType != nullptr && !jsonForDataPointType->is_null())
+	{
+		setDataPointType(ModelBase::stringFromJson(*jsonForDataPointType));
 	}
 }
 

@@ -65,6 +65,19 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<DeleteChartSeriesRequest> getDeleteChartSeriesRequest()
+	{
+		std::shared_ptr<DeleteChartSeriesRequest> request = std::make_shared<DeleteChartSeriesRequest>();
+		request->setName(utils->getTestValue("deleteChartSeries", "name"));
+		request->setSlideIndex(utils->getIntTestValue("deleteChartSeries", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("deleteChartSeries", "shapeIndex"));
+		request->setSeriesIndex(utils->getIntTestValue("deleteChartSeries", "seriesIndex"));
+		request->setPassword(utils->getTestValue("deleteChartSeries", "password"));
+		request->setFolder(utils->getTestValue("deleteChartSeries", "folder"));
+		request->setStorage(utils->getTestValue("deleteChartSeries", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<DeleteFileRequest> getDeleteFileRequest()
 	{
 		std::shared_ptr<DeleteFileRequest> request = std::make_shared<DeleteFileRequest>();
@@ -688,7 +701,11 @@ public:
 		std::shared_ptr<GetSlideAnimationRequest> request = std::make_shared<GetSlideAnimationRequest>();
 		request->setName(utils->getTestValue("getSlideAnimation", "name"));
 		request->setSlideIndex(utils->getIntTestValue("getSlideAnimation", "slideIndex"));
-		request->setShapeIndex(utils->getIntTestValue("getSlideAnimation", "shapeIndex"));
+		auto valueForShapeIndex = utils->getOptionalIntTestValue("getSlideAnimation", "shapeIndex");
+		if (valueForShapeIndex != nullptr)
+		{
+			request->setShapeIndex(*valueForShapeIndex);
+		}
 		request->setPassword(utils->getTestValue("getSlideAnimation", "password"));
 		request->setFolder(utils->getTestValue("getSlideAnimation", "folder"));
 		request->setStorage(utils->getTestValue("getSlideAnimation", "storage"));
@@ -1213,6 +1230,19 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<PostChartSeriesRequest> getPostChartSeriesRequest()
+	{
+		std::shared_ptr<PostChartSeriesRequest> request = std::make_shared<PostChartSeriesRequest>();
+		request->setName(utils->getTestValue("postChartSeries", "name"));
+		request->setSlideIndex(utils->getIntTestValue("postChartSeries", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("postChartSeries", "shapeIndex"));
+		request->setSeries(utils->getTestValueForClass<Series>("postChartSeries", "series"));
+		request->setPassword(utils->getTestValue("postChartSeries", "password"));
+		request->setFolder(utils->getTestValue("postChartSeries", "folder"));
+		request->setStorage(utils->getTestValue("postChartSeries", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<PostCopyLayoutSlideFromSourcePresentationRequest> getPostCopyLayoutSlideFromSourcePresentationRequest()
 	{
 		std::shared_ptr<PostCopyLayoutSlideFromSourcePresentationRequest> request = std::make_shared<PostCopyLayoutSlideFromSourcePresentationRequest>();
@@ -1716,6 +1746,20 @@ public:
 		}
 		request->setBounds(utils->getTestValue("postSubshapeSaveAs", "bounds"));
 		request->setFontsFolder(utils->getTestValue("postSubshapeSaveAs", "fontsFolder"));
+		return request;
+	}
+
+	std::shared_ptr<PutChartSeriesRequest> getPutChartSeriesRequest()
+	{
+		std::shared_ptr<PutChartSeriesRequest> request = std::make_shared<PutChartSeriesRequest>();
+		request->setName(utils->getTestValue("putChartSeries", "name"));
+		request->setSlideIndex(utils->getIntTestValue("putChartSeries", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("putChartSeries", "shapeIndex"));
+		request->setSeriesIndex(utils->getIntTestValue("putChartSeries", "seriesIndex"));
+		request->setSeries(utils->getTestValueForClass<Series>("putChartSeries", "series"));
+		request->setPassword(utils->getTestValue("putChartSeries", "password"));
+		request->setFolder(utils->getTestValue("putChartSeries", "folder"));
+		request->setStorage(utils->getTestValue("putChartSeries", "storage"));
 		return request;
 	}
 
@@ -2524,6 +2568,209 @@ TEST_F(SlidesApiTest, createFolderStorageName) {
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
 	if (!failed && utils->mustFail("createFolder", "storageName"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartSeries) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	utils->initialize("deleteChartSeries", "");
+	std::shared_ptr<Chart> result = api->deleteChartSeries(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, deleteChartSeriesName) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	request->setName(utils->getInvalidTestValue("deleteChartSeries", "name", request->getName()));
+	utils->initialize("deleteChartSeries", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartSeries", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartSeriesSlideIndex) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("deleteChartSeries", "slideIndex", request->getSlideIndex()));
+	utils->initialize("deleteChartSeries", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartSeries", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartSeriesShapeIndex) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("deleteChartSeries", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("deleteChartSeries", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartSeries", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartSeriesSeriesIndex) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	request->setSeriesIndex(utils->getInvalidIntTestValue("deleteChartSeries", "seriesIndex", request->getSeriesIndex()));
+	utils->initialize("deleteChartSeries", "seriesIndex", request->getSeriesIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "seriesIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "seriesIndex", request->getSeriesIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartSeries", "seriesIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartSeriesPassword) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	request->setPassword(utils->getInvalidTestValue("deleteChartSeries", "password", request->getPassword()));
+	utils->initialize("deleteChartSeries", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartSeries", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartSeriesFolder) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	request->setFolder(utils->getInvalidTestValue("deleteChartSeries", "folder", request->getFolder()));
+	utils->initialize("deleteChartSeries", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartSeries", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartSeriesStorage) {
+	std::shared_ptr<DeleteChartSeriesRequest> request = getDeleteChartSeriesRequest();
+	request->setStorage(utils->getInvalidTestValue("deleteChartSeries", "storage", request->getStorage()));
+	utils->initialize("deleteChartSeries", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartSeries", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -18407,6 +18654,209 @@ TEST_F(SlidesApiTest, postAddNotesSlideStorage) {
 	}
 }
 
+TEST_F(SlidesApiTest, postChartSeries) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	utils->initialize("postChartSeries", "");
+	std::shared_ptr<Chart> result = api->postChartSeries(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, postChartSeriesName) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	request->setName(utils->getInvalidTestValue("postChartSeries", "name", request->getName()));
+	utils->initialize("postChartSeries", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->postChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartSeries", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartSeriesSlideIndex) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("postChartSeries", "slideIndex", request->getSlideIndex()));
+	utils->initialize("postChartSeries", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartSeries", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartSeriesShapeIndex) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("postChartSeries", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("postChartSeries", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartSeries", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartSeriesSeries) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	request->setSeries(utils->getInvalidTestValueForClass<Series>("postChartSeries", "series", request->getSeries()));
+	utils->initialize("postChartSeries", "series", request->getSeries());
+
+	bool failed = true;
+	try
+	{
+		api->postChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "series");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "series", request->getSeries());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartSeries", "series"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartSeriesPassword) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	request->setPassword(utils->getInvalidTestValue("postChartSeries", "password", request->getPassword()));
+	utils->initialize("postChartSeries", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->postChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartSeries", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartSeriesFolder) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	request->setFolder(utils->getInvalidTestValue("postChartSeries", "folder", request->getFolder()));
+	utils->initialize("postChartSeries", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->postChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartSeries", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartSeriesStorage) {
+	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
+	request->setStorage(utils->getInvalidTestValue("postChartSeries", "storage", request->getStorage()));
+	utils->initialize("postChartSeries", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->postChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartSeries", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentation) {
 	std::shared_ptr<PostCopyLayoutSlideFromSourcePresentationRequest> request = getPostCopyLayoutSlideFromSourcePresentationRequest();
 	utils->initialize("postCopyLayoutSlideFromSourcePresentation", "");
@@ -24891,6 +25341,237 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsFontsFolder) {
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "fontsFolder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeries) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	utils->initialize("putChartSeries", "");
+	std::shared_ptr<Chart> result = api->putChartSeries(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putChartSeriesName) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setName(utils->getInvalidTestValue("putChartSeries", "name", request->getName()));
+	utils->initialize("putChartSeries", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeriesSlideIndex) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("putChartSeries", "slideIndex", request->getSlideIndex()));
+	utils->initialize("putChartSeries", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeriesShapeIndex) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("putChartSeries", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("putChartSeries", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeriesSeriesIndex) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setSeriesIndex(utils->getInvalidIntTestValue("putChartSeries", "seriesIndex", request->getSeriesIndex()));
+	utils->initialize("putChartSeries", "seriesIndex", request->getSeriesIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "seriesIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "seriesIndex", request->getSeriesIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "seriesIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeriesSeries) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setSeries(utils->getInvalidTestValueForClass<Series>("putChartSeries", "series", request->getSeries()));
+	utils->initialize("putChartSeries", "series", request->getSeries());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "series");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "series", request->getSeries());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "series"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeriesPassword) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setPassword(utils->getInvalidTestValue("putChartSeries", "password", request->getPassword()));
+	utils->initialize("putChartSeries", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeriesFolder) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setFolder(utils->getInvalidTestValue("putChartSeries", "folder", request->getFolder()));
+	utils->initialize("putChartSeries", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartSeriesStorage) {
+	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
+	request->setStorage(utils->getInvalidTestValue("putChartSeries", "storage", request->getStorage()));
+	utils->initialize("putChartSeries", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putChartSeries(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartSeries", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}

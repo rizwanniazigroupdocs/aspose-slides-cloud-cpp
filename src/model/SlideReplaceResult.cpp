@@ -60,7 +60,7 @@ void SlideReplaceResult::fromJson(web::json::value& val)
 {
 	this->Slide::fromJson(val);
 	web::json::value* jsonForMatches = ModelBase::getField(val, "Matches");
-	if(jsonForMatches != nullptr && !jsonForMatches->is_null())
+	if(jsonForMatches != nullptr && !jsonForMatches->is_null() && jsonForMatches->is_number())
 	{
 		setMatches(ModelBase::int32_tFromJson(*jsonForMatches));
 	}

@@ -60,7 +60,7 @@ void ResetSlide::fromJson(web::json::value& val)
 {
 	this->Task::fromJson(val);
 	web::json::value* jsonForPosition = ModelBase::getField(val, "Position");
-	if(jsonForPosition != nullptr && !jsonForPosition->is_null())
+	if(jsonForPosition != nullptr && !jsonForPosition->is_null() && jsonForPosition->is_number())
 	{
 		setPosition(ModelBase::int32_tFromJson(*jsonForPosition));
 	}

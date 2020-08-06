@@ -859,7 +859,7 @@ void Axis::fromJson(web::json::value& val)
 		setIsAutomaticMajorUnit(ModelBase::boolFromJson(*jsonForIsAutomaticMajorUnit));
 	}
 	web::json::value* jsonForMajorUnit = ModelBase::getField(val, "MajorUnit");
-	if(jsonForMajorUnit != nullptr && !jsonForMajorUnit->is_null())
+	if(jsonForMajorUnit != nullptr && !jsonForMajorUnit->is_null() && jsonForMajorUnit->is_number())
 	{
 		setMajorUnit(ModelBase::doubleFromJson(*jsonForMajorUnit));
 	}
@@ -879,7 +879,7 @@ void Axis::fromJson(web::json::value& val)
 		setIsAutomaticMinorUnit(ModelBase::boolFromJson(*jsonForIsAutomaticMinorUnit));
 	}
 	web::json::value* jsonForMinorUnit = ModelBase::getField(val, "MinorUnit");
-	if(jsonForMinorUnit != nullptr && !jsonForMinorUnit->is_null())
+	if(jsonForMinorUnit != nullptr && !jsonForMinorUnit->is_null() && jsonForMinorUnit->is_number())
 	{
 		setMinorUnit(ModelBase::doubleFromJson(*jsonForMinorUnit));
 	}
@@ -899,7 +899,7 @@ void Axis::fromJson(web::json::value& val)
 		setIsAutomaticMaxValue(ModelBase::boolFromJson(*jsonForIsAutomaticMaxValue));
 	}
 	web::json::value* jsonForMaxValue = ModelBase::getField(val, "MaxValue");
-	if(jsonForMaxValue != nullptr && !jsonForMaxValue->is_null())
+	if(jsonForMaxValue != nullptr && !jsonForMaxValue->is_null() && jsonForMaxValue->is_number())
 	{
 		setMaxValue(ModelBase::doubleFromJson(*jsonForMaxValue));
 	}
@@ -909,7 +909,7 @@ void Axis::fromJson(web::json::value& val)
 		setIsAutomaticMinValue(ModelBase::boolFromJson(*jsonForIsAutomaticMinValue));
 	}
 	web::json::value* jsonForMinValue = ModelBase::getField(val, "MinValue");
-	if(jsonForMinValue != nullptr && !jsonForMinValue->is_null())
+	if(jsonForMinValue != nullptr && !jsonForMinValue->is_null() && jsonForMinValue->is_number())
 	{
 		setMinValue(ModelBase::doubleFromJson(*jsonForMinValue));
 	}
@@ -919,7 +919,7 @@ void Axis::fromJson(web::json::value& val)
 		setIsLogarithmic(ModelBase::boolFromJson(*jsonForIsLogarithmic));
 	}
 	web::json::value* jsonForLogBase = ModelBase::getField(val, "LogBase");
-	if(jsonForLogBase != nullptr && !jsonForLogBase->is_null())
+	if(jsonForLogBase != nullptr && !jsonForLogBase->is_null() && jsonForLogBase->is_number())
 	{
 		setLogBase(ModelBase::doubleFromJson(*jsonForLogBase));
 	}
@@ -934,7 +934,7 @@ void Axis::fromJson(web::json::value& val)
 		setAxisBetweenCategories(ModelBase::boolFromJson(*jsonForAxisBetweenCategories));
 	}
 	web::json::value* jsonForLabelOffset = ModelBase::getField(val, "LabelOffset");
-	if(jsonForLabelOffset != nullptr && !jsonForLabelOffset->is_null())
+	if(jsonForLabelOffset != nullptr && !jsonForLabelOffset->is_null() && jsonForLabelOffset->is_number())
 	{
 		setLabelOffset(ModelBase::int32_tFromJson(*jsonForLabelOffset));
 	}
@@ -959,7 +959,7 @@ void Axis::fromJson(web::json::value& val)
 		setCrossType(ModelBase::stringFromJson(*jsonForCrossType));
 	}
 	web::json::value* jsonForCrossAt = ModelBase::getField(val, "CrossAt");
-	if(jsonForCrossAt != nullptr && !jsonForCrossAt->is_null())
+	if(jsonForCrossAt != nullptr && !jsonForCrossAt->is_null() && jsonForCrossAt->is_number())
 	{
 		setCrossAt(ModelBase::doubleFromJson(*jsonForCrossAt));
 	}
@@ -969,7 +969,7 @@ void Axis::fromJson(web::json::value& val)
 		setIsAutomaticTickMarksSpacing(ModelBase::boolFromJson(*jsonForIsAutomaticTickMarksSpacing));
 	}
 	web::json::value* jsonForTickMarksSpacing = ModelBase::getField(val, "TickMarksSpacing");
-	if(jsonForTickMarksSpacing != nullptr && !jsonForTickMarksSpacing->is_null())
+	if(jsonForTickMarksSpacing != nullptr && !jsonForTickMarksSpacing->is_null() && jsonForTickMarksSpacing->is_number())
 	{
 		setTickMarksSpacing(ModelBase::int32_tFromJson(*jsonForTickMarksSpacing));
 	}
@@ -979,7 +979,7 @@ void Axis::fromJson(web::json::value& val)
 		setIsAutomaticTickLabelSpacing(ModelBase::boolFromJson(*jsonForIsAutomaticTickLabelSpacing));
 	}
 	web::json::value* jsonForTickLabelSpacing = ModelBase::getField(val, "TickLabelSpacing");
-	if(jsonForTickLabelSpacing != nullptr && !jsonForTickLabelSpacing->is_null())
+	if(jsonForTickLabelSpacing != nullptr && !jsonForTickLabelSpacing->is_null() && jsonForTickLabelSpacing->is_number())
 	{
 		setTickLabelSpacing(ModelBase::int32_tFromJson(*jsonForTickLabelSpacing));
 	}
@@ -989,7 +989,7 @@ void Axis::fromJson(web::json::value& val)
 		setTickLabelPosition(ModelBase::stringFromJson(*jsonForTickLabelPosition));
 	}
 	web::json::value* jsonForTickLabelRotationAngle = ModelBase::getField(val, "TickLabelRotationAngle");
-	if(jsonForTickLabelRotationAngle != nullptr && !jsonForTickLabelRotationAngle->is_null())
+	if(jsonForTickLabelRotationAngle != nullptr && !jsonForTickLabelRotationAngle->is_null() && jsonForTickLabelRotationAngle->is_number())
 	{
 		setTickLabelRotationAngle(ModelBase::doubleFromJson(*jsonForTickLabelRotationAngle));
 	}

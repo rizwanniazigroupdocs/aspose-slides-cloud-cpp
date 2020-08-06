@@ -101,12 +101,12 @@ web::json::value ShapeImageExportOptions::toJson() const
 void ShapeImageExportOptions::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForScaleX = ModelBase::getField(val, "ScaleX");
-	if(jsonForScaleX != nullptr && !jsonForScaleX->is_null())
+	if(jsonForScaleX != nullptr && !jsonForScaleX->is_null() && jsonForScaleX->is_number())
 	{
 		setScaleX(ModelBase::doubleFromJson(*jsonForScaleX));
 	}
 	web::json::value* jsonForScaleY = ModelBase::getField(val, "ScaleY");
-	if(jsonForScaleY != nullptr && !jsonForScaleY->is_null())
+	if(jsonForScaleY != nullptr && !jsonForScaleY->is_null() && jsonForScaleY->is_number())
 	{
 		setScaleY(ModelBase::doubleFromJson(*jsonForScaleY));
 	}

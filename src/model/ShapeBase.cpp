@@ -330,12 +330,12 @@ void ShapeBase::fromJson(web::json::value& val)
 		setName(ModelBase::stringFromJson(*jsonForName));
 	}
 	web::json::value* jsonForWidth = ModelBase::getField(val, "Width");
-	if(jsonForWidth != nullptr && !jsonForWidth->is_null())
+	if(jsonForWidth != nullptr && !jsonForWidth->is_null() && jsonForWidth->is_number())
 	{
 		setWidth(ModelBase::doubleFromJson(*jsonForWidth));
 	}
 	web::json::value* jsonForHeight = ModelBase::getField(val, "Height");
-	if(jsonForHeight != nullptr && !jsonForHeight->is_null())
+	if(jsonForHeight != nullptr && !jsonForHeight->is_null() && jsonForHeight->is_number())
 	{
 		setHeight(ModelBase::doubleFromJson(*jsonForHeight));
 	}
@@ -355,17 +355,17 @@ void ShapeBase::fromJson(web::json::value& val)
 		setHidden(ModelBase::boolFromJson(*jsonForHidden));
 	}
 	web::json::value* jsonForX = ModelBase::getField(val, "X");
-	if(jsonForX != nullptr && !jsonForX->is_null())
+	if(jsonForX != nullptr && !jsonForX->is_null() && jsonForX->is_number())
 	{
 		setX(ModelBase::doubleFromJson(*jsonForX));
 	}
 	web::json::value* jsonForY = ModelBase::getField(val, "Y");
-	if(jsonForY != nullptr && !jsonForY->is_null())
+	if(jsonForY != nullptr && !jsonForY->is_null() && jsonForY->is_number())
 	{
 		setY(ModelBase::doubleFromJson(*jsonForY));
 	}
 	web::json::value* jsonForZOrderPosition = ModelBase::getField(val, "ZOrderPosition");
-	if(jsonForZOrderPosition != nullptr && !jsonForZOrderPosition->is_null())
+	if(jsonForZOrderPosition != nullptr && !jsonForZOrderPosition->is_null() && jsonForZOrderPosition->is_number())
 	{
 		setZOrderPosition(ModelBase::int32_tFromJson(*jsonForZOrderPosition));
 	}

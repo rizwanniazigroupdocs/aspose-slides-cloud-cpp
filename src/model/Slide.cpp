@@ -204,12 +204,12 @@ void Slide::fromJson(web::json::value& val)
 {
 	this->ResourceBase::fromJson(val);
 	web::json::value* jsonForWidth = ModelBase::getField(val, "Width");
-	if(jsonForWidth != nullptr && !jsonForWidth->is_null())
+	if(jsonForWidth != nullptr && !jsonForWidth->is_null() && jsonForWidth->is_number())
 	{
 		setWidth(ModelBase::doubleFromJson(*jsonForWidth));
 	}
 	web::json::value* jsonForHeight = ModelBase::getField(val, "Height");
-	if(jsonForHeight != nullptr && !jsonForHeight->is_null())
+	if(jsonForHeight != nullptr && !jsonForHeight->is_null() && jsonForHeight->is_number())
 	{
 		setHeight(ModelBase::doubleFromJson(*jsonForHeight));
 	}

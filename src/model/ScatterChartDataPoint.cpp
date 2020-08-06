@@ -71,12 +71,12 @@ web::json::value ScatterChartDataPoint::toJson() const
 void ScatterChartDataPoint::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForXValue = ModelBase::getField(val, "XValue");
-	if(jsonForXValue != nullptr && !jsonForXValue->is_null())
+	if(jsonForXValue != nullptr && !jsonForXValue->is_null() && jsonForXValue->is_number())
 	{
 		setXValue(ModelBase::doubleFromJson(*jsonForXValue));
 	}
 	web::json::value* jsonForYValue = ModelBase::getField(val, "YValue");
-	if(jsonForYValue != nullptr && !jsonForYValue->is_null())
+	if(jsonForYValue != nullptr && !jsonForYValue->is_null() && jsonForYValue->is_number())
 	{
 		setYValue(ModelBase::doubleFromJson(*jsonForYValue));
 	}

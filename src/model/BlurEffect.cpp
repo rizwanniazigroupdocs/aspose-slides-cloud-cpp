@@ -71,7 +71,7 @@ web::json::value BlurEffect::toJson() const
 void BlurEffect::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForRadius = ModelBase::getField(val, "Radius");
-	if(jsonForRadius != nullptr && !jsonForRadius->is_null())
+	if(jsonForRadius != nullptr && !jsonForRadius->is_null() && jsonForRadius->is_number())
 	{
 		setRadius(ModelBase::doubleFromJson(*jsonForRadius));
 	}

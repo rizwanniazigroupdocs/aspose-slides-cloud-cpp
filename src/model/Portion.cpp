@@ -508,12 +508,12 @@ void Portion::fromJson(web::json::value& val)
 		setTextCapType(ModelBase::stringFromJson(*jsonForTextCapType));
 	}
 	web::json::value* jsonForEscapement = ModelBase::getField(val, "Escapement");
-	if(jsonForEscapement != nullptr && !jsonForEscapement->is_null())
+	if(jsonForEscapement != nullptr && !jsonForEscapement->is_null() && jsonForEscapement->is_number())
 	{
 		setEscapement(ModelBase::doubleFromJson(*jsonForEscapement));
 	}
 	web::json::value* jsonForSpacing = ModelBase::getField(val, "Spacing");
-	if(jsonForSpacing != nullptr && !jsonForSpacing->is_null())
+	if(jsonForSpacing != nullptr && !jsonForSpacing->is_null() && jsonForSpacing->is_number())
 	{
 		setSpacing(ModelBase::doubleFromJson(*jsonForSpacing));
 	}
@@ -528,7 +528,7 @@ void Portion::fromJson(web::json::value& val)
 		setHighlightColor(ModelBase::stringFromJson(*jsonForHighlightColor));
 	}
 	web::json::value* jsonForFontHeight = ModelBase::getField(val, "FontHeight");
-	if(jsonForFontHeight != nullptr && !jsonForFontHeight->is_null())
+	if(jsonForFontHeight != nullptr && !jsonForFontHeight->is_null() && jsonForFontHeight->is_number())
 	{
 		setFontHeight(ModelBase::doubleFromJson(*jsonForFontHeight));
 	}
@@ -548,7 +548,7 @@ void Portion::fromJson(web::json::value& val)
 		setSmartTagClean(ModelBase::boolFromJson(*jsonForSmartTagClean));
 	}
 	web::json::value* jsonForKerningMinimalSize = ModelBase::getField(val, "KerningMinimalSize");
-	if(jsonForKerningMinimalSize != nullptr && !jsonForKerningMinimalSize->is_null())
+	if(jsonForKerningMinimalSize != nullptr && !jsonForKerningMinimalSize->is_null() && jsonForKerningMinimalSize->is_number())
 	{
 		setKerningMinimalSize(ModelBase::doubleFromJson(*jsonForKerningMinimalSize));
 	}

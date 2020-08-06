@@ -268,22 +268,22 @@ void TiffExportOptions::fromJson(web::json::value& val)
 		setCompression(ModelBase::stringFromJson(*jsonForCompression));
 	}
 	web::json::value* jsonForWidth = ModelBase::getField(val, "Width");
-	if(jsonForWidth != nullptr && !jsonForWidth->is_null())
+	if(jsonForWidth != nullptr && !jsonForWidth->is_null() && jsonForWidth->is_number())
 	{
 		setWidth(ModelBase::int32_tFromJson(*jsonForWidth));
 	}
 	web::json::value* jsonForHeight = ModelBase::getField(val, "Height");
-	if(jsonForHeight != nullptr && !jsonForHeight->is_null())
+	if(jsonForHeight != nullptr && !jsonForHeight->is_null() && jsonForHeight->is_number())
 	{
 		setHeight(ModelBase::int32_tFromJson(*jsonForHeight));
 	}
 	web::json::value* jsonForDpiX = ModelBase::getField(val, "DpiX");
-	if(jsonForDpiX != nullptr && !jsonForDpiX->is_null())
+	if(jsonForDpiX != nullptr && !jsonForDpiX->is_null() && jsonForDpiX->is_number())
 	{
 		setDpiX(ModelBase::int32_tFromJson(*jsonForDpiX));
 	}
 	web::json::value* jsonForDpiY = ModelBase::getField(val, "DpiY");
-	if(jsonForDpiY != nullptr && !jsonForDpiY->is_null())
+	if(jsonForDpiY != nullptr && !jsonForDpiY->is_null() && jsonForDpiY->is_number())
 	{
 		setDpiY(ModelBase::int32_tFromJson(*jsonForDpiY));
 	}
@@ -308,7 +308,7 @@ void TiffExportOptions::fromJson(web::json::value& val)
 		setCommentsPosition(ModelBase::stringFromJson(*jsonForCommentsPosition));
 	}
 	web::json::value* jsonForCommentsAreaWidth = ModelBase::getField(val, "CommentsAreaWidth");
-	if(jsonForCommentsAreaWidth != nullptr && !jsonForCommentsAreaWidth->is_null())
+	if(jsonForCommentsAreaWidth != nullptr && !jsonForCommentsAreaWidth->is_null() && jsonForCommentsAreaWidth->is_number())
 	{
 		setCommentsAreaWidth(ModelBase::int32_tFromJson(*jsonForCommentsAreaWidth));
 	}

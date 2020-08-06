@@ -60,7 +60,7 @@ void BubbleChartDataPoint::fromJson(web::json::value& val)
 {
 	this->ScatterChartDataPoint::fromJson(val);
 	web::json::value* jsonForBubbleSize = ModelBase::getField(val, "BubbleSize");
-	if(jsonForBubbleSize != nullptr && !jsonForBubbleSize->is_null())
+	if(jsonForBubbleSize != nullptr && !jsonForBubbleSize->is_null() && jsonForBubbleSize->is_number())
 	{
 		setBubbleSize(ModelBase::doubleFromJson(*jsonForBubbleSize));
 	}

@@ -133,7 +133,7 @@ web::json::value SeriesMarker::toJson() const
 void SeriesMarker::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForSize = ModelBase::getField(val, "Size");
-	if(jsonForSize != nullptr && !jsonForSize->is_null())
+	if(jsonForSize != nullptr && !jsonForSize->is_null() && jsonForSize->is_number())
 	{
 		setSize(ModelBase::int32_tFromJson(*jsonForSize));
 	}

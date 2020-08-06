@@ -99,7 +99,7 @@ web::json::value CommonSlideViewProperties::toJson() const
 void CommonSlideViewProperties::fromJson(web::json::value& val)
 {
 	web::json::value* jsonForScale = ModelBase::getField(val, "Scale");
-	if(jsonForScale != nullptr && !jsonForScale->is_null())
+	if(jsonForScale != nullptr && !jsonForScale->is_null() && jsonForScale->is_number())
 	{
 		setScale(ModelBase::int32_tFromJson(*jsonForScale));
 	}

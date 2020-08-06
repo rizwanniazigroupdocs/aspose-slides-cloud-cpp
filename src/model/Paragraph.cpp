@@ -357,12 +357,12 @@ void Paragraph::setRightToLeft(utility::string_t value)
 	
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> Paragraph::getPortionList() const
+std::vector<std::shared_ptr<Portion>> Paragraph::getPortionList() const
 {
 	return m_PortionList;
 }
 
-void Paragraph::setPortionList(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void Paragraph::setPortionList(std::vector<std::shared_ptr<Portion>> value)
 {
 	m_PortionList = value;
 	
@@ -465,32 +465,32 @@ void Paragraph::fromJson(web::json::value& val)
 {
 	this->ResourceBase::fromJson(val);
 	web::json::value* jsonForMarginLeft = ModelBase::getField(val, "MarginLeft");
-	if(jsonForMarginLeft != nullptr && !jsonForMarginLeft->is_null())
+	if(jsonForMarginLeft != nullptr && !jsonForMarginLeft->is_null() && jsonForMarginLeft->is_number())
 	{
 		setMarginLeft(ModelBase::doubleFromJson(*jsonForMarginLeft));
 	}
 	web::json::value* jsonForMarginRight = ModelBase::getField(val, "MarginRight");
-	if(jsonForMarginRight != nullptr && !jsonForMarginRight->is_null())
+	if(jsonForMarginRight != nullptr && !jsonForMarginRight->is_null() && jsonForMarginRight->is_number())
 	{
 		setMarginRight(ModelBase::doubleFromJson(*jsonForMarginRight));
 	}
 	web::json::value* jsonForSpaceBefore = ModelBase::getField(val, "SpaceBefore");
-	if(jsonForSpaceBefore != nullptr && !jsonForSpaceBefore->is_null())
+	if(jsonForSpaceBefore != nullptr && !jsonForSpaceBefore->is_null() && jsonForSpaceBefore->is_number())
 	{
 		setSpaceBefore(ModelBase::doubleFromJson(*jsonForSpaceBefore));
 	}
 	web::json::value* jsonForSpaceAfter = ModelBase::getField(val, "SpaceAfter");
-	if(jsonForSpaceAfter != nullptr && !jsonForSpaceAfter->is_null())
+	if(jsonForSpaceAfter != nullptr && !jsonForSpaceAfter->is_null() && jsonForSpaceAfter->is_number())
 	{
 		setSpaceAfter(ModelBase::doubleFromJson(*jsonForSpaceAfter));
 	}
 	web::json::value* jsonForSpaceWithin = ModelBase::getField(val, "SpaceWithin");
-	if(jsonForSpaceWithin != nullptr && !jsonForSpaceWithin->is_null())
+	if(jsonForSpaceWithin != nullptr && !jsonForSpaceWithin->is_null() && jsonForSpaceWithin->is_number())
 	{
 		setSpaceWithin(ModelBase::doubleFromJson(*jsonForSpaceWithin));
 	}
 	web::json::value* jsonForIndent = ModelBase::getField(val, "Indent");
-	if(jsonForIndent != nullptr && !jsonForIndent->is_null())
+	if(jsonForIndent != nullptr && !jsonForIndent->is_null() && jsonForIndent->is_number())
 	{
 		setIndent(ModelBase::doubleFromJson(*jsonForIndent));
 	}
@@ -505,12 +505,12 @@ void Paragraph::fromJson(web::json::value& val)
 		setFontAlignment(ModelBase::stringFromJson(*jsonForFontAlignment));
 	}
 	web::json::value* jsonForDefaultTabSize = ModelBase::getField(val, "DefaultTabSize");
-	if(jsonForDefaultTabSize != nullptr && !jsonForDefaultTabSize->is_null())
+	if(jsonForDefaultTabSize != nullptr && !jsonForDefaultTabSize->is_null() && jsonForDefaultTabSize->is_number())
 	{
 		setDefaultTabSize(ModelBase::doubleFromJson(*jsonForDefaultTabSize));
 	}
 	web::json::value* jsonForDepth = ModelBase::getField(val, "Depth");
-	if(jsonForDepth != nullptr && !jsonForDepth->is_null())
+	if(jsonForDepth != nullptr && !jsonForDepth->is_null() && jsonForDepth->is_number())
 	{
 		setDepth(ModelBase::int32_tFromJson(*jsonForDepth));
 	}
@@ -520,7 +520,7 @@ void Paragraph::fromJson(web::json::value& val)
 		setBulletChar(ModelBase::stringFromJson(*jsonForBulletChar));
 	}
 	web::json::value* jsonForBulletHeight = ModelBase::getField(val, "BulletHeight");
-	if(jsonForBulletHeight != nullptr && !jsonForBulletHeight->is_null())
+	if(jsonForBulletHeight != nullptr && !jsonForBulletHeight->is_null() && jsonForBulletHeight->is_number())
 	{
 		setBulletHeight(ModelBase::doubleFromJson(*jsonForBulletHeight));
 	}
@@ -530,7 +530,7 @@ void Paragraph::fromJson(web::json::value& val)
 		setBulletType(ModelBase::stringFromJson(*jsonForBulletType));
 	}
 	web::json::value* jsonForNumberedBulletStartWith = ModelBase::getField(val, "NumberedBulletStartWith");
-	if(jsonForNumberedBulletStartWith != nullptr && !jsonForNumberedBulletStartWith->is_null())
+	if(jsonForNumberedBulletStartWith != nullptr && !jsonForNumberedBulletStartWith->is_null() && jsonForNumberedBulletStartWith->is_number())
 	{
 		setNumberedBulletStartWith(ModelBase::int32_tFromJson(*jsonForNumberedBulletStartWith));
 	}
@@ -569,11 +569,11 @@ void Paragraph::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_PortionList.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_PortionList.push_back(std::shared_ptr<Portion>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<Portion> newItem(new Portion());
 					newItem->fromJson(item);
 					m_PortionList.push_back( newItem );
 				}

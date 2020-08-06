@@ -152,6 +152,11 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT std::shared_ptr<LineFormat> getLineFormat() const;
 	ASPOSE_DLL_EXPORT void setLineFormat(std::shared_ptr<LineFormat> value);
+	/// <summary>
+	/// 
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getDataPointType() const;
+	ASPOSE_DLL_EXPORT void setDataPointType(utility::string_t value);
 
 protected:
 	utility::string_t m_Type;
@@ -177,6 +182,7 @@ protected:
 	std::shared_ptr<FillFormat> m_FillFormat;
 	std::shared_ptr<EffectFormat> m_EffectFormat;
 	std::shared_ptr<LineFormat> m_LineFormat;
+	utility::string_t m_DataPointType;
 };
 
 }

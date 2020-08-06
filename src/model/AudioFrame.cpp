@@ -275,22 +275,22 @@ void AudioFrame::fromJson(web::json::value& val)
 {
 	this->GeometryShape::fromJson(val);
 	web::json::value* jsonForAudioCdEndTrack = ModelBase::getField(val, "AudioCdEndTrack");
-	if(jsonForAudioCdEndTrack != nullptr && !jsonForAudioCdEndTrack->is_null())
+	if(jsonForAudioCdEndTrack != nullptr && !jsonForAudioCdEndTrack->is_null() && jsonForAudioCdEndTrack->is_number())
 	{
 		setAudioCdEndTrack(ModelBase::int32_tFromJson(*jsonForAudioCdEndTrack));
 	}
 	web::json::value* jsonForAudioCdEndTrackTime = ModelBase::getField(val, "AudioCdEndTrackTime");
-	if(jsonForAudioCdEndTrackTime != nullptr && !jsonForAudioCdEndTrackTime->is_null())
+	if(jsonForAudioCdEndTrackTime != nullptr && !jsonForAudioCdEndTrackTime->is_null() && jsonForAudioCdEndTrackTime->is_number())
 	{
 		setAudioCdEndTrackTime(ModelBase::int32_tFromJson(*jsonForAudioCdEndTrackTime));
 	}
 	web::json::value* jsonForAudioCdStartTrack = ModelBase::getField(val, "AudioCdStartTrack");
-	if(jsonForAudioCdStartTrack != nullptr && !jsonForAudioCdStartTrack->is_null())
+	if(jsonForAudioCdStartTrack != nullptr && !jsonForAudioCdStartTrack->is_null() && jsonForAudioCdStartTrack->is_number())
 	{
 		setAudioCdStartTrack(ModelBase::int32_tFromJson(*jsonForAudioCdStartTrack));
 	}
 	web::json::value* jsonForAudioCdStartTrackTime = ModelBase::getField(val, "AudioCdStartTrackTime");
-	if(jsonForAudioCdStartTrackTime != nullptr && !jsonForAudioCdStartTrackTime->is_null())
+	if(jsonForAudioCdStartTrackTime != nullptr && !jsonForAudioCdStartTrackTime->is_null() && jsonForAudioCdStartTrackTime->is_number())
 	{
 		setAudioCdStartTrackTime(ModelBase::int32_tFromJson(*jsonForAudioCdStartTrackTime));
 	}

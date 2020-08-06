@@ -325,12 +325,12 @@ void PdfExportOptions::fromJson(web::json::value& val)
 		setCompliance(ModelBase::stringFromJson(*jsonForCompliance));
 	}
 	web::json::value* jsonForSufficientResolution = ModelBase::getField(val, "SufficientResolution");
-	if(jsonForSufficientResolution != nullptr && !jsonForSufficientResolution->is_null())
+	if(jsonForSufficientResolution != nullptr && !jsonForSufficientResolution->is_null() && jsonForSufficientResolution->is_number())
 	{
 		setSufficientResolution(ModelBase::doubleFromJson(*jsonForSufficientResolution));
 	}
 	web::json::value* jsonForJpegQuality = ModelBase::getField(val, "JpegQuality");
-	if(jsonForJpegQuality != nullptr && !jsonForJpegQuality->is_null())
+	if(jsonForJpegQuality != nullptr && !jsonForJpegQuality->is_null() && jsonForJpegQuality->is_number())
 	{
 		setJpegQuality(ModelBase::int32_tFromJson(*jsonForJpegQuality));
 	}
@@ -382,7 +382,7 @@ void PdfExportOptions::fromJson(web::json::value& val)
 		setCommentsPosition(ModelBase::stringFromJson(*jsonForCommentsPosition));
 	}
 	web::json::value* jsonForCommentsAreaWidth = ModelBase::getField(val, "CommentsAreaWidth");
-	if(jsonForCommentsAreaWidth != nullptr && !jsonForCommentsAreaWidth->is_null())
+	if(jsonForCommentsAreaWidth != nullptr && !jsonForCommentsAreaWidth->is_null() && jsonForCommentsAreaWidth->is_number())
 	{
 		setCommentsAreaWidth(ModelBase::int32_tFromJson(*jsonForCommentsAreaWidth));
 	}

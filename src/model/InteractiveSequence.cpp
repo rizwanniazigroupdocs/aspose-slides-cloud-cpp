@@ -102,7 +102,7 @@ void InteractiveSequence::fromJson(web::json::value& val)
         	}
 	}
 	web::json::value* jsonForTriggerShapeIndex = ModelBase::getField(val, "TriggerShapeIndex");
-	if(jsonForTriggerShapeIndex != nullptr && !jsonForTriggerShapeIndex->is_null())
+	if(jsonForTriggerShapeIndex != nullptr && !jsonForTriggerShapeIndex->is_null() && jsonForTriggerShapeIndex->is_number())
 	{
 		setTriggerShapeIndex(ModelBase::int32_tFromJson(*jsonForTriggerShapeIndex));
 	}

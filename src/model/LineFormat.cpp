@@ -287,12 +287,12 @@ void LineFormat::fromJson(web::json::value& val)
 		setFillFormat(newItem);
 	}
 	web::json::value* jsonForMiterLimit = ModelBase::getField(val, "MiterLimit");
-	if(jsonForMiterLimit != nullptr && !jsonForMiterLimit->is_null())
+	if(jsonForMiterLimit != nullptr && !jsonForMiterLimit->is_null() && jsonForMiterLimit->is_number())
 	{
 		setMiterLimit(ModelBase::doubleFromJson(*jsonForMiterLimit));
 	}
 	web::json::value* jsonForWidth = ModelBase::getField(val, "Width");
-	if(jsonForWidth != nullptr && !jsonForWidth->is_null())
+	if(jsonForWidth != nullptr && !jsonForWidth->is_null() && jsonForWidth->is_number())
 	{
 		setWidth(ModelBase::doubleFromJson(*jsonForWidth));
 	}

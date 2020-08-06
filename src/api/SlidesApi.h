@@ -39,6 +39,7 @@
 #include "../StringBody.h"
 
 #include "../model/ApiInfo.h"
+#include "../model/Chart.h"
 #include "../model/ColorScheme.h"
 #include "../model/DiscUsage.h"
 #include "../model/Document.h"
@@ -72,6 +73,7 @@
 #include "../model/Portion.h"
 #include "../model/Portions.h"
 #include "../model/PresentationsMergeRequest.h"
+#include "../model/Series.h"
 #include "../model/ShapeBase.h"
 #include "../model/Shapes.h"
 #include "../model/Slide.h"
@@ -113,6 +115,11 @@ public:
 	/// Create the folder
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<void> createFolder(std::shared_ptr<CreateFolderRequest> request);
+
+	/// <summary>
+	/// Delete a series from a chart.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> deleteChartSeries(std::shared_ptr<DeleteChartSeriesRequest> request);
 
 	/// <summary>
 	/// Delete file
@@ -580,6 +587,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<NotesSlide>> postAddNotesSlide(std::shared_ptr<PostAddNotesSlideRequest> request);
 
 	/// <summary>
+	/// Add a new series to a chart.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> postChartSeries(std::shared_ptr<PostChartSeriesRequest> request);
+
+	/// <summary>
 	/// Copy layoutSlide from source presentation.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<LayoutSlide>> postCopyLayoutSlideFromSourcePresentation(std::shared_ptr<PostCopyLayoutSlideFromSourcePresentationRequest> request);
@@ -733,6 +745,11 @@ public:
 	/// Render shape to specified picture format (for smart art and group shapes).
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> postSubshapeSaveAs(std::shared_ptr<PostSubshapeSaveAsRequest> request);
+
+	/// <summary>
+	/// Update a series in a chart.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> putChartSeries(std::shared_ptr<PutChartSeriesRequest> request);
 
 	/// <summary>
 	/// Update a layoutSlide.

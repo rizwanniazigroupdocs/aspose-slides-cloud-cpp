@@ -167,7 +167,7 @@ void SvgExportOptions::fromJson(web::json::value& val)
 		setVectorizeText(ModelBase::boolFromJson(*jsonForVectorizeText));
 	}
 	web::json::value* jsonForMetafileRasterizationDpi = ModelBase::getField(val, "MetafileRasterizationDpi");
-	if(jsonForMetafileRasterizationDpi != nullptr && !jsonForMetafileRasterizationDpi->is_null())
+	if(jsonForMetafileRasterizationDpi != nullptr && !jsonForMetafileRasterizationDpi->is_null() && jsonForMetafileRasterizationDpi->is_number())
 	{
 		setMetafileRasterizationDpi(ModelBase::int32_tFromJson(*jsonForMetafileRasterizationDpi));
 	}
@@ -187,7 +187,7 @@ void SvgExportOptions::fromJson(web::json::value& val)
 		setDisableLineEndCropping(ModelBase::boolFromJson(*jsonForDisableLineEndCropping));
 	}
 	web::json::value* jsonForJpegQuality = ModelBase::getField(val, "JpegQuality");
-	if(jsonForJpegQuality != nullptr && !jsonForJpegQuality->is_null())
+	if(jsonForJpegQuality != nullptr && !jsonForJpegQuality->is_null() && jsonForJpegQuality->is_number())
 	{
 		setJpegQuality(ModelBase::int32_tFromJson(*jsonForJpegQuality));
 	}

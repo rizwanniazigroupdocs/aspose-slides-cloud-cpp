@@ -79,7 +79,7 @@ void GradientFillStop::fromJson(web::json::value& val)
 		setColor(ModelBase::stringFromJson(*jsonForColor));
 	}
 	web::json::value* jsonForPosition = ModelBase::getField(val, "Position");
-	if(jsonForPosition != nullptr && !jsonForPosition->is_null())
+	if(jsonForPosition != nullptr && !jsonForPosition->is_null() && jsonForPosition->is_number())
 	{
 		setPosition(ModelBase::doubleFromJson(*jsonForPosition));
 	}
