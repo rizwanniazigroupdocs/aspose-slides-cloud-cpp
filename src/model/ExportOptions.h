@@ -52,12 +52,18 @@ public:
 	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
 
 	/// <summary>
+	/// Setting user password to protect the PDF document. 
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getDefaultRegularFont() const;
+	ASPOSE_DLL_EXPORT void setDefaultRegularFont(utility::string_t value);
+	/// <summary>
 	/// 
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getFormat() const;
 	ASPOSE_DLL_EXPORT void setFormat(utility::string_t value);
 
 protected:
+	utility::string_t m_DefaultRegularFont;
 	utility::string_t m_Format;
 };
 

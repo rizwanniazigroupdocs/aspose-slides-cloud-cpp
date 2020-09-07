@@ -23,51 +23,63 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-/*
- * ScatterChartDataPoint.h
- *
- * Scatter chart (two-dimensional) data point
- */
 
-#ifndef _ScatterChartDataPoint_H_
-#define _ScatterChartDataPoint_H_
 
-#include "DataPoint.h"
-
-#include "../model/DataPoint.h"
+#include "WaterfallChartDataPoint.h"
 
 namespace asposeslidescloud {
 namespace model {
 
-/// <summary>
-/// Scatter chart (two-dimensional) data point
-/// </summary>
-class  ScatterChartDataPoint : public DataPoint
+WaterfallChartDataPoint::WaterfallChartDataPoint()
 {
-public:
-	ASPOSE_DLL_EXPORT ScatterChartDataPoint();
-	ASPOSE_DLL_EXPORT virtual ~ScatterChartDataPoint();
+	m_SetAsTotalIsSet = false;
+}
 
-	ASPOSE_DLL_EXPORT web::json::value toJson() const override;
-	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
+WaterfallChartDataPoint::~WaterfallChartDataPoint()
+{
+}
 
-	/// <summary>
-	/// X-value
-	/// </summary>
-	ASPOSE_DLL_EXPORT double getXValue() const;
-	ASPOSE_DLL_EXPORT void setXValue(double value);
-	/// <summary>
-	/// Y-value
-	/// </summary>
-	ASPOSE_DLL_EXPORT double getYValue() const;
-	ASPOSE_DLL_EXPORT void setYValue(double value);
+bool WaterfallChartDataPoint::getSetAsTotal() const
+{
+	return m_SetAsTotal;
+}
 
-protected:
-	double m_XValue;
-	double m_YValue;
-};
+void WaterfallChartDataPoint::setSetAsTotal(bool value)
+{
+	m_SetAsTotal = value;
+	m_SetAsTotalIsSet = true;
+}
+
+bool WaterfallChartDataPoint::setAsTotalIsSet() const
+{
+	return m_SetAsTotalIsSet;
+}
+
+void WaterfallChartDataPoint::unsetSetAsTotal()
+{
+	m_SetAsTotalIsSet = false;
+}
+
+web::json::value WaterfallChartDataPoint::toJson() const
+{
+	web::json::value val = this->OneValueChartDataPoint::toJson();
+	if(m_SetAsTotalIsSet)
+	{
+		val[utility::conversions::to_string_t("SetAsTotal")] = ModelBase::toJson(m_SetAsTotal);
+	}
+	return val;
+}
+
+void WaterfallChartDataPoint::fromJson(web::json::value& val)
+{
+	this->OneValueChartDataPoint::fromJson(val);
+	web::json::value* jsonForSetAsTotal = ModelBase::getField(val, "SetAsTotal");
+	if(jsonForSetAsTotal != nullptr && !jsonForSetAsTotal->is_null())
+	{
+		setSetAsTotal(ModelBase::boolFromJson(*jsonForSetAsTotal));
+	}
+}
 
 }
 }
 
-#endif /* _ScatterChartDataPoint_H_ */

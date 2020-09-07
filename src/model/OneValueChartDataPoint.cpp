@@ -51,13 +51,14 @@ void OneValueChartDataPoint::setValue(double value)
 
 web::json::value OneValueChartDataPoint::toJson() const
 {
-	web::json::value val = web::json::value::object();
+	web::json::value val = this->DataPoint::toJson();
 	val[utility::conversions::to_string_t("Value")] = ModelBase::toJson(m_Value);
 	return val;
 }
 
 void OneValueChartDataPoint::fromJson(web::json::value& val)
 {
+	this->DataPoint::fromJson(val);
 	web::json::value* jsonForValue = ModelBase::getField(val, "Value");
 	if(jsonForValue != nullptr && !jsonForValue->is_null() && jsonForValue->is_number())
 	{

@@ -24,50 +24,47 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 /*
- * ScatterChartDataPoint.h
+ * WaterfallChartDataPoint.h
  *
- * Scatter chart (two-dimensional) data point
+ * One value chart data point.
  */
 
-#ifndef _ScatterChartDataPoint_H_
-#define _ScatterChartDataPoint_H_
+#ifndef _WaterfallChartDataPoint_H_
+#define _WaterfallChartDataPoint_H_
 
-#include "DataPoint.h"
+#include "OneValueChartDataPoint.h"
 
-#include "../model/DataPoint.h"
+#include "../model/OneValueChartDataPoint.h"
 
 namespace asposeslidescloud {
 namespace model {
 
 /// <summary>
-/// Scatter chart (two-dimensional) data point
+/// One value chart data point.
 /// </summary>
-class  ScatterChartDataPoint : public DataPoint
+class  WaterfallChartDataPoint : public OneValueChartDataPoint
 {
 public:
-	ASPOSE_DLL_EXPORT ScatterChartDataPoint();
-	ASPOSE_DLL_EXPORT virtual ~ScatterChartDataPoint();
+	ASPOSE_DLL_EXPORT WaterfallChartDataPoint();
+	ASPOSE_DLL_EXPORT virtual ~WaterfallChartDataPoint();
 
 	ASPOSE_DLL_EXPORT web::json::value toJson() const override;
 	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
 
 	/// <summary>
-	/// X-value
+	/// Value.
 	/// </summary>
-	ASPOSE_DLL_EXPORT double getXValue() const;
-	ASPOSE_DLL_EXPORT void setXValue(double value);
-	/// <summary>
-	/// Y-value
-	/// </summary>
-	ASPOSE_DLL_EXPORT double getYValue() const;
-	ASPOSE_DLL_EXPORT void setYValue(double value);
+	ASPOSE_DLL_EXPORT bool getSetAsTotal() const;
+	ASPOSE_DLL_EXPORT void setSetAsTotal(bool value);
+	ASPOSE_DLL_EXPORT bool setAsTotalIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetSetAsTotal();
 
 protected:
-	double m_XValue;
-	double m_YValue;
+	bool m_SetAsTotal;
+	bool m_SetAsTotalIsSet;
 };
 
 }
 }
 
-#endif /* _ScatterChartDataPoint_H_ */
+#endif /* _WaterfallChartDataPoint_H_ */

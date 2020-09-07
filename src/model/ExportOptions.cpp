@@ -38,6 +38,17 @@ ExportOptions::~ExportOptions()
 {
 }
 
+utility::string_t ExportOptions::getDefaultRegularFont() const
+{
+	return m_DefaultRegularFont;
+}
+
+void ExportOptions::setDefaultRegularFont(utility::string_t value)
+{
+	m_DefaultRegularFont = value;
+	
+}
+
 utility::string_t ExportOptions::getFormat() const
 {
 	return m_Format;
@@ -52,6 +63,10 @@ void ExportOptions::setFormat(utility::string_t value)
 web::json::value ExportOptions::toJson() const
 {
 	web::json::value val = web::json::value::object();
+	if (!m_DefaultRegularFont.empty())
+	{
+		val[utility::conversions::to_string_t("DefaultRegularFont")] = ModelBase::toJson(m_DefaultRegularFont);
+	}
 	if (!m_Format.empty())
 	{
 		val[utility::conversions::to_string_t("Format")] = ModelBase::toJson(m_Format);
@@ -61,6 +76,11 @@ web::json::value ExportOptions::toJson() const
 
 void ExportOptions::fromJson(web::json::value& val)
 {
+	web::json::value* jsonForDefaultRegularFont = ModelBase::getField(val, "DefaultRegularFont");
+	if(jsonForDefaultRegularFont != nullptr && !jsonForDefaultRegularFont->is_null())
+	{
+		setDefaultRegularFont(ModelBase::stringFromJson(*jsonForDefaultRegularFont));
+	}
 	web::json::value* jsonForFormat = ModelBase::getField(val, "Format");
 	if(jsonForFormat != nullptr && !jsonForFormat->is_null())
 	{

@@ -24,50 +24,37 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 /*
- * ScatterChartDataPoint.h
+ * DataPoint.h
  *
- * Scatter chart (two-dimensional) data point
+ * Data point.
  */
 
-#ifndef _ScatterChartDataPoint_H_
-#define _ScatterChartDataPoint_H_
+#ifndef _DataPoint_H_
+#define _DataPoint_H_
 
-#include "DataPoint.h"
+#include "../ModelBase.h"
 
-#include "../model/DataPoint.h"
 
 namespace asposeslidescloud {
 namespace model {
 
 /// <summary>
-/// Scatter chart (two-dimensional) data point
+/// Data point.
 /// </summary>
-class  ScatterChartDataPoint : public DataPoint
+class  DataPoint : public ModelBase
 {
 public:
-	ASPOSE_DLL_EXPORT ScatterChartDataPoint();
-	ASPOSE_DLL_EXPORT virtual ~ScatterChartDataPoint();
+	ASPOSE_DLL_EXPORT DataPoint();
+	ASPOSE_DLL_EXPORT virtual ~DataPoint();
 
 	ASPOSE_DLL_EXPORT web::json::value toJson() const override;
 	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
 
-	/// <summary>
-	/// X-value
-	/// </summary>
-	ASPOSE_DLL_EXPORT double getXValue() const;
-	ASPOSE_DLL_EXPORT void setXValue(double value);
-	/// <summary>
-	/// Y-value
-	/// </summary>
-	ASPOSE_DLL_EXPORT double getYValue() const;
-	ASPOSE_DLL_EXPORT void setYValue(double value);
 
 protected:
-	double m_XValue;
-	double m_YValue;
 };
 
 }
 }
 
-#endif /* _ScatterChartDataPoint_H_ */
+#endif /* _DataPoint_H_ */

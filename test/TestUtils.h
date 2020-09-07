@@ -27,6 +27,7 @@
 #define _TestUtils_H_
 
 #include "api/SlidesApi.h"
+#include "model/ScatterChartDataPoint.h"
 
 using namespace asposeslidescloud::api;
 

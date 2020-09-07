@@ -23,51 +23,31 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-/*
- * ScatterChartDataPoint.h
- *
- * Scatter chart (two-dimensional) data point
- */
 
-#ifndef _ScatterChartDataPoint_H_
-#define _ScatterChartDataPoint_H_
 
 #include "DataPoint.h"
-
-#include "../model/DataPoint.h"
 
 namespace asposeslidescloud {
 namespace model {
 
-/// <summary>
-/// Scatter chart (two-dimensional) data point
-/// </summary>
-class  ScatterChartDataPoint : public DataPoint
+DataPoint::DataPoint()
 {
-public:
-	ASPOSE_DLL_EXPORT ScatterChartDataPoint();
-	ASPOSE_DLL_EXPORT virtual ~ScatterChartDataPoint();
+}
 
-	ASPOSE_DLL_EXPORT web::json::value toJson() const override;
-	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
+DataPoint::~DataPoint()
+{
+}
 
-	/// <summary>
-	/// X-value
-	/// </summary>
-	ASPOSE_DLL_EXPORT double getXValue() const;
-	ASPOSE_DLL_EXPORT void setXValue(double value);
-	/// <summary>
-	/// Y-value
-	/// </summary>
-	ASPOSE_DLL_EXPORT double getYValue() const;
-	ASPOSE_DLL_EXPORT void setYValue(double value);
+web::json::value DataPoint::toJson() const
+{
+	web::json::value val = web::json::value::object();
+	return val;
+}
 
-protected:
-	double m_XValue;
-	double m_YValue;
-};
+void DataPoint::fromJson(web::json::value& val)
+{
+}
 
 }
 }
 
-#endif /* _ScatterChartDataPoint_H_ */

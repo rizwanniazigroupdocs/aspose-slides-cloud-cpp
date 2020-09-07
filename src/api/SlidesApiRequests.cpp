@@ -163,6 +163,172 @@ void CreateFolderRequest::setStorageName(utility::string_t value)
 	m_storageName = value;
 }
 
+DeleteChartCategoryRequest::DeleteChartCategoryRequest()
+{
+}
+
+DeleteChartCategoryRequest::~DeleteChartCategoryRequest()
+{
+}
+
+utility::string_t DeleteChartCategoryRequest::getName() const
+{
+	return m_name;
+}
+
+void DeleteChartCategoryRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t DeleteChartCategoryRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void DeleteChartCategoryRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t DeleteChartCategoryRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void DeleteChartCategoryRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+int32_t DeleteChartCategoryRequest::getCategoryIndex() const
+{
+	return m_categoryIndex;
+}
+
+void DeleteChartCategoryRequest::setCategoryIndex(int32_t value)
+{
+	m_categoryIndex = value;
+}
+
+utility::string_t DeleteChartCategoryRequest::getPassword() const
+{
+	return m_password;
+}
+
+void DeleteChartCategoryRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t DeleteChartCategoryRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void DeleteChartCategoryRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t DeleteChartCategoryRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void DeleteChartCategoryRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+DeleteChartDataPointRequest::DeleteChartDataPointRequest()
+{
+}
+
+DeleteChartDataPointRequest::~DeleteChartDataPointRequest()
+{
+}
+
+utility::string_t DeleteChartDataPointRequest::getName() const
+{
+	return m_name;
+}
+
+void DeleteChartDataPointRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t DeleteChartDataPointRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void DeleteChartDataPointRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t DeleteChartDataPointRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void DeleteChartDataPointRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+int32_t DeleteChartDataPointRequest::getSeriesIndex() const
+{
+	return m_seriesIndex;
+}
+
+void DeleteChartDataPointRequest::setSeriesIndex(int32_t value)
+{
+	m_seriesIndex = value;
+}
+
+int32_t DeleteChartDataPointRequest::getPointIndex() const
+{
+	return m_pointIndex;
+}
+
+void DeleteChartDataPointRequest::setPointIndex(int32_t value)
+{
+	m_pointIndex = value;
+}
+
+utility::string_t DeleteChartDataPointRequest::getPassword() const
+{
+	return m_password;
+}
+
+void DeleteChartDataPointRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t DeleteChartDataPointRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void DeleteChartDataPointRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t DeleteChartDataPointRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void DeleteChartDataPointRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 DeleteChartSeriesRequest::DeleteChartSeriesRequest()
 {
 }
@@ -6585,6 +6751,172 @@ void PostAddNotesSlideRequest::setStorage(utility::string_t value)
 	m_storage = value;
 }
 
+PostChartCategoryRequest::PostChartCategoryRequest()
+{
+}
+
+PostChartCategoryRequest::~PostChartCategoryRequest()
+{
+}
+
+utility::string_t PostChartCategoryRequest::getName() const
+{
+	return m_name;
+}
+
+void PostChartCategoryRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PostChartCategoryRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PostChartCategoryRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t PostChartCategoryRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void PostChartCategoryRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+std::shared_ptr<ChartCategory> PostChartCategoryRequest::getCategory() const
+{
+	return m_category;
+}
+
+void PostChartCategoryRequest::setCategory(std::shared_ptr<ChartCategory> value)
+{
+	m_category = value;
+}
+
+utility::string_t PostChartCategoryRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PostChartCategoryRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PostChartCategoryRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PostChartCategoryRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PostChartCategoryRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PostChartCategoryRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+PostChartDataPointRequest::PostChartDataPointRequest()
+{
+}
+
+PostChartDataPointRequest::~PostChartDataPointRequest()
+{
+}
+
+utility::string_t PostChartDataPointRequest::getName() const
+{
+	return m_name;
+}
+
+void PostChartDataPointRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PostChartDataPointRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PostChartDataPointRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t PostChartDataPointRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void PostChartDataPointRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+int32_t PostChartDataPointRequest::getSeriesIndex() const
+{
+	return m_seriesIndex;
+}
+
+void PostChartDataPointRequest::setSeriesIndex(int32_t value)
+{
+	m_seriesIndex = value;
+}
+
+std::shared_ptr<DataPoint> PostChartDataPointRequest::getDataPoint() const
+{
+	return m_dataPoint;
+}
+
+void PostChartDataPointRequest::setDataPoint(std::shared_ptr<DataPoint> value)
+{
+	m_dataPoint = value;
+}
+
+utility::string_t PostChartDataPointRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PostChartDataPointRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PostChartDataPointRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PostChartDataPointRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PostChartDataPointRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PostChartDataPointRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 PostChartSeriesRequest::PostChartSeriesRequest()
 {
 }
@@ -9437,6 +9769,192 @@ utility::string_t PostSubshapeSaveAsRequest::getFontsFolder() const
 void PostSubshapeSaveAsRequest::setFontsFolder(utility::string_t value)
 {
 	m_fontsFolder = value;
+}
+
+PutChartCategoryRequest::PutChartCategoryRequest()
+{
+}
+
+PutChartCategoryRequest::~PutChartCategoryRequest()
+{
+}
+
+utility::string_t PutChartCategoryRequest::getName() const
+{
+	return m_name;
+}
+
+void PutChartCategoryRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PutChartCategoryRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PutChartCategoryRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t PutChartCategoryRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void PutChartCategoryRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+int32_t PutChartCategoryRequest::getCategoryIndex() const
+{
+	return m_categoryIndex;
+}
+
+void PutChartCategoryRequest::setCategoryIndex(int32_t value)
+{
+	m_categoryIndex = value;
+}
+
+std::shared_ptr<ChartCategory> PutChartCategoryRequest::getCategory() const
+{
+	return m_category;
+}
+
+void PutChartCategoryRequest::setCategory(std::shared_ptr<ChartCategory> value)
+{
+	m_category = value;
+}
+
+utility::string_t PutChartCategoryRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutChartCategoryRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutChartCategoryRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutChartCategoryRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PutChartCategoryRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutChartCategoryRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+PutChartDataPointRequest::PutChartDataPointRequest()
+{
+}
+
+PutChartDataPointRequest::~PutChartDataPointRequest()
+{
+}
+
+utility::string_t PutChartDataPointRequest::getName() const
+{
+	return m_name;
+}
+
+void PutChartDataPointRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PutChartDataPointRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PutChartDataPointRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+int32_t PutChartDataPointRequest::getShapeIndex() const
+{
+	return m_shapeIndex;
+}
+
+void PutChartDataPointRequest::setShapeIndex(int32_t value)
+{
+	m_shapeIndex = value;
+}
+
+int32_t PutChartDataPointRequest::getSeriesIndex() const
+{
+	return m_seriesIndex;
+}
+
+void PutChartDataPointRequest::setSeriesIndex(int32_t value)
+{
+	m_seriesIndex = value;
+}
+
+int32_t PutChartDataPointRequest::getPointIndex() const
+{
+	return m_pointIndex;
+}
+
+void PutChartDataPointRequest::setPointIndex(int32_t value)
+{
+	m_pointIndex = value;
+}
+
+std::shared_ptr<DataPoint> PutChartDataPointRequest::getDataPoint() const
+{
+	return m_dataPoint;
+}
+
+void PutChartDataPointRequest::setDataPoint(std::shared_ptr<DataPoint> value)
+{
+	m_dataPoint = value;
+}
+
+utility::string_t PutChartDataPointRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutChartDataPointRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutChartDataPointRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutChartDataPointRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PutChartDataPointRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutChartDataPointRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
 }
 
 PutChartSeriesRequest::PutChartSeriesRequest()

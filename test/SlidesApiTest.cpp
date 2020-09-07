@@ -65,6 +65,33 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<DeleteChartCategoryRequest> getDeleteChartCategoryRequest()
+	{
+		std::shared_ptr<DeleteChartCategoryRequest> request = std::make_shared<DeleteChartCategoryRequest>();
+		request->setName(utils->getTestValue("deleteChartCategory", "name"));
+		request->setSlideIndex(utils->getIntTestValue("deleteChartCategory", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("deleteChartCategory", "shapeIndex"));
+		request->setCategoryIndex(utils->getIntTestValue("deleteChartCategory", "categoryIndex"));
+		request->setPassword(utils->getTestValue("deleteChartCategory", "password"));
+		request->setFolder(utils->getTestValue("deleteChartCategory", "folder"));
+		request->setStorage(utils->getTestValue("deleteChartCategory", "storage"));
+		return request;
+	}
+
+	std::shared_ptr<DeleteChartDataPointRequest> getDeleteChartDataPointRequest()
+	{
+		std::shared_ptr<DeleteChartDataPointRequest> request = std::make_shared<DeleteChartDataPointRequest>();
+		request->setName(utils->getTestValue("deleteChartDataPoint", "name"));
+		request->setSlideIndex(utils->getIntTestValue("deleteChartDataPoint", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("deleteChartDataPoint", "shapeIndex"));
+		request->setSeriesIndex(utils->getIntTestValue("deleteChartDataPoint", "seriesIndex"));
+		request->setPointIndex(utils->getIntTestValue("deleteChartDataPoint", "pointIndex"));
+		request->setPassword(utils->getTestValue("deleteChartDataPoint", "password"));
+		request->setFolder(utils->getTestValue("deleteChartDataPoint", "folder"));
+		request->setStorage(utils->getTestValue("deleteChartDataPoint", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<DeleteChartSeriesRequest> getDeleteChartSeriesRequest()
 	{
 		std::shared_ptr<DeleteChartSeriesRequest> request = std::make_shared<DeleteChartSeriesRequest>();
@@ -1230,6 +1257,33 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<PostChartCategoryRequest> getPostChartCategoryRequest()
+	{
+		std::shared_ptr<PostChartCategoryRequest> request = std::make_shared<PostChartCategoryRequest>();
+		request->setName(utils->getTestValue("postChartCategory", "name"));
+		request->setSlideIndex(utils->getIntTestValue("postChartCategory", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("postChartCategory", "shapeIndex"));
+		request->setCategory(utils->getTestValueForClass<ChartCategory>("postChartCategory", "category"));
+		request->setPassword(utils->getTestValue("postChartCategory", "password"));
+		request->setFolder(utils->getTestValue("postChartCategory", "folder"));
+		request->setStorage(utils->getTestValue("postChartCategory", "storage"));
+		return request;
+	}
+
+	std::shared_ptr<PostChartDataPointRequest> getPostChartDataPointRequest()
+	{
+		std::shared_ptr<PostChartDataPointRequest> request = std::make_shared<PostChartDataPointRequest>();
+		request->setName(utils->getTestValue("postChartDataPoint", "name"));
+		request->setSlideIndex(utils->getIntTestValue("postChartDataPoint", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("postChartDataPoint", "shapeIndex"));
+		request->setSeriesIndex(utils->getIntTestValue("postChartDataPoint", "seriesIndex"));
+		request->setDataPoint(utils->getTestValueForClass<ScatterChartDataPoint>("postChartDataPoint", "dataPoint"));
+		request->setPassword(utils->getTestValue("postChartDataPoint", "password"));
+		request->setFolder(utils->getTestValue("postChartDataPoint", "folder"));
+		request->setStorage(utils->getTestValue("postChartDataPoint", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<PostChartSeriesRequest> getPostChartSeriesRequest()
 	{
 		std::shared_ptr<PostChartSeriesRequest> request = std::make_shared<PostChartSeriesRequest>();
@@ -1746,6 +1800,35 @@ public:
 		}
 		request->setBounds(utils->getTestValue("postSubshapeSaveAs", "bounds"));
 		request->setFontsFolder(utils->getTestValue("postSubshapeSaveAs", "fontsFolder"));
+		return request;
+	}
+
+	std::shared_ptr<PutChartCategoryRequest> getPutChartCategoryRequest()
+	{
+		std::shared_ptr<PutChartCategoryRequest> request = std::make_shared<PutChartCategoryRequest>();
+		request->setName(utils->getTestValue("putChartCategory", "name"));
+		request->setSlideIndex(utils->getIntTestValue("putChartCategory", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("putChartCategory", "shapeIndex"));
+		request->setCategoryIndex(utils->getIntTestValue("putChartCategory", "categoryIndex"));
+		request->setCategory(utils->getTestValueForClass<ChartCategory>("putChartCategory", "category"));
+		request->setPassword(utils->getTestValue("putChartCategory", "password"));
+		request->setFolder(utils->getTestValue("putChartCategory", "folder"));
+		request->setStorage(utils->getTestValue("putChartCategory", "storage"));
+		return request;
+	}
+
+	std::shared_ptr<PutChartDataPointRequest> getPutChartDataPointRequest()
+	{
+		std::shared_ptr<PutChartDataPointRequest> request = std::make_shared<PutChartDataPointRequest>();
+		request->setName(utils->getTestValue("putChartDataPoint", "name"));
+		request->setSlideIndex(utils->getIntTestValue("putChartDataPoint", "slideIndex"));
+		request->setShapeIndex(utils->getIntTestValue("putChartDataPoint", "shapeIndex"));
+		request->setSeriesIndex(utils->getIntTestValue("putChartDataPoint", "seriesIndex"));
+		request->setPointIndex(utils->getIntTestValue("putChartDataPoint", "pointIndex"));
+		request->setDataPoint(utils->getTestValueForClass<ScatterChartDataPoint>("putChartDataPoint", "dataPoint"));
+		request->setPassword(utils->getTestValue("putChartDataPoint", "password"));
+		request->setFolder(utils->getTestValue("putChartDataPoint", "folder"));
+		request->setStorage(utils->getTestValue("putChartDataPoint", "storage"));
 		return request;
 	}
 
@@ -2568,6 +2651,440 @@ TEST_F(SlidesApiTest, createFolderStorageName) {
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
 	if (!failed && utils->mustFail("createFolder", "storageName"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartCategory) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	utils->initialize("deleteChartCategory", "");
+	std::shared_ptr<Chart> result = api->deleteChartCategory(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, deleteChartCategoryName) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	request->setName(utils->getInvalidTestValue("deleteChartCategory", "name", request->getName()));
+	utils->initialize("deleteChartCategory", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartCategory", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartCategorySlideIndex) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("deleteChartCategory", "slideIndex", request->getSlideIndex()));
+	utils->initialize("deleteChartCategory", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartCategory", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartCategoryShapeIndex) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("deleteChartCategory", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("deleteChartCategory", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartCategory", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartCategoryCategoryIndex) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	request->setCategoryIndex(utils->getInvalidIntTestValue("deleteChartCategory", "categoryIndex", request->getCategoryIndex()));
+	utils->initialize("deleteChartCategory", "categoryIndex", request->getCategoryIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "categoryIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "categoryIndex", request->getCategoryIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartCategory", "categoryIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartCategoryPassword) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	request->setPassword(utils->getInvalidTestValue("deleteChartCategory", "password", request->getPassword()));
+	utils->initialize("deleteChartCategory", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartCategory", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartCategoryFolder) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	request->setFolder(utils->getInvalidTestValue("deleteChartCategory", "folder", request->getFolder()));
+	utils->initialize("deleteChartCategory", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartCategory", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartCategoryStorage) {
+	std::shared_ptr<DeleteChartCategoryRequest> request = getDeleteChartCategoryRequest();
+	request->setStorage(utils->getInvalidTestValue("deleteChartCategory", "storage", request->getStorage()));
+	utils->initialize("deleteChartCategory", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartCategory", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPoint) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	utils->initialize("deleteChartDataPoint", "");
+	std::shared_ptr<Chart> result = api->deleteChartDataPoint(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointName) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setName(utils->getInvalidTestValue("deleteChartDataPoint", "name", request->getName()));
+	utils->initialize("deleteChartDataPoint", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointSlideIndex) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("deleteChartDataPoint", "slideIndex", request->getSlideIndex()));
+	utils->initialize("deleteChartDataPoint", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointShapeIndex) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("deleteChartDataPoint", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("deleteChartDataPoint", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointSeriesIndex) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setSeriesIndex(utils->getInvalidIntTestValue("deleteChartDataPoint", "seriesIndex", request->getSeriesIndex()));
+	utils->initialize("deleteChartDataPoint", "seriesIndex", request->getSeriesIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "seriesIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "seriesIndex", request->getSeriesIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "seriesIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointPointIndex) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setPointIndex(utils->getInvalidIntTestValue("deleteChartDataPoint", "pointIndex", request->getPointIndex()));
+	utils->initialize("deleteChartDataPoint", "pointIndex", request->getPointIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "pointIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "pointIndex", request->getPointIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "pointIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointPassword) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setPassword(utils->getInvalidTestValue("deleteChartDataPoint", "password", request->getPassword()));
+	utils->initialize("deleteChartDataPoint", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointFolder) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setFolder(utils->getInvalidTestValue("deleteChartDataPoint", "folder", request->getFolder()));
+	utils->initialize("deleteChartDataPoint", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteChartDataPointStorage) {
+	std::shared_ptr<DeleteChartDataPointRequest> request = getDeleteChartDataPointRequest();
+	request->setStorage(utils->getInvalidTestValue("deleteChartDataPoint", "storage", request->getStorage()));
+	utils->initialize("deleteChartDataPoint", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->deleteChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("deleteChartDataPoint", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -17046,7 +17563,7 @@ TEST_F(SlidesApiTest, postAddNewParagraphShapeIndex) {
 
 TEST_F(SlidesApiTest, postAddNewParagraphDto) {
 	std::shared_ptr<PostAddNewParagraphRequest> request = getPostAddNewParagraphRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Paragraph>("postAddNewParagraph", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postAddNewParagraph", "dto", request->getDto()));
 	utils->initialize("postAddNewParagraph", "dto", request->getDto());
 
 	bool failed = true;
@@ -17305,7 +17822,7 @@ TEST_F(SlidesApiTest, postAddNewPortionParagraphIndex) {
 
 TEST_F(SlidesApiTest, postAddNewPortionDto) {
 	std::shared_ptr<PostAddNewPortionRequest> request = getPostAddNewPortionRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Portion>("postAddNewPortion", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postAddNewPortion", "dto", request->getDto()));
 	utils->initialize("postAddNewPortion", "dto", request->getDto());
 
 	bool failed = true;
@@ -17508,7 +18025,7 @@ TEST_F(SlidesApiTest, postAddNewShapeSlideIndex) {
 
 TEST_F(SlidesApiTest, postAddNewShapeDto) {
 	std::shared_ptr<PostAddNewShapeRequest> request = getPostAddNewShapeRequest();
-	request->setDto(utils->getInvalidTestValueForClass<ShapeBase>("postAddNewShape", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postAddNewShape", "dto", request->getDto()));
 	utils->initialize("postAddNewShape", "dto", request->getDto());
 
 	bool failed = true;
@@ -17767,7 +18284,7 @@ TEST_F(SlidesApiTest, postAddNewSubshapePath) {
 
 TEST_F(SlidesApiTest, postAddNewSubshapeDto) {
 	std::shared_ptr<PostAddNewSubshapeRequest> request = getPostAddNewSubshapeRequest();
-	request->setDto(utils->getInvalidTestValueForClass<ShapeBase>("postAddNewSubshape", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postAddNewSubshape", "dto", request->getDto()));
 	utils->initialize("postAddNewSubshape", "dto", request->getDto());
 
 	bool failed = true;
@@ -18054,7 +18571,7 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphShapeIndex) {
 
 TEST_F(SlidesApiTest, postAddNewSubshapeParagraphDto) {
 	std::shared_ptr<PostAddNewSubshapeParagraphRequest> request = getPostAddNewSubshapeParagraphRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Paragraph>("postAddNewSubshapeParagraph", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postAddNewSubshapeParagraph", "dto", request->getDto()));
 	utils->initialize("postAddNewSubshapeParagraph", "dto", request->getDto());
 
 	bool failed = true;
@@ -18341,7 +18858,7 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionParagraphIndex) {
 
 TEST_F(SlidesApiTest, postAddNewSubshapePortionDto) {
 	std::shared_ptr<PostAddNewSubshapePortionRequest> request = getPostAddNewSubshapePortionRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Portion>("postAddNewSubshapePortion", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postAddNewSubshapePortion", "dto", request->getDto()));
 	utils->initialize("postAddNewSubshapePortion", "dto", request->getDto());
 
 	bool failed = true;
@@ -18544,7 +19061,7 @@ TEST_F(SlidesApiTest, postAddNotesSlideSlideIndex) {
 
 TEST_F(SlidesApiTest, postAddNotesSlideDto) {
 	std::shared_ptr<PostAddNotesSlideRequest> request = getPostAddNotesSlideRequest();
-	request->setDto(utils->getInvalidTestValueForClass<NotesSlide>("postAddNotesSlide", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postAddNotesSlide", "dto", request->getDto()));
 	utils->initialize("postAddNotesSlide", "dto", request->getDto());
 
 	bool failed = true;
@@ -18654,6 +19171,440 @@ TEST_F(SlidesApiTest, postAddNotesSlideStorage) {
 	}
 }
 
+TEST_F(SlidesApiTest, postChartCategory) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	utils->initialize("postChartCategory", "");
+	std::shared_ptr<Chart> result = api->postChartCategory(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, postChartCategoryName) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	request->setName(utils->getInvalidTestValue("postChartCategory", "name", request->getName()));
+	utils->initialize("postChartCategory", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->postChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartCategory", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartCategorySlideIndex) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("postChartCategory", "slideIndex", request->getSlideIndex()));
+	utils->initialize("postChartCategory", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartCategory", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartCategoryShapeIndex) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("postChartCategory", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("postChartCategory", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartCategory", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartCategoryCategory) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	request->setCategory(utils->getInvalidTestValueForClass<>("postChartCategory", "category", request->getCategory()));
+	utils->initialize("postChartCategory", "category", request->getCategory());
+
+	bool failed = true;
+	try
+	{
+		api->postChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "category");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "category", request->getCategory());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartCategory", "category"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartCategoryPassword) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	request->setPassword(utils->getInvalidTestValue("postChartCategory", "password", request->getPassword()));
+	utils->initialize("postChartCategory", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->postChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartCategory", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartCategoryFolder) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	request->setFolder(utils->getInvalidTestValue("postChartCategory", "folder", request->getFolder()));
+	utils->initialize("postChartCategory", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->postChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartCategory", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartCategoryStorage) {
+	std::shared_ptr<PostChartCategoryRequest> request = getPostChartCategoryRequest();
+	request->setStorage(utils->getInvalidTestValue("postChartCategory", "storage", request->getStorage()));
+	utils->initialize("postChartCategory", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->postChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartCategory", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPoint) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	utils->initialize("postChartDataPoint", "");
+	std::shared_ptr<Chart> result = api->postChartDataPoint(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, postChartDataPointName) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setName(utils->getInvalidTestValue("postChartDataPoint", "name", request->getName()));
+	utils->initialize("postChartDataPoint", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPointSlideIndex) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("postChartDataPoint", "slideIndex", request->getSlideIndex()));
+	utils->initialize("postChartDataPoint", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPointShapeIndex) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("postChartDataPoint", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("postChartDataPoint", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPointSeriesIndex) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setSeriesIndex(utils->getInvalidIntTestValue("postChartDataPoint", "seriesIndex", request->getSeriesIndex()));
+	utils->initialize("postChartDataPoint", "seriesIndex", request->getSeriesIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "seriesIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "seriesIndex", request->getSeriesIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "seriesIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPointDataPoint) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setDataPoint(utils->getInvalidTestValueForClass<>("postChartDataPoint", "dataPoint", request->getDataPoint()));
+	utils->initialize("postChartDataPoint", "dataPoint", request->getDataPoint());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "dataPoint");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "dataPoint", request->getDataPoint());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "dataPoint"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPointPassword) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setPassword(utils->getInvalidTestValue("postChartDataPoint", "password", request->getPassword()));
+	utils->initialize("postChartDataPoint", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPointFolder) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setFolder(utils->getInvalidTestValue("postChartDataPoint", "folder", request->getFolder()));
+	utils->initialize("postChartDataPoint", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postChartDataPointStorage) {
+	std::shared_ptr<PostChartDataPointRequest> request = getPostChartDataPointRequest();
+	request->setStorage(utils->getInvalidTestValue("postChartDataPoint", "storage", request->getStorage()));
+	utils->initialize("postChartDataPoint", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->postChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("postChartDataPoint", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, postChartSeries) {
 	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
 	utils->initialize("postChartSeries", "");
@@ -18747,7 +19698,7 @@ TEST_F(SlidesApiTest, postChartSeriesShapeIndex) {
 
 TEST_F(SlidesApiTest, postChartSeriesSeries) {
 	std::shared_ptr<PostChartSeriesRequest> request = getPostChartSeriesRequest();
-	request->setSeries(utils->getInvalidTestValueForClass<Series>("postChartSeries", "series", request->getSeries()));
+	request->setSeries(utils->getInvalidTestValueForClass<>("postChartSeries", "series", request->getSeries()));
 	utils->initialize("postChartSeries", "series", request->getSeries());
 
 	bool failed = true;
@@ -19825,7 +20776,7 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphShapeIndex) {
 
 TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphDto) {
 	std::shared_ptr<PostNotesSlideAddNewParagraphRequest> request = getPostNotesSlideAddNewParagraphRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Paragraph>("postNotesSlideAddNewParagraph", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postNotesSlideAddNewParagraph", "dto", request->getDto()));
 	utils->initialize("postNotesSlideAddNewParagraph", "dto", request->getDto());
 
 	bool failed = true;
@@ -20084,7 +21035,7 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionParagraphIndex) {
 
 TEST_F(SlidesApiTest, postNotesSlideAddNewPortionDto) {
 	std::shared_ptr<PostNotesSlideAddNewPortionRequest> request = getPostNotesSlideAddNewPortionRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Portion>("postNotesSlideAddNewPortion", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postNotesSlideAddNewPortion", "dto", request->getDto()));
 	utils->initialize("postNotesSlideAddNewPortion", "dto", request->getDto());
 
 	bool failed = true;
@@ -20287,7 +21238,7 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapeSlideIndex) {
 
 TEST_F(SlidesApiTest, postNotesSlideAddNewShapeDto) {
 	std::shared_ptr<PostNotesSlideAddNewShapeRequest> request = getPostNotesSlideAddNewShapeRequest();
-	request->setDto(utils->getInvalidTestValueForClass<ShapeBase>("postNotesSlideAddNewShape", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("postNotesSlideAddNewShape", "dto", request->getDto()));
 	utils->initialize("postNotesSlideAddNewShape", "dto", request->getDto());
 
 	bool failed = true;
@@ -20574,7 +21525,7 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsFormat) {
 
 TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsOptions) {
 	std::shared_ptr<PostNotesSlideShapeSaveAsRequest> request = getPostNotesSlideShapeSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<IShapeExportOptions>("postNotesSlideShapeSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("postNotesSlideShapeSaveAs", "options", request->getOptions()));
 	utils->initialize("postNotesSlideShapeSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -20833,7 +21784,7 @@ TEST_F(SlidesApiTest, postPresentationMergeName) {
 
 TEST_F(SlidesApiTest, postPresentationMergeRequest) {
 	std::shared_ptr<PostPresentationMergeRequest> request = getPostPresentationMergeRequest();
-	request->setRequest(utils->getInvalidTestValueForClass<PresentationsMergeRequest>("postPresentationMerge", "request", request->getRequest()));
+	request->setRequest(utils->getInvalidTestValueForClass<>("postPresentationMerge", "request", request->getRequest()));
 	utils->initialize("postPresentationMerge", "request", request->getRequest());
 
 	bool failed = true;
@@ -21064,7 +22015,7 @@ TEST_F(SlidesApiTest, postShapeSaveAsFormat) {
 
 TEST_F(SlidesApiTest, postShapeSaveAsOptions) {
 	std::shared_ptr<PostShapeSaveAsRequest> request = getPostShapeSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<IShapeExportOptions>("postShapeSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("postShapeSaveAs", "options", request->getOptions()));
 	utils->initialize("postShapeSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -21351,7 +22302,7 @@ TEST_F(SlidesApiTest, postSlideAnimationEffectSlideIndex) {
 
 TEST_F(SlidesApiTest, postSlideAnimationEffectEffect) {
 	std::shared_ptr<PostSlideAnimationEffectRequest> request = getPostSlideAnimationEffectRequest();
-	request->setEffect(utils->getInvalidTestValueForClass<Effect>("postSlideAnimationEffect", "effect", request->getEffect()));
+	request->setEffect(utils->getInvalidTestValueForClass<>("postSlideAnimationEffect", "effect", request->getEffect()));
 	utils->initialize("postSlideAnimationEffect", "effect", request->getEffect());
 
 	bool failed = true;
@@ -21526,7 +22477,7 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceSlideIndex) {
 
 TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceSequence) {
 	std::shared_ptr<PostSlideAnimationInteractiveSequenceRequest> request = getPostSlideAnimationInteractiveSequenceRequest();
-	request->setSequence(utils->getInvalidTestValueForClass<InteractiveSequence>("postSlideAnimationInteractiveSequence", "sequence", request->getSequence()));
+	request->setSequence(utils->getInvalidTestValueForClass<>("postSlideAnimationInteractiveSequence", "sequence", request->getSequence()));
 	utils->initialize("postSlideAnimationInteractiveSequence", "sequence", request->getSequence());
 
 	bool failed = true;
@@ -21729,7 +22680,7 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectSequenceIndex) 
 
 TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectEffect) {
 	std::shared_ptr<PostSlideAnimationInteractiveSequenceEffectRequest> request = getPostSlideAnimationInteractiveSequenceEffectRequest();
-	request->setEffect(utils->getInvalidTestValueForClass<Effect>("postSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect()));
+	request->setEffect(utils->getInvalidTestValueForClass<>("postSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect()));
 	utils->initialize("postSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect());
 
 	bool failed = true;
@@ -21932,7 +22883,7 @@ TEST_F(SlidesApiTest, postSlideSaveAsFormat) {
 
 TEST_F(SlidesApiTest, postSlideSaveAsOptions) {
 	std::shared_ptr<PostSlideSaveAsRequest> request = getPostSlideSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<ExportOptions>("postSlideSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("postSlideSaveAs", "options", request->getOptions()));
 	utils->initialize("postSlideSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -23472,7 +24423,7 @@ TEST_F(SlidesApiTest, postSlidesPipeline) {
 
 TEST_F(SlidesApiTest, postSlidesPipelinePipeline) {
 	std::shared_ptr<PostSlidesPipelineRequest> request = getPostSlidesPipelineRequest();
-	request->setPipeline(utils->getInvalidTestValueForClass<Pipeline>("postSlidesPipeline", "pipeline", request->getPipeline()));
+	request->setPipeline(utils->getInvalidTestValueForClass<>("postSlidesPipeline", "pipeline", request->getPipeline()));
 	utils->initialize("postSlidesPipeline", "pipeline", request->getPipeline());
 
 	bool failed = true;
@@ -24116,7 +25067,7 @@ TEST_F(SlidesApiTest, postSlidesSaveAsFormat) {
 
 TEST_F(SlidesApiTest, postSlidesSaveAsOptions) {
 	std::shared_ptr<PostSlidesSaveAsRequest> request = getPostSlidesSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<ExportOptions>("postSlidesSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("postSlidesSaveAs", "options", request->getOptions()));
 	utils->initialize("postSlidesSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -24291,7 +25242,7 @@ TEST_F(SlidesApiTest, postSlidesSetDocumentPropertiesName) {
 
 TEST_F(SlidesApiTest, postSlidesSetDocumentPropertiesProperties) {
 	std::shared_ptr<PostSlidesSetDocumentPropertiesRequest> request = getPostSlidesSetDocumentPropertiesRequest();
-	request->setProperties(utils->getInvalidTestValueForClass<DocumentProperties>("postSlidesSetDocumentProperties", "properties", request->getProperties()));
+	request->setProperties(utils->getInvalidTestValueForClass<>("postSlidesSetDocumentProperties", "properties", request->getProperties()));
 	utils->initialize("postSlidesSetDocumentProperties", "properties", request->getProperties());
 
 	bool failed = true;
@@ -24669,7 +25620,7 @@ TEST_F(SlidesApiTest, postSlidesSplitName) {
 
 TEST_F(SlidesApiTest, postSlidesSplitOptions) {
 	std::shared_ptr<PostSlidesSplitRequest> request = getPostSlidesSplitRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<ExportOptions>("postSlidesSplit", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("postSlidesSplit", "options", request->getOptions()));
 	utils->initialize("postSlidesSplit", "options", request->getOptions());
 
 	bool failed = true;
@@ -25124,7 +26075,7 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsFormat) {
 
 TEST_F(SlidesApiTest, postSubshapeSaveAsOptions) {
 	std::shared_ptr<PostSubshapeSaveAsRequest> request = getPostSubshapeSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<IShapeExportOptions>("postSubshapeSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("postSubshapeSaveAs", "options", request->getOptions()));
 	utils->initialize("postSubshapeSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -25346,6 +26297,496 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsFontsFolder) {
 	}
 }
 
+TEST_F(SlidesApiTest, putChartCategory) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	utils->initialize("putChartCategory", "");
+	std::shared_ptr<Chart> result = api->putChartCategory(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putChartCategoryName) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setName(utils->getInvalidTestValue("putChartCategory", "name", request->getName()));
+	utils->initialize("putChartCategory", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartCategorySlideIndex) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("putChartCategory", "slideIndex", request->getSlideIndex()));
+	utils->initialize("putChartCategory", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartCategoryShapeIndex) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("putChartCategory", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("putChartCategory", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartCategoryCategoryIndex) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setCategoryIndex(utils->getInvalidIntTestValue("putChartCategory", "categoryIndex", request->getCategoryIndex()));
+	utils->initialize("putChartCategory", "categoryIndex", request->getCategoryIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "categoryIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "categoryIndex", request->getCategoryIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "categoryIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartCategoryCategory) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setCategory(utils->getInvalidTestValueForClass<>("putChartCategory", "category", request->getCategory()));
+	utils->initialize("putChartCategory", "category", request->getCategory());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "category");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "category", request->getCategory());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "category"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartCategoryPassword) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setPassword(utils->getInvalidTestValue("putChartCategory", "password", request->getPassword()));
+	utils->initialize("putChartCategory", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartCategoryFolder) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setFolder(utils->getInvalidTestValue("putChartCategory", "folder", request->getFolder()));
+	utils->initialize("putChartCategory", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartCategoryStorage) {
+	std::shared_ptr<PutChartCategoryRequest> request = getPutChartCategoryRequest();
+	request->setStorage(utils->getInvalidTestValue("putChartCategory", "storage", request->getStorage()));
+	utils->initialize("putChartCategory", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putChartCategory(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartCategory", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPoint) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	utils->initialize("putChartDataPoint", "");
+	std::shared_ptr<Chart> result = api->putChartDataPoint(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putChartDataPointName) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setName(utils->getInvalidTestValue("putChartDataPoint", "name", request->getName()));
+	utils->initialize("putChartDataPoint", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointSlideIndex) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("putChartDataPoint", "slideIndex", request->getSlideIndex()));
+	utils->initialize("putChartDataPoint", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointShapeIndex) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setShapeIndex(utils->getInvalidIntTestValue("putChartDataPoint", "shapeIndex", request->getShapeIndex()));
+	utils->initialize("putChartDataPoint", "shapeIndex", request->getShapeIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "shapeIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "shapeIndex", request->getShapeIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "shapeIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointSeriesIndex) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setSeriesIndex(utils->getInvalidIntTestValue("putChartDataPoint", "seriesIndex", request->getSeriesIndex()));
+	utils->initialize("putChartDataPoint", "seriesIndex", request->getSeriesIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "seriesIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "seriesIndex", request->getSeriesIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "seriesIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointPointIndex) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setPointIndex(utils->getInvalidIntTestValue("putChartDataPoint", "pointIndex", request->getPointIndex()));
+	utils->initialize("putChartDataPoint", "pointIndex", request->getPointIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "pointIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "pointIndex", request->getPointIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "pointIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointDataPoint) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setDataPoint(utils->getInvalidTestValueForClass<>("putChartDataPoint", "dataPoint", request->getDataPoint()));
+	utils->initialize("putChartDataPoint", "dataPoint", request->getDataPoint());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "dataPoint");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "dataPoint", request->getDataPoint());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "dataPoint"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointPassword) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setPassword(utils->getInvalidTestValue("putChartDataPoint", "password", request->getPassword()));
+	utils->initialize("putChartDataPoint", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointFolder) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setFolder(utils->getInvalidTestValue("putChartDataPoint", "folder", request->getFolder()));
+	utils->initialize("putChartDataPoint", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putChartDataPointStorage) {
+	std::shared_ptr<PutChartDataPointRequest> request = getPutChartDataPointRequest();
+	request->setStorage(utils->getInvalidTestValue("putChartDataPoint", "storage", request->getStorage()));
+	utils->initialize("putChartDataPoint", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putChartDataPoint(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	if (!failed && utils->mustFail("putChartDataPoint", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
 TEST_F(SlidesApiTest, putChartSeries) {
 	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
 	utils->initialize("putChartSeries", "");
@@ -25467,7 +26908,7 @@ TEST_F(SlidesApiTest, putChartSeriesSeriesIndex) {
 
 TEST_F(SlidesApiTest, putChartSeriesSeries) {
 	std::shared_ptr<PutChartSeriesRequest> request = getPutChartSeriesRequest();
-	request->setSeries(utils->getInvalidTestValueForClass<Series>("putChartSeries", "series", request->getSeries()));
+	request->setSeries(utils->getInvalidTestValueForClass<>("putChartSeries", "series", request->getSeries()));
 	utils->initialize("putChartSeries", "series", request->getSeries());
 
 	bool failed = true;
@@ -25642,7 +27083,7 @@ TEST_F(SlidesApiTest, putLayoutSlideSlideIndex) {
 
 TEST_F(SlidesApiTest, putLayoutSlideSlideDto) {
 	std::shared_ptr<PutLayoutSlideRequest> request = getPutLayoutSlideRequest();
-	request->setSlideDto(utils->getInvalidTestValueForClass<LayoutSlide>("putLayoutSlide", "slideDto", request->getSlideDto()));
+	request->setSlideDto(utils->getInvalidTestValueForClass<>("putLayoutSlide", "slideDto", request->getSlideDto()));
 	utils->initialize("putLayoutSlide", "slideDto", request->getSlideDto());
 
 	bool failed = true;
@@ -25900,7 +27341,7 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsOutPath) {
 
 TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsOptions) {
 	std::shared_ptr<PutNotesSlideShapeSaveAsRequest> request = getPutNotesSlideShapeSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<IShapeExportOptions>("putNotesSlideShapeSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("putNotesSlideShapeSaveAs", "options", request->getOptions()));
 	utils->initialize("putNotesSlideShapeSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -26159,7 +27600,7 @@ TEST_F(SlidesApiTest, putPresentationMergeName) {
 
 TEST_F(SlidesApiTest, putPresentationMergeRequest) {
 	std::shared_ptr<PutPresentationMergeRequest> request = getPutPresentationMergeRequest();
-	request->setRequest(utils->getInvalidTestValueForClass<OrderedMergeRequest>("putPresentationMerge", "request", request->getRequest()));
+	request->setRequest(utils->getInvalidTestValueForClass<>("putPresentationMerge", "request", request->getRequest()));
 	utils->initialize("putPresentationMerge", "request", request->getRequest());
 
 	bool failed = true;
@@ -26418,7 +27859,7 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesPortionIndex) {
 
 TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesDto) {
 	std::shared_ptr<PutSetParagraphPortionPropertiesRequest> request = getPutSetParagraphPortionPropertiesRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Portion>("putSetParagraphPortionProperties", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putSetParagraphPortionProperties", "dto", request->getDto()));
 	utils->initialize("putSetParagraphPortionProperties", "dto", request->getDto());
 
 	bool failed = true;
@@ -26649,7 +28090,7 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesParagraphIndex) {
 
 TEST_F(SlidesApiTest, putSetParagraphPropertiesDto) {
 	std::shared_ptr<PutSetParagraphPropertiesRequest> request = getPutSetParagraphPropertiesRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Paragraph>("putSetParagraphProperties", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putSetParagraphProperties", "dto", request->getDto()));
 	utils->initialize("putSetParagraphProperties", "dto", request->getDto());
 
 	bool failed = true;
@@ -26936,7 +28377,7 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesPortionIndex) {
 
 TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesDto) {
 	std::shared_ptr<PutSetSubshapeParagraphPortionPropertiesRequest> request = getPutSetSubshapeParagraphPortionPropertiesRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Portion>("putSetSubshapeParagraphPortionProperties", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putSetSubshapeParagraphPortionProperties", "dto", request->getDto()));
 	utils->initialize("putSetSubshapeParagraphPortionProperties", "dto", request->getDto());
 
 	bool failed = true;
@@ -27195,7 +28636,7 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesParagraphIndex) {
 
 TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesDto) {
 	std::shared_ptr<PutSetSubshapeParagraphPropertiesRequest> request = getPutSetSubshapeParagraphPropertiesRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Paragraph>("putSetSubshapeParagraphProperties", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putSetSubshapeParagraphProperties", "dto", request->getDto()));
 	utils->initialize("putSetSubshapeParagraphProperties", "dto", request->getDto());
 
 	bool failed = true;
@@ -27453,7 +28894,7 @@ TEST_F(SlidesApiTest, putShapeSaveAsOutPath) {
 
 TEST_F(SlidesApiTest, putShapeSaveAsOptions) {
 	std::shared_ptr<PutShapeSaveAsRequest> request = getPutShapeSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<IShapeExportOptions>("putShapeSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("putShapeSaveAs", "options", request->getOptions()));
 	utils->initialize("putShapeSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -27740,7 +29181,7 @@ TEST_F(SlidesApiTest, putSlideAnimationSlideIndex) {
 
 TEST_F(SlidesApiTest, putSlideAnimationAnimation) {
 	std::shared_ptr<PutSlideAnimationRequest> request = getPutSlideAnimationRequest();
-	request->setAnimation(utils->getInvalidTestValueForClass<SlideAnimation>("putSlideAnimation", "animation", request->getAnimation()));
+	request->setAnimation(utils->getInvalidTestValueForClass<>("putSlideAnimation", "animation", request->getAnimation()));
 	utils->initialize("putSlideAnimation", "animation", request->getAnimation());
 
 	bool failed = true;
@@ -27943,7 +29384,7 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectEffectIndex) {
 
 TEST_F(SlidesApiTest, putSlideAnimationEffectEffect) {
 	std::shared_ptr<PutSlideAnimationEffectRequest> request = getPutSlideAnimationEffectRequest();
-	request->setEffect(utils->getInvalidTestValueForClass<Effect>("putSlideAnimationEffect", "effect", request->getEffect()));
+	request->setEffect(utils->getInvalidTestValueForClass<>("putSlideAnimationEffect", "effect", request->getEffect()));
 	utils->initialize("putSlideAnimationEffect", "effect", request->getEffect());
 
 	bool failed = true;
@@ -28174,7 +29615,7 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectEffectIndex) {
 
 TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectEffect) {
 	std::shared_ptr<PutSlideAnimationInteractiveSequenceEffectRequest> request = getPutSlideAnimationInteractiveSequenceEffectRequest();
-	request->setEffect(utils->getInvalidTestValueForClass<Effect>("putSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect()));
+	request->setEffect(utils->getInvalidTestValueForClass<>("putSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect()));
 	utils->initialize("putSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect());
 
 	bool failed = true;
@@ -28404,7 +29845,7 @@ TEST_F(SlidesApiTest, putSlideSaveAsOutPath) {
 
 TEST_F(SlidesApiTest, putSlideSaveAsOptions) {
 	std::shared_ptr<PutSlideSaveAsRequest> request = getPutSlideSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<ExportOptions>("putSlideSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("putSlideSaveAs", "options", request->getOptions()));
 	utils->initialize("putSlideSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -28691,7 +30132,7 @@ TEST_F(SlidesApiTest, putSlideShapeInfoShapeIndex) {
 
 TEST_F(SlidesApiTest, putSlideShapeInfoDto) {
 	std::shared_ptr<PutSlideShapeInfoRequest> request = getPutSlideShapeInfoRequest();
-	request->setDto(utils->getInvalidTestValueForClass<ShapeBase>("putSlideShapeInfo", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putSlideShapeInfo", "dto", request->getDto()));
 	utils->initialize("putSlideShapeInfo", "dto", request->getDto());
 
 	bool failed = true;
@@ -28922,7 +30363,7 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoShapeIndex) {
 
 TEST_F(SlidesApiTest, putSlideSubshapeInfoDto) {
 	std::shared_ptr<PutSlideSubshapeInfoRequest> request = getPutSlideSubshapeInfoRequest();
-	request->setDto(utils->getInvalidTestValueForClass<ShapeBase>("putSlideSubshapeInfo", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putSlideSubshapeInfo", "dto", request->getDto()));
 	utils->initialize("putSlideSubshapeInfo", "dto", request->getDto());
 
 	bool failed = true;
@@ -29417,7 +30858,7 @@ TEST_F(SlidesApiTest, putSlidesSaveAsFormat) {
 
 TEST_F(SlidesApiTest, putSlidesSaveAsOptions) {
 	std::shared_ptr<PutSlidesSaveAsRequest> request = getPutSlidesSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<ExportOptions>("putSlidesSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("putSlidesSaveAs", "options", request->getOptions()));
 	utils->initialize("putSlidesSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -29620,7 +31061,7 @@ TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyPropertyName) {
 
 TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyProperty) {
 	std::shared_ptr<PutSlidesSetDocumentPropertyRequest> request = getPutSlidesSetDocumentPropertyRequest();
-	request->setProperty(utils->getInvalidTestValueForClass<DocumentProperty>("putSlidesSetDocumentProperty", "property", request->getProperty()));
+	request->setProperty(utils->getInvalidTestValueForClass<>("putSlidesSetDocumentProperty", "property", request->getProperty()));
 	utils->initialize("putSlidesSetDocumentProperty", "property", request->getProperty());
 
 	bool failed = true;
@@ -29795,7 +31236,7 @@ TEST_F(SlidesApiTest, putSlidesSlideSlideIndex) {
 
 TEST_F(SlidesApiTest, putSlidesSlideSlideDto) {
 	std::shared_ptr<PutSlidesSlideRequest> request = getPutSlidesSlideRequest();
-	request->setSlideDto(utils->getInvalidTestValueForClass<Slide>("putSlidesSlide", "slideDto", request->getSlideDto()));
+	request->setSlideDto(utils->getInvalidTestValueForClass<>("putSlidesSlide", "slideDto", request->getSlideDto()));
 	utils->initialize("putSlidesSlide", "slideDto", request->getSlideDto());
 
 	bool failed = true;
@@ -29970,7 +31411,7 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundSlideIndex) {
 
 TEST_F(SlidesApiTest, putSlidesSlideBackgroundBackground) {
 	std::shared_ptr<PutSlidesSlideBackgroundRequest> request = getPutSlidesSlideBackgroundRequest();
-	request->setBackground(utils->getInvalidTestValueForClass<SlideBackground>("putSlidesSlideBackground", "background", request->getBackground()));
+	request->setBackground(utils->getInvalidTestValueForClass<>("putSlidesSlideBackground", "background", request->getBackground()));
 	utils->initialize("putSlidesSlideBackground", "background", request->getBackground());
 
 	bool failed = true;
@@ -30523,7 +31964,7 @@ TEST_F(SlidesApiTest, putSlidesViewPropertiesName) {
 
 TEST_F(SlidesApiTest, putSlidesViewPropertiesDto) {
 	std::shared_ptr<PutSlidesViewPropertiesRequest> request = getPutSlidesViewPropertiesRequest();
-	request->setDto(utils->getInvalidTestValueForClass<ViewProperties>("putSlidesViewProperties", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putSlidesViewProperties", "dto", request->getDto()));
 	utils->initialize("putSlidesViewProperties", "dto", request->getDto());
 
 	bool failed = true;
@@ -30809,7 +32250,7 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsOutPath) {
 
 TEST_F(SlidesApiTest, putSubshapeSaveAsOptions) {
 	std::shared_ptr<PutSubshapeSaveAsRequest> request = getPutSubshapeSaveAsRequest();
-	request->setOptions(utils->getInvalidTestValueForClass<IShapeExportOptions>("putSubshapeSaveAs", "options", request->getOptions()));
+	request->setOptions(utils->getInvalidTestValueForClass<>("putSubshapeSaveAs", "options", request->getOptions()));
 	utils->initialize("putSubshapeSaveAs", "options", request->getOptions());
 
 	bool failed = true;
@@ -31096,7 +32537,7 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideSlideIndex) {
 
 TEST_F(SlidesApiTest, putUpdateNotesSlideDto) {
 	std::shared_ptr<PutUpdateNotesSlideRequest> request = getPutUpdateNotesSlideRequest();
-	request->setDto(utils->getInvalidTestValueForClass<NotesSlide>("putUpdateNotesSlide", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putUpdateNotesSlide", "dto", request->getDto()));
 	utils->initialize("putUpdateNotesSlide", "dto", request->getDto());
 
 	bool failed = true;
@@ -31299,7 +32740,7 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeShapeIndex) {
 
 TEST_F(SlidesApiTest, putUpdateNotesSlideShapeDto) {
 	std::shared_ptr<PutUpdateNotesSlideShapeRequest> request = getPutUpdateNotesSlideShapeRequest();
-	request->setDto(utils->getInvalidTestValueForClass<ShapeBase>("putUpdateNotesSlideShape", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putUpdateNotesSlideShape", "dto", request->getDto()));
 	utils->initialize("putUpdateNotesSlideShape", "dto", request->getDto());
 
 	bool failed = true;
@@ -31530,7 +32971,7 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphParagraphIndex) {
 
 TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphDto) {
 	std::shared_ptr<PutUpdateNotesSlideShapeParagraphRequest> request = getPutUpdateNotesSlideShapeParagraphRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Paragraph>("putUpdateNotesSlideShapeParagraph", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putUpdateNotesSlideShapeParagraph", "dto", request->getDto()));
 	utils->initialize("putUpdateNotesSlideShapeParagraph", "dto", request->getDto());
 
 	bool failed = true;
@@ -31789,7 +33230,7 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionPortionIndex) {
 
 TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionDto) {
 	std::shared_ptr<PutUpdateNotesSlideShapePortionRequest> request = getPutUpdateNotesSlideShapePortionRequest();
-	request->setDto(utils->getInvalidTestValueForClass<Portion>("putUpdateNotesSlideShapePortion", "dto", request->getDto()));
+	request->setDto(utils->getInvalidTestValueForClass<>("putUpdateNotesSlideShapePortion", "dto", request->getDto()));
 	utils->initialize("putUpdateNotesSlideShapePortion", "dto", request->getDto());
 
 	bool failed = true;

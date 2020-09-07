@@ -139,6 +139,81 @@ pplx::task<void> SlidesApi::createFolder(std::shared_ptr<CreateFolderRequest> re
 		});
 }
 
+pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartCategory(std::shared_ptr<DeleteChartCategoryRequest> request)
+{
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories/{categoryIndex}");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+	ApiClient::setPathParameter(path, "shapeIndex", request->getShapeIndex());
+	ApiClient::setPathParameter(path, "categoryIndex", request->getCategoryIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling deleteChartCategory: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Chart> result(new Chart());
+			result->fromJson(json);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartDataPoint(std::shared_ptr<DeleteChartDataPointRequest> request)
+{
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints/{pointIndex}");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+	ApiClient::setPathParameter(path, "shapeIndex", request->getShapeIndex());
+	ApiClient::setPathParameter(path, "seriesIndex", request->getSeriesIndex());
+	ApiClient::setPathParameter(path, "pointIndex", request->getPointIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling deleteChartDataPoint: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Chart> result(new Chart());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartSeries(std::shared_ptr<DeleteChartSeriesRequest> request)
 {
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}");
@@ -3557,6 +3632,87 @@ pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::postAddNotesSlide(std::shared
 		});
 }
 
+pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartCategory(std::shared_ptr<PostChartCategoryRequest> request)
+{
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+	ApiClient::setPathParameter(path, "shapeIndex", request->getShapeIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getCategory() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getCategory()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling postChartCategory: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Chart> result(new Chart());
+			result->fromJson(json);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartDataPoint(std::shared_ptr<PostChartDataPointRequest> request)
+{
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+	ApiClient::setPathParameter(path, "shapeIndex", request->getShapeIndex());
+	ApiClient::setPathParameter(path, "seriesIndex", request->getSeriesIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getDataPoint() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getDataPoint()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling postChartDataPoint: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Chart> result(new Chart());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartSeries(std::shared_ptr<PostChartSeriesRequest> request)
 {
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series");
@@ -4862,6 +5018,89 @@ pplx::task<HttpContent> SlidesApi::postSubshapeSaveAs(std::shared_ptr<PostSubsha
 			HttpContent result;
 			std::shared_ptr<std::stringstream> stream = std::make_shared<std::stringstream>(std::string(response.begin(), response.end()));
 			result.setData(stream);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartCategory(std::shared_ptr<PutChartCategoryRequest> request)
+{
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories/{categoryIndex}");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+	ApiClient::setPathParameter(path, "shapeIndex", request->getShapeIndex());
+	ApiClient::setPathParameter(path, "categoryIndex", request->getCategoryIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getCategory() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getCategory()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling putChartCategory: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Chart> result(new Chart());
+			result->fromJson(json);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartDataPoint(std::shared_ptr<PutChartDataPointRequest> request)
+{
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints/{pointIndex}");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+	ApiClient::setPathParameter(path, "shapeIndex", request->getShapeIndex());
+	ApiClient::setPathParameter(path, "seriesIndex", request->getSeriesIndex());
+	ApiClient::setPathParameter(path, "pointIndex", request->getPointIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getDataPoint() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getDataPoint()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling putChartDataPoint: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Chart> result(new Chart());
+			result->fromJson(json);
 			return result;
 		});
 }

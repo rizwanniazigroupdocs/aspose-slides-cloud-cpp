@@ -93,6 +93,17 @@ void ChartCategory::setLineFormat(std::shared_ptr<LineFormat> value)
 	
 }
 
+std::vector<std::shared_ptr<OneValueChartDataPoint>> ChartCategory::getDataPoints() const
+{
+	return m_DataPoints;
+}
+
+void ChartCategory::setDataPoints(std::vector<std::shared_ptr<OneValueChartDataPoint>> value)
+{
+	m_DataPoints = value;
+	
+}
+
 web::json::value ChartCategory::toJson() const
 {
 	web::json::value val = web::json::value::object();
@@ -122,6 +133,17 @@ web::json::value ChartCategory::toJson() const
 	if (m_LineFormat != nullptr)
 	{
 		val[utility::conversions::to_string_t("LineFormat")] = ModelBase::toJson(m_LineFormat);
+	}
+	{
+		std::vector<web::json::value> jsonArray;
+		for (auto& item : m_DataPoints)
+		{
+			jsonArray.push_back(ModelBase::toJson(item));
+		}
+		if (jsonArray.size() > 0)
+		{
+			val[utility::conversions::to_string_t("DataPoints")] = web::json::value::array(jsonArray);
+		}
 	}
 	return val;
 }
@@ -174,6 +196,27 @@ void ChartCategory::fromJson(web::json::value& val)
 		std::shared_ptr<LineFormat> newItem(new LineFormat());
 		newItem->fromJson(*jsonForLineFormat);
 		setLineFormat(newItem);
+	}
+	web::json::value* jsonForDataPoints = ModelBase::getField(val, "DataPoints");
+	if(jsonForDataPoints != nullptr && !jsonForDataPoints->is_null())
+	{
+		{
+			m_DataPoints.clear();
+			std::vector<web::json::value> jsonArray;
+			for(auto& item : jsonForDataPoints->as_array())
+			{
+				if(item.is_null())
+				{
+					m_DataPoints.push_back(std::shared_ptr<OneValueChartDataPoint>(nullptr));
+				}
+				else
+				{
+					std::shared_ptr<OneValueChartDataPoint> newItem(new OneValueChartDataPoint());
+					newItem->fromJson(item);
+					m_DataPoints.push_back( newItem );
+				}
+			}
+        	}
 	}
 }
 

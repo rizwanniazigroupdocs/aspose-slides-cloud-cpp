@@ -136,6 +136,7 @@
     <ClCompile Include="model\ChartWall.cpp" />
     <ClCompile Include="model\CommonSlideViewProperties.cpp" />
     <ClCompile Include="model\CustomDashPattern.cpp" />
+    <ClCompile Include="model\DataPoint.cpp" />
     <ClCompile Include="model\DiscUsage.cpp" />
     <ClCompile Include="model\Effect.cpp" />
     <ClCompile Include="model\EffectFormat.cpp" />
@@ -164,7 +165,6 @@
     <ClCompile Include="model\NormalViewRestoredProperties.cpp" />
     <ClCompile Include="model\NotesSlideExportFormat.cpp" />
     <ClCompile Include="model\ObjectExist.cpp" />
-    <ClCompile Include="model\OneValueChartDataPoint.cpp" />
     <ClCompile Include="model\OrderedMergeRequest.cpp" />
     <ClCompile Include="model\OuterShadowEffect.cpp" />
     <ClCompile Include="model\OutputFile.cpp" />
@@ -178,7 +178,6 @@
     <ClCompile Include="model\ResourceUri.cpp" />
     <ClCompile Include="model\ResourceUriElement.cpp" />
     <ClCompile Include="model\ScaleType.cpp" />
-    <ClCompile Include="model\ScatterChartDataPoint.cpp" />
     <ClCompile Include="model\Series.cpp" />
     <ClCompile Include="model\SeriesMarker.cpp" />
     <ClCompile Include="model\ShapeExportFormat.cpp" />
@@ -201,7 +200,6 @@
     <ClCompile Include="model\AddShape.cpp" />
     <ClCompile Include="model\AddSlide.cpp" />
     <ClCompile Include="model\Base64InputFile.cpp" />
-    <ClCompile Include="model\BubbleChartDataPoint.cpp" />
     <ClCompile Include="model\BubbleSeries.cpp" />
     <ClCompile Include="model\ColorScheme.cpp" />
     <ClCompile Include="model\Document.cpp" />
@@ -222,6 +220,7 @@
     <ClCompile Include="model\Merge.cpp" />
     <ClCompile Include="model\NoFill.cpp" />
     <ClCompile Include="model\NotesSlide.cpp" />
+    <ClCompile Include="model\OneValueChartDataPoint.cpp" />
     <ClCompile Include="model\OneValueSeries.cpp" />
     <ClCompile Include="model\Paragraph.cpp" />
     <ClCompile Include="model\Paragraphs.cpp" />
@@ -245,6 +244,7 @@
     <ClCompile Include="model\Save.cpp" />
     <ClCompile Include="model\SaveShape.cpp" />
     <ClCompile Include="model\SaveSlide.cpp" />
+    <ClCompile Include="model\ScatterChartDataPoint.cpp" />
     <ClCompile Include="model\ScatterSeries.cpp" />
     <ClCompile Include="model\ShapeBase.cpp" />
     <ClCompile Include="model\Shapes.cpp" />
@@ -265,6 +265,7 @@
     <ClCompile Include="model\ViewProperties.cpp" />
     <ClCompile Include="model\XpsExportOptions.cpp" />
     <ClCompile Include="model\BoxAndWhiskerSeries.cpp" />
+    <ClCompile Include="model\BubbleChartDataPoint.cpp" />
     <ClCompile Include="model\Chart.cpp" />
     <ClCompile Include="model\DocumentReplaceResult.cpp" />
     <ClCompile Include="model\GeometryShape.cpp" />
@@ -275,6 +276,7 @@
     <ClCompile Include="model\SmartArt.cpp" />
     <ClCompile Include="model\SmartArtShape.cpp" />
     <ClCompile Include="model\Table.cpp" />
+    <ClCompile Include="model\WaterfallChartDataPoint.cpp" />
     <ClCompile Include="model\WaterfallSeries.cpp" />
     <ClCompile Include="model\AudioFrame.cpp" />
     <ClCompile Include="model\Connector.cpp" />
@@ -305,6 +307,7 @@
     <ClInclude Include="model\ChartWall.h" />
     <ClInclude Include="model\CommonSlideViewProperties.h" />
     <ClInclude Include="model\CustomDashPattern.h" />
+    <ClInclude Include="model\DataPoint.h" />
     <ClInclude Include="model\DiscUsage.h" />
     <ClInclude Include="model\Effect.h" />
     <ClInclude Include="model\EffectFormat.h" />
@@ -333,7 +336,6 @@
     <ClInclude Include="model\NormalViewRestoredProperties.h" />
     <ClInclude Include="model\NotesSlideExportFormat.h" />
     <ClInclude Include="model\ObjectExist.h" />
-    <ClInclude Include="model\OneValueChartDataPoint.h" />
     <ClInclude Include="model\OrderedMergeRequest.h" />
     <ClInclude Include="model\OuterShadowEffect.h" />
     <ClInclude Include="model\OutputFile.h" />
@@ -347,7 +349,6 @@
     <ClInclude Include="model\ResourceUri.h" />
     <ClInclude Include="model\ResourceUriElement.h" />
     <ClInclude Include="model\ScaleType.h" />
-    <ClInclude Include="model\ScatterChartDataPoint.h" />
     <ClInclude Include="model\Series.h" />
     <ClInclude Include="model\SeriesMarker.h" />
     <ClInclude Include="model\ShapeExportFormat.h" />
@@ -370,7 +371,6 @@
     <ClInclude Include="model\AddShape.h" />
     <ClInclude Include="model\AddSlide.h" />
     <ClInclude Include="model\Base64InputFile.h" />
-    <ClInclude Include="model\BubbleChartDataPoint.h" />
     <ClInclude Include="model\BubbleSeries.h" />
     <ClInclude Include="model\ColorScheme.h" />
     <ClInclude Include="model\Document.h" />
@@ -391,6 +391,7 @@
     <ClInclude Include="model\Merge.h" />
     <ClInclude Include="model\NoFill.h" />
     <ClInclude Include="model\NotesSlide.h" />
+    <ClInclude Include="model\OneValueChartDataPoint.h" />
     <ClInclude Include="model\OneValueSeries.h" />
     <ClInclude Include="model\Paragraph.h" />
     <ClInclude Include="model\Paragraphs.h" />
@@ -414,6 +415,7 @@
     <ClInclude Include="model\Save.h" />
     <ClInclude Include="model\SaveShape.h" />
     <ClInclude Include="model\SaveSlide.h" />
+    <ClInclude Include="model\ScatterChartDataPoint.h" />
     <ClInclude Include="model\ScatterSeries.h" />
     <ClInclude Include="model\ShapeBase.h" />
     <ClInclude Include="model\Shapes.h" />
@@ -434,6 +436,7 @@
     <ClInclude Include="model\ViewProperties.h" />
     <ClInclude Include="model\XpsExportOptions.h" />
     <ClInclude Include="model\BoxAndWhiskerSeries.h" />
+    <ClInclude Include="model\BubbleChartDataPoint.h" />
     <ClInclude Include="model\Chart.h" />
     <ClInclude Include="model\DocumentReplaceResult.h" />
     <ClInclude Include="model\GeometryShape.h" />
@@ -444,6 +447,7 @@
     <ClInclude Include="model\SmartArt.h" />
     <ClInclude Include="model\SmartArtShape.h" />
     <ClInclude Include="model\Table.h" />
+    <ClInclude Include="model\WaterfallChartDataPoint.h" />
     <ClInclude Include="model\WaterfallSeries.h" />
     <ClInclude Include="model\AudioFrame.h" />
     <ClInclude Include="model\Connector.h" />

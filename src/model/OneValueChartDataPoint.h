@@ -32,8 +32,9 @@
 #ifndef _OneValueChartDataPoint_H_
 #define _OneValueChartDataPoint_H_
 
-#include "../ModelBase.h"
+#include "DataPoint.h"
 
+#include "../model/DataPoint.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -41,7 +42,7 @@ namespace model {
 /// <summary>
 /// One value chart data point.
 /// </summary>
-class  OneValueChartDataPoint : public ModelBase
+class  OneValueChartDataPoint : public DataPoint
 {
 public:
 	ASPOSE_DLL_EXPORT OneValueChartDataPoint();

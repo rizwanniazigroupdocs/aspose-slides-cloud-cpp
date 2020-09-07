@@ -35,6 +35,7 @@
 #include "../ModelBase.h"
 
 #include "../model/EffectFormat.h"
+#include "../model/OneValueChartDataPoint.h"
 #include "../model/ChartCategory.h"
 #include <cpprest/details/basic_types.h>
 #include "../model/FillFormat.h"
@@ -81,6 +82,11 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT std::shared_ptr<LineFormat> getLineFormat() const;
 	ASPOSE_DLL_EXPORT void setLineFormat(std::shared_ptr<LineFormat> value);
+	/// <summary>
+	/// Gets or sets the data points for chart data
+	/// </summary>
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<OneValueChartDataPoint>> getDataPoints() const;
+	ASPOSE_DLL_EXPORT void setDataPoints(std::vector<std::shared_ptr<OneValueChartDataPoint>> value);
 
 protected:
 	std::vector<std::shared_ptr<ChartCategory>> m_Categories;
@@ -88,6 +94,7 @@ protected:
 	std::shared_ptr<FillFormat> m_FillFormat;
 	std::shared_ptr<EffectFormat> m_EffectFormat;
 	std::shared_ptr<LineFormat> m_LineFormat;
+	std::vector<std::shared_ptr<OneValueChartDataPoint>> m_DataPoints;
 };
 
 }

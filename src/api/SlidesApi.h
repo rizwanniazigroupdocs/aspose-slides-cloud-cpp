@@ -40,7 +40,9 @@
 
 #include "../model/ApiInfo.h"
 #include "../model/Chart.h"
+#include "../model/ChartCategory.h"
 #include "../model/ColorScheme.h"
+#include "../model/DataPoint.h"
 #include "../model/DiscUsage.h"
 #include "../model/Document.h"
 #include "../model/DocumentProperties.h"
@@ -115,6 +117,16 @@ public:
 	/// Create the folder
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<void> createFolder(std::shared_ptr<CreateFolderRequest> request);
+
+	/// <summary>
+	/// Delete a category from a chart.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> deleteChartCategory(std::shared_ptr<DeleteChartCategoryRequest> request);
+
+	/// <summary>
+	/// Delete a data point from a chart series.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> deleteChartDataPoint(std::shared_ptr<DeleteChartDataPointRequest> request);
 
 	/// <summary>
 	/// Delete a series from a chart.
@@ -587,6 +599,16 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<NotesSlide>> postAddNotesSlide(std::shared_ptr<PostAddNotesSlideRequest> request);
 
 	/// <summary>
+	/// Add a new category to a chart.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> postChartCategory(std::shared_ptr<PostChartCategoryRequest> request);
+
+	/// <summary>
+	/// Add a new data point to a chart series.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> postChartDataPoint(std::shared_ptr<PostChartDataPointRequest> request);
+
+	/// <summary>
 	/// Add a new series to a chart.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> postChartSeries(std::shared_ptr<PostChartSeriesRequest> request);
@@ -745,6 +767,16 @@ public:
 	/// Render shape to specified picture format (for smart art and group shapes).
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> postSubshapeSaveAs(std::shared_ptr<PostSubshapeSaveAsRequest> request);
+
+	/// <summary>
+	/// Update a chart category.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> putChartCategory(std::shared_ptr<PutChartCategoryRequest> request);
+
+	/// <summary>
+	/// Update a data point in a chart series.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Chart>> putChartDataPoint(std::shared_ptr<PutChartDataPointRequest> request);
 
 	/// <summary>
 	/// Update a series in a chart.
