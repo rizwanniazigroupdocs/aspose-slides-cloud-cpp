@@ -32,21 +32,43 @@ namespace model {
 
 ChartCategory::ChartCategory()
 {
+	m_LevelIsSet = false;
 }
 
 ChartCategory::~ChartCategory()
 {
 }
 
-std::vector<std::shared_ptr<ChartCategory>> ChartCategory::getCategories() const
+std::vector<utility::string_t> ChartCategory::getParentCategories() const
 {
-	return m_Categories;
+	return m_ParentCategories;
 }
 
-void ChartCategory::setCategories(std::vector<std::shared_ptr<ChartCategory>> value)
+void ChartCategory::setParentCategories(std::vector<utility::string_t> value)
 {
-	m_Categories = value;
+	m_ParentCategories = value;
 	
+}
+
+int32_t ChartCategory::getLevel() const
+{
+	return m_Level;
+}
+
+void ChartCategory::setLevel(int32_t value)
+{
+	m_Level = value;
+	m_LevelIsSet = true;
+}
+
+bool ChartCategory::levelIsSet() const
+{
+	return m_LevelIsSet;
+}
+
+void ChartCategory::unsetLevel()
+{
+	m_LevelIsSet = false;
 }
 
 utility::string_t ChartCategory::getValue() const
@@ -109,14 +131,18 @@ web::json::value ChartCategory::toJson() const
 	web::json::value val = web::json::value::object();
 	{
 		std::vector<web::json::value> jsonArray;
-		for (auto& item : m_Categories)
+		for (auto& item : m_ParentCategories)
 		{
 			jsonArray.push_back(ModelBase::toJson(item));
 		}
 		if (jsonArray.size() > 0)
 		{
-			val[utility::conversions::to_string_t("Categories")] = web::json::value::array(jsonArray);
+			val[utility::conversions::to_string_t("ParentCategories")] = web::json::value::array(jsonArray);
 		}
+	}
+	if(m_LevelIsSet)
+	{
+		val[utility::conversions::to_string_t("Level")] = ModelBase::toJson(m_Level);
 	}
 	if (!m_Value.empty())
 	{
@@ -150,26 +176,22 @@ web::json::value ChartCategory::toJson() const
 
 void ChartCategory::fromJson(web::json::value& val)
 {
-	web::json::value* jsonForCategories = ModelBase::getField(val, "Categories");
-	if(jsonForCategories != nullptr && !jsonForCategories->is_null())
+	web::json::value* jsonForParentCategories = ModelBase::getField(val, "ParentCategories");
+	if(jsonForParentCategories != nullptr && !jsonForParentCategories->is_null())
 	{
 		{
-			m_Categories.clear();
+			m_ParentCategories.clear();
 			std::vector<web::json::value> jsonArray;
-			for(auto& item : jsonForCategories->as_array())
+			for(auto& item : jsonForParentCategories->as_array())
 			{
-				if(item.is_null())
-				{
-					m_Categories.push_back(std::shared_ptr<ChartCategory>(nullptr));
-				}
-				else
-				{
-					std::shared_ptr<ChartCategory> newItem(new ChartCategory());
-					newItem->fromJson(item);
-					m_Categories.push_back( newItem );
-				}
+				m_ParentCategories.push_back(ModelBase::stringFromJson(item));
 			}
         	}
+	}
+	web::json::value* jsonForLevel = ModelBase::getField(val, "Level");
+	if(jsonForLevel != nullptr && !jsonForLevel->is_null() && jsonForLevel->is_number())
+	{
+		setLevel(ModelBase::int32_tFromJson(*jsonForLevel));
 	}
 	web::json::value* jsonForValue = ModelBase::getField(val, "Value");
 	if(jsonForValue != nullptr && !jsonForValue->is_null())

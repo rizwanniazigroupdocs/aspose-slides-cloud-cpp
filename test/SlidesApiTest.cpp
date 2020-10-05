@@ -270,6 +270,38 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<DeleteSectionRequest> getDeleteSectionRequest()
+	{
+		std::shared_ptr<DeleteSectionRequest> request = std::make_shared<DeleteSectionRequest>();
+		request->setName(utils->getTestValue("deleteSection", "name"));
+		request->setSectionIndex(utils->getIntTestValue("deleteSection", "sectionIndex"));
+		auto valueForWithSlides = utils->getOptionalBoolTestValue("deleteSection", "withSlides");
+		if (valueForWithSlides != nullptr)
+		{
+			request->setWithSlides(*valueForWithSlides);
+		}
+		request->setPassword(utils->getTestValue("deleteSection", "password"));
+		request->setFolder(utils->getTestValue("deleteSection", "folder"));
+		request->setStorage(utils->getTestValue("deleteSection", "storage"));
+		return request;
+	}
+
+	std::shared_ptr<DeleteSectionsRequest> getDeleteSectionsRequest()
+	{
+		std::shared_ptr<DeleteSectionsRequest> request = std::make_shared<DeleteSectionsRequest>();
+		request->setName(utils->getTestValue("deleteSections", "name"));
+		request->setSections(utils->getIntVectorTestValue("deleteSections", "sections"));
+		auto valueForWithSlides = utils->getOptionalBoolTestValue("deleteSections", "withSlides");
+		if (valueForWithSlides != nullptr)
+		{
+			request->setWithSlides(*valueForWithSlides);
+		}
+		request->setPassword(utils->getTestValue("deleteSections", "password"));
+		request->setFolder(utils->getTestValue("deleteSections", "folder"));
+		request->setStorage(utils->getTestValue("deleteSections", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<DeleteSlideAnimationRequest> getDeleteSlideAnimationRequest()
 	{
 		std::shared_ptr<DeleteSlideAnimationRequest> request = std::make_shared<DeleteSlideAnimationRequest>();
@@ -598,6 +630,17 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<GetNotesSlideHeaderFooterRequest> getGetNotesSlideHeaderFooterRequest()
+	{
+		std::shared_ptr<GetNotesSlideHeaderFooterRequest> request = std::make_shared<GetNotesSlideHeaderFooterRequest>();
+		request->setName(utils->getTestValue("getNotesSlideHeaderFooter", "name"));
+		request->setSlideIndex(utils->getIntTestValue("getNotesSlideHeaderFooter", "slideIndex"));
+		request->setPassword(utils->getTestValue("getNotesSlideHeaderFooter", "password"));
+		request->setStorage(utils->getTestValue("getNotesSlideHeaderFooter", "storage"));
+		request->setFolder(utils->getTestValue("getNotesSlideHeaderFooter", "folder"));
+		return request;
+	}
+
 	std::shared_ptr<GetNotesSlideShapeRequest> getGetNotesSlideShapeRequest()
 	{
 		std::shared_ptr<GetNotesSlideShapeRequest> request = std::make_shared<GetNotesSlideShapeRequest>();
@@ -723,6 +766,16 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<GetSectionsRequest> getGetSectionsRequest()
+	{
+		std::shared_ptr<GetSectionsRequest> request = std::make_shared<GetSectionsRequest>();
+		request->setName(utils->getTestValue("getSections", "name"));
+		request->setPassword(utils->getTestValue("getSections", "password"));
+		request->setFolder(utils->getTestValue("getSections", "folder"));
+		request->setStorage(utils->getTestValue("getSections", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<GetSlideAnimationRequest> getGetSlideAnimationRequest()
 	{
 		std::shared_ptr<GetSlideAnimationRequest> request = std::make_shared<GetSlideAnimationRequest>();
@@ -736,6 +789,17 @@ public:
 		request->setPassword(utils->getTestValue("getSlideAnimation", "password"));
 		request->setFolder(utils->getTestValue("getSlideAnimation", "folder"));
 		request->setStorage(utils->getTestValue("getSlideAnimation", "storage"));
+		return request;
+	}
+
+	std::shared_ptr<GetSlideHeaderFooterRequest> getGetSlideHeaderFooterRequest()
+	{
+		std::shared_ptr<GetSlideHeaderFooterRequest> request = std::make_shared<GetSlideHeaderFooterRequest>();
+		request->setName(utils->getTestValue("getSlideHeaderFooter", "name"));
+		request->setSlideIndex(utils->getIntTestValue("getSlideHeaderFooter", "slideIndex"));
+		request->setPassword(utils->getTestValue("getSlideHeaderFooter", "password"));
+		request->setFolder(utils->getTestValue("getSlideHeaderFooter", "folder"));
+		request->setStorage(utils->getTestValue("getSlideHeaderFooter", "storage"));
 		return request;
 	}
 
@@ -1333,8 +1397,8 @@ public:
 	std::shared_ptr<PostGetNotesSlideRequest> getPostGetNotesSlideRequest()
 	{
 		std::shared_ptr<PostGetNotesSlideRequest> request = std::make_shared<PostGetNotesSlideRequest>();
-		request->setSlideIndex(utils->getIntTestValue("postGetNotesSlide", "slideIndex"));
 		request->setDocument(utils->getBinaryTestValue("postGetNotesSlide", "document"));
+		request->setSlideIndex(utils->getIntTestValue("postGetNotesSlide", "slideIndex"));
 		request->setPassword(utils->getTestValue("postGetNotesSlide", "password"));
 		return request;
 	}
@@ -1342,8 +1406,8 @@ public:
 	std::shared_ptr<PostGetNotesSlideExistsRequest> getPostGetNotesSlideExistsRequest()
 	{
 		std::shared_ptr<PostGetNotesSlideExistsRequest> request = std::make_shared<PostGetNotesSlideExistsRequest>();
-		request->setSlideIndex(utils->getIntTestValue("postGetNotesSlideExists", "slideIndex"));
 		request->setDocument(utils->getBinaryTestValue("postGetNotesSlideExists", "document"));
+		request->setSlideIndex(utils->getIntTestValue("postGetNotesSlideExists", "slideIndex"));
 		request->setPassword(utils->getTestValue("postGetNotesSlideExists", "password"));
 		return request;
 	}
@@ -1351,9 +1415,9 @@ public:
 	std::shared_ptr<PostGetNotesSlideWithFormatRequest> getPostGetNotesSlideWithFormatRequest()
 	{
 		std::shared_ptr<PostGetNotesSlideWithFormatRequest> request = std::make_shared<PostGetNotesSlideWithFormatRequest>();
+		request->setDocument(utils->getBinaryTestValue("postGetNotesSlideWithFormat", "document"));
 		request->setSlideIndex(utils->getIntTestValue("postGetNotesSlideWithFormat", "slideIndex"));
 		request->setFormat(utils->getTestValue("postGetNotesSlideWithFormat", "format"));
-		request->setDocument(utils->getBinaryTestValue("postGetNotesSlideWithFormat", "document"));
 		auto valueForWidth = utils->getOptionalIntTestValue("postGetNotesSlideWithFormat", "width");
 		if (valueForWidth != nullptr)
 		{
@@ -1465,6 +1529,30 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<PostSectionRequest> getPostSectionRequest()
+	{
+		std::shared_ptr<PostSectionRequest> request = std::make_shared<PostSectionRequest>();
+		request->setName(utils->getTestValue("postSection", "name"));
+		request->setSectionName(utils->getTestValue("postSection", "sectionName"));
+		request->setSlideIndex(utils->getIntTestValue("postSection", "slideIndex"));
+		request->setPassword(utils->getTestValue("postSection", "password"));
+		request->setFolder(utils->getTestValue("postSection", "folder"));
+		request->setStorage(utils->getTestValue("postSection", "storage"));
+		return request;
+	}
+
+	std::shared_ptr<PostSectionMoveRequest> getPostSectionMoveRequest()
+	{
+		std::shared_ptr<PostSectionMoveRequest> request = std::make_shared<PostSectionMoveRequest>();
+		request->setName(utils->getTestValue("postSectionMove", "name"));
+		request->setSectionIndex(utils->getIntTestValue("postSectionMove", "sectionIndex"));
+		request->setNewPosition(utils->getIntTestValue("postSectionMove", "newPosition"));
+		request->setPassword(utils->getTestValue("postSectionMove", "password"));
+		request->setFolder(utils->getTestValue("postSectionMove", "folder"));
+		request->setStorage(utils->getTestValue("postSectionMove", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<PostShapeSaveAsRequest> getPostShapeSaveAsRequest()
 	{
 		std::shared_ptr<PostShapeSaveAsRequest> request = std::make_shared<PostShapeSaveAsRequest>();
@@ -1571,8 +1659,8 @@ public:
 	std::shared_ptr<PostSlidesConvertRequest> getPostSlidesConvertRequest()
 	{
 		std::shared_ptr<PostSlidesConvertRequest> request = std::make_shared<PostSlidesConvertRequest>();
-		request->setFormat(utils->getTestValue("postSlidesConvert", "format"));
 		request->setDocument(utils->getBinaryTestValue("postSlidesConvert", "document"));
+		request->setFormat(utils->getTestValue("postSlidesConvert", "format"));
 		request->setPassword(utils->getTestValue("postSlidesConvert", "password"));
 		request->setFontsFolder(utils->getTestValue("postSlidesConvert", "fontsFolder"));
 		return request;
@@ -1858,6 +1946,18 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> getPutNotesSlideHeaderFooterRequest()
+	{
+		std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = std::make_shared<PutNotesSlideHeaderFooterRequest>();
+		request->setName(utils->getTestValue("putNotesSlideHeaderFooter", "name"));
+		request->setSlideIndex(utils->getIntTestValue("putNotesSlideHeaderFooter", "slideIndex"));
+		request->setDto(utils->getTestValueForClass<NotesSlideHeaderFooter>("putNotesSlideHeaderFooter", "dto"));
+		request->setPassword(utils->getTestValue("putNotesSlideHeaderFooter", "password"));
+		request->setStorage(utils->getTestValue("putNotesSlideHeaderFooter", "storage"));
+		request->setFolder(utils->getTestValue("putNotesSlideHeaderFooter", "folder"));
+		return request;
+	}
+
 	std::shared_ptr<PutNotesSlideShapeSaveAsRequest> getPutNotesSlideShapeSaveAsRequest()
 	{
 		std::shared_ptr<PutNotesSlideShapeSaveAsRequest> request = std::make_shared<PutNotesSlideShapeSaveAsRequest>();
@@ -1893,6 +1993,29 @@ public:
 		request->setPassword(utils->getTestValue("putPresentationMerge", "password"));
 		request->setStorage(utils->getTestValue("putPresentationMerge", "storage"));
 		request->setFolder(utils->getTestValue("putPresentationMerge", "folder"));
+		return request;
+	}
+
+	std::shared_ptr<PutSectionRequest> getPutSectionRequest()
+	{
+		std::shared_ptr<PutSectionRequest> request = std::make_shared<PutSectionRequest>();
+		request->setName(utils->getTestValue("putSection", "name"));
+		request->setSectionIndex(utils->getIntTestValue("putSection", "sectionIndex"));
+		request->setSectionName(utils->getTestValue("putSection", "sectionName"));
+		request->setPassword(utils->getTestValue("putSection", "password"));
+		request->setFolder(utils->getTestValue("putSection", "folder"));
+		request->setStorage(utils->getTestValue("putSection", "storage"));
+		return request;
+	}
+
+	std::shared_ptr<PutSectionsRequest> getPutSectionsRequest()
+	{
+		std::shared_ptr<PutSectionsRequest> request = std::make_shared<PutSectionsRequest>();
+		request->setName(utils->getTestValue("putSections", "name"));
+		request->setSections(utils->getTestValueForClass<Sections>("putSections", "sections"));
+		request->setPassword(utils->getTestValue("putSections", "password"));
+		request->setFolder(utils->getTestValue("putSections", "folder"));
+		request->setStorage(utils->getTestValue("putSections", "storage"));
 		return request;
 	}
 
@@ -2022,6 +2145,18 @@ public:
 		return request;
 	}
 
+	std::shared_ptr<PutSlideHeaderFooterRequest> getPutSlideHeaderFooterRequest()
+	{
+		std::shared_ptr<PutSlideHeaderFooterRequest> request = std::make_shared<PutSlideHeaderFooterRequest>();
+		request->setName(utils->getTestValue("putSlideHeaderFooter", "name"));
+		request->setSlideIndex(utils->getIntTestValue("putSlideHeaderFooter", "slideIndex"));
+		request->setDto(utils->getTestValueForClass<HeaderFooter>("putSlideHeaderFooter", "dto"));
+		request->setPassword(utils->getTestValue("putSlideHeaderFooter", "password"));
+		request->setFolder(utils->getTestValue("putSlideHeaderFooter", "folder"));
+		request->setStorage(utils->getTestValue("putSlideHeaderFooter", "storage"));
+		return request;
+	}
+
 	std::shared_ptr<PutSlideSaveAsRequest> getPutSlideSaveAsRequest()
 	{
 		std::shared_ptr<PutSlideSaveAsRequest> request = std::make_shared<PutSlideSaveAsRequest>();
@@ -2077,9 +2212,9 @@ public:
 	std::shared_ptr<PutSlidesConvertRequest> getPutSlidesConvertRequest()
 	{
 		std::shared_ptr<PutSlidesConvertRequest> request = std::make_shared<PutSlidesConvertRequest>();
+		request->setDocument(utils->getBinaryTestValue("putSlidesConvert", "document"));
 		request->setFormat(utils->getTestValue("putSlidesConvert", "format"));
 		request->setOutPath(utils->getTestValue("putSlidesConvert", "outPath"));
-		request->setDocument(utils->getBinaryTestValue("putSlidesConvert", "document"));
 		request->setPassword(utils->getTestValue("putSlidesConvert", "password"));
 		request->setFontsFolder(utils->getTestValue("putSlidesConvert", "fontsFolder"));
 		return request;
@@ -2093,6 +2228,17 @@ public:
 		request->setPassword(utils->getTestValue("putSlidesDocumentFromHtml", "password"));
 		request->setStorage(utils->getTestValue("putSlidesDocumentFromHtml", "storage"));
 		request->setFolder(utils->getTestValue("putSlidesDocumentFromHtml", "folder"));
+		return request;
+	}
+
+	std::shared_ptr<PutSlidesHeaderFooterRequest> getPutSlidesHeaderFooterRequest()
+	{
+		std::shared_ptr<PutSlidesHeaderFooterRequest> request = std::make_shared<PutSlidesHeaderFooterRequest>();
+		request->setName(utils->getTestValue("putSlidesHeaderFooter", "name"));
+		request->setDto(utils->getTestValueForClass<HeaderFooter>("putSlidesHeaderFooter", "dto"));
+		request->setPassword(utils->getTestValue("putSlidesHeaderFooter", "password"));
+		request->setStorage(utils->getTestValue("putSlidesHeaderFooter", "storage"));
+		request->setFolder(utils->getTestValue("putSlidesHeaderFooter", "folder"));
 		return request;
 	}
 
@@ -2358,6 +2504,14 @@ TEST_F(SlidesApiTest, copyFileSrcPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFile", "srcPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFile", "srcPath", request->getSrcPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("copyFile", "srcPath"))
 	{
 		FAIL() << "Must have failed";
@@ -2385,6 +2539,14 @@ TEST_F(SlidesApiTest, copyFileDestPath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFile", "destPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFile", "destPath", request->getDestPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("copyFile", "destPath"))
 	{
@@ -2414,6 +2576,14 @@ TEST_F(SlidesApiTest, copyFileSrcStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFile", "srcStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFile", "srcStorageName", request->getSrcStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("copyFile", "srcStorageName"))
 	{
 		FAIL() << "Must have failed";
@@ -2442,6 +2612,14 @@ TEST_F(SlidesApiTest, copyFileDestStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFile", "destStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFile", "destStorageName", request->getDestStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("copyFile", "destStorageName"))
 	{
 		FAIL() << "Must have failed";
@@ -2469,6 +2647,14 @@ TEST_F(SlidesApiTest, copyFileVersionId) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFile", "versionId");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFile", "versionId", request->getVersionId());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("copyFile", "versionId"))
 	{
@@ -2504,6 +2690,14 @@ TEST_F(SlidesApiTest, copyFolderSrcPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFolder", "srcPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFolder", "srcPath", request->getSrcPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("copyFolder", "srcPath"))
 	{
 		FAIL() << "Must have failed";
@@ -2531,6 +2725,14 @@ TEST_F(SlidesApiTest, copyFolderDestPath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFolder", "destPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFolder", "destPath", request->getDestPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("copyFolder", "destPath"))
 	{
@@ -2560,6 +2762,14 @@ TEST_F(SlidesApiTest, copyFolderSrcStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFolder", "srcStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFolder", "srcStorageName", request->getSrcStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("copyFolder", "srcStorageName"))
 	{
 		FAIL() << "Must have failed";
@@ -2587,6 +2797,14 @@ TEST_F(SlidesApiTest, copyFolderDestStorageName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("copyFolder", "destStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("copyFolder", "destStorageName", request->getDestStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("copyFolder", "destStorageName"))
 	{
@@ -2622,6 +2840,14 @@ TEST_F(SlidesApiTest, createFolderPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("createFolder", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("createFolder", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("createFolder", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -2649,6 +2875,14 @@ TEST_F(SlidesApiTest, createFolderStorageName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("createFolder", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("createFolder", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("createFolder", "storageName"))
 	{
@@ -2685,6 +2919,14 @@ TEST_F(SlidesApiTest, deleteChartCategoryName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartCategory", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -2712,6 +2954,14 @@ TEST_F(SlidesApiTest, deleteChartCategorySlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartCategory", "slideIndex"))
 	{
@@ -2741,6 +2991,14 @@ TEST_F(SlidesApiTest, deleteChartCategoryShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartCategory", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -2768,6 +3026,14 @@ TEST_F(SlidesApiTest, deleteChartCategoryCategoryIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "categoryIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "categoryIndex", request->getCategoryIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartCategory", "categoryIndex"))
 	{
@@ -2797,6 +3063,14 @@ TEST_F(SlidesApiTest, deleteChartCategoryPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartCategory", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -2825,6 +3099,14 @@ TEST_F(SlidesApiTest, deleteChartCategoryFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartCategory", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -2852,6 +3134,14 @@ TEST_F(SlidesApiTest, deleteChartCategoryStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartCategory", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartCategory", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartCategory", "storage"))
 	{
@@ -2888,6 +3178,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -2915,6 +3213,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "slideIndex"))
 	{
@@ -2944,6 +3250,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -2971,6 +3285,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointSeriesIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "seriesIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "seriesIndex", request->getSeriesIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "seriesIndex"))
 	{
@@ -3000,6 +3322,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointPointIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "pointIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "pointIndex", request->getPointIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "pointIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -3027,6 +3357,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "password"))
 	{
@@ -3056,6 +3394,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -3083,6 +3429,14 @@ TEST_F(SlidesApiTest, deleteChartDataPointStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartDataPoint", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartDataPoint", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartDataPoint", "storage"))
 	{
@@ -3119,6 +3473,14 @@ TEST_F(SlidesApiTest, deleteChartSeriesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartSeries", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -3146,6 +3508,14 @@ TEST_F(SlidesApiTest, deleteChartSeriesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartSeries", "slideIndex"))
 	{
@@ -3175,6 +3545,14 @@ TEST_F(SlidesApiTest, deleteChartSeriesShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartSeries", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -3202,6 +3580,14 @@ TEST_F(SlidesApiTest, deleteChartSeriesSeriesIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "seriesIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "seriesIndex", request->getSeriesIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartSeries", "seriesIndex"))
 	{
@@ -3231,6 +3617,14 @@ TEST_F(SlidesApiTest, deleteChartSeriesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartSeries", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -3259,6 +3653,14 @@ TEST_F(SlidesApiTest, deleteChartSeriesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteChartSeries", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -3286,6 +3688,14 @@ TEST_F(SlidesApiTest, deleteChartSeriesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteChartSeries", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteChartSeries", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteChartSeries", "storage"))
 	{
@@ -3321,6 +3731,14 @@ TEST_F(SlidesApiTest, deleteFilePath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteFile", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteFile", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteFile", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -3349,6 +3767,14 @@ TEST_F(SlidesApiTest, deleteFileStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteFile", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteFile", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteFile", "storageName"))
 	{
 		FAIL() << "Must have failed";
@@ -3376,6 +3802,14 @@ TEST_F(SlidesApiTest, deleteFileVersionId) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteFile", "versionId");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteFile", "versionId", request->getVersionId());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteFile", "versionId"))
 	{
@@ -3411,6 +3845,14 @@ TEST_F(SlidesApiTest, deleteFolderPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteFolder", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteFolder", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteFolder", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -3439,6 +3881,14 @@ TEST_F(SlidesApiTest, deleteFolderStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteFolder", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteFolder", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteFolder", "storageName"))
 	{
 		FAIL() << "Must have failed";
@@ -3466,6 +3916,14 @@ TEST_F(SlidesApiTest, deleteFolderRecursive) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteFolder", "recursive");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteFolder", "recursive", request->getRecursive());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteFolder", "recursive"))
 	{
@@ -3502,6 +3960,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -3529,6 +3995,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlide", "slideIndex"))
 	{
@@ -3558,6 +4032,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlide", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -3586,6 +4068,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -3613,6 +4103,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlide", "storage"))
 	{
@@ -3649,6 +4147,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -3676,6 +4182,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraph", "slideIndex"))
 	{
@@ -3705,6 +4219,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraph", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -3732,6 +4254,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraph", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraph", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraph", "paragraphIndex"))
 	{
@@ -3761,6 +4291,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraph", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -3789,6 +4327,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -3816,6 +4362,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraph", "storage"))
 	{
@@ -3852,6 +4406,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraphs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraphs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraphs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -3879,6 +4441,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraphs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraphs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraphs", "slideIndex"))
 	{
@@ -3908,6 +4478,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraphs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraphs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraphs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -3935,6 +4513,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphsParagraphs) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraphs", "paragraphs");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraphs", "paragraphs", request->getParagraphs());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraphs", "paragraphs"))
 	{
@@ -3964,6 +4550,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraphs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraphs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraphs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -3992,6 +4586,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraphs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraphs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraphs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -4019,6 +4621,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideParagraphsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideParagraphs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideParagraphs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideParagraphs", "storage"))
 	{
@@ -4055,6 +4665,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -4082,6 +4700,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "slideIndex"))
 	{
@@ -4111,6 +4737,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -4138,6 +4772,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "paragraphIndex"))
 	{
@@ -4167,6 +4809,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionPortionIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "portionIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -4194,6 +4844,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "password"))
 	{
@@ -4223,6 +4881,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -4250,6 +4916,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortion", "storage"))
 	{
@@ -4286,6 +4960,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -4313,6 +4995,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "slideIndex"))
 	{
@@ -4342,6 +5032,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -4369,6 +5067,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "paragraphIndex"))
 	{
@@ -4398,6 +5104,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsPortions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "portions");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "portions", request->getPortions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "portions"))
 	{
 		FAIL() << "Must have failed";
@@ -4425,6 +5139,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "password"))
 	{
@@ -4454,6 +5176,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -4481,6 +5211,14 @@ TEST_F(SlidesApiTest, deleteNotesSlidePortionsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlidePortions", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlidePortions", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlidePortions", "storage"))
 	{
@@ -4517,6 +5255,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideShape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -4544,6 +5290,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideShape", "slideIndex"))
 	{
@@ -4573,6 +5327,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapeShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShape", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShape", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideShape", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -4600,6 +5362,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideShape", "password"))
 	{
@@ -4629,6 +5399,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideShape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -4656,6 +5434,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideShape", "storage"))
 	{
@@ -4692,6 +5478,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShapes", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShapes", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideShapes", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -4719,6 +5513,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShapes", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShapes", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideShapes", "slideIndex"))
 	{
@@ -4748,6 +5550,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapesShapes) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShapes", "shapes");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShapes", "shapes", request->getShapes());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideShapes", "shapes"))
 	{
 		FAIL() << "Must have failed";
@@ -4775,6 +5585,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShapes", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShapes", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideShapes", "password"))
 	{
@@ -4804,6 +5622,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShapes", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShapes", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteNotesSlideShapes", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -4831,6 +5657,14 @@ TEST_F(SlidesApiTest, deleteNotesSlideShapesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteNotesSlideShapes", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteNotesSlideShapes", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteNotesSlideShapes", "storage"))
 	{
@@ -4867,6 +5701,14 @@ TEST_F(SlidesApiTest, deleteParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -4894,6 +5736,14 @@ TEST_F(SlidesApiTest, deleteParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteParagraph", "slideIndex"))
 	{
@@ -4923,6 +5773,14 @@ TEST_F(SlidesApiTest, deleteParagraphShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraph", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -4950,6 +5808,14 @@ TEST_F(SlidesApiTest, deleteParagraphParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraph", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraph", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteParagraph", "paragraphIndex"))
 	{
@@ -4979,6 +5845,14 @@ TEST_F(SlidesApiTest, deleteParagraphPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraph", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -5007,6 +5881,14 @@ TEST_F(SlidesApiTest, deleteParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -5034,6 +5916,14 @@ TEST_F(SlidesApiTest, deleteParagraphStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteParagraph", "storage"))
 	{
@@ -5070,6 +5960,14 @@ TEST_F(SlidesApiTest, deleteParagraphsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraphs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraphs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraphs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -5097,6 +5995,14 @@ TEST_F(SlidesApiTest, deleteParagraphsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraphs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraphs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteParagraphs", "slideIndex"))
 	{
@@ -5126,6 +6032,14 @@ TEST_F(SlidesApiTest, deleteParagraphsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraphs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraphs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraphs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -5153,6 +6067,14 @@ TEST_F(SlidesApiTest, deleteParagraphsParagraphs) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraphs", "paragraphs");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraphs", "paragraphs", request->getParagraphs());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteParagraphs", "paragraphs"))
 	{
@@ -5182,6 +6104,14 @@ TEST_F(SlidesApiTest, deleteParagraphsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraphs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraphs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraphs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -5210,6 +6140,14 @@ TEST_F(SlidesApiTest, deleteParagraphsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraphs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraphs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteParagraphs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -5237,6 +6175,14 @@ TEST_F(SlidesApiTest, deleteParagraphsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteParagraphs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteParagraphs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteParagraphs", "storage"))
 	{
@@ -5273,6 +6219,14 @@ TEST_F(SlidesApiTest, deletePortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -5300,6 +6254,14 @@ TEST_F(SlidesApiTest, deletePortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deletePortion", "slideIndex"))
 	{
@@ -5329,6 +6291,14 @@ TEST_F(SlidesApiTest, deletePortionShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortion", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -5356,6 +6326,14 @@ TEST_F(SlidesApiTest, deletePortionParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deletePortion", "paragraphIndex"))
 	{
@@ -5385,6 +6363,14 @@ TEST_F(SlidesApiTest, deletePortionPortionIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortion", "portionIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -5412,6 +6398,14 @@ TEST_F(SlidesApiTest, deletePortionPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deletePortion", "password"))
 	{
@@ -5441,6 +6435,14 @@ TEST_F(SlidesApiTest, deletePortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -5468,6 +6470,14 @@ TEST_F(SlidesApiTest, deletePortionStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deletePortion", "storage"))
 	{
@@ -5504,6 +6514,14 @@ TEST_F(SlidesApiTest, deletePortionsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortions", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -5531,6 +6549,14 @@ TEST_F(SlidesApiTest, deletePortionsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deletePortions", "slideIndex"))
 	{
@@ -5560,6 +6586,14 @@ TEST_F(SlidesApiTest, deletePortionsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortions", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -5587,6 +6621,14 @@ TEST_F(SlidesApiTest, deletePortionsParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deletePortions", "paragraphIndex"))
 	{
@@ -5616,6 +6658,14 @@ TEST_F(SlidesApiTest, deletePortionsPortions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "portions");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "portions", request->getPortions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortions", "portions"))
 	{
 		FAIL() << "Must have failed";
@@ -5643,6 +6693,14 @@ TEST_F(SlidesApiTest, deletePortionsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deletePortions", "password"))
 	{
@@ -5672,6 +6730,14 @@ TEST_F(SlidesApiTest, deletePortionsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortions", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -5700,7 +6766,461 @@ TEST_F(SlidesApiTest, deletePortionsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deletePortions", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deletePortions", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deletePortions", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSection) {
+	std::shared_ptr<DeleteSectionRequest> request = getDeleteSectionRequest();
+	utils->initialize("deleteSection", "");
+	std::shared_ptr<Sections> result = api->deleteSection(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, deleteSectionName) {
+	std::shared_ptr<DeleteSectionRequest> request = getDeleteSectionRequest();
+	request->setName(utils->getInvalidTestValue("deleteSection", "name", request->getName()));
+	utils->initialize("deleteSection", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSection", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionSectionIndex) {
+	std::shared_ptr<DeleteSectionRequest> request = getDeleteSectionRequest();
+	request->setSectionIndex(utils->getInvalidIntTestValue("deleteSection", "sectionIndex", request->getSectionIndex()));
+	utils->initialize("deleteSection", "sectionIndex", request->getSectionIndex());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "sectionIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "sectionIndex", request->getSectionIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "sectionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "sectionIndex", request->getSectionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSection", "sectionIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionWithSlides) {
+	std::shared_ptr<DeleteSectionRequest> request = getDeleteSectionRequest();
+	request->setWithSlides(utils->getInvalidBoolTestValue("deleteSection", "withSlides", request->getWithSlides()));
+	utils->initialize("deleteSection", "withSlides", request->getWithSlides());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "withSlides");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "withSlides", request->getWithSlides());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "withSlides");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "withSlides", request->getWithSlides());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSection", "withSlides"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionPassword) {
+	std::shared_ptr<DeleteSectionRequest> request = getDeleteSectionRequest();
+	request->setPassword(utils->getInvalidTestValue("deleteSection", "password", request->getPassword()));
+	utils->initialize("deleteSection", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSection", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionFolder) {
+	std::shared_ptr<DeleteSectionRequest> request = getDeleteSectionRequest();
+	request->setFolder(utils->getInvalidTestValue("deleteSection", "folder", request->getFolder()));
+	utils->initialize("deleteSection", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSection", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionStorage) {
+	std::shared_ptr<DeleteSectionRequest> request = getDeleteSectionRequest();
+	request->setStorage(utils->getInvalidTestValue("deleteSection", "storage", request->getStorage()));
+	utils->initialize("deleteSection", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSection", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSection", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSection", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSections) {
+	std::shared_ptr<DeleteSectionsRequest> request = getDeleteSectionsRequest();
+	utils->initialize("deleteSections", "");
+	std::shared_ptr<Sections> result = api->deleteSections(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, deleteSectionsName) {
+	std::shared_ptr<DeleteSectionsRequest> request = getDeleteSectionsRequest();
+	request->setName(utils->getInvalidTestValue("deleteSections", "name", request->getName()));
+	utils->initialize("deleteSections", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSections", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionsSections) {
+	std::shared_ptr<DeleteSectionsRequest> request = getDeleteSectionsRequest();
+	request->setSections(utils->getInvalidIntVectorTestValue("deleteSections", "sections", request->getSections()));
+	utils->initialize("deleteSections", "sections", request->getSections());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "sections");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "sections", request->getSections());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "sections");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "sections", request->getSections());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSections", "sections"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionsWithSlides) {
+	std::shared_ptr<DeleteSectionsRequest> request = getDeleteSectionsRequest();
+	request->setWithSlides(utils->getInvalidBoolTestValue("deleteSections", "withSlides", request->getWithSlides()));
+	utils->initialize("deleteSections", "withSlides", request->getWithSlides());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "withSlides");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "withSlides", request->getWithSlides());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "withSlides");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "withSlides", request->getWithSlides());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSections", "withSlides"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionsPassword) {
+	std::shared_ptr<DeleteSectionsRequest> request = getDeleteSectionsRequest();
+	request->setPassword(utils->getInvalidTestValue("deleteSections", "password", request->getPassword()));
+	utils->initialize("deleteSections", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSections", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionsFolder) {
+	std::shared_ptr<DeleteSectionsRequest> request = getDeleteSectionsRequest();
+	request->setFolder(utils->getInvalidTestValue("deleteSections", "folder", request->getFolder()));
+	utils->initialize("deleteSections", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSections", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, deleteSectionsStorage) {
+	std::shared_ptr<DeleteSectionsRequest> request = getDeleteSectionsRequest();
+	request->setStorage(utils->getInvalidTestValue("deleteSections", "storage", request->getStorage()));
+	utils->initialize("deleteSections", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->deleteSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSections", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSections", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("deleteSections", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -5735,6 +7255,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimation", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimation", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimation", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -5762,6 +7290,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimation", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimation", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimation", "slideIndex"))
 	{
@@ -5791,6 +7327,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimation", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimation", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimation", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -5819,6 +7363,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimation", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimation", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimation", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -5846,6 +7398,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimation", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimation", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimation", "storage"))
 	{
@@ -5882,6 +7442,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationEffectName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationEffect", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationEffect", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationEffect", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -5909,6 +7477,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationEffectSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationEffect", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationEffect", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationEffect", "slideIndex"))
 	{
@@ -5938,6 +7514,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationEffectEffectIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationEffect", "effectIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationEffect", "effectIndex", request->getEffectIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationEffect", "effectIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -5965,6 +7549,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationEffectPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationEffect", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationEffect", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationEffect", "password"))
 	{
@@ -5994,6 +7586,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationEffectFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationEffect", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationEffect", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationEffect", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -6021,6 +7621,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationEffectStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationEffect", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationEffect", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationEffect", "storage"))
 	{
@@ -6057,6 +7665,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequence", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequence", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequence", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -6084,6 +7700,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequence", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequence", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequence", "slideIndex"))
 	{
@@ -6113,6 +7737,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceSequenceIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequence", "sequenceIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequence", "sequenceIndex", request->getSequenceIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequence", "sequenceIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -6140,6 +7772,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequencePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequence", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequence", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequence", "password"))
 	{
@@ -6169,6 +7809,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequence", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequence", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequence", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -6196,6 +7844,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequence", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequence", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequence", "storage"))
 	{
@@ -6232,6 +7888,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceEffectName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequenceEffect", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequenceEffect", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequenceEffect", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -6259,6 +7923,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceEffectSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequenceEffect", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequenceEffect", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequenceEffect", "slideIndex"))
 	{
@@ -6288,6 +7960,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceEffectSequenceIndex
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequenceEffect", "sequenceIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequenceEffect", "sequenceIndex", request->getSequenceIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequenceEffect", "sequenceIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -6315,6 +7995,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceEffectEffectIndex) 
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequenceEffect", "effectIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequenceEffect", "effectIndex", request->getEffectIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequenceEffect", "effectIndex"))
 	{
@@ -6344,6 +8032,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceEffectPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequenceEffect", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequenceEffect", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequenceEffect", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -6372,6 +8068,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceEffectFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequenceEffect", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequenceEffect", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequenceEffect", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -6399,6 +8103,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequenceEffectStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequenceEffect", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequenceEffect", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequenceEffect", "storage"))
 	{
@@ -6435,6 +8147,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequencesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequences", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequences", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequences", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -6462,6 +8182,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequencesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequences", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequences", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequences", "slideIndex"))
 	{
@@ -6491,6 +8219,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequencesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequences", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequences", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequences", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -6519,6 +8255,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequencesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequences", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequences", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequences", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -6546,6 +8290,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationInteractiveSequencesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationInteractiveSequences", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationInteractiveSequences", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationInteractiveSequences", "storage"))
 	{
@@ -6582,6 +8334,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationMainSequenceName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationMainSequence", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationMainSequence", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationMainSequence", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -6609,6 +8369,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationMainSequenceSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationMainSequence", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationMainSequence", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationMainSequence", "slideIndex"))
 	{
@@ -6638,6 +8406,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationMainSequencePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationMainSequence", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationMainSequence", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationMainSequence", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -6666,6 +8442,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationMainSequenceFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationMainSequence", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationMainSequence", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideAnimationMainSequence", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -6693,6 +8477,14 @@ TEST_F(SlidesApiTest, deleteSlideAnimationMainSequenceStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideAnimationMainSequence", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideAnimationMainSequence", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideAnimationMainSequence", "storage"))
 	{
@@ -6729,6 +8521,14 @@ TEST_F(SlidesApiTest, deleteSlideByIndexName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideByIndex", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideByIndex", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideByIndex", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -6756,6 +8556,14 @@ TEST_F(SlidesApiTest, deleteSlideByIndexSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideByIndex", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideByIndex", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideByIndex", "slideIndex"))
 	{
@@ -6785,6 +8593,14 @@ TEST_F(SlidesApiTest, deleteSlideByIndexPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideByIndex", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideByIndex", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideByIndex", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -6813,6 +8629,14 @@ TEST_F(SlidesApiTest, deleteSlideByIndexFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideByIndex", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideByIndex", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideByIndex", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -6840,6 +8664,14 @@ TEST_F(SlidesApiTest, deleteSlideByIndexStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideByIndex", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideByIndex", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideByIndex", "storage"))
 	{
@@ -6876,6 +8708,14 @@ TEST_F(SlidesApiTest, deleteSlideShapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideShape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -6903,6 +8743,14 @@ TEST_F(SlidesApiTest, deleteSlideShapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideShape", "slideIndex"))
 	{
@@ -6932,6 +8780,14 @@ TEST_F(SlidesApiTest, deleteSlideShapeShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShape", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShape", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideShape", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -6959,6 +8815,14 @@ TEST_F(SlidesApiTest, deleteSlideShapePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideShape", "password"))
 	{
@@ -6988,6 +8852,14 @@ TEST_F(SlidesApiTest, deleteSlideShapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideShape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -7015,6 +8887,14 @@ TEST_F(SlidesApiTest, deleteSlideShapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideShape", "storage"))
 	{
@@ -7051,6 +8931,14 @@ TEST_F(SlidesApiTest, deleteSlideShapesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShapes", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShapes", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideShapes", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -7078,6 +8966,14 @@ TEST_F(SlidesApiTest, deleteSlideShapesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShapes", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShapes", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideShapes", "slideIndex"))
 	{
@@ -7107,6 +9003,14 @@ TEST_F(SlidesApiTest, deleteSlideShapesShapes) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShapes", "shapes");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShapes", "shapes", request->getShapes());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideShapes", "shapes"))
 	{
 		FAIL() << "Must have failed";
@@ -7134,6 +9038,14 @@ TEST_F(SlidesApiTest, deleteSlideShapesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShapes", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShapes", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideShapes", "password"))
 	{
@@ -7163,6 +9075,14 @@ TEST_F(SlidesApiTest, deleteSlideShapesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShapes", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShapes", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideShapes", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -7190,6 +9110,14 @@ TEST_F(SlidesApiTest, deleteSlideShapesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideShapes", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideShapes", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideShapes", "storage"))
 	{
@@ -7226,6 +9154,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -7253,6 +9189,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideSubshape", "slideIndex"))
 	{
@@ -7282,6 +9226,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapePath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshape", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshape", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshape", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -7309,6 +9261,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapeShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshape", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshape", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideSubshape", "shapeIndex"))
 	{
@@ -7338,6 +9298,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshape", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -7366,6 +9334,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -7393,6 +9369,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideSubshape", "storage"))
 	{
@@ -7429,6 +9413,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshapes", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshapes", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshapes", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -7456,6 +9448,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshapes", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshapes", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideSubshapes", "slideIndex"))
 	{
@@ -7485,6 +9485,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapesPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshapes", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshapes", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshapes", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -7512,6 +9520,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapesShapes) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshapes", "shapes");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshapes", "shapes", request->getShapes());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideSubshapes", "shapes"))
 	{
@@ -7541,6 +9557,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshapes", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshapes", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshapes", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -7569,6 +9593,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshapes", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshapes", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlideSubshapes", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -7596,6 +9628,14 @@ TEST_F(SlidesApiTest, deleteSlideSubshapesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlideSubshapes", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlideSubshapes", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlideSubshapes", "storage"))
 	{
@@ -7632,6 +9672,14 @@ TEST_F(SlidesApiTest, deleteSlidesCleanSlidesListName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesCleanSlidesList", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesCleanSlidesList", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesCleanSlidesList", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -7659,6 +9707,14 @@ TEST_F(SlidesApiTest, deleteSlidesCleanSlidesListSlides) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesCleanSlidesList", "slides");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesCleanSlidesList", "slides", request->getSlides());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesCleanSlidesList", "slides"))
 	{
@@ -7688,6 +9744,14 @@ TEST_F(SlidesApiTest, deleteSlidesCleanSlidesListPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesCleanSlidesList", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesCleanSlidesList", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesCleanSlidesList", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -7716,6 +9780,14 @@ TEST_F(SlidesApiTest, deleteSlidesCleanSlidesListFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesCleanSlidesList", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesCleanSlidesList", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesCleanSlidesList", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -7743,6 +9815,14 @@ TEST_F(SlidesApiTest, deleteSlidesCleanSlidesListStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesCleanSlidesList", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesCleanSlidesList", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesCleanSlidesList", "storage"))
 	{
@@ -7779,6 +9859,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -7806,6 +9894,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertiesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperties", "password"))
 	{
@@ -7835,6 +9931,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -7862,6 +9966,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperties", "storage"))
 	{
@@ -7898,6 +10010,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertyName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperty", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperty", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperty", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -7925,6 +10045,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertyPropertyName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperty", "propertyName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperty", "propertyName", request->getPropertyName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperty", "propertyName"))
 	{
@@ -7954,6 +10082,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertyPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperty", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperty", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperty", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -7982,6 +10118,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertyFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperty", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperty", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperty", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -8009,6 +10153,14 @@ TEST_F(SlidesApiTest, deleteSlidesDocumentPropertyStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesDocumentProperty", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesDocumentProperty", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesDocumentProperty", "storage"))
 	{
@@ -8045,6 +10197,14 @@ TEST_F(SlidesApiTest, deleteSlidesSlideBackgroundName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesSlideBackground", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesSlideBackground", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesSlideBackground", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -8072,6 +10232,14 @@ TEST_F(SlidesApiTest, deleteSlidesSlideBackgroundSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesSlideBackground", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesSlideBackground", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesSlideBackground", "slideIndex"))
 	{
@@ -8101,6 +10269,14 @@ TEST_F(SlidesApiTest, deleteSlidesSlideBackgroundPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesSlideBackground", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesSlideBackground", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesSlideBackground", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -8129,6 +10305,14 @@ TEST_F(SlidesApiTest, deleteSlidesSlideBackgroundFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesSlideBackground", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesSlideBackground", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSlidesSlideBackground", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -8156,6 +10340,14 @@ TEST_F(SlidesApiTest, deleteSlidesSlideBackgroundStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSlidesSlideBackground", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSlidesSlideBackground", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSlidesSlideBackground", "storage"))
 	{
@@ -8192,6 +10384,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -8219,6 +10419,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "slideIndex"))
 	{
@@ -8248,6 +10456,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -8275,6 +10491,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "shapeIndex"))
 	{
@@ -8304,6 +10528,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -8331,6 +10563,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "password"))
 	{
@@ -8360,6 +10600,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -8387,6 +10635,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraph", "storage"))
 	{
@@ -8423,6 +10679,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -8450,6 +10714,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "slideIndex"))
 	{
@@ -8479,6 +10751,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -8506,6 +10786,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "shapeIndex"))
 	{
@@ -8535,6 +10823,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsParagraphs) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "paragraphs");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "paragraphs", request->getParagraphs());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "paragraphs"))
 	{
 		FAIL() << "Must have failed";
@@ -8562,6 +10858,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "password"))
 	{
@@ -8591,6 +10895,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -8618,6 +10930,14 @@ TEST_F(SlidesApiTest, deleteSubshapeParagraphsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapeParagraphs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapeParagraphs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapeParagraphs", "storage"))
 	{
@@ -8654,6 +10974,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -8681,6 +11009,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "slideIndex"))
 	{
@@ -8710,6 +11046,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -8737,6 +11081,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "shapeIndex"))
 	{
@@ -8766,6 +11118,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -8793,6 +11153,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionPortionIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "portionIndex"))
 	{
@@ -8822,6 +11190,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -8850,6 +11226,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -8877,6 +11261,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortion", "storage"))
 	{
@@ -8913,6 +11305,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -8940,6 +11340,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "slideIndex"))
 	{
@@ -8969,6 +11377,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -8996,6 +11412,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "shapeIndex"))
 	{
@@ -9025,6 +11449,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -9052,6 +11484,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsPortions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "portions");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "portions", request->getPortions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "portions"))
 	{
@@ -9081,6 +11521,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -9109,6 +11557,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -9136,6 +11592,14 @@ TEST_F(SlidesApiTest, deleteSubshapePortionsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("deleteSubshapePortions", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("deleteSubshapePortions", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("deleteSubshapePortions", "storage"))
 	{
@@ -9172,6 +11636,14 @@ TEST_F(SlidesApiTest, downloadFilePath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadFile", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadFile", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("downloadFile", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -9200,6 +11672,14 @@ TEST_F(SlidesApiTest, downloadFileStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadFile", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadFile", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("downloadFile", "storageName"))
 	{
 		FAIL() << "Must have failed";
@@ -9227,6 +11707,14 @@ TEST_F(SlidesApiTest, downloadFileVersionId) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("downloadFile", "versionId");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("downloadFile", "versionId", request->getVersionId());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("downloadFile", "versionId"))
 	{
@@ -9263,6 +11751,14 @@ TEST_F(SlidesApiTest, getDiscUsageStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getDiscUsage", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getDiscUsage", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getDiscUsage", "storageName"))
 	{
 		FAIL() << "Must have failed";
@@ -9298,6 +11794,14 @@ TEST_F(SlidesApiTest, getFileVersionsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getFileVersions", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getFileVersions", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getFileVersions", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -9325,6 +11829,14 @@ TEST_F(SlidesApiTest, getFileVersionsStorageName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getFileVersions", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getFileVersions", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getFileVersions", "storageName"))
 	{
@@ -9361,6 +11873,14 @@ TEST_F(SlidesApiTest, getFilesListPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getFilesList", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getFilesList", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getFilesList", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -9388,6 +11908,14 @@ TEST_F(SlidesApiTest, getFilesListStorageName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getFilesList", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getFilesList", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getFilesList", "storageName"))
 	{
@@ -9424,6 +11952,14 @@ TEST_F(SlidesApiTest, getLayoutSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getLayoutSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -9451,6 +11987,14 @@ TEST_F(SlidesApiTest, getLayoutSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getLayoutSlide", "slideIndex"))
 	{
@@ -9480,6 +12024,14 @@ TEST_F(SlidesApiTest, getLayoutSlidePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getLayoutSlide", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -9508,6 +12060,14 @@ TEST_F(SlidesApiTest, getLayoutSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getLayoutSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -9535,6 +12095,14 @@ TEST_F(SlidesApiTest, getLayoutSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getLayoutSlide", "storage"))
 	{
@@ -9571,6 +12139,14 @@ TEST_F(SlidesApiTest, getLayoutSlidesListName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlidesList", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlidesList", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getLayoutSlidesList", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -9598,6 +12174,14 @@ TEST_F(SlidesApiTest, getLayoutSlidesListPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlidesList", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlidesList", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getLayoutSlidesList", "password"))
 	{
@@ -9627,6 +12211,14 @@ TEST_F(SlidesApiTest, getLayoutSlidesListFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlidesList", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlidesList", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getLayoutSlidesList", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -9654,6 +12246,14 @@ TEST_F(SlidesApiTest, getLayoutSlidesListStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getLayoutSlidesList", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getLayoutSlidesList", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getLayoutSlidesList", "storage"))
 	{
@@ -9690,6 +12290,14 @@ TEST_F(SlidesApiTest, getMasterSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getMasterSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -9717,6 +12325,14 @@ TEST_F(SlidesApiTest, getMasterSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getMasterSlide", "slideIndex"))
 	{
@@ -9746,6 +12362,14 @@ TEST_F(SlidesApiTest, getMasterSlidePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getMasterSlide", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -9774,6 +12398,14 @@ TEST_F(SlidesApiTest, getMasterSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getMasterSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -9801,6 +12433,14 @@ TEST_F(SlidesApiTest, getMasterSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getMasterSlide", "storage"))
 	{
@@ -9837,6 +12477,14 @@ TEST_F(SlidesApiTest, getMasterSlidesListName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlidesList", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlidesList", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getMasterSlidesList", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -9864,6 +12512,14 @@ TEST_F(SlidesApiTest, getMasterSlidesListPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlidesList", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlidesList", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getMasterSlidesList", "password"))
 	{
@@ -9893,6 +12549,14 @@ TEST_F(SlidesApiTest, getMasterSlidesListFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlidesList", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlidesList", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getMasterSlidesList", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -9920,6 +12584,14 @@ TEST_F(SlidesApiTest, getMasterSlidesListStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getMasterSlidesList", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getMasterSlidesList", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getMasterSlidesList", "storage"))
 	{
@@ -9956,6 +12628,14 @@ TEST_F(SlidesApiTest, getNotesSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -9983,6 +12663,14 @@ TEST_F(SlidesApiTest, getNotesSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlide", "slideIndex"))
 	{
@@ -10012,6 +12700,14 @@ TEST_F(SlidesApiTest, getNotesSlidePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlide", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -10040,6 +12736,14 @@ TEST_F(SlidesApiTest, getNotesSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -10067,6 +12771,14 @@ TEST_F(SlidesApiTest, getNotesSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlide", "storage"))
 	{
@@ -10103,6 +12815,14 @@ TEST_F(SlidesApiTest, getNotesSlideExistsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideExists", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideExists", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideExists", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -10130,6 +12850,14 @@ TEST_F(SlidesApiTest, getNotesSlideExistsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideExists", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideExists", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideExists", "slideIndex"))
 	{
@@ -10159,6 +12887,14 @@ TEST_F(SlidesApiTest, getNotesSlideExistsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideExists", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideExists", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideExists", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -10186,6 +12922,14 @@ TEST_F(SlidesApiTest, getNotesSlideExistsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideExists", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideExists", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideExists", "folder"))
 	{
@@ -10215,7 +12959,202 @@ TEST_F(SlidesApiTest, getNotesSlideExistsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideExists", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideExists", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideExists", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getNotesSlideHeaderFooter) {
+	std::shared_ptr<GetNotesSlideHeaderFooterRequest> request = getGetNotesSlideHeaderFooterRequest();
+	utils->initialize("getNotesSlideHeaderFooter", "");
+	std::shared_ptr<NotesSlideHeaderFooter> result = api->getNotesSlideHeaderFooter(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, getNotesSlideHeaderFooterName) {
+	std::shared_ptr<GetNotesSlideHeaderFooterRequest> request = getGetNotesSlideHeaderFooterRequest();
+	request->setName(utils->getInvalidTestValue("getNotesSlideHeaderFooter", "name", request->getName()));
+	utils->initialize("getNotesSlideHeaderFooter", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->getNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getNotesSlideHeaderFooter", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getNotesSlideHeaderFooterSlideIndex) {
+	std::shared_ptr<GetNotesSlideHeaderFooterRequest> request = getGetNotesSlideHeaderFooterRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("getNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex()));
+	utils->initialize("getNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->getNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getNotesSlideHeaderFooter", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getNotesSlideHeaderFooterPassword) {
+	std::shared_ptr<GetNotesSlideHeaderFooterRequest> request = getGetNotesSlideHeaderFooterRequest();
+	request->setPassword(utils->getInvalidTestValue("getNotesSlideHeaderFooter", "password", request->getPassword()));
+	utils->initialize("getNotesSlideHeaderFooter", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->getNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getNotesSlideHeaderFooter", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getNotesSlideHeaderFooterStorage) {
+	std::shared_ptr<GetNotesSlideHeaderFooterRequest> request = getGetNotesSlideHeaderFooterRequest();
+	request->setStorage(utils->getInvalidTestValue("getNotesSlideHeaderFooter", "storage", request->getStorage()));
+	utils->initialize("getNotesSlideHeaderFooter", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->getNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getNotesSlideHeaderFooter", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getNotesSlideHeaderFooterFolder) {
+	std::shared_ptr<GetNotesSlideHeaderFooterRequest> request = getGetNotesSlideHeaderFooterRequest();
+	request->setFolder(utils->getInvalidTestValue("getNotesSlideHeaderFooter", "folder", request->getFolder()));
+	utils->initialize("getNotesSlideHeaderFooter", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->getNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideHeaderFooter", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getNotesSlideHeaderFooter", "folder"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -10250,6 +13189,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -10277,6 +13224,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShape", "slideIndex"))
 	{
@@ -10306,6 +13261,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShape", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShape", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShape", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -10333,6 +13296,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShape", "password"))
 	{
@@ -10362,6 +13333,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -10389,6 +13368,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShape", "storage"))
 	{
@@ -10425,6 +13412,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -10452,6 +13447,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraph", "slideIndex"))
 	{
@@ -10481,6 +13484,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraph", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -10508,6 +13519,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraph", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraph", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraph", "paragraphIndex"))
 	{
@@ -10537,6 +13556,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraph", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -10565,6 +13592,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -10592,6 +13627,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraph", "storage"))
 	{
@@ -10628,6 +13671,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraphs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraphs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraphs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -10655,6 +13706,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraphs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraphs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraphs", "slideIndex"))
 	{
@@ -10684,6 +13743,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraphs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraphs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraphs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -10711,6 +13778,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraphs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraphs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraphs", "password"))
 	{
@@ -10740,6 +13815,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraphs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraphs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraphs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -10767,6 +13850,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapeParagraphsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapeParagraphs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapeParagraphs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapeParagraphs", "storage"))
 	{
@@ -10803,6 +13894,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -10830,6 +13929,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "slideIndex"))
 	{
@@ -10859,6 +13966,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -10886,6 +14001,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "paragraphIndex"))
 	{
@@ -10915,6 +14038,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionPortionIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "portionIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -10942,6 +14073,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "password"))
 	{
@@ -10971,6 +14110,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -10998,6 +14145,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortion", "storage"))
 	{
@@ -11034,6 +14189,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortions", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortions", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortions", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -11061,6 +14224,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortions", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortions", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortions", "slideIndex"))
 	{
@@ -11090,6 +14261,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortions", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortions", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortions", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -11117,6 +14296,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionsParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortions", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortions", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortions", "paragraphIndex"))
 	{
@@ -11146,6 +14333,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortions", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortions", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortions", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -11174,6 +14369,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortions", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortions", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortions", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -11201,6 +14404,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapePortionsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapePortions", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapePortions", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapePortions", "storage"))
 	{
@@ -11237,6 +14448,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapes", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapes", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapes", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -11264,6 +14483,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapes", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapes", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapes", "slideIndex"))
 	{
@@ -11293,6 +14520,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapes", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapes", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapes", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -11321,6 +14556,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapes", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapes", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideShapes", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -11348,6 +14591,14 @@ TEST_F(SlidesApiTest, getNotesSlideShapesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideShapes", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideShapes", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideShapes", "storage"))
 	{
@@ -11384,6 +14635,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -11411,6 +14670,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "slideIndex"))
 	{
@@ -11440,6 +14707,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -11467,6 +14742,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatWidth) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "width");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "width", request->getWidth());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "width"))
 	{
@@ -11496,6 +14779,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatHeight) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "height");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "height", request->getHeight());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "height"))
 	{
 		FAIL() << "Must have failed";
@@ -11523,6 +14814,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "password"))
 	{
@@ -11552,6 +14851,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -11580,6 +14887,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -11607,6 +14922,14 @@ TEST_F(SlidesApiTest, getNotesSlideWithFormatFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getNotesSlideWithFormat", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getNotesSlideWithFormat", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getNotesSlideWithFormat", "fontsFolder"))
 	{
@@ -11643,6 +14966,14 @@ TEST_F(SlidesApiTest, getParagraphPortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -11670,6 +15001,14 @@ TEST_F(SlidesApiTest, getParagraphPortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getParagraphPortion", "slideIndex"))
 	{
@@ -11699,6 +15038,14 @@ TEST_F(SlidesApiTest, getParagraphPortionShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortion", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -11726,6 +15073,14 @@ TEST_F(SlidesApiTest, getParagraphPortionParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getParagraphPortion", "paragraphIndex"))
 	{
@@ -11755,6 +15110,14 @@ TEST_F(SlidesApiTest, getParagraphPortionPortionIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortion", "portionIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -11782,6 +15145,14 @@ TEST_F(SlidesApiTest, getParagraphPortionPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getParagraphPortion", "password"))
 	{
@@ -11811,6 +15182,14 @@ TEST_F(SlidesApiTest, getParagraphPortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -11838,6 +15217,14 @@ TEST_F(SlidesApiTest, getParagraphPortionStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getParagraphPortion", "storage"))
 	{
@@ -11874,6 +15261,14 @@ TEST_F(SlidesApiTest, getParagraphPortionsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortions", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortions", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortions", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -11901,6 +15296,14 @@ TEST_F(SlidesApiTest, getParagraphPortionsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortions", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortions", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getParagraphPortions", "slideIndex"))
 	{
@@ -11930,6 +15333,14 @@ TEST_F(SlidesApiTest, getParagraphPortionsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortions", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortions", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortions", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -11957,6 +15368,14 @@ TEST_F(SlidesApiTest, getParagraphPortionsParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortions", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortions", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getParagraphPortions", "paragraphIndex"))
 	{
@@ -11986,6 +15405,14 @@ TEST_F(SlidesApiTest, getParagraphPortionsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortions", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortions", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortions", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -12013,6 +15440,14 @@ TEST_F(SlidesApiTest, getParagraphPortionsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortions", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortions", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getParagraphPortions", "folder"))
 	{
@@ -12042,7 +15477,166 @@ TEST_F(SlidesApiTest, getParagraphPortionsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getParagraphPortions", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getParagraphPortions", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getParagraphPortions", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSections) {
+	std::shared_ptr<GetSectionsRequest> request = getGetSectionsRequest();
+	utils->initialize("getSections", "");
+	std::shared_ptr<Sections> result = api->getSections(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, getSectionsName) {
+	std::shared_ptr<GetSectionsRequest> request = getGetSectionsRequest();
+	request->setName(utils->getInvalidTestValue("getSections", "name", request->getName()));
+	utils->initialize("getSections", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->getSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSections", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSections", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSections", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSectionsPassword) {
+	std::shared_ptr<GetSectionsRequest> request = getGetSectionsRequest();
+	request->setPassword(utils->getInvalidTestValue("getSections", "password", request->getPassword()));
+	utils->initialize("getSections", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->getSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSections", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSections", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSections", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSectionsFolder) {
+	std::shared_ptr<GetSectionsRequest> request = getGetSectionsRequest();
+	request->setFolder(utils->getInvalidTestValue("getSections", "folder", request->getFolder()));
+	utils->initialize("getSections", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->getSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSections", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSections", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSections", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSectionsStorage) {
+	std::shared_ptr<GetSectionsRequest> request = getGetSectionsRequest();
+	request->setStorage(utils->getInvalidTestValue("getSections", "storage", request->getStorage()));
+	utils->initialize("getSections", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->getSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSections", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSections", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSections", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSections", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -12077,6 +15671,14 @@ TEST_F(SlidesApiTest, getSlideAnimationName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideAnimation", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideAnimation", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideAnimation", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -12104,6 +15706,14 @@ TEST_F(SlidesApiTest, getSlideAnimationSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideAnimation", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideAnimation", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideAnimation", "slideIndex"))
 	{
@@ -12133,6 +15743,14 @@ TEST_F(SlidesApiTest, getSlideAnimationShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideAnimation", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideAnimation", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideAnimation", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -12160,6 +15778,14 @@ TEST_F(SlidesApiTest, getSlideAnimationPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideAnimation", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideAnimation", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideAnimation", "password"))
 	{
@@ -12189,6 +15815,14 @@ TEST_F(SlidesApiTest, getSlideAnimationFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideAnimation", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideAnimation", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideAnimation", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -12217,7 +15851,202 @@ TEST_F(SlidesApiTest, getSlideAnimationStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideAnimation", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideAnimation", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideAnimation", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSlideHeaderFooter) {
+	std::shared_ptr<GetSlideHeaderFooterRequest> request = getGetSlideHeaderFooterRequest();
+	utils->initialize("getSlideHeaderFooter", "");
+	std::shared_ptr<HeaderFooter> result = api->getSlideHeaderFooter(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, getSlideHeaderFooterName) {
+	std::shared_ptr<GetSlideHeaderFooterRequest> request = getGetSlideHeaderFooterRequest();
+	request->setName(utils->getInvalidTestValue("getSlideHeaderFooter", "name", request->getName()));
+	utils->initialize("getSlideHeaderFooter", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->getSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSlideHeaderFooter", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSlideHeaderFooterSlideIndex) {
+	std::shared_ptr<GetSlideHeaderFooterRequest> request = getGetSlideHeaderFooterRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("getSlideHeaderFooter", "slideIndex", request->getSlideIndex()));
+	utils->initialize("getSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->getSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSlideHeaderFooter", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSlideHeaderFooterPassword) {
+	std::shared_ptr<GetSlideHeaderFooterRequest> request = getGetSlideHeaderFooterRequest();
+	request->setPassword(utils->getInvalidTestValue("getSlideHeaderFooter", "password", request->getPassword()));
+	utils->initialize("getSlideHeaderFooter", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->getSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSlideHeaderFooter", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSlideHeaderFooterFolder) {
+	std::shared_ptr<GetSlideHeaderFooterRequest> request = getGetSlideHeaderFooterRequest();
+	request->setFolder(utils->getInvalidTestValue("getSlideHeaderFooter", "folder", request->getFolder()));
+	utils->initialize("getSlideHeaderFooter", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->getSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSlideHeaderFooter", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, getSlideHeaderFooterStorage) {
+	std::shared_ptr<GetSlideHeaderFooterRequest> request = getGetSlideHeaderFooterRequest();
+	request->setStorage(utils->getInvalidTestValue("getSlideHeaderFooter", "storage", request->getStorage()));
+	utils->initialize("getSlideHeaderFooter", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->getSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideHeaderFooter", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("getSlideHeaderFooter", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -12252,6 +16081,14 @@ TEST_F(SlidesApiTest, getSlideShapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -12279,6 +16116,14 @@ TEST_F(SlidesApiTest, getSlideShapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShape", "slideIndex"))
 	{
@@ -12308,6 +16153,14 @@ TEST_F(SlidesApiTest, getSlideShapeShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShape", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShape", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShape", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -12335,6 +16188,14 @@ TEST_F(SlidesApiTest, getSlideShapePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShape", "password"))
 	{
@@ -12364,6 +16225,14 @@ TEST_F(SlidesApiTest, getSlideShapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -12391,6 +16260,14 @@ TEST_F(SlidesApiTest, getSlideShapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShape", "storage"))
 	{
@@ -12427,6 +16304,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapeParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -12454,6 +16339,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapeParagraph", "slideIndex"))
 	{
@@ -12483,6 +16376,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapeParagraph", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -12510,6 +16411,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraph", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraph", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapeParagraph", "paragraphIndex"))
 	{
@@ -12539,6 +16448,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapeParagraph", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -12567,6 +16484,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapeParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -12594,6 +16519,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapeParagraph", "storage"))
 	{
@@ -12630,6 +16563,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraphs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraphs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapeParagraphs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -12657,6 +16598,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraphs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraphs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapeParagraphs", "slideIndex"))
 	{
@@ -12686,6 +16635,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraphs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraphs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapeParagraphs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -12713,6 +16670,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraphs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraphs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapeParagraphs", "password"))
 	{
@@ -12742,6 +16707,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraphs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraphs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapeParagraphs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -12769,6 +16742,14 @@ TEST_F(SlidesApiTest, getSlideShapeParagraphsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapeParagraphs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapeParagraphs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapeParagraphs", "storage"))
 	{
@@ -12805,6 +16786,14 @@ TEST_F(SlidesApiTest, getSlideShapesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapes", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapes", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapes", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -12832,6 +16821,14 @@ TEST_F(SlidesApiTest, getSlideShapesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapes", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapes", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapes", "slideIndex"))
 	{
@@ -12861,6 +16858,14 @@ TEST_F(SlidesApiTest, getSlideShapesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapes", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapes", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapes", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -12889,6 +16894,14 @@ TEST_F(SlidesApiTest, getSlideShapesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapes", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapes", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideShapes", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -12916,6 +16929,14 @@ TEST_F(SlidesApiTest, getSlideShapesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideShapes", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideShapes", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideShapes", "storage"))
 	{
@@ -12952,6 +16973,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -12979,6 +17008,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshape", "slideIndex"))
 	{
@@ -13008,6 +17045,14 @@ TEST_F(SlidesApiTest, getSlideSubshapePath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshape", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshape", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshape", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -13035,6 +17080,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshape", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshape", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshape", "shapeIndex"))
 	{
@@ -13064,6 +17117,14 @@ TEST_F(SlidesApiTest, getSlideSubshapePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshape", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -13092,6 +17153,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -13119,6 +17188,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshape", "storage"))
 	{
@@ -13155,6 +17232,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -13182,6 +17267,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "slideIndex"))
 	{
@@ -13211,6 +17304,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -13238,6 +17339,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "shapeIndex"))
 	{
@@ -13267,6 +17376,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -13294,6 +17411,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "password"))
 	{
@@ -13323,6 +17448,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -13350,6 +17483,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraph", "storage"))
 	{
@@ -13386,6 +17527,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraphs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraphs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraphs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -13413,6 +17562,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraphs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraphs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraphs", "slideIndex"))
 	{
@@ -13442,6 +17599,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraphs", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraphs", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraphs", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -13469,6 +17634,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphsShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraphs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraphs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraphs", "shapeIndex"))
 	{
@@ -13498,6 +17671,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraphs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraphs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraphs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -13526,6 +17707,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraphs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraphs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraphs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -13553,6 +17742,14 @@ TEST_F(SlidesApiTest, getSlideSubshapeParagraphsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapeParagraphs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapeParagraphs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapeParagraphs", "storage"))
 	{
@@ -13589,6 +17786,14 @@ TEST_F(SlidesApiTest, getSlideSubshapesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapes", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapes", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapes", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -13616,6 +17821,14 @@ TEST_F(SlidesApiTest, getSlideSubshapesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapes", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapes", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapes", "slideIndex"))
 	{
@@ -13645,6 +17858,14 @@ TEST_F(SlidesApiTest, getSlideSubshapesPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapes", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapes", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapes", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -13672,6 +17893,14 @@ TEST_F(SlidesApiTest, getSlideSubshapesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapes", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapes", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapes", "password"))
 	{
@@ -13701,6 +17930,14 @@ TEST_F(SlidesApiTest, getSlideSubshapesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapes", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapes", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlideSubshapes", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -13728,6 +17965,14 @@ TEST_F(SlidesApiTest, getSlideSubshapesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlideSubshapes", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlideSubshapes", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlideSubshapes", "storage"))
 	{
@@ -13770,6 +18015,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocument", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocument", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesDocument", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -13797,6 +18050,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocument", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocument", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesDocument", "password"))
 	{
@@ -13826,6 +18087,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocument", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocument", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesDocument", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -13853,6 +18122,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocument", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocument", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesDocument", "folder"))
 	{
@@ -13889,6 +18166,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -13916,6 +18201,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertiesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperties", "password"))
 	{
@@ -13945,6 +18238,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -13972,6 +18273,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperties", "storage"))
 	{
@@ -14008,6 +18317,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertyName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperty", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperty", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperty", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -14035,6 +18352,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertyPropertyName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperty", "propertyName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperty", "propertyName", request->getPropertyName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperty", "propertyName"))
 	{
@@ -14064,6 +18389,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertyPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperty", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperty", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperty", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -14092,6 +18425,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertyFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperty", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperty", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperty", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -14119,6 +18460,14 @@ TEST_F(SlidesApiTest, getSlidesDocumentPropertyStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesDocumentProperty", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesDocumentProperty", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesDocumentProperty", "storage"))
 	{
@@ -14155,6 +18504,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithDefaultFormatName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithDefaultFormat", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithDefaultFormat", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImageWithDefaultFormat", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -14182,6 +18539,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithDefaultFormatIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithDefaultFormat", "index");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithDefaultFormat", "index", request->getIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesImageWithDefaultFormat", "index"))
 	{
@@ -14211,6 +18576,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithDefaultFormatPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithDefaultFormat", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithDefaultFormat", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImageWithDefaultFormat", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -14239,6 +18612,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithDefaultFormatFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithDefaultFormat", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithDefaultFormat", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImageWithDefaultFormat", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -14266,6 +18647,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithDefaultFormatStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithDefaultFormat", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithDefaultFormat", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesImageWithDefaultFormat", "storage"))
 	{
@@ -14302,6 +18691,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithFormatName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithFormat", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithFormat", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImageWithFormat", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -14329,6 +18726,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithFormatIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithFormat", "index");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithFormat", "index", request->getIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesImageWithFormat", "index"))
 	{
@@ -14358,6 +18763,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithFormatFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithFormat", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithFormat", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImageWithFormat", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -14385,6 +18798,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithFormatPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithFormat", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithFormat", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesImageWithFormat", "password"))
 	{
@@ -14414,6 +18835,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithFormatFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithFormat", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithFormat", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImageWithFormat", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -14441,6 +18870,14 @@ TEST_F(SlidesApiTest, getSlidesImageWithFormatStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImageWithFormat", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImageWithFormat", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesImageWithFormat", "storage"))
 	{
@@ -14477,6 +18914,14 @@ TEST_F(SlidesApiTest, getSlidesImagesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImages", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImages", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImages", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -14504,6 +18949,14 @@ TEST_F(SlidesApiTest, getSlidesImagesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImages", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImages", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesImages", "password"))
 	{
@@ -14533,6 +18986,14 @@ TEST_F(SlidesApiTest, getSlidesImagesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImages", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImages", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesImages", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -14560,6 +19021,14 @@ TEST_F(SlidesApiTest, getSlidesImagesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesImages", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesImages", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesImages", "storage"))
 	{
@@ -14596,6 +19065,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholderName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholder", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholder", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPlaceholder", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -14623,6 +19100,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholderSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholder", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholder", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesPlaceholder", "slideIndex"))
 	{
@@ -14652,6 +19137,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholderPlaceholderIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholder", "placeholderIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholder", "placeholderIndex", request->getPlaceholderIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPlaceholder", "placeholderIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -14679,6 +19172,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholderPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholder", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholder", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesPlaceholder", "password"))
 	{
@@ -14708,6 +19209,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholderFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholder", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholder", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPlaceholder", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -14735,6 +19244,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholderStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholder", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholder", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesPlaceholder", "storage"))
 	{
@@ -14771,6 +19288,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholdersName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholders", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholders", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPlaceholders", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -14798,6 +19323,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholdersSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholders", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholders", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesPlaceholders", "slideIndex"))
 	{
@@ -14827,6 +19360,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholdersPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholders", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholders", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPlaceholders", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -14855,6 +19396,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholdersFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholders", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholders", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPlaceholders", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -14882,6 +19431,14 @@ TEST_F(SlidesApiTest, getSlidesPlaceholdersStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPlaceholders", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPlaceholders", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesPlaceholders", "storage"))
 	{
@@ -14918,6 +19475,14 @@ TEST_F(SlidesApiTest, getSlidesPresentationTextItemsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPresentationTextItems", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPresentationTextItems", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPresentationTextItems", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -14945,6 +19510,14 @@ TEST_F(SlidesApiTest, getSlidesPresentationTextItemsWithEmpty) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPresentationTextItems", "withEmpty");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPresentationTextItems", "withEmpty", request->getWithEmpty());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesPresentationTextItems", "withEmpty"))
 	{
@@ -14974,6 +19547,14 @@ TEST_F(SlidesApiTest, getSlidesPresentationTextItemsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPresentationTextItems", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPresentationTextItems", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPresentationTextItems", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -15002,6 +19583,14 @@ TEST_F(SlidesApiTest, getSlidesPresentationTextItemsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPresentationTextItems", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPresentationTextItems", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesPresentationTextItems", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -15029,6 +19618,14 @@ TEST_F(SlidesApiTest, getSlidesPresentationTextItemsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesPresentationTextItems", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesPresentationTextItems", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesPresentationTextItems", "storage"))
 	{
@@ -15065,6 +19662,14 @@ TEST_F(SlidesApiTest, getSlidesSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -15092,6 +19697,14 @@ TEST_F(SlidesApiTest, getSlidesSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlide", "slideIndex"))
 	{
@@ -15121,6 +19734,14 @@ TEST_F(SlidesApiTest, getSlidesSlidePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlide", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -15149,6 +19770,14 @@ TEST_F(SlidesApiTest, getSlidesSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -15176,6 +19805,14 @@ TEST_F(SlidesApiTest, getSlidesSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlide", "storage"))
 	{
@@ -15212,6 +19849,14 @@ TEST_F(SlidesApiTest, getSlidesSlideBackgroundName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideBackground", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideBackground", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideBackground", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -15239,6 +19884,14 @@ TEST_F(SlidesApiTest, getSlidesSlideBackgroundSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideBackground", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideBackground", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideBackground", "slideIndex"))
 	{
@@ -15268,6 +19921,14 @@ TEST_F(SlidesApiTest, getSlidesSlideBackgroundPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideBackground", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideBackground", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideBackground", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -15296,6 +19957,14 @@ TEST_F(SlidesApiTest, getSlidesSlideBackgroundFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideBackground", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideBackground", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideBackground", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -15323,6 +19992,14 @@ TEST_F(SlidesApiTest, getSlidesSlideBackgroundStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideBackground", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideBackground", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideBackground", "storage"))
 	{
@@ -15359,6 +20036,14 @@ TEST_F(SlidesApiTest, getSlidesSlideCommentsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideComments", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideComments", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideComments", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -15386,6 +20071,14 @@ TEST_F(SlidesApiTest, getSlidesSlideCommentsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideComments", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideComments", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideComments", "slideIndex"))
 	{
@@ -15415,6 +20108,14 @@ TEST_F(SlidesApiTest, getSlidesSlideCommentsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideComments", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideComments", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideComments", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -15443,6 +20144,14 @@ TEST_F(SlidesApiTest, getSlidesSlideCommentsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideComments", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideComments", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideComments", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -15470,6 +20179,14 @@ TEST_F(SlidesApiTest, getSlidesSlideCommentsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideComments", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideComments", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideComments", "storage"))
 	{
@@ -15506,6 +20223,14 @@ TEST_F(SlidesApiTest, getSlidesSlideImagesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideImages", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideImages", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideImages", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -15533,6 +20258,14 @@ TEST_F(SlidesApiTest, getSlidesSlideImagesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideImages", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideImages", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideImages", "slideIndex"))
 	{
@@ -15562,6 +20295,14 @@ TEST_F(SlidesApiTest, getSlidesSlideImagesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideImages", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideImages", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideImages", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -15590,6 +20331,14 @@ TEST_F(SlidesApiTest, getSlidesSlideImagesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideImages", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideImages", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideImages", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -15617,6 +20366,14 @@ TEST_F(SlidesApiTest, getSlidesSlideImagesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideImages", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideImages", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideImages", "storage"))
 	{
@@ -15653,6 +20410,14 @@ TEST_F(SlidesApiTest, getSlidesSlideTextItemsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideTextItems", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideTextItems", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideTextItems", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -15680,6 +20445,14 @@ TEST_F(SlidesApiTest, getSlidesSlideTextItemsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideTextItems", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideTextItems", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideTextItems", "slideIndex"))
 	{
@@ -15709,6 +20482,14 @@ TEST_F(SlidesApiTest, getSlidesSlideTextItemsWithEmpty) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideTextItems", "withEmpty");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideTextItems", "withEmpty", request->getWithEmpty());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideTextItems", "withEmpty"))
 	{
 		FAIL() << "Must have failed";
@@ -15736,6 +20517,14 @@ TEST_F(SlidesApiTest, getSlidesSlideTextItemsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideTextItems", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideTextItems", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideTextItems", "password"))
 	{
@@ -15765,6 +20554,14 @@ TEST_F(SlidesApiTest, getSlidesSlideTextItemsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideTextItems", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideTextItems", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlideTextItems", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -15792,6 +20589,14 @@ TEST_F(SlidesApiTest, getSlidesSlideTextItemsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlideTextItems", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlideTextItems", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlideTextItems", "storage"))
 	{
@@ -15828,6 +20633,14 @@ TEST_F(SlidesApiTest, getSlidesSlidesListName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlidesList", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlidesList", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlidesList", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -15855,6 +20668,14 @@ TEST_F(SlidesApiTest, getSlidesSlidesListPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlidesList", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlidesList", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlidesList", "password"))
 	{
@@ -15884,6 +20705,14 @@ TEST_F(SlidesApiTest, getSlidesSlidesListFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlidesList", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlidesList", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesSlidesList", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -15911,6 +20740,14 @@ TEST_F(SlidesApiTest, getSlidesSlidesListStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesSlidesList", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesSlidesList", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesSlidesList", "storage"))
 	{
@@ -15947,6 +20784,14 @@ TEST_F(SlidesApiTest, getSlidesThemeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesTheme", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesTheme", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesTheme", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -15974,6 +20819,14 @@ TEST_F(SlidesApiTest, getSlidesThemeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesTheme", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesTheme", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesTheme", "slideIndex"))
 	{
@@ -16003,6 +20856,14 @@ TEST_F(SlidesApiTest, getSlidesThemePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesTheme", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesTheme", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesTheme", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -16031,6 +20892,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesTheme", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesTheme", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesTheme", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -16058,6 +20927,14 @@ TEST_F(SlidesApiTest, getSlidesThemeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesTheme", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesTheme", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesTheme", "storage"))
 	{
@@ -16094,6 +20971,14 @@ TEST_F(SlidesApiTest, getSlidesThemeColorSchemeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeColorScheme", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeColorScheme", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeColorScheme", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -16121,6 +21006,14 @@ TEST_F(SlidesApiTest, getSlidesThemeColorSchemeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeColorScheme", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeColorScheme", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesThemeColorScheme", "slideIndex"))
 	{
@@ -16150,6 +21043,14 @@ TEST_F(SlidesApiTest, getSlidesThemeColorSchemePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeColorScheme", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeColorScheme", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeColorScheme", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -16178,6 +21079,14 @@ TEST_F(SlidesApiTest, getSlidesThemeColorSchemeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeColorScheme", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeColorScheme", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeColorScheme", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -16205,6 +21114,14 @@ TEST_F(SlidesApiTest, getSlidesThemeColorSchemeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeColorScheme", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeColorScheme", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesThemeColorScheme", "storage"))
 	{
@@ -16241,6 +21158,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFontSchemeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFontScheme", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFontScheme", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeFontScheme", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -16268,6 +21193,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFontSchemeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFontScheme", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFontScheme", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesThemeFontScheme", "slideIndex"))
 	{
@@ -16297,6 +21230,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFontSchemePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFontScheme", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFontScheme", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeFontScheme", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -16325,6 +21266,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFontSchemeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFontScheme", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFontScheme", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeFontScheme", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -16352,6 +21301,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFontSchemeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFontScheme", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFontScheme", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesThemeFontScheme", "storage"))
 	{
@@ -16388,6 +21345,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFormatSchemeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFormatScheme", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFormatScheme", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeFormatScheme", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -16415,6 +21380,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFormatSchemeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFormatScheme", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFormatScheme", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesThemeFormatScheme", "slideIndex"))
 	{
@@ -16444,6 +21417,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFormatSchemePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFormatScheme", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFormatScheme", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeFormatScheme", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -16472,6 +21453,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFormatSchemeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFormatScheme", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFormatScheme", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesThemeFormatScheme", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -16499,6 +21488,14 @@ TEST_F(SlidesApiTest, getSlidesThemeFormatSchemeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesThemeFormatScheme", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesThemeFormatScheme", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesThemeFormatScheme", "storage"))
 	{
@@ -16535,6 +21532,14 @@ TEST_F(SlidesApiTest, getSlidesViewPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesViewProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesViewProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesViewProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -16562,6 +21567,14 @@ TEST_F(SlidesApiTest, getSlidesViewPropertiesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesViewProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesViewProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesViewProperties", "password"))
 	{
@@ -16591,6 +21604,14 @@ TEST_F(SlidesApiTest, getSlidesViewPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesViewProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesViewProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSlidesViewProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -16618,6 +21639,14 @@ TEST_F(SlidesApiTest, getSlidesViewPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSlidesViewProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSlidesViewProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSlidesViewProperties", "storage"))
 	{
@@ -16654,6 +21683,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -16681,6 +21718,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "slideIndex"))
 	{
@@ -16710,6 +21755,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -16737,6 +21790,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "shapeIndex"))
 	{
@@ -16766,6 +21827,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -16793,6 +21862,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionPortionIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "portionIndex"))
 	{
@@ -16822,6 +21899,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -16850,6 +21935,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -16877,6 +21970,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortion", "storage"))
 	{
@@ -16913,6 +22014,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -16940,6 +22049,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "slideIndex"))
 	{
@@ -16969,6 +22086,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -16996,6 +22121,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "shapeIndex"))
 	{
@@ -17025,6 +22158,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -17052,6 +22193,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "password"))
 	{
@@ -17081,6 +22230,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -17108,6 +22265,14 @@ TEST_F(SlidesApiTest, getSubshapeParagraphPortionsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("getSubshapeParagraphPortions", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("getSubshapeParagraphPortions", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("getSubshapeParagraphPortions", "storage"))
 	{
@@ -17143,6 +22308,14 @@ TEST_F(SlidesApiTest, moveFileSrcPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFile", "srcPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFile", "srcPath", request->getSrcPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("moveFile", "srcPath"))
 	{
 		FAIL() << "Must have failed";
@@ -17170,6 +22343,14 @@ TEST_F(SlidesApiTest, moveFileDestPath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFile", "destPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFile", "destPath", request->getDestPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("moveFile", "destPath"))
 	{
@@ -17199,6 +22380,14 @@ TEST_F(SlidesApiTest, moveFileSrcStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFile", "srcStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFile", "srcStorageName", request->getSrcStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("moveFile", "srcStorageName"))
 	{
 		FAIL() << "Must have failed";
@@ -17227,6 +22416,14 @@ TEST_F(SlidesApiTest, moveFileDestStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFile", "destStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFile", "destStorageName", request->getDestStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("moveFile", "destStorageName"))
 	{
 		FAIL() << "Must have failed";
@@ -17254,6 +22451,14 @@ TEST_F(SlidesApiTest, moveFileVersionId) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFile", "versionId");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFile", "versionId", request->getVersionId());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("moveFile", "versionId"))
 	{
@@ -17289,6 +22494,14 @@ TEST_F(SlidesApiTest, moveFolderSrcPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFolder", "srcPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFolder", "srcPath", request->getSrcPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("moveFolder", "srcPath"))
 	{
 		FAIL() << "Must have failed";
@@ -17316,6 +22529,14 @@ TEST_F(SlidesApiTest, moveFolderDestPath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFolder", "destPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFolder", "destPath", request->getDestPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("moveFolder", "destPath"))
 	{
@@ -17345,6 +22566,14 @@ TEST_F(SlidesApiTest, moveFolderSrcStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFolder", "srcStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFolder", "srcStorageName", request->getSrcStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("moveFolder", "srcStorageName"))
 	{
 		FAIL() << "Must have failed";
@@ -17372,6 +22601,14 @@ TEST_F(SlidesApiTest, moveFolderDestStorageName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("moveFolder", "destStorageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("moveFolder", "destStorageName", request->getDestStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("moveFolder", "destStorageName"))
 	{
@@ -17408,6 +22645,14 @@ TEST_F(SlidesApiTest, objectExistsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("objectExists", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("objectExists", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("objectExists", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -17436,6 +22681,14 @@ TEST_F(SlidesApiTest, objectExistsStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("objectExists", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("objectExists", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("objectExists", "storageName"))
 	{
 		FAIL() << "Must have failed";
@@ -17463,6 +22716,14 @@ TEST_F(SlidesApiTest, objectExistsVersionId) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("objectExists", "versionId");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("objectExists", "versionId", request->getVersionId());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("objectExists", "versionId"))
 	{
@@ -17499,6 +22760,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -17526,6 +22795,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "slideIndex"))
 	{
@@ -17555,6 +22832,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -17582,6 +22867,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "dto"))
 	{
@@ -17611,6 +22904,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -17638,6 +22939,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "folder"))
 	{
@@ -17667,6 +22976,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -17694,6 +23011,14 @@ TEST_F(SlidesApiTest, postAddNewParagraphPosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewParagraph", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewParagraph", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewParagraph", "position"))
 	{
@@ -17730,6 +23055,14 @@ TEST_F(SlidesApiTest, postAddNewPortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewPortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -17757,6 +23090,14 @@ TEST_F(SlidesApiTest, postAddNewPortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewPortion", "slideIndex"))
 	{
@@ -17786,6 +23127,14 @@ TEST_F(SlidesApiTest, postAddNewPortionShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewPortion", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -17813,6 +23162,14 @@ TEST_F(SlidesApiTest, postAddNewPortionParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewPortion", "paragraphIndex"))
 	{
@@ -17842,6 +23199,14 @@ TEST_F(SlidesApiTest, postAddNewPortionDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewPortion", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -17869,6 +23234,14 @@ TEST_F(SlidesApiTest, postAddNewPortionPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewPortion", "password"))
 	{
@@ -17898,6 +23271,14 @@ TEST_F(SlidesApiTest, postAddNewPortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewPortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -17926,6 +23307,14 @@ TEST_F(SlidesApiTest, postAddNewPortionStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewPortion", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -17953,6 +23342,14 @@ TEST_F(SlidesApiTest, postAddNewPortionPosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewPortion", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewPortion", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewPortion", "position"))
 	{
@@ -17989,6 +23386,14 @@ TEST_F(SlidesApiTest, postAddNewShapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewShape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -18016,6 +23421,14 @@ TEST_F(SlidesApiTest, postAddNewShapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewShape", "slideIndex"))
 	{
@@ -18045,6 +23458,14 @@ TEST_F(SlidesApiTest, postAddNewShapeDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewShape", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -18072,6 +23493,14 @@ TEST_F(SlidesApiTest, postAddNewShapePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewShape", "password"))
 	{
@@ -18101,6 +23530,14 @@ TEST_F(SlidesApiTest, postAddNewShapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewShape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -18128,6 +23565,14 @@ TEST_F(SlidesApiTest, postAddNewShapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewShape", "storage"))
 	{
@@ -18157,6 +23602,14 @@ TEST_F(SlidesApiTest, postAddNewShapeShapeToClone) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "shapeToClone");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "shapeToClone", request->getShapeToClone());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewShape", "shapeToClone"))
 	{
 		FAIL() << "Must have failed";
@@ -18184,6 +23637,14 @@ TEST_F(SlidesApiTest, postAddNewShapePosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewShape", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewShape", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewShape", "position"))
 	{
@@ -18220,6 +23681,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -18247,6 +23716,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "slideIndex"))
 	{
@@ -18276,6 +23753,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -18303,6 +23788,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "dto"))
 	{
@@ -18332,6 +23825,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -18359,6 +23860,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "folder"))
 	{
@@ -18388,6 +23897,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -18416,6 +23933,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeShapeToClone) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "shapeToClone");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "shapeToClone", request->getShapeToClone());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "shapeToClone"))
 	{
 		FAIL() << "Must have failed";
@@ -18443,6 +23968,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshape", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshape", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshape", "position"))
 	{
@@ -18479,6 +24012,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -18506,6 +24047,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "slideIndex"))
 	{
@@ -18535,6 +24084,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -18562,6 +24119,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "shapeIndex"))
 	{
@@ -18591,6 +24156,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -18618,6 +24191,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "password"))
 	{
@@ -18647,6 +24228,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -18675,6 +24264,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -18702,6 +24299,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapeParagraphPosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapeParagraph", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapeParagraph", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapeParagraph", "position"))
 	{
@@ -18738,6 +24343,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -18765,6 +24378,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "slideIndex"))
 	{
@@ -18794,6 +24415,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -18821,6 +24450,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "shapeIndex"))
 	{
@@ -18850,6 +24487,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -18877,6 +24522,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "dto"))
 	{
@@ -18906,6 +24559,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -18933,6 +24594,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "folder"))
 	{
@@ -18962,6 +24631,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -18989,6 +24666,14 @@ TEST_F(SlidesApiTest, postAddNewSubshapePortionPosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNewSubshapePortion", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNewSubshapePortion", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNewSubshapePortion", "position"))
 	{
@@ -19025,6 +24710,14 @@ TEST_F(SlidesApiTest, postAddNotesSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNotesSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNotesSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNotesSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -19052,6 +24745,14 @@ TEST_F(SlidesApiTest, postAddNotesSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNotesSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNotesSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNotesSlide", "slideIndex"))
 	{
@@ -19081,6 +24782,14 @@ TEST_F(SlidesApiTest, postAddNotesSlideDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNotesSlide", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNotesSlide", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNotesSlide", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -19108,6 +24817,14 @@ TEST_F(SlidesApiTest, postAddNotesSlidePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNotesSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNotesSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNotesSlide", "password"))
 	{
@@ -19137,6 +24854,14 @@ TEST_F(SlidesApiTest, postAddNotesSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNotesSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNotesSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postAddNotesSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -19164,6 +24889,14 @@ TEST_F(SlidesApiTest, postAddNotesSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postAddNotesSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postAddNotesSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postAddNotesSlide", "storage"))
 	{
@@ -19200,6 +24933,14 @@ TEST_F(SlidesApiTest, postChartCategoryName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartCategory", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -19227,6 +24968,14 @@ TEST_F(SlidesApiTest, postChartCategorySlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartCategory", "slideIndex"))
 	{
@@ -19256,6 +25005,14 @@ TEST_F(SlidesApiTest, postChartCategoryShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartCategory", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -19283,6 +25040,14 @@ TEST_F(SlidesApiTest, postChartCategoryCategory) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "category");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "category", request->getCategory());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartCategory", "category"))
 	{
@@ -19312,6 +25077,14 @@ TEST_F(SlidesApiTest, postChartCategoryPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartCategory", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -19340,6 +25113,14 @@ TEST_F(SlidesApiTest, postChartCategoryFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartCategory", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -19367,6 +25148,14 @@ TEST_F(SlidesApiTest, postChartCategoryStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartCategory", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartCategory", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartCategory", "storage"))
 	{
@@ -19403,6 +25192,14 @@ TEST_F(SlidesApiTest, postChartDataPointName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartDataPoint", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -19430,6 +25227,14 @@ TEST_F(SlidesApiTest, postChartDataPointSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartDataPoint", "slideIndex"))
 	{
@@ -19459,6 +25264,14 @@ TEST_F(SlidesApiTest, postChartDataPointShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartDataPoint", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -19486,6 +25299,14 @@ TEST_F(SlidesApiTest, postChartDataPointSeriesIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "seriesIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "seriesIndex", request->getSeriesIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartDataPoint", "seriesIndex"))
 	{
@@ -19515,6 +25336,14 @@ TEST_F(SlidesApiTest, postChartDataPointDataPoint) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "dataPoint");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "dataPoint", request->getDataPoint());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartDataPoint", "dataPoint"))
 	{
 		FAIL() << "Must have failed";
@@ -19542,6 +25371,14 @@ TEST_F(SlidesApiTest, postChartDataPointPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartDataPoint", "password"))
 	{
@@ -19571,6 +25408,14 @@ TEST_F(SlidesApiTest, postChartDataPointFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartDataPoint", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -19598,6 +25443,14 @@ TEST_F(SlidesApiTest, postChartDataPointStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartDataPoint", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartDataPoint", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartDataPoint", "storage"))
 	{
@@ -19634,6 +25487,14 @@ TEST_F(SlidesApiTest, postChartSeriesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartSeries", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -19661,6 +25522,14 @@ TEST_F(SlidesApiTest, postChartSeriesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartSeries", "slideIndex"))
 	{
@@ -19690,6 +25559,14 @@ TEST_F(SlidesApiTest, postChartSeriesShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartSeries", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -19717,6 +25594,14 @@ TEST_F(SlidesApiTest, postChartSeriesSeries) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "series");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "series", request->getSeries());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartSeries", "series"))
 	{
@@ -19746,6 +25631,14 @@ TEST_F(SlidesApiTest, postChartSeriesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartSeries", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -19774,6 +25667,14 @@ TEST_F(SlidesApiTest, postChartSeriesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postChartSeries", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -19801,6 +25702,14 @@ TEST_F(SlidesApiTest, postChartSeriesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postChartSeries", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postChartSeries", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postChartSeries", "storage"))
 	{
@@ -19837,6 +25746,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -19864,6 +25781,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationCloneFrom) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "cloneFrom");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "cloneFrom", request->getCloneFrom());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "cloneFrom"))
 	{
@@ -19893,6 +25818,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationCloneFromPosition
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "cloneFromPosition");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "cloneFromPosition", request->getCloneFromPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "cloneFromPosition"))
 	{
 		FAIL() << "Must have failed";
@@ -19920,6 +25853,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationCloneFromPassword
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "cloneFromPassword");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "cloneFromPassword", request->getCloneFromPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "cloneFromPassword"))
 	{
@@ -19949,6 +25890,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationCloneFromStorage)
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "cloneFromStorage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "cloneFromStorage", request->getCloneFromStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "cloneFromStorage"))
 	{
 		FAIL() << "Must have failed";
@@ -19976,6 +25925,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "password"))
 	{
@@ -20005,6 +25962,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -20032,6 +25997,14 @@ TEST_F(SlidesApiTest, postCopyLayoutSlideFromSourcePresentationStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyLayoutSlideFromSourcePresentation", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyLayoutSlideFromSourcePresentation", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyLayoutSlideFromSourcePresentation", "storage"))
 	{
@@ -20068,6 +26041,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -20095,6 +26076,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationCloneFrom) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "cloneFrom");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "cloneFrom", request->getCloneFrom());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "cloneFrom"))
 	{
@@ -20124,6 +26113,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationCloneFromPosition
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "cloneFromPosition");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "cloneFromPosition", request->getCloneFromPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "cloneFromPosition"))
 	{
 		FAIL() << "Must have failed";
@@ -20151,6 +26148,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationCloneFromPassword
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "cloneFromPassword");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "cloneFromPassword", request->getCloneFromPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "cloneFromPassword"))
 	{
@@ -20180,6 +26185,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationCloneFromStorage)
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "cloneFromStorage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "cloneFromStorage", request->getCloneFromStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "cloneFromStorage"))
 	{
 		FAIL() << "Must have failed";
@@ -20207,6 +26220,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationApplyToAll) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "applyToAll");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "applyToAll", request->getApplyToAll());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "applyToAll"))
 	{
@@ -20236,6 +26257,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -20263,6 +26292,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "folder"))
 	{
@@ -20292,6 +26329,14 @@ TEST_F(SlidesApiTest, postCopyMasterSlideFromSourcePresentationStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postCopyMasterSlideFromSourcePresentation", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postCopyMasterSlideFromSourcePresentation", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postCopyMasterSlideFromSourcePresentation", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -20303,34 +26348,6 @@ TEST_F(SlidesApiTest, postGetNotesSlide) {
 	utils->initialize("postGetNotesSlide", "");
 	std::shared_ptr<NotesSlide> result = api->postGetNotesSlide(request).get();
 	EXPECT_NE(nullptr, result);
-}
-
-TEST_F(SlidesApiTest, postGetNotesSlideSlideIndex) {
-	std::shared_ptr<PostGetNotesSlideRequest> request = getPostGetNotesSlideRequest();
-	request->setSlideIndex(utils->getInvalidIntTestValue("postGetNotesSlide", "slideIndex", request->getSlideIndex()));
-	utils->initialize("postGetNotesSlide", "slideIndex", request->getSlideIndex());
-
-	bool failed = true;
-	try
-	{
-		api->postGetNotesSlide(request).wait();
-		failed = false;
-	}
-	catch (ApiException ex)
-	{
-		int code = utils->getExpectedCode("postGetNotesSlide", "slideIndex");
-		EXPECT_EQ(code, ex.error_code().value());
-
-		utility::string_t message = utils->getExpectedMessage("postGetNotesSlide", "slideIndex", request->getSlideIndex());
-		std::string contentString;
-		std::ostringstream contentStream;
-		contentStream << ex.getContent()->rdbuf();
-		EXPECT_TRUE(boost::contains(contentStream.str(), message));
-	}
-	if (!failed && utils->mustFail("postGetNotesSlide", "slideIndex"))
-	{
-		FAIL() << "Must have failed";
-	}
 }
 
 TEST_F(SlidesApiTest, postGetNotesSlideDocument) {
@@ -20355,7 +26372,51 @@ TEST_F(SlidesApiTest, postGetNotesSlideDocument) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlide", "document");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlide", "document", request->getDocument());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postGetNotesSlide", "document"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postGetNotesSlideSlideIndex) {
+	std::shared_ptr<PostGetNotesSlideRequest> request = getPostGetNotesSlideRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("postGetNotesSlide", "slideIndex", request->getSlideIndex()));
+	utils->initialize("postGetNotesSlide", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postGetNotesSlide(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlide", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlide", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postGetNotesSlide", "slideIndex"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -20383,6 +26444,14 @@ TEST_F(SlidesApiTest, postGetNotesSlidePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postGetNotesSlide", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -20394,34 +26463,6 @@ TEST_F(SlidesApiTest, postGetNotesSlideExists) {
 	utils->initialize("postGetNotesSlideExists", "");
 	std::shared_ptr<EntityExists> result = api->postGetNotesSlideExists(request).get();
 	EXPECT_NE(nullptr, result);
-}
-
-TEST_F(SlidesApiTest, postGetNotesSlideExistsSlideIndex) {
-	std::shared_ptr<PostGetNotesSlideExistsRequest> request = getPostGetNotesSlideExistsRequest();
-	request->setSlideIndex(utils->getInvalidIntTestValue("postGetNotesSlideExists", "slideIndex", request->getSlideIndex()));
-	utils->initialize("postGetNotesSlideExists", "slideIndex", request->getSlideIndex());
-
-	bool failed = true;
-	try
-	{
-		api->postGetNotesSlideExists(request).wait();
-		failed = false;
-	}
-	catch (ApiException ex)
-	{
-		int code = utils->getExpectedCode("postGetNotesSlideExists", "slideIndex");
-		EXPECT_EQ(code, ex.error_code().value());
-
-		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideExists", "slideIndex", request->getSlideIndex());
-		std::string contentString;
-		std::ostringstream contentStream;
-		contentStream << ex.getContent()->rdbuf();
-		EXPECT_TRUE(boost::contains(contentStream.str(), message));
-	}
-	if (!failed && utils->mustFail("postGetNotesSlideExists", "slideIndex"))
-	{
-		FAIL() << "Must have failed";
-	}
 }
 
 TEST_F(SlidesApiTest, postGetNotesSlideExistsDocument) {
@@ -20446,7 +26487,51 @@ TEST_F(SlidesApiTest, postGetNotesSlideExistsDocument) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideExists", "document");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideExists", "document", request->getDocument());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postGetNotesSlideExists", "document"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postGetNotesSlideExistsSlideIndex) {
+	std::shared_ptr<PostGetNotesSlideExistsRequest> request = getPostGetNotesSlideExistsRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("postGetNotesSlideExists", "slideIndex", request->getSlideIndex()));
+	utils->initialize("postGetNotesSlideExists", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postGetNotesSlideExists(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideExists", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideExists", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideExists", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideExists", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postGetNotesSlideExists", "slideIndex"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -20474,6 +26559,14 @@ TEST_F(SlidesApiTest, postGetNotesSlideExistsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideExists", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideExists", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postGetNotesSlideExists", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -20485,6 +26578,42 @@ TEST_F(SlidesApiTest, postGetNotesSlideWithFormat) {
 	utils->initialize("postGetNotesSlideWithFormat", "");
 	HttpContent result = api->postGetNotesSlideWithFormat(request).get();
 	EXPECT_FALSE(result.getData()->eof());
+}
+
+TEST_F(SlidesApiTest, postGetNotesSlideWithFormatDocument) {
+	std::shared_ptr<PostGetNotesSlideWithFormatRequest> request = getPostGetNotesSlideWithFormatRequest();
+	request->setDocument(utils->getInvalidBinaryTestValue("postGetNotesSlideWithFormat", "document", request->getDocument()));
+	utils->initialize("postGetNotesSlideWithFormat", "document", request->getDocument());
+
+	bool failed = true;
+	try
+	{
+		api->postGetNotesSlideWithFormat(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "document");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "document", request->getDocument());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "document");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "document", request->getDocument());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "document"))
+	{
+		FAIL() << "Must have failed";
+	}
 }
 
 TEST_F(SlidesApiTest, postGetNotesSlideWithFormatSlideIndex) {
@@ -20508,6 +26637,14 @@ TEST_F(SlidesApiTest, postGetNotesSlideWithFormatSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "slideIndex"))
 	{
@@ -20537,35 +26674,15 @@ TEST_F(SlidesApiTest, postGetNotesSlideWithFormatFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "format"))
-	{
-		FAIL() << "Must have failed";
-	}
-}
-
-TEST_F(SlidesApiTest, postGetNotesSlideWithFormatDocument) {
-	std::shared_ptr<PostGetNotesSlideWithFormatRequest> request = getPostGetNotesSlideWithFormatRequest();
-	request->setDocument(utils->getInvalidBinaryTestValue("postGetNotesSlideWithFormat", "document", request->getDocument()));
-	utils->initialize("postGetNotesSlideWithFormat", "document", request->getDocument());
-
-	bool failed = true;
-	try
-	{
-		api->postGetNotesSlideWithFormat(request).wait();
-		failed = false;
-	}
-	catch (ApiException ex)
-	{
-		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "document");
-		EXPECT_EQ(code, ex.error_code().value());
-
-		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "document", request->getDocument());
-		std::string contentString;
-		std::ostringstream contentStream;
-		contentStream << ex.getContent()->rdbuf();
-		EXPECT_TRUE(boost::contains(contentStream.str(), message));
-	}
-	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "document"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -20592,6 +26709,14 @@ TEST_F(SlidesApiTest, postGetNotesSlideWithFormatWidth) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "width");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "width", request->getWidth());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "width"))
 	{
@@ -20621,6 +26746,14 @@ TEST_F(SlidesApiTest, postGetNotesSlideWithFormatHeight) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "height");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "height", request->getHeight());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "height"))
 	{
 		FAIL() << "Must have failed";
@@ -20649,6 +26782,14 @@ TEST_F(SlidesApiTest, postGetNotesSlideWithFormatPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -20676,6 +26817,14 @@ TEST_F(SlidesApiTest, postGetNotesSlideWithFormatFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postGetNotesSlideWithFormat", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postGetNotesSlideWithFormat", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postGetNotesSlideWithFormat", "fontsFolder"))
 	{
@@ -20712,6 +26861,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -20739,6 +26896,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "slideIndex"))
 	{
@@ -20768,6 +26933,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -20795,6 +26968,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "dto"))
 	{
@@ -20824,6 +27005,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -20851,6 +27040,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "folder"))
 	{
@@ -20880,6 +27077,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -20907,6 +27112,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewParagraphPosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewParagraph", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewParagraph", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewParagraph", "position"))
 	{
@@ -20943,6 +27156,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -20970,6 +27191,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "slideIndex"))
 	{
@@ -20999,6 +27228,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -21026,6 +27263,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "paragraphIndex"))
 	{
@@ -21055,6 +27300,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -21082,6 +27335,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "password"))
 	{
@@ -21111,6 +27372,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -21139,6 +27408,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -21166,6 +27443,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewPortionPosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewPortion", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewPortion", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewPortion", "position"))
 	{
@@ -21202,6 +27487,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -21229,6 +27522,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "slideIndex"))
 	{
@@ -21258,6 +27559,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapeDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -21285,6 +27594,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "password"))
 	{
@@ -21314,6 +27631,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -21341,6 +27666,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "storage"))
 	{
@@ -21370,6 +27703,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapeShapeToClone) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "shapeToClone");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "shapeToClone", request->getShapeToClone());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "shapeToClone"))
 	{
 		FAIL() << "Must have failed";
@@ -21397,6 +27738,14 @@ TEST_F(SlidesApiTest, postNotesSlideAddNewShapePosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideAddNewShape", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideAddNewShape", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideAddNewShape", "position"))
 	{
@@ -21433,6 +27782,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -21460,6 +27817,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "slideIndex"))
 	{
@@ -21489,6 +27854,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -21516,6 +27889,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsFormat) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "format"))
 	{
@@ -21545,6 +27926,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsOptions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "options"))
 	{
 		FAIL() << "Must have failed";
@@ -21572,6 +27961,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "password"))
 	{
@@ -21601,6 +27998,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -21628,6 +28033,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "storage"))
 	{
@@ -21657,6 +28070,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsScaleX) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "scaleX");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "scaleX", request->getScaleX());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "scaleX"))
 	{
 		FAIL() << "Must have failed";
@@ -21684,6 +28105,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsScaleY) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "scaleY");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "scaleY", request->getScaleY());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "scaleY"))
 	{
@@ -21713,6 +28142,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsBounds) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "bounds");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "bounds", request->getBounds());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "bounds"))
 	{
 		FAIL() << "Must have failed";
@@ -21740,6 +28177,14 @@ TEST_F(SlidesApiTest, postNotesSlideShapeSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postNotesSlideShapeSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postNotesSlideShapeSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postNotesSlideShapeSaveAs", "fontsFolder"))
 	{
@@ -21776,6 +28221,14 @@ TEST_F(SlidesApiTest, postPresentationMergeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postPresentationMerge", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postPresentationMerge", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postPresentationMerge", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -21803,6 +28256,14 @@ TEST_F(SlidesApiTest, postPresentationMergeRequest) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postPresentationMerge", "request");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postPresentationMerge", "request", request->getRequest());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postPresentationMerge", "request"))
 	{
@@ -21832,6 +28293,14 @@ TEST_F(SlidesApiTest, postPresentationMergePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postPresentationMerge", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postPresentationMerge", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postPresentationMerge", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -21859,6 +28328,14 @@ TEST_F(SlidesApiTest, postPresentationMergeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postPresentationMerge", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postPresentationMerge", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postPresentationMerge", "storage"))
 	{
@@ -21888,7 +28365,461 @@ TEST_F(SlidesApiTest, postPresentationMergeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postPresentationMerge", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postPresentationMerge", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postPresentationMerge", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSection) {
+	std::shared_ptr<PostSectionRequest> request = getPostSectionRequest();
+	utils->initialize("postSection", "");
+	std::shared_ptr<Sections> result = api->postSection(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, postSectionName) {
+	std::shared_ptr<PostSectionRequest> request = getPostSectionRequest();
+	request->setName(utils->getInvalidTestValue("postSection", "name", request->getName()));
+	utils->initialize("postSection", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->postSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSection", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSection", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSection", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionSectionName) {
+	std::shared_ptr<PostSectionRequest> request = getPostSectionRequest();
+	request->setSectionName(utils->getInvalidTestValue("postSection", "sectionName", request->getSectionName()));
+	utils->initialize("postSection", "sectionName", request->getSectionName());
+
+	bool failed = true;
+	try
+	{
+		api->postSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSection", "sectionName");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "sectionName", request->getSectionName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSection", "sectionName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "sectionName", request->getSectionName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSection", "sectionName"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionSlideIndex) {
+	std::shared_ptr<PostSectionRequest> request = getPostSectionRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("postSection", "slideIndex", request->getSlideIndex()));
+	utils->initialize("postSection", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSection", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSection", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSection", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionPassword) {
+	std::shared_ptr<PostSectionRequest> request = getPostSectionRequest();
+	request->setPassword(utils->getInvalidTestValue("postSection", "password", request->getPassword()));
+	utils->initialize("postSection", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->postSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSection", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSection", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSection", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionFolder) {
+	std::shared_ptr<PostSectionRequest> request = getPostSectionRequest();
+	request->setFolder(utils->getInvalidTestValue("postSection", "folder", request->getFolder()));
+	utils->initialize("postSection", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->postSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSection", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSection", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSection", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionStorage) {
+	std::shared_ptr<PostSectionRequest> request = getPostSectionRequest();
+	request->setStorage(utils->getInvalidTestValue("postSection", "storage", request->getStorage()));
+	utils->initialize("postSection", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->postSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSection", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSection", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSection", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSection", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionMove) {
+	std::shared_ptr<PostSectionMoveRequest> request = getPostSectionMoveRequest();
+	utils->initialize("postSectionMove", "");
+	std::shared_ptr<Sections> result = api->postSectionMove(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, postSectionMoveName) {
+	std::shared_ptr<PostSectionMoveRequest> request = getPostSectionMoveRequest();
+	request->setName(utils->getInvalidTestValue("postSectionMove", "name", request->getName()));
+	utils->initialize("postSectionMove", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->postSectionMove(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSectionMove", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionMoveSectionIndex) {
+	std::shared_ptr<PostSectionMoveRequest> request = getPostSectionMoveRequest();
+	request->setSectionIndex(utils->getInvalidIntTestValue("postSectionMove", "sectionIndex", request->getSectionIndex()));
+	utils->initialize("postSectionMove", "sectionIndex", request->getSectionIndex());
+
+	bool failed = true;
+	try
+	{
+		api->postSectionMove(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "sectionIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "sectionIndex", request->getSectionIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "sectionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "sectionIndex", request->getSectionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSectionMove", "sectionIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionMoveNewPosition) {
+	std::shared_ptr<PostSectionMoveRequest> request = getPostSectionMoveRequest();
+	request->setNewPosition(utils->getInvalidIntTestValue("postSectionMove", "newPosition", request->getNewPosition()));
+	utils->initialize("postSectionMove", "newPosition", request->getNewPosition());
+
+	bool failed = true;
+	try
+	{
+		api->postSectionMove(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "newPosition");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "newPosition", request->getNewPosition());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "newPosition");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "newPosition", request->getNewPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSectionMove", "newPosition"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionMovePassword) {
+	std::shared_ptr<PostSectionMoveRequest> request = getPostSectionMoveRequest();
+	request->setPassword(utils->getInvalidTestValue("postSectionMove", "password", request->getPassword()));
+	utils->initialize("postSectionMove", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->postSectionMove(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSectionMove", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionMoveFolder) {
+	std::shared_ptr<PostSectionMoveRequest> request = getPostSectionMoveRequest();
+	request->setFolder(utils->getInvalidTestValue("postSectionMove", "folder", request->getFolder()));
+	utils->initialize("postSectionMove", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->postSectionMove(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSectionMove", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSectionMoveStorage) {
+	std::shared_ptr<PostSectionMoveRequest> request = getPostSectionMoveRequest();
+	request->setStorage(utils->getInvalidTestValue("postSectionMove", "storage", request->getStorage()));
+	utils->initialize("postSectionMove", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->postSectionMove(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSectionMove", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSectionMove", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSectionMove", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -21923,6 +28854,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -21950,6 +28889,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "slideIndex"))
 	{
@@ -21979,6 +28926,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -22006,6 +28961,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsFormat) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "format"))
 	{
@@ -22035,6 +28998,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsOptions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "options"))
 	{
 		FAIL() << "Must have failed";
@@ -22062,6 +29033,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "password"))
 	{
@@ -22091,6 +29070,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -22118,6 +29105,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "storage"))
 	{
@@ -22147,6 +29142,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsScaleX) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "scaleX");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "scaleX", request->getScaleX());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "scaleX"))
 	{
 		FAIL() << "Must have failed";
@@ -22174,6 +29177,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsScaleY) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "scaleY");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "scaleY", request->getScaleY());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "scaleY"))
 	{
@@ -22203,6 +29214,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsBounds) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "bounds");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "bounds", request->getBounds());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "bounds"))
 	{
 		FAIL() << "Must have failed";
@@ -22230,6 +29249,14 @@ TEST_F(SlidesApiTest, postShapeSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postShapeSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postShapeSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postShapeSaveAs", "fontsFolder"))
 	{
@@ -22266,6 +29293,14 @@ TEST_F(SlidesApiTest, postSlideAnimationEffectName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationEffect", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationEffect", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationEffect", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -22293,6 +29328,14 @@ TEST_F(SlidesApiTest, postSlideAnimationEffectSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationEffect", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationEffect", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationEffect", "slideIndex"))
 	{
@@ -22322,6 +29365,14 @@ TEST_F(SlidesApiTest, postSlideAnimationEffectEffect) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationEffect", "effect");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationEffect", "effect", request->getEffect());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationEffect", "effect"))
 	{
 		FAIL() << "Must have failed";
@@ -22349,6 +29400,14 @@ TEST_F(SlidesApiTest, postSlideAnimationEffectPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationEffect", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationEffect", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationEffect", "password"))
 	{
@@ -22378,6 +29437,14 @@ TEST_F(SlidesApiTest, postSlideAnimationEffectFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationEffect", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationEffect", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationEffect", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -22405,6 +29472,14 @@ TEST_F(SlidesApiTest, postSlideAnimationEffectStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationEffect", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationEffect", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationEffect", "storage"))
 	{
@@ -22441,6 +29516,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequence", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequence", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequence", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -22468,6 +29551,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequence", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequence", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequence", "slideIndex"))
 	{
@@ -22497,6 +29588,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceSequence) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequence", "sequence");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequence", "sequence", request->getSequence());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequence", "sequence"))
 	{
 		FAIL() << "Must have failed";
@@ -22524,6 +29623,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequencePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequence", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequence", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequence", "password"))
 	{
@@ -22553,6 +29660,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequence", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequence", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequence", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -22580,6 +29695,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequence", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequence", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequence", "storage"))
 	{
@@ -22616,6 +29739,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequenceEffect", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequenceEffect", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequenceEffect", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -22643,6 +29774,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequenceEffect", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequenceEffect", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequenceEffect", "slideIndex"))
 	{
@@ -22672,6 +29811,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectSequenceIndex) 
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequenceEffect", "sequenceIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequenceEffect", "sequenceIndex", request->getSequenceIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequenceEffect", "sequenceIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -22699,6 +29846,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectEffect) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequenceEffect", "effect");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequenceEffect", "effect"))
 	{
@@ -22728,6 +29883,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequenceEffect", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequenceEffect", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequenceEffect", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -22756,6 +29919,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequenceEffect", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequenceEffect", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequenceEffect", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -22783,6 +29954,14 @@ TEST_F(SlidesApiTest, postSlideAnimationInteractiveSequenceEffectStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideAnimationInteractiveSequenceEffect", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideAnimationInteractiveSequenceEffect", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideAnimationInteractiveSequenceEffect", "storage"))
 	{
@@ -22819,6 +29998,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -22846,6 +30033,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "slideIndex"))
 	{
@@ -22875,6 +30070,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -22902,6 +30105,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsOptions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "options"))
 	{
@@ -22931,6 +30142,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsWidth) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "width");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "width", request->getWidth());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "width"))
 	{
 		FAIL() << "Must have failed";
@@ -22958,6 +30177,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsHeight) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "height");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "height", request->getHeight());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "height"))
 	{
@@ -22987,6 +30214,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -23014,6 +30249,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "folder"))
 	{
@@ -23043,6 +30286,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -23070,6 +30321,14 @@ TEST_F(SlidesApiTest, postSlideSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlideSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlideSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlideSaveAs", "fontsFolder"))
 	{
@@ -23106,6 +30365,14 @@ TEST_F(SlidesApiTest, postSlidesAddName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesAdd", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesAdd", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesAdd", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -23133,6 +30400,14 @@ TEST_F(SlidesApiTest, postSlidesAddPosition) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesAdd", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesAdd", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesAdd", "position"))
 	{
@@ -23162,6 +30437,14 @@ TEST_F(SlidesApiTest, postSlidesAddPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesAdd", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesAdd", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesAdd", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -23189,6 +30472,14 @@ TEST_F(SlidesApiTest, postSlidesAddFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesAdd", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesAdd", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesAdd", "folder"))
 	{
@@ -23218,6 +30509,14 @@ TEST_F(SlidesApiTest, postSlidesAddStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesAdd", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesAdd", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesAdd", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -23246,6 +30545,14 @@ TEST_F(SlidesApiTest, postSlidesAddLayoutAlias) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesAdd", "layoutAlias");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesAdd", "layoutAlias", request->getLayoutAlias());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesAdd", "layoutAlias"))
 	{
 		FAIL() << "Must have failed";
@@ -23257,34 +30564,6 @@ TEST_F(SlidesApiTest, postSlidesConvert) {
 	utils->initialize("postSlidesConvert", "");
 	HttpContent result = api->postSlidesConvert(request).get();
 	EXPECT_FALSE(result.getData()->eof());
-}
-
-TEST_F(SlidesApiTest, postSlidesConvertFormat) {
-	std::shared_ptr<PostSlidesConvertRequest> request = getPostSlidesConvertRequest();
-	request->setFormat(utils->getInvalidTestValue("postSlidesConvert", "format", request->getFormat()));
-	utils->initialize("postSlidesConvert", "format", request->getFormat());
-
-	bool failed = true;
-	try
-	{
-		api->postSlidesConvert(request).wait();
-		failed = false;
-	}
-	catch (ApiException ex)
-	{
-		int code = utils->getExpectedCode("postSlidesConvert", "format");
-		EXPECT_EQ(code, ex.error_code().value());
-
-		utility::string_t message = utils->getExpectedMessage("postSlidesConvert", "format", request->getFormat());
-		std::string contentString;
-		std::ostringstream contentStream;
-		contentStream << ex.getContent()->rdbuf();
-		EXPECT_TRUE(boost::contains(contentStream.str(), message));
-	}
-	if (!failed && utils->mustFail("postSlidesConvert", "format"))
-	{
-		FAIL() << "Must have failed";
-	}
 }
 
 TEST_F(SlidesApiTest, postSlidesConvertDocument) {
@@ -23309,7 +30588,51 @@ TEST_F(SlidesApiTest, postSlidesConvertDocument) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesConvert", "document");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesConvert", "document", request->getDocument());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesConvert", "document"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, postSlidesConvertFormat) {
+	std::shared_ptr<PostSlidesConvertRequest> request = getPostSlidesConvertRequest();
+	request->setFormat(utils->getInvalidTestValue("postSlidesConvert", "format", request->getFormat()));
+	utils->initialize("postSlidesConvert", "format", request->getFormat());
+
+	bool failed = true;
+	try
+	{
+		api->postSlidesConvert(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("postSlidesConvert", "format");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesConvert", "format", request->getFormat());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesConvert", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesConvert", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("postSlidesConvert", "format"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -23336,6 +30659,14 @@ TEST_F(SlidesApiTest, postSlidesConvertPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesConvert", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesConvert", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesConvert", "password"))
 	{
@@ -23364,6 +30695,14 @@ TEST_F(SlidesApiTest, postSlidesConvertFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesConvert", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesConvert", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesConvert", "fontsFolder"))
 	{
@@ -23400,6 +30739,14 @@ TEST_F(SlidesApiTest, postSlidesCopyName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesCopy", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -23427,6 +30774,14 @@ TEST_F(SlidesApiTest, postSlidesCopySlideToCopy) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "slideToCopy");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "slideToCopy", request->getSlideToCopy());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesCopy", "slideToCopy"))
 	{
@@ -23456,6 +30811,14 @@ TEST_F(SlidesApiTest, postSlidesCopyPosition) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "position");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "position", request->getPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesCopy", "position"))
 	{
 		FAIL() << "Must have failed";
@@ -23483,6 +30846,14 @@ TEST_F(SlidesApiTest, postSlidesCopySource) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "source");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "source", request->getSource());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesCopy", "source"))
 	{
@@ -23512,6 +30883,14 @@ TEST_F(SlidesApiTest, postSlidesCopySourcePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "sourcePassword");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "sourcePassword", request->getSourcePassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesCopy", "sourcePassword"))
 	{
 		FAIL() << "Must have failed";
@@ -23539,6 +30918,14 @@ TEST_F(SlidesApiTest, postSlidesCopySourceStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "sourceStorage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "sourceStorage", request->getSourceStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesCopy", "sourceStorage"))
 	{
@@ -23568,6 +30955,14 @@ TEST_F(SlidesApiTest, postSlidesCopyPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesCopy", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -23596,6 +30991,14 @@ TEST_F(SlidesApiTest, postSlidesCopyFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesCopy", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -23623,6 +31026,14 @@ TEST_F(SlidesApiTest, postSlidesCopyStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesCopy", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesCopy", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesCopy", "storage"))
 	{
@@ -23659,6 +31070,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocument", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocument", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocument", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -23686,6 +31105,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentData) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocument", "data");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocument", "data", request->getData());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocument", "data"))
 	{
@@ -23715,6 +31142,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentInputPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocument", "inputPassword");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocument", "inputPassword", request->getInputPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocument", "inputPassword"))
 	{
 		FAIL() << "Must have failed";
@@ -23742,6 +31177,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocument", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocument", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocument", "password"))
 	{
@@ -23771,6 +31214,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocument", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocument", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocument", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -23798,6 +31249,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocument", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocument", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocument", "folder"))
 	{
@@ -23834,6 +31293,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromHtmlName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromHtml", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromHtml", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromHtml", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -23861,6 +31328,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromHtmlHtml) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromHtml", "html");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromHtml", "html", request->getHtml());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromHtml", "html"))
 	{
@@ -23890,6 +31365,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromHtmlPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromHtml", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromHtml", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromHtml", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -23918,6 +31401,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromHtmlStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromHtml", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromHtml", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromHtml", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -23945,6 +31436,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromHtmlFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromHtml", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromHtml", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromHtml", "folder"))
 	{
@@ -23981,6 +31480,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromSourceName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromSource", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromSource", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromSource", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -24008,6 +31515,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromSourceSourcePath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromSource", "sourcePath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromSource", "sourcePath", request->getSourcePath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromSource", "sourcePath"))
 	{
@@ -24037,6 +31552,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromSourceSourcePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromSource", "sourcePassword");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromSource", "sourcePassword", request->getSourcePassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromSource", "sourcePassword"))
 	{
 		FAIL() << "Must have failed";
@@ -24064,6 +31587,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromSourceSourceStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromSource", "sourceStorage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromSource", "sourceStorage", request->getSourceStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromSource", "sourceStorage"))
 	{
@@ -24093,6 +31624,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromSourcePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromSource", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromSource", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromSource", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -24121,6 +31660,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromSourceStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromSource", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromSource", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromSource", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -24148,6 +31695,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromSourceFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromSource", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromSource", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromSource", "folder"))
 	{
@@ -24184,6 +31739,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -24211,6 +31774,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateTemplatePath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "templatePath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "templatePath", request->getTemplatePath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "templatePath"))
 	{
@@ -24240,6 +31811,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateData) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "data");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "data", request->getData());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "data"))
 	{
 		FAIL() << "Must have failed";
@@ -24267,6 +31846,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateTemplatePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "templatePassword");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "templatePassword", request->getTemplatePassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "templatePassword"))
 	{
@@ -24296,6 +31883,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateTemplateStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "templateStorage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "templateStorage", request->getTemplateStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "templateStorage"))
 	{
 		FAIL() << "Must have failed";
@@ -24323,6 +31918,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateIsImageDataEmbedded) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "isImageDataEmbedded");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "isImageDataEmbedded", request->getIsImageDataEmbedded());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "isImageDataEmbedded"))
 	{
@@ -24352,6 +31955,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplatePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -24380,6 +31991,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -24407,6 +32026,14 @@ TEST_F(SlidesApiTest, postSlidesDocumentFromTemplateFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesDocumentFromTemplate", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesDocumentFromTemplate", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesDocumentFromTemplate", "folder"))
 	{
@@ -24443,6 +32070,14 @@ TEST_F(SlidesApiTest, postSlidesPipelinePipeline) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPipeline", "pipeline");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPipeline", "pipeline", request->getPipeline());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesPipeline", "pipeline"))
 	{
 		FAIL() << "Must have failed";
@@ -24478,6 +32113,14 @@ TEST_F(SlidesApiTest, postSlidesPresentationReplaceTextName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPresentationReplaceText", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPresentationReplaceText", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesPresentationReplaceText", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -24505,6 +32148,14 @@ TEST_F(SlidesApiTest, postSlidesPresentationReplaceTextOldValue) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPresentationReplaceText", "oldValue");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPresentationReplaceText", "oldValue", request->getOldValue());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesPresentationReplaceText", "oldValue"))
 	{
@@ -24534,6 +32185,14 @@ TEST_F(SlidesApiTest, postSlidesPresentationReplaceTextNewValue) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPresentationReplaceText", "newValue");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPresentationReplaceText", "newValue", request->getNewValue());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesPresentationReplaceText", "newValue"))
 	{
 		FAIL() << "Must have failed";
@@ -24561,6 +32220,14 @@ TEST_F(SlidesApiTest, postSlidesPresentationReplaceTextIgnoreCase) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPresentationReplaceText", "ignoreCase");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPresentationReplaceText", "ignoreCase", request->getIgnoreCase());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesPresentationReplaceText", "ignoreCase"))
 	{
@@ -24590,6 +32257,14 @@ TEST_F(SlidesApiTest, postSlidesPresentationReplaceTextPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPresentationReplaceText", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPresentationReplaceText", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesPresentationReplaceText", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -24618,6 +32293,14 @@ TEST_F(SlidesApiTest, postSlidesPresentationReplaceTextFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPresentationReplaceText", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPresentationReplaceText", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesPresentationReplaceText", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -24645,6 +32328,14 @@ TEST_F(SlidesApiTest, postSlidesPresentationReplaceTextStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesPresentationReplaceText", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesPresentationReplaceText", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesPresentationReplaceText", "storage"))
 	{
@@ -24681,6 +32372,14 @@ TEST_F(SlidesApiTest, postSlidesReorderName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorder", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorder", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesReorder", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -24708,6 +32407,14 @@ TEST_F(SlidesApiTest, postSlidesReorderSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorder", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorder", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesReorder", "slideIndex"))
 	{
@@ -24737,6 +32444,14 @@ TEST_F(SlidesApiTest, postSlidesReorderNewPosition) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorder", "newPosition");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorder", "newPosition", request->getNewPosition());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesReorder", "newPosition"))
 	{
 		FAIL() << "Must have failed";
@@ -24764,6 +32479,14 @@ TEST_F(SlidesApiTest, postSlidesReorderPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorder", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorder", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesReorder", "password"))
 	{
@@ -24793,6 +32516,14 @@ TEST_F(SlidesApiTest, postSlidesReorderFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorder", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorder", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesReorder", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -24820,6 +32551,14 @@ TEST_F(SlidesApiTest, postSlidesReorderStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorder", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorder", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesReorder", "storage"))
 	{
@@ -24856,6 +32595,14 @@ TEST_F(SlidesApiTest, postSlidesReorderManyName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorderMany", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorderMany", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesReorderMany", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -24883,6 +32630,14 @@ TEST_F(SlidesApiTest, postSlidesReorderManyOldPositions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorderMany", "oldPositions");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorderMany", "oldPositions", request->getOldPositions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesReorderMany", "oldPositions"))
 	{
@@ -24912,6 +32667,14 @@ TEST_F(SlidesApiTest, postSlidesReorderManyNewPositions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorderMany", "newPositions");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorderMany", "newPositions", request->getNewPositions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesReorderMany", "newPositions"))
 	{
 		FAIL() << "Must have failed";
@@ -24939,6 +32702,14 @@ TEST_F(SlidesApiTest, postSlidesReorderManyPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorderMany", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorderMany", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesReorderMany", "password"))
 	{
@@ -24968,6 +32739,14 @@ TEST_F(SlidesApiTest, postSlidesReorderManyFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorderMany", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorderMany", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesReorderMany", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -24995,6 +32774,14 @@ TEST_F(SlidesApiTest, postSlidesReorderManyStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesReorderMany", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesReorderMany", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesReorderMany", "storage"))
 	{
@@ -25031,6 +32818,14 @@ TEST_F(SlidesApiTest, postSlidesSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -25058,6 +32853,14 @@ TEST_F(SlidesApiTest, postSlidesSaveAsFormat) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSaveAs", "format"))
 	{
@@ -25087,6 +32890,14 @@ TEST_F(SlidesApiTest, postSlidesSaveAsOptions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSaveAs", "options"))
 	{
 		FAIL() << "Must have failed";
@@ -25114,6 +32925,14 @@ TEST_F(SlidesApiTest, postSlidesSaveAsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSaveAs", "password"))
 	{
@@ -25143,6 +32962,14 @@ TEST_F(SlidesApiTest, postSlidesSaveAsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSaveAs", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -25171,6 +32998,14 @@ TEST_F(SlidesApiTest, postSlidesSaveAsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSaveAs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -25198,6 +33033,14 @@ TEST_F(SlidesApiTest, postSlidesSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSaveAs", "fontsFolder"))
 	{
@@ -25234,6 +33077,14 @@ TEST_F(SlidesApiTest, postSlidesSetDocumentPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSetDocumentProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSetDocumentProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSetDocumentProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -25261,6 +33112,14 @@ TEST_F(SlidesApiTest, postSlidesSetDocumentPropertiesProperties) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSetDocumentProperties", "properties");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSetDocumentProperties", "properties", request->getProperties());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSetDocumentProperties", "properties"))
 	{
@@ -25290,6 +33149,14 @@ TEST_F(SlidesApiTest, postSlidesSetDocumentPropertiesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSetDocumentProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSetDocumentProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSetDocumentProperties", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -25318,6 +33185,14 @@ TEST_F(SlidesApiTest, postSlidesSetDocumentPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSetDocumentProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSetDocumentProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSetDocumentProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -25345,6 +33220,14 @@ TEST_F(SlidesApiTest, postSlidesSetDocumentPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSetDocumentProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSetDocumentProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSetDocumentProperties", "storage"))
 	{
@@ -25381,6 +33264,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -25408,6 +33299,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "slideIndex"))
 	{
@@ -25437,6 +33336,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextOldValue) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "oldValue");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "oldValue", request->getOldValue());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "oldValue"))
 	{
 		FAIL() << "Must have failed";
@@ -25464,6 +33371,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextNewValue) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "newValue");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "newValue", request->getNewValue());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "newValue"))
 	{
@@ -25493,6 +33408,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextIgnoreCase) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "ignoreCase");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "ignoreCase", request->getIgnoreCase());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "ignoreCase"))
 	{
 		FAIL() << "Must have failed";
@@ -25520,6 +33443,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "password"))
 	{
@@ -25549,6 +33480,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -25576,6 +33515,14 @@ TEST_F(SlidesApiTest, postSlidesSlideReplaceTextStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSlideReplaceText", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSlideReplaceText", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSlideReplaceText", "storage"))
 	{
@@ -25612,6 +33559,14 @@ TEST_F(SlidesApiTest, postSlidesSplitName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSplit", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -25639,6 +33594,14 @@ TEST_F(SlidesApiTest, postSlidesSplitOptions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSplit", "options"))
 	{
@@ -25668,6 +33631,14 @@ TEST_F(SlidesApiTest, postSlidesSplitFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSplit", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -25695,6 +33666,14 @@ TEST_F(SlidesApiTest, postSlidesSplitWidth) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "width");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "width", request->getWidth());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSplit", "width"))
 	{
@@ -25724,6 +33703,14 @@ TEST_F(SlidesApiTest, postSlidesSplitHeight) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "height");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "height", request->getHeight());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSplit", "height"))
 	{
 		FAIL() << "Must have failed";
@@ -25751,6 +33738,14 @@ TEST_F(SlidesApiTest, postSlidesSplitTo) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "to");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "to", request->getTo());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSplit", "to"))
 	{
@@ -25780,6 +33775,14 @@ TEST_F(SlidesApiTest, postSlidesSplitFrom) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "from");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "from", request->getFrom());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSplit", "from"))
 	{
 		FAIL() << "Must have failed";
@@ -25807,6 +33810,14 @@ TEST_F(SlidesApiTest, postSlidesSplitDestFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "destFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "destFolder", request->getDestFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSplit", "destFolder"))
 	{
@@ -25836,6 +33847,14 @@ TEST_F(SlidesApiTest, postSlidesSplitPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSplit", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -25863,6 +33882,14 @@ TEST_F(SlidesApiTest, postSlidesSplitStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSplit", "storage"))
 	{
@@ -25892,6 +33919,14 @@ TEST_F(SlidesApiTest, postSlidesSplitFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSlidesSplit", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -25919,6 +33954,14 @@ TEST_F(SlidesApiTest, postSlidesSplitFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSlidesSplit", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSlidesSplit", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSlidesSplit", "fontsFolder"))
 	{
@@ -25955,6 +33998,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -25982,6 +34033,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "slideIndex"))
 	{
@@ -26011,6 +34070,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -26038,6 +34105,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "shapeIndex"))
 	{
@@ -26067,6 +34142,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -26094,6 +34177,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsOptions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "options"))
 	{
@@ -26123,6 +34214,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -26150,6 +34249,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "folder"))
 	{
@@ -26179,6 +34286,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -26206,6 +34321,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsScaleX) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "scaleX");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "scaleX", request->getScaleX());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "scaleX"))
 	{
@@ -26235,6 +34358,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsScaleY) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "scaleY");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "scaleY", request->getScaleY());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "scaleY"))
 	{
 		FAIL() << "Must have failed";
@@ -26263,6 +34394,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsBounds) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "bounds");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "bounds", request->getBounds());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "bounds"))
 	{
 		FAIL() << "Must have failed";
@@ -26290,6 +34429,14 @@ TEST_F(SlidesApiTest, postSubshapeSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("postSubshapeSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("postSubshapeSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("postSubshapeSaveAs", "fontsFolder"))
 	{
@@ -26326,6 +34473,14 @@ TEST_F(SlidesApiTest, putChartCategoryName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartCategory", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -26353,6 +34508,14 @@ TEST_F(SlidesApiTest, putChartCategorySlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartCategory", "slideIndex"))
 	{
@@ -26382,6 +34545,14 @@ TEST_F(SlidesApiTest, putChartCategoryShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartCategory", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -26409,6 +34580,14 @@ TEST_F(SlidesApiTest, putChartCategoryCategoryIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "categoryIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "categoryIndex", request->getCategoryIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartCategory", "categoryIndex"))
 	{
@@ -26438,6 +34617,14 @@ TEST_F(SlidesApiTest, putChartCategoryCategory) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "category");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "category", request->getCategory());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartCategory", "category"))
 	{
 		FAIL() << "Must have failed";
@@ -26465,6 +34652,14 @@ TEST_F(SlidesApiTest, putChartCategoryPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartCategory", "password"))
 	{
@@ -26494,6 +34689,14 @@ TEST_F(SlidesApiTest, putChartCategoryFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartCategory", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -26521,6 +34724,14 @@ TEST_F(SlidesApiTest, putChartCategoryStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartCategory", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartCategory", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartCategory", "storage"))
 	{
@@ -26557,6 +34768,14 @@ TEST_F(SlidesApiTest, putChartDataPointName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartDataPoint", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -26584,6 +34803,14 @@ TEST_F(SlidesApiTest, putChartDataPointSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartDataPoint", "slideIndex"))
 	{
@@ -26613,6 +34840,14 @@ TEST_F(SlidesApiTest, putChartDataPointShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartDataPoint", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -26640,6 +34875,14 @@ TEST_F(SlidesApiTest, putChartDataPointSeriesIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "seriesIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "seriesIndex", request->getSeriesIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartDataPoint", "seriesIndex"))
 	{
@@ -26669,6 +34912,14 @@ TEST_F(SlidesApiTest, putChartDataPointPointIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "pointIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "pointIndex", request->getPointIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartDataPoint", "pointIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -26696,6 +34947,14 @@ TEST_F(SlidesApiTest, putChartDataPointDataPoint) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "dataPoint");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "dataPoint", request->getDataPoint());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartDataPoint", "dataPoint"))
 	{
@@ -26725,6 +34984,14 @@ TEST_F(SlidesApiTest, putChartDataPointPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartDataPoint", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -26753,6 +35020,14 @@ TEST_F(SlidesApiTest, putChartDataPointFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartDataPoint", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -26780,6 +35055,14 @@ TEST_F(SlidesApiTest, putChartDataPointStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartDataPoint", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartDataPoint", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartDataPoint", "storage"))
 	{
@@ -26816,6 +35099,14 @@ TEST_F(SlidesApiTest, putChartSeriesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartSeries", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -26843,6 +35134,14 @@ TEST_F(SlidesApiTest, putChartSeriesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartSeries", "slideIndex"))
 	{
@@ -26872,6 +35171,14 @@ TEST_F(SlidesApiTest, putChartSeriesShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartSeries", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -26899,6 +35206,14 @@ TEST_F(SlidesApiTest, putChartSeriesSeriesIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "seriesIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "seriesIndex", request->getSeriesIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartSeries", "seriesIndex"))
 	{
@@ -26928,6 +35243,14 @@ TEST_F(SlidesApiTest, putChartSeriesSeries) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "series");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "series", request->getSeries());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartSeries", "series"))
 	{
 		FAIL() << "Must have failed";
@@ -26955,6 +35278,14 @@ TEST_F(SlidesApiTest, putChartSeriesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartSeries", "password"))
 	{
@@ -26984,6 +35315,14 @@ TEST_F(SlidesApiTest, putChartSeriesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putChartSeries", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -27011,6 +35350,14 @@ TEST_F(SlidesApiTest, putChartSeriesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putChartSeries", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putChartSeries", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putChartSeries", "storage"))
 	{
@@ -27047,6 +35394,14 @@ TEST_F(SlidesApiTest, putLayoutSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putLayoutSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putLayoutSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putLayoutSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -27074,6 +35429,14 @@ TEST_F(SlidesApiTest, putLayoutSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putLayoutSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putLayoutSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putLayoutSlide", "slideIndex"))
 	{
@@ -27103,6 +35466,14 @@ TEST_F(SlidesApiTest, putLayoutSlideSlideDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putLayoutSlide", "slideDto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putLayoutSlide", "slideDto", request->getSlideDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putLayoutSlide", "slideDto"))
 	{
 		FAIL() << "Must have failed";
@@ -27130,6 +35501,14 @@ TEST_F(SlidesApiTest, putLayoutSlidePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putLayoutSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putLayoutSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putLayoutSlide", "password"))
 	{
@@ -27159,6 +35538,14 @@ TEST_F(SlidesApiTest, putLayoutSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putLayoutSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putLayoutSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putLayoutSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -27187,7 +35574,238 @@ TEST_F(SlidesApiTest, putLayoutSlideStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putLayoutSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putLayoutSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putLayoutSlide", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putNotesSlideHeaderFooter) {
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = getPutNotesSlideHeaderFooterRequest();
+	utils->initialize("putNotesSlideHeaderFooter", "");
+	std::shared_ptr<NotesSlideHeaderFooter> result = api->putNotesSlideHeaderFooter(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putNotesSlideHeaderFooterName) {
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = getPutNotesSlideHeaderFooterRequest();
+	request->setName(utils->getInvalidTestValue("putNotesSlideHeaderFooter", "name", request->getName()));
+	utils->initialize("putNotesSlideHeaderFooter", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putNotesSlideHeaderFooter", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putNotesSlideHeaderFooterSlideIndex) {
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = getPutNotesSlideHeaderFooterRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("putNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex()));
+	utils->initialize("putNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putNotesSlideHeaderFooter", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putNotesSlideHeaderFooterDto) {
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = getPutNotesSlideHeaderFooterRequest();
+	request->setDto(utils->getInvalidTestValueForClass<>("putNotesSlideHeaderFooter", "dto", request->getDto()));
+	utils->initialize("putNotesSlideHeaderFooter", "dto", request->getDto());
+
+	bool failed = true;
+	try
+	{
+		api->putNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "dto");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "dto", request->getDto());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putNotesSlideHeaderFooter", "dto"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putNotesSlideHeaderFooterPassword) {
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = getPutNotesSlideHeaderFooterRequest();
+	request->setPassword(utils->getInvalidTestValue("putNotesSlideHeaderFooter", "password", request->getPassword()));
+	utils->initialize("putNotesSlideHeaderFooter", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putNotesSlideHeaderFooter", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putNotesSlideHeaderFooterStorage) {
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = getPutNotesSlideHeaderFooterRequest();
+	request->setStorage(utils->getInvalidTestValue("putNotesSlideHeaderFooter", "storage", request->getStorage()));
+	utils->initialize("putNotesSlideHeaderFooter", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putNotesSlideHeaderFooter", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putNotesSlideHeaderFooterFolder) {
+	std::shared_ptr<PutNotesSlideHeaderFooterRequest> request = getPutNotesSlideHeaderFooterRequest();
+	request->setFolder(utils->getInvalidTestValue("putNotesSlideHeaderFooter", "folder", request->getFolder()));
+	utils->initialize("putNotesSlideHeaderFooter", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putNotesSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideHeaderFooter", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putNotesSlideHeaderFooter", "folder"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -27221,6 +35839,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -27248,6 +35874,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "slideIndex"))
 	{
@@ -27277,6 +35911,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -27304,6 +35946,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsFormat) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "format"))
 	{
@@ -27333,6 +35983,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsOutPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "outPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "outPath", request->getOutPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "outPath"))
 	{
 		FAIL() << "Must have failed";
@@ -27360,6 +36018,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsOptions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "options"))
 	{
@@ -27389,6 +36055,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -27416,6 +36090,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "folder"))
 	{
@@ -27445,6 +36127,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -27472,6 +36162,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsScaleX) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "scaleX");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "scaleX", request->getScaleX());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "scaleX"))
 	{
@@ -27501,6 +36199,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsScaleY) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "scaleY");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "scaleY", request->getScaleY());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "scaleY"))
 	{
 		FAIL() << "Must have failed";
@@ -27529,6 +36235,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsBounds) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "bounds");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "bounds", request->getBounds());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "bounds"))
 	{
 		FAIL() << "Must have failed";
@@ -27556,6 +36270,14 @@ TEST_F(SlidesApiTest, putNotesSlideShapeSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putNotesSlideShapeSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putNotesSlideShapeSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putNotesSlideShapeSaveAs", "fontsFolder"))
 	{
@@ -27592,6 +36314,14 @@ TEST_F(SlidesApiTest, putPresentationMergeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putPresentationMerge", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putPresentationMerge", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putPresentationMerge", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -27619,6 +36349,14 @@ TEST_F(SlidesApiTest, putPresentationMergeRequest) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putPresentationMerge", "request");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putPresentationMerge", "request", request->getRequest());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putPresentationMerge", "request"))
 	{
@@ -27648,6 +36386,14 @@ TEST_F(SlidesApiTest, putPresentationMergePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putPresentationMerge", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putPresentationMerge", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putPresentationMerge", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -27675,6 +36421,14 @@ TEST_F(SlidesApiTest, putPresentationMergeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putPresentationMerge", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putPresentationMerge", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putPresentationMerge", "storage"))
 	{
@@ -27704,7 +36458,425 @@ TEST_F(SlidesApiTest, putPresentationMergeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putPresentationMerge", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putPresentationMerge", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putPresentationMerge", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSection) {
+	std::shared_ptr<PutSectionRequest> request = getPutSectionRequest();
+	utils->initialize("putSection", "");
+	std::shared_ptr<Sections> result = api->putSection(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putSectionName) {
+	std::shared_ptr<PutSectionRequest> request = getPutSectionRequest();
+	request->setName(utils->getInvalidTestValue("putSection", "name", request->getName()));
+	utils->initialize("putSection", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSection", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSection", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSection", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionSectionIndex) {
+	std::shared_ptr<PutSectionRequest> request = getPutSectionRequest();
+	request->setSectionIndex(utils->getInvalidIntTestValue("putSection", "sectionIndex", request->getSectionIndex()));
+	utils->initialize("putSection", "sectionIndex", request->getSectionIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSection", "sectionIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "sectionIndex", request->getSectionIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSection", "sectionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "sectionIndex", request->getSectionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSection", "sectionIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionSectionName) {
+	std::shared_ptr<PutSectionRequest> request = getPutSectionRequest();
+	request->setSectionName(utils->getInvalidTestValue("putSection", "sectionName", request->getSectionName()));
+	utils->initialize("putSection", "sectionName", request->getSectionName());
+
+	bool failed = true;
+	try
+	{
+		api->putSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSection", "sectionName");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "sectionName", request->getSectionName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSection", "sectionName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "sectionName", request->getSectionName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSection", "sectionName"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionPassword) {
+	std::shared_ptr<PutSectionRequest> request = getPutSectionRequest();
+	request->setPassword(utils->getInvalidTestValue("putSection", "password", request->getPassword()));
+	utils->initialize("putSection", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSection", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSection", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSection", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionFolder) {
+	std::shared_ptr<PutSectionRequest> request = getPutSectionRequest();
+	request->setFolder(utils->getInvalidTestValue("putSection", "folder", request->getFolder()));
+	utils->initialize("putSection", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSection", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSection", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSection", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionStorage) {
+	std::shared_ptr<PutSectionRequest> request = getPutSectionRequest();
+	request->setStorage(utils->getInvalidTestValue("putSection", "storage", request->getStorage()));
+	utils->initialize("putSection", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putSection(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSection", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSection", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSection", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSection", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSections) {
+	std::shared_ptr<PutSectionsRequest> request = getPutSectionsRequest();
+	utils->initialize("putSections", "");
+	std::shared_ptr<Sections> result = api->putSections(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putSectionsName) {
+	std::shared_ptr<PutSectionsRequest> request = getPutSectionsRequest();
+	request->setName(utils->getInvalidTestValue("putSections", "name", request->getName()));
+	utils->initialize("putSections", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSections", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSections", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSections", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionsSections) {
+	std::shared_ptr<PutSectionsRequest> request = getPutSectionsRequest();
+	request->setSections(utils->getInvalidTestValueForClass<>("putSections", "sections", request->getSections()));
+	utils->initialize("putSections", "sections", request->getSections());
+
+	bool failed = true;
+	try
+	{
+		api->putSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSections", "sections");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "sections", request->getSections());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSections", "sections");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "sections", request->getSections());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSections", "sections"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionsPassword) {
+	std::shared_ptr<PutSectionsRequest> request = getPutSectionsRequest();
+	request->setPassword(utils->getInvalidTestValue("putSections", "password", request->getPassword()));
+	utils->initialize("putSections", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSections", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSections", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSections", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionsFolder) {
+	std::shared_ptr<PutSectionsRequest> request = getPutSectionsRequest();
+	request->setFolder(utils->getInvalidTestValue("putSections", "folder", request->getFolder()));
+	utils->initialize("putSections", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSections", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSections", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSections", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSectionsStorage) {
+	std::shared_ptr<PutSectionsRequest> request = getPutSectionsRequest();
+	request->setStorage(utils->getInvalidTestValue("putSections", "storage", request->getStorage()));
+	utils->initialize("putSections", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putSections(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSections", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSections", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSections", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSections", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -27739,6 +36911,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -27766,6 +36946,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "slideIndex"))
 	{
@@ -27795,6 +36983,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -27822,6 +37018,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "paragraphIndex"))
 	{
@@ -27851,6 +37055,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesPortionIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "portionIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -27878,6 +37090,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "dto"))
 	{
@@ -27907,6 +37127,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -27935,6 +37163,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -27962,6 +37198,14 @@ TEST_F(SlidesApiTest, putSetParagraphPortionPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphPortionProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphPortionProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphPortionProperties", "storage"))
 	{
@@ -27998,6 +37242,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -28025,6 +37277,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "slideIndex"))
 	{
@@ -28054,6 +37314,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -28081,6 +37349,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "paragraphIndex"))
 	{
@@ -28110,6 +37386,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -28137,6 +37421,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "password"))
 	{
@@ -28166,6 +37458,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -28193,6 +37493,14 @@ TEST_F(SlidesApiTest, putSetParagraphPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetParagraphProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetParagraphProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetParagraphProperties", "storage"))
 	{
@@ -28229,6 +37537,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -28256,6 +37572,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "slideIndex"))
 	{
@@ -28285,6 +37609,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -28312,6 +37644,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "shapeIndex"))
 	{
@@ -28341,6 +37681,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -28368,6 +37716,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesPortionIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "portionIndex"))
 	{
@@ -28397,6 +37753,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -28424,6 +37788,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "password"))
 	{
@@ -28453,6 +37825,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -28480,6 +37860,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPortionPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphPortionProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphPortionProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphPortionProperties", "storage"))
 	{
@@ -28516,6 +37904,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -28543,6 +37939,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "slideIndex"))
 	{
@@ -28572,6 +37976,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -28599,6 +38011,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "shapeIndex"))
 	{
@@ -28628,6 +38048,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesParagraphIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "paragraphIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -28655,6 +38083,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "dto"))
 	{
@@ -28684,6 +38120,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -28712,6 +38156,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -28739,6 +38191,14 @@ TEST_F(SlidesApiTest, putSetSubshapeParagraphPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSetSubshapeParagraphProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSetSubshapeParagraphProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSetSubshapeParagraphProperties", "storage"))
 	{
@@ -28774,6 +38234,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -28801,6 +38269,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "slideIndex"))
 	{
@@ -28830,6 +38306,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -28857,6 +38341,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsFormat) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "format"))
 	{
@@ -28886,6 +38378,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsOutPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "outPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "outPath", request->getOutPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "outPath"))
 	{
 		FAIL() << "Must have failed";
@@ -28913,6 +38413,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsOptions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "options"))
 	{
@@ -28942,6 +38450,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -28969,6 +38485,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "folder"))
 	{
@@ -28998,6 +38522,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -29025,6 +38557,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsScaleX) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "scaleX");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "scaleX", request->getScaleX());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "scaleX"))
 	{
@@ -29054,6 +38594,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsScaleY) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "scaleY");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "scaleY", request->getScaleY());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "scaleY"))
 	{
 		FAIL() << "Must have failed";
@@ -29082,6 +38630,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsBounds) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "bounds");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "bounds", request->getBounds());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "bounds"))
 	{
 		FAIL() << "Must have failed";
@@ -29109,6 +38665,14 @@ TEST_F(SlidesApiTest, putShapeSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putShapeSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putShapeSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putShapeSaveAs", "fontsFolder"))
 	{
@@ -29145,6 +38709,14 @@ TEST_F(SlidesApiTest, putSlideAnimationName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimation", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimation", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimation", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -29172,6 +38744,14 @@ TEST_F(SlidesApiTest, putSlideAnimationSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimation", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimation", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimation", "slideIndex"))
 	{
@@ -29201,6 +38781,14 @@ TEST_F(SlidesApiTest, putSlideAnimationAnimation) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimation", "animation");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimation", "animation", request->getAnimation());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimation", "animation"))
 	{
 		FAIL() << "Must have failed";
@@ -29228,6 +38816,14 @@ TEST_F(SlidesApiTest, putSlideAnimationPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimation", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimation", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimation", "password"))
 	{
@@ -29257,6 +38853,14 @@ TEST_F(SlidesApiTest, putSlideAnimationFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimation", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimation", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimation", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -29284,6 +38888,14 @@ TEST_F(SlidesApiTest, putSlideAnimationStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimation", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimation", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimation", "storage"))
 	{
@@ -29320,6 +38932,14 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationEffect", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationEffect", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationEffect", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -29347,6 +38967,14 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationEffect", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationEffect", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimationEffect", "slideIndex"))
 	{
@@ -29376,6 +39004,14 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectEffectIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationEffect", "effectIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationEffect", "effectIndex", request->getEffectIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationEffect", "effectIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -29403,6 +39039,14 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectEffect) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationEffect", "effect");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationEffect", "effect", request->getEffect());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimationEffect", "effect"))
 	{
@@ -29432,6 +39076,14 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationEffect", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationEffect", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationEffect", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -29460,6 +39112,14 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationEffect", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationEffect", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationEffect", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -29487,6 +39147,14 @@ TEST_F(SlidesApiTest, putSlideAnimationEffectStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationEffect", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationEffect", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimationEffect", "storage"))
 	{
@@ -29523,6 +39191,14 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -29550,6 +39226,14 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "slideIndex"))
 	{
@@ -29579,6 +39263,14 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectSequenceIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "sequenceIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "sequenceIndex", request->getSequenceIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "sequenceIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -29606,6 +39298,14 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectEffectIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "effectIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "effectIndex", request->getEffectIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "effectIndex"))
 	{
@@ -29635,6 +39335,14 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectEffect) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "effect");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "effect", request->getEffect());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "effect"))
 	{
 		FAIL() << "Must have failed";
@@ -29662,6 +39370,14 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "password"))
 	{
@@ -29691,6 +39407,14 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -29719,7 +39443,238 @@ TEST_F(SlidesApiTest, putSlideAnimationInteractiveSequenceEffectStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideAnimationInteractiveSequenceEffect", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideAnimationInteractiveSequenceEffect", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideAnimationInteractiveSequenceEffect", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlideHeaderFooter) {
+	std::shared_ptr<PutSlideHeaderFooterRequest> request = getPutSlideHeaderFooterRequest();
+	utils->initialize("putSlideHeaderFooter", "");
+	std::shared_ptr<HeaderFooter> result = api->putSlideHeaderFooter(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putSlideHeaderFooterName) {
+	std::shared_ptr<PutSlideHeaderFooterRequest> request = getPutSlideHeaderFooterRequest();
+	request->setName(utils->getInvalidTestValue("putSlideHeaderFooter", "name", request->getName()));
+	utils->initialize("putSlideHeaderFooter", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlideHeaderFooter", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlideHeaderFooterSlideIndex) {
+	std::shared_ptr<PutSlideHeaderFooterRequest> request = getPutSlideHeaderFooterRequest();
+	request->setSlideIndex(utils->getInvalidIntTestValue("putSlideHeaderFooter", "slideIndex", request->getSlideIndex()));
+	utils->initialize("putSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+
+	bool failed = true;
+	try
+	{
+		api->putSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlideHeaderFooter", "slideIndex"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlideHeaderFooterDto) {
+	std::shared_ptr<PutSlideHeaderFooterRequest> request = getPutSlideHeaderFooterRequest();
+	request->setDto(utils->getInvalidTestValueForClass<>("putSlideHeaderFooter", "dto", request->getDto()));
+	utils->initialize("putSlideHeaderFooter", "dto", request->getDto());
+
+	bool failed = true;
+	try
+	{
+		api->putSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "dto");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "dto", request->getDto());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlideHeaderFooter", "dto"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlideHeaderFooterPassword) {
+	std::shared_ptr<PutSlideHeaderFooterRequest> request = getPutSlideHeaderFooterRequest();
+	request->setPassword(utils->getInvalidTestValue("putSlideHeaderFooter", "password", request->getPassword()));
+	utils->initialize("putSlideHeaderFooter", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlideHeaderFooter", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlideHeaderFooterFolder) {
+	std::shared_ptr<PutSlideHeaderFooterRequest> request = getPutSlideHeaderFooterRequest();
+	request->setFolder(utils->getInvalidTestValue("putSlideHeaderFooter", "folder", request->getFolder()));
+	utils->initialize("putSlideHeaderFooter", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlideHeaderFooter", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlideHeaderFooterStorage) {
+	std::shared_ptr<PutSlideHeaderFooterRequest> request = getPutSlideHeaderFooterRequest();
+	request->setStorage(utils->getInvalidTestValue("putSlideHeaderFooter", "storage", request->getStorage()));
+	utils->initialize("putSlideHeaderFooter", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putSlideHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideHeaderFooter", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideHeaderFooter", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlideHeaderFooter", "storage"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -29753,6 +39708,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -29780,6 +39743,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "slideIndex"))
 	{
@@ -29809,6 +39780,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -29836,6 +39815,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsOutPath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "outPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "outPath", request->getOutPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "outPath"))
 	{
@@ -29865,6 +39852,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsOptions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "options"))
 	{
 		FAIL() << "Must have failed";
@@ -29892,6 +39887,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsWidth) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "width");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "width", request->getWidth());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "width"))
 	{
@@ -29921,6 +39924,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsHeight) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "height");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "height", request->getHeight());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "height"))
 	{
 		FAIL() << "Must have failed";
@@ -29948,6 +39959,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "password"))
 	{
@@ -29977,6 +39996,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -30005,6 +40032,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -30032,6 +40067,14 @@ TEST_F(SlidesApiTest, putSlideSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSaveAs", "fontsFolder"))
 	{
@@ -30068,6 +40111,14 @@ TEST_F(SlidesApiTest, putSlideShapeInfoName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideShapeInfo", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideShapeInfo", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideShapeInfo", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -30095,6 +40146,14 @@ TEST_F(SlidesApiTest, putSlideShapeInfoSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideShapeInfo", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideShapeInfo", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideShapeInfo", "slideIndex"))
 	{
@@ -30124,6 +40183,14 @@ TEST_F(SlidesApiTest, putSlideShapeInfoShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideShapeInfo", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideShapeInfo", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideShapeInfo", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -30151,6 +40218,14 @@ TEST_F(SlidesApiTest, putSlideShapeInfoDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideShapeInfo", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideShapeInfo", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideShapeInfo", "dto"))
 	{
@@ -30180,6 +40255,14 @@ TEST_F(SlidesApiTest, putSlideShapeInfoPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideShapeInfo", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideShapeInfo", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideShapeInfo", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -30208,6 +40291,14 @@ TEST_F(SlidesApiTest, putSlideShapeInfoFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideShapeInfo", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideShapeInfo", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideShapeInfo", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -30235,6 +40326,14 @@ TEST_F(SlidesApiTest, putSlideShapeInfoStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideShapeInfo", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideShapeInfo", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideShapeInfo", "storage"))
 	{
@@ -30271,6 +40370,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -30298,6 +40405,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "slideIndex"))
 	{
@@ -30327,6 +40442,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -30354,6 +40477,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "shapeIndex"))
 	{
@@ -30383,6 +40514,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -30410,6 +40549,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "password"))
 	{
@@ -30439,6 +40586,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -30467,6 +40622,14 @@ TEST_F(SlidesApiTest, putSlideSubshapeInfoStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlideSubshapeInfo", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlideSubshapeInfo", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlideSubshapeInfo", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -30477,6 +40640,42 @@ TEST_F(SlidesApiTest, putSlidesConvert) {
 	std::shared_ptr<PutSlidesConvertRequest> request = getPutSlidesConvertRequest();
 	utils->initialize("putSlidesConvert", "");
 	api->putSlidesConvert(request).wait();
+}
+
+TEST_F(SlidesApiTest, putSlidesConvertDocument) {
+	std::shared_ptr<PutSlidesConvertRequest> request = getPutSlidesConvertRequest();
+	request->setDocument(utils->getInvalidBinaryTestValue("putSlidesConvert", "document", request->getDocument()));
+	utils->initialize("putSlidesConvert", "document", request->getDocument());
+
+	bool failed = true;
+	try
+	{
+		api->putSlidesConvert(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlidesConvert", "document");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesConvert", "document", request->getDocument());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesConvert", "document");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesConvert", "document", request->getDocument());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlidesConvert", "document"))
+	{
+		FAIL() << "Must have failed";
+	}
 }
 
 TEST_F(SlidesApiTest, putSlidesConvertFormat) {
@@ -30500,6 +40699,14 @@ TEST_F(SlidesApiTest, putSlidesConvertFormat) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesConvert", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesConvert", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesConvert", "format"))
 	{
@@ -30529,35 +40736,15 @@ TEST_F(SlidesApiTest, putSlidesConvertOutPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesConvert", "outPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesConvert", "outPath", request->getOutPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesConvert", "outPath"))
-	{
-		FAIL() << "Must have failed";
-	}
-}
-
-TEST_F(SlidesApiTest, putSlidesConvertDocument) {
-	std::shared_ptr<PutSlidesConvertRequest> request = getPutSlidesConvertRequest();
-	request->setDocument(utils->getInvalidBinaryTestValue("putSlidesConvert", "document", request->getDocument()));
-	utils->initialize("putSlidesConvert", "document", request->getDocument());
-
-	bool failed = true;
-	try
-	{
-		api->putSlidesConvert(request).wait();
-		failed = false;
-	}
-	catch (ApiException ex)
-	{
-		int code = utils->getExpectedCode("putSlidesConvert", "document");
-		EXPECT_EQ(code, ex.error_code().value());
-
-		utility::string_t message = utils->getExpectedMessage("putSlidesConvert", "document", request->getDocument());
-		std::string contentString;
-		std::ostringstream contentStream;
-		contentStream << ex.getContent()->rdbuf();
-		EXPECT_TRUE(boost::contains(contentStream.str(), message));
-	}
-	if (!failed && utils->mustFail("putSlidesConvert", "document"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -30584,6 +40771,14 @@ TEST_F(SlidesApiTest, putSlidesConvertPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesConvert", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesConvert", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesConvert", "password"))
 	{
@@ -30612,6 +40807,14 @@ TEST_F(SlidesApiTest, putSlidesConvertFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesConvert", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesConvert", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesConvert", "fontsFolder"))
 	{
@@ -30648,6 +40851,14 @@ TEST_F(SlidesApiTest, putSlidesDocumentFromHtmlName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesDocumentFromHtml", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesDocumentFromHtml", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesDocumentFromHtml", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -30675,6 +40886,14 @@ TEST_F(SlidesApiTest, putSlidesDocumentFromHtmlHtml) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesDocumentFromHtml", "html");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesDocumentFromHtml", "html", request->getHtml());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesDocumentFromHtml", "html"))
 	{
@@ -30704,6 +40923,14 @@ TEST_F(SlidesApiTest, putSlidesDocumentFromHtmlPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesDocumentFromHtml", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesDocumentFromHtml", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesDocumentFromHtml", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -30731,6 +40958,14 @@ TEST_F(SlidesApiTest, putSlidesDocumentFromHtmlStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesDocumentFromHtml", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesDocumentFromHtml", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesDocumentFromHtml", "storage"))
 	{
@@ -30760,7 +40995,202 @@ TEST_F(SlidesApiTest, putSlidesDocumentFromHtmlFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesDocumentFromHtml", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesDocumentFromHtml", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesDocumentFromHtml", "folder"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlidesHeaderFooter) {
+	std::shared_ptr<PutSlidesHeaderFooterRequest> request = getPutSlidesHeaderFooterRequest();
+	utils->initialize("putSlidesHeaderFooter", "");
+	std::shared_ptr<Document> result = api->putSlidesHeaderFooter(request).get();
+	EXPECT_NE(nullptr, result);
+}
+
+TEST_F(SlidesApiTest, putSlidesHeaderFooterName) {
+	std::shared_ptr<PutSlidesHeaderFooterRequest> request = getPutSlidesHeaderFooterRequest();
+	request->setName(utils->getInvalidTestValue("putSlidesHeaderFooter", "name", request->getName()));
+	utils->initialize("putSlidesHeaderFooter", "name", request->getName());
+
+	bool failed = true;
+	try
+	{
+		api->putSlidesHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "name");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "name", request->getName());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlidesHeaderFooter", "name"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlidesHeaderFooterDto) {
+	std::shared_ptr<PutSlidesHeaderFooterRequest> request = getPutSlidesHeaderFooterRequest();
+	request->setDto(utils->getInvalidTestValueForClass<>("putSlidesHeaderFooter", "dto", request->getDto()));
+	utils->initialize("putSlidesHeaderFooter", "dto", request->getDto());
+
+	bool failed = true;
+	try
+	{
+		api->putSlidesHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "dto");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "dto", request->getDto());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlidesHeaderFooter", "dto"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlidesHeaderFooterPassword) {
+	std::shared_ptr<PutSlidesHeaderFooterRequest> request = getPutSlidesHeaderFooterRequest();
+	request->setPassword(utils->getInvalidTestValue("putSlidesHeaderFooter", "password", request->getPassword()));
+	utils->initialize("putSlidesHeaderFooter", "password", request->getPassword());
+
+	bool failed = true;
+	try
+	{
+		api->putSlidesHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "password");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "password", request->getPassword());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlidesHeaderFooter", "password"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlidesHeaderFooterStorage) {
+	std::shared_ptr<PutSlidesHeaderFooterRequest> request = getPutSlidesHeaderFooterRequest();
+	request->setStorage(utils->getInvalidTestValue("putSlidesHeaderFooter", "storage", request->getStorage()));
+	utils->initialize("putSlidesHeaderFooter", "storage", request->getStorage());
+
+	bool failed = true;
+	try
+	{
+		api->putSlidesHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "storage");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "storage", request->getStorage());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlidesHeaderFooter", "storage"))
+	{
+		FAIL() << "Must have failed";
+	}
+}
+
+TEST_F(SlidesApiTest, putSlidesHeaderFooterFolder) {
+	std::shared_ptr<PutSlidesHeaderFooterRequest> request = getPutSlidesHeaderFooterRequest();
+	request->setFolder(utils->getInvalidTestValue("putSlidesHeaderFooter", "folder", request->getFolder()));
+	utils->initialize("putSlidesHeaderFooter", "folder", request->getFolder());
+
+	bool failed = true;
+	try
+	{
+		api->putSlidesHeaderFooter(request).wait();
+		failed = false;
+	}
+	catch (ApiException ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "folder");
+		EXPECT_EQ(code, ex.error_code().value());
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "folder", request->getFolder());
+		std::string contentString;
+		std::ostringstream contentStream;
+		contentStream << ex.getContent()->rdbuf();
+		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesHeaderFooter", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesHeaderFooter", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
+	if (!failed && utils->mustFail("putSlidesHeaderFooter", "folder"))
 	{
 		FAIL() << "Must have failed";
 	}
@@ -30794,6 +41224,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -30821,6 +41259,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsOutPath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "outPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "outPath", request->getOutPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "outPath"))
 	{
@@ -30850,6 +41296,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -30877,6 +41331,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsOptions) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "options"))
 	{
@@ -30906,6 +41368,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -30933,6 +41403,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "storage"))
 	{
@@ -30962,6 +41440,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -30989,6 +41475,14 @@ TEST_F(SlidesApiTest, putSlidesSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSaveAs", "fontsFolder"))
 	{
@@ -31025,6 +41519,14 @@ TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSetDocumentProperty", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSetDocumentProperty", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSetDocumentProperty", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -31052,6 +41554,14 @@ TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyPropertyName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSetDocumentProperty", "propertyName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSetDocumentProperty", "propertyName", request->getPropertyName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSetDocumentProperty", "propertyName"))
 	{
@@ -31081,6 +41591,14 @@ TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyProperty) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSetDocumentProperty", "property");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSetDocumentProperty", "property", request->getProperty());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSetDocumentProperty", "property"))
 	{
 		FAIL() << "Must have failed";
@@ -31108,6 +41626,14 @@ TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSetDocumentProperty", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSetDocumentProperty", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSetDocumentProperty", "password"))
 	{
@@ -31137,6 +41663,14 @@ TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSetDocumentProperty", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSetDocumentProperty", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSetDocumentProperty", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -31164,6 +41698,14 @@ TEST_F(SlidesApiTest, putSlidesSetDocumentPropertyStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSetDocumentProperty", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSetDocumentProperty", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSetDocumentProperty", "storage"))
 	{
@@ -31200,6 +41742,14 @@ TEST_F(SlidesApiTest, putSlidesSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -31227,6 +41777,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlide", "slideIndex"))
 	{
@@ -31256,6 +41814,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSlideDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlide", "slideDto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlide", "slideDto", request->getSlideDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlide", "slideDto"))
 	{
 		FAIL() << "Must have failed";
@@ -31283,6 +41849,14 @@ TEST_F(SlidesApiTest, putSlidesSlidePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlide", "password"))
 	{
@@ -31312,6 +41886,14 @@ TEST_F(SlidesApiTest, putSlidesSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -31339,6 +41921,14 @@ TEST_F(SlidesApiTest, putSlidesSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlide", "storage"))
 	{
@@ -31375,6 +41965,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackground", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackground", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideBackground", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -31402,6 +42000,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackground", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackground", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideBackground", "slideIndex"))
 	{
@@ -31431,6 +42037,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundBackground) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackground", "background");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackground", "background", request->getBackground());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideBackground", "background"))
 	{
 		FAIL() << "Must have failed";
@@ -31458,6 +42072,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackground", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackground", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideBackground", "folder"))
 	{
@@ -31487,6 +42109,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackground", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackground", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideBackground", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -31514,6 +42144,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackground", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackground", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideBackground", "storage"))
 	{
@@ -31550,6 +42188,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundColorName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackgroundColor", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackgroundColor", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideBackgroundColor", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -31577,6 +42223,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundColorSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackgroundColor", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackgroundColor", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideBackgroundColor", "slideIndex"))
 	{
@@ -31606,6 +42260,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundColorColor) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackgroundColor", "color");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackgroundColor", "color", request->getColor());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideBackgroundColor", "color"))
 	{
 		FAIL() << "Must have failed";
@@ -31633,6 +42295,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundColorFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackgroundColor", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackgroundColor", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideBackgroundColor", "folder"))
 	{
@@ -31662,6 +42332,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundColorPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackgroundColor", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackgroundColor", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideBackgroundColor", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -31689,6 +42367,14 @@ TEST_F(SlidesApiTest, putSlidesSlideBackgroundColorStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideBackgroundColor", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideBackgroundColor", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideBackgroundColor", "storage"))
 	{
@@ -31725,6 +42411,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -31752,6 +42446,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "password"))
 	{
@@ -31781,6 +42483,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizeStorage) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "storage"))
 	{
 		FAIL() << "Must have failed";
@@ -31808,6 +42518,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizeFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "folder"))
 	{
@@ -31837,6 +42555,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizeWidth) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "width");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "width", request->getWidth());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "width"))
 	{
 		FAIL() << "Must have failed";
@@ -31864,6 +42590,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizeHeight) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "height");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "height", request->getHeight());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "height"))
 	{
@@ -31893,6 +42627,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizeSizeType) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "sizeType");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "sizeType", request->getSizeType());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "sizeType"))
 	{
 		FAIL() << "Must have failed";
@@ -31920,6 +42662,14 @@ TEST_F(SlidesApiTest, putSlidesSlideSizeScaleType) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesSlideSize", "scaleType");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesSlideSize", "scaleType", request->getScaleType());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesSlideSize", "scaleType"))
 	{
@@ -31956,6 +42706,14 @@ TEST_F(SlidesApiTest, putSlidesViewPropertiesName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesViewProperties", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesViewProperties", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesViewProperties", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -31983,6 +42741,14 @@ TEST_F(SlidesApiTest, putSlidesViewPropertiesDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesViewProperties", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesViewProperties", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesViewProperties", "dto"))
 	{
@@ -32012,6 +42778,14 @@ TEST_F(SlidesApiTest, putSlidesViewPropertiesPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesViewProperties", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesViewProperties", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesViewProperties", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -32040,6 +42814,14 @@ TEST_F(SlidesApiTest, putSlidesViewPropertiesFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesViewProperties", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesViewProperties", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSlidesViewProperties", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -32067,6 +42849,14 @@ TEST_F(SlidesApiTest, putSlidesViewPropertiesStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSlidesViewProperties", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSlidesViewProperties", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSlidesViewProperties", "storage"))
 	{
@@ -32102,6 +42892,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -32129,6 +42927,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "slideIndex"))
 	{
@@ -32158,6 +42964,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsPath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -32185,6 +42999,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsShapeIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "shapeIndex"))
 	{
@@ -32214,6 +43036,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsFormat) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "format");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "format", request->getFormat());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "format"))
 	{
 		FAIL() << "Must have failed";
@@ -32241,6 +43071,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsOutPath) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "outPath");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "outPath", request->getOutPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "outPath"))
 	{
@@ -32270,6 +43108,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsOptions) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "options");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "options", request->getOptions());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "options"))
 	{
 		FAIL() << "Must have failed";
@@ -32297,6 +43143,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "password"))
 	{
@@ -32326,6 +43180,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -32353,6 +43215,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "storage"))
 	{
@@ -32382,6 +43252,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsScaleX) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "scaleX");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "scaleX", request->getScaleX());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "scaleX"))
 	{
 		FAIL() << "Must have failed";
@@ -32409,6 +43287,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsScaleY) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "scaleY");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "scaleY", request->getScaleY());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "scaleY"))
 	{
@@ -32438,6 +43324,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsBounds) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "bounds");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "bounds", request->getBounds());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "bounds"))
 	{
 		FAIL() << "Must have failed";
@@ -32465,6 +43359,14 @@ TEST_F(SlidesApiTest, putSubshapeSaveAsFontsFolder) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putSubshapeSaveAs", "fontsFolder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putSubshapeSaveAs", "fontsFolder", request->getFontsFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putSubshapeSaveAs", "fontsFolder"))
 	{
@@ -32501,6 +43403,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlide", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlide", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlide", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -32528,6 +43438,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlide", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlide", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlide", "slideIndex"))
 	{
@@ -32557,6 +43475,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlide", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlide", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlide", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -32584,6 +43510,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlidePassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlide", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlide", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlide", "password"))
 	{
@@ -32613,6 +43547,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlide", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlide", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlide", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -32640,6 +43582,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlide", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlide", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlide", "storage"))
 	{
@@ -32676,6 +43626,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShape", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShape", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShape", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -32703,6 +43661,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShape", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShape", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShape", "slideIndex"))
 	{
@@ -32732,6 +43698,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShape", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShape", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShape", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -32759,6 +43733,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShape", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShape", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShape", "dto"))
 	{
@@ -32788,6 +43770,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShape", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShape", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShape", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -32816,6 +43806,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShape", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShape", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShape", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -32843,6 +43841,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShape", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShape", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShape", "storage"))
 	{
@@ -32879,6 +43885,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -32906,6 +43920,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "slideIndex"))
 	{
@@ -32935,6 +43957,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -32962,6 +43992,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "paragraphIndex"))
 	{
@@ -32991,6 +44029,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphDto) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "dto"))
 	{
 		FAIL() << "Must have failed";
@@ -33018,6 +44064,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphPassword) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "password"))
 	{
@@ -33047,6 +44101,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -33074,6 +44136,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapeParagraphStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapeParagraph", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapeParagraph", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapeParagraph", "storage"))
 	{
@@ -33110,6 +44180,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "name");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "name", request->getName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "name"))
 	{
 		FAIL() << "Must have failed";
@@ -33137,6 +44215,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionSlideIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "slideIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "slideIndex", request->getSlideIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "slideIndex"))
 	{
@@ -33166,6 +44252,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionShapeIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "shapeIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "shapeIndex", request->getShapeIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "shapeIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -33193,6 +44287,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionParagraphIndex) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "paragraphIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "paragraphIndex", request->getParagraphIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "paragraphIndex"))
 	{
@@ -33222,6 +44324,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionPortionIndex) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "portionIndex");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "portionIndex", request->getPortionIndex());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "portionIndex"))
 	{
 		FAIL() << "Must have failed";
@@ -33249,6 +44359,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionDto) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "dto");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "dto", request->getDto());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "dto"))
 	{
@@ -33278,6 +44396,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionPassword) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "password");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "password", request->getPassword());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "password"))
 	{
 		FAIL() << "Must have failed";
@@ -33306,6 +44432,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionFolder) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "folder");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "folder", request->getFolder());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "folder"))
 	{
 		FAIL() << "Must have failed";
@@ -33333,6 +44467,14 @@ TEST_F(SlidesApiTest, putUpdateNotesSlideShapePortionStorage) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("putUpdateNotesSlideShapePortion", "storage");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("putUpdateNotesSlideShapePortion", "storage", request->getStorage());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("putUpdateNotesSlideShapePortion", "storage"))
 	{
@@ -33369,6 +44511,14 @@ TEST_F(SlidesApiTest, storageExistsStorageName) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("storageExists", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("storageExists", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("storageExists", "storageName"))
 	{
 		FAIL() << "Must have failed";
@@ -33404,6 +44554,14 @@ TEST_F(SlidesApiTest, uploadFilePath) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("uploadFile", "path");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("uploadFile", "path", request->getPath());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("uploadFile", "path"))
 	{
 		FAIL() << "Must have failed";
@@ -33432,6 +44590,14 @@ TEST_F(SlidesApiTest, uploadFileFile) {
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
 	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("uploadFile", "file");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("uploadFile", "file", request->getFile());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
+	}
 	if (!failed && utils->mustFail("uploadFile", "file"))
 	{
 		FAIL() << "Must have failed";
@@ -33459,6 +44625,14 @@ TEST_F(SlidesApiTest, uploadFileStorageName) {
 		std::ostringstream contentStream;
 		contentStream << ex.getContent()->rdbuf();
 		EXPECT_TRUE(boost::contains(contentStream.str(), message));
+	}
+	catch (std::invalid_argument ex)
+	{
+		int code = utils->getExpectedCode("uploadFile", "storageName");
+		EXPECT_EQ(code, 400);
+
+		utility::string_t message = utils->getExpectedMessage("uploadFile", "storageName", request->getStorageName());
+		EXPECT_TRUE(boost::contains(ex.what(), message));
 	}
 	if (!failed && utils->mustFail("uploadFile", "storageName"))
 	{

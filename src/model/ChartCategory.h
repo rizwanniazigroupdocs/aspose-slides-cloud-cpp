@@ -36,7 +36,6 @@
 
 #include "../model/EffectFormat.h"
 #include "../model/OneValueChartDataPoint.h"
-#include "../model/ChartCategory.h"
 #include <cpprest/details/basic_types.h>
 #include "../model/FillFormat.h"
 #include "../model/LineFormat.h"
@@ -58,10 +57,17 @@ public:
 	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
 
 	/// <summary>
-	/// Gets or sets the categories for chart data
+	/// Gets or sets the parent categories. Used with Sunburst &amp;amp; treemap categories; ignored for other chart types.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ChartCategory>> getCategories() const;
-	ASPOSE_DLL_EXPORT void setCategories(std::vector<std::shared_ptr<ChartCategory>> value);
+	ASPOSE_DLL_EXPORT std::vector<utility::string_t> getParentCategories() const;
+	ASPOSE_DLL_EXPORT void setParentCategories(std::vector<utility::string_t> value);
+	/// <summary>
+	/// Gets or sets the grouping level for the category. Used with Sunburst &amp;amp; treemap categories; ignored for other chart types.
+	/// </summary>
+	ASPOSE_DLL_EXPORT int32_t getLevel() const;
+	ASPOSE_DLL_EXPORT void setLevel(int32_t value);
+	ASPOSE_DLL_EXPORT bool levelIsSet() const;
+	ASPOSE_DLL_EXPORT void unsetLevel();
 	/// <summary>
 	/// Category value
 	/// </summary>
@@ -89,7 +95,9 @@ public:
 	ASPOSE_DLL_EXPORT void setDataPoints(std::vector<std::shared_ptr<OneValueChartDataPoint>> value);
 
 protected:
-	std::vector<std::shared_ptr<ChartCategory>> m_Categories;
+	std::vector<utility::string_t> m_ParentCategories;
+	int32_t m_Level;
+	bool m_LevelIsSet;
 	utility::string_t m_Value;
 	std::shared_ptr<FillFormat> m_FillFormat;
 	std::shared_ptr<EffectFormat> m_EffectFormat;

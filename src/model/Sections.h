@@ -23,31 +23,48 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+/*
+ * Sections.h
+ *
+ * Section list.
+ */
 
+#ifndef _Sections_H_
+#define _Sections_H_
 
-#include "IShapeExportOptions.h"
+#include "ResourceBase.h"
+
+#include "../model/Section.h"
+#include "../model/ResourceBase.h"
+#include "../model/ResourceUri.h"
+#include <vector>
 
 namespace asposeslidescloud {
 namespace model {
 
-IShapeExportOptions::IShapeExportOptions()
+/// <summary>
+/// Section list.
+/// </summary>
+class  Sections : public ResourceBase
 {
+public:
+	ASPOSE_DLL_EXPORT Sections();
+	ASPOSE_DLL_EXPORT virtual ~Sections();
+
+	ASPOSE_DLL_EXPORT web::json::value toJson() const override;
+	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
+
+	/// <summary>
+	/// List of slide links.
+	/// </summary>
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<Section>> getSectionList() const;
+	ASPOSE_DLL_EXPORT void setSectionList(std::vector<std::shared_ptr<Section>> value);
+
+protected:
+	std::vector<std::shared_ptr<Section>> m_SectionList;
+};
+
+}
 }
 
-IShapeExportOptions::~IShapeExportOptions()
-{
-}
-
-web::json::value IShapeExportOptions::toJson() const
-{
-	web::json::value val = web::json::value::object();
-	return val;
-}
-
-void IShapeExportOptions::fromJson(web::json::value& val)
-{
-}
-
-}
-}
-
+#endif /* _Sections_H_ */

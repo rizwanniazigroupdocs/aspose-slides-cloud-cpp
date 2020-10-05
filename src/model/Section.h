@@ -23,31 +23,61 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+/*
+ * Section.h
+ *
+ * Presentation section.
+ */
 
+#ifndef _Section_H_
+#define _Section_H_
 
-#include "IShapeExportOptions.h"
+#include "ResourceBase.h"
+
+#include <cpprest/details/basic_types.h>
+#include "../model/ResourceBase.h"
+#include "../model/ResourceUri.h"
+#include <vector>
+#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
 
-IShapeExportOptions::IShapeExportOptions()
+/// <summary>
+/// Presentation section.
+/// </summary>
+class  Section : public ResourceBase
 {
+public:
+	ASPOSE_DLL_EXPORT Section();
+	ASPOSE_DLL_EXPORT virtual ~Section();
+
+	ASPOSE_DLL_EXPORT web::json::value toJson() const override;
+	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
+
+	/// <summary>
+	/// Name.
+	/// </summary>
+	ASPOSE_DLL_EXPORT utility::string_t getName() const;
+	ASPOSE_DLL_EXPORT void setName(utility::string_t value);
+	/// <summary>
+	/// One-based index of slide with which the section starts.
+	/// </summary>
+	ASPOSE_DLL_EXPORT int32_t getFirstSlideIndex() const;
+	ASPOSE_DLL_EXPORT void setFirstSlideIndex(int32_t value);
+	/// <summary>
+	/// Links to the shapes contained in the section.
+	/// </summary>
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUriElement>> getSlideList() const;
+	ASPOSE_DLL_EXPORT void setSlideList(std::vector<std::shared_ptr<ResourceUriElement>> value);
+
+protected:
+	utility::string_t m_Name;
+	int32_t m_FirstSlideIndex;
+	std::vector<std::shared_ptr<ResourceUriElement>> m_SlideList;
+};
+
+}
 }
 
-IShapeExportOptions::~IShapeExportOptions()
-{
-}
-
-web::json::value IShapeExportOptions::toJson() const
-{
-	web::json::value val = web::json::value::object();
-	return val;
-}
-
-void IShapeExportOptions::fromJson(web::json::value& val)
-{
-}
-
-}
-}
-
+#endif /* _Section_H_ */

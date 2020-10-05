@@ -49,6 +49,16 @@ SlidesApi::~SlidesApi()
 
 pplx::task<void> SlidesApi::copyFile(std::shared_ptr<CopyFileRequest> request)
 {
+	// verify the required parameter 'srcPath' is set
+	if (request->getSrcPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.srcPath");
+	}
+	// verify the required parameter 'destPath' is set
+	if (request->getDestPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.destPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/storage/file/copy/{srcPath}");
 	ApiClient::setPathParameter(path, "srcPath", request->getSrcPath());
 
@@ -81,6 +91,16 @@ pplx::task<void> SlidesApi::copyFile(std::shared_ptr<CopyFileRequest> request)
 
 pplx::task<void> SlidesApi::copyFolder(std::shared_ptr<CopyFolderRequest> request)
 {
+	// verify the required parameter 'srcPath' is set
+	if (request->getSrcPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.srcPath");
+	}
+	// verify the required parameter 'destPath' is set
+	if (request->getDestPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.destPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/storage/folder/copy/{srcPath}");
 	ApiClient::setPathParameter(path, "srcPath", request->getSrcPath());
 
@@ -141,6 +161,11 @@ pplx::task<void> SlidesApi::createFolder(std::shared_ptr<CreateFolderRequest> re
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartCategory(std::shared_ptr<DeleteChartCategoryRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories/{categoryIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -178,6 +203,11 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartCategory(std::shared_pt
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartDataPoint(std::shared_ptr<DeleteChartDataPointRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints/{pointIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -216,6 +246,11 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartDataPoint(std::shared_p
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::deleteChartSeries(std::shared_ptr<DeleteChartSeriesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -316,6 +351,11 @@ pplx::task<void> SlidesApi::deleteFolder(std::shared_ptr<DeleteFolderRequest> re
 
 pplx::task<std::shared_ptr<Slide>> SlidesApi::deleteNotesSlide(std::shared_ptr<DeleteNotesSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -351,6 +391,11 @@ pplx::task<std::shared_ptr<Slide>> SlidesApi::deleteNotesSlide(std::shared_ptr<D
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteNotesSlideParagraph(std::shared_ptr<DeleteNotesSlideParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -388,6 +433,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteNotesSlideParagraph(std
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteNotesSlideParagraphs(std::shared_ptr<DeleteNotesSlideParagraphsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -425,6 +475,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteNotesSlideParagraphs(st
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::deleteNotesSlidePortion(std::shared_ptr<DeleteNotesSlidePortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -463,6 +518,11 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::deleteNotesSlidePortion(std::sh
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::deleteNotesSlidePortions(std::shared_ptr<DeleteNotesSlidePortionsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -501,6 +561,11 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::deleteNotesSlidePortions(std::s
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteNotesSlideShape(std::shared_ptr<DeleteNotesSlideShapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -537,6 +602,11 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteNotesSlideShape(std::shared
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteNotesSlideShapes(std::shared_ptr<DeleteNotesSlideShapesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -573,6 +643,11 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteNotesSlideShapes(std::share
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteParagraph(std::shared_ptr<DeleteParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -610,6 +685,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteParagraph(std::shared_p
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteParagraphs(std::shared_ptr<DeleteParagraphsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -647,6 +727,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteParagraphs(std::shared_
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::deletePortion(std::shared_ptr<DeletePortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -685,6 +770,11 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::deletePortion(std::shared_ptr<D
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::deletePortions(std::shared_ptr<DeletePortionsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -721,8 +811,101 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::deletePortions(std::shared_ptr<
 		});
 }
 
+pplx::task<std::shared_ptr<Sections>> SlidesApi::deleteSection(std::shared_ptr<DeleteSectionRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/sections/{sectionIndex}");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "sectionIndex", request->getSectionIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	if (request->withSlidesIsSet())
+	{
+		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("withSlides"), request->getWithSlides());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling deleteSection: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Sections> result(new Sections());
+			result->fromJson(json);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<Sections>> SlidesApi::deleteSections(std::shared_ptr<DeleteSectionsRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/sections");
+	ApiClient::setPathParameter(path, "name", request->getName());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("sections"), request->getSections());
+	if (request->withSlidesIsSet())
+	{
+		ApiClient::setBoolQueryParameter(queryParams, utility::conversions::to_string_t("withSlides"), request->getWithSlides());
+	}
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("DELETE"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling deleteSections: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Sections> result(new Sections());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimation(std::shared_ptr<DeleteSlideAnimationRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -758,6 +941,11 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimation(std:
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationEffect(std::shared_ptr<DeleteSlideAnimationEffectRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/mainSequence/{effectIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -794,6 +982,11 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationEffec
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationInteractiveSequence(std::shared_ptr<DeleteSlideAnimationInteractiveSequenceRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -830,6 +1023,11 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationInter
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationInteractiveSequenceEffect(std::shared_ptr<DeleteSlideAnimationInteractiveSequenceEffectRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}/{effectIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -867,6 +1065,11 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationInter
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationInteractiveSequences(std::shared_ptr<DeleteSlideAnimationInteractiveSequencesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/interactiveSequences");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -902,6 +1105,11 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationInter
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationMainSequence(std::shared_ptr<DeleteSlideAnimationMainSequenceRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/mainSequence");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -937,6 +1145,11 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::deleteSlideAnimationMainS
 
 pplx::task<std::shared_ptr<Slides>> SlidesApi::deleteSlideByIndex(std::shared_ptr<DeleteSlideByIndexRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -972,6 +1185,11 @@ pplx::task<std::shared_ptr<Slides>> SlidesApi::deleteSlideByIndex(std::shared_pt
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideShape(std::shared_ptr<DeleteSlideShapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1008,6 +1226,11 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideShape(std::shared_ptr<
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideShapes(std::shared_ptr<DeleteSlideShapesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1044,6 +1267,11 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideShapes(std::shared_ptr
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideSubshape(std::shared_ptr<DeleteSlideSubshapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1081,6 +1309,11 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideSubshape(std::shared_p
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideSubshapes(std::shared_ptr<DeleteSlideSubshapesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1118,6 +1351,11 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::deleteSlideSubshapes(std::shared_
 
 pplx::task<std::shared_ptr<Slides>> SlidesApi::deleteSlidesCleanSlidesList(std::shared_ptr<DeleteSlidesCleanSlidesListRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -1153,6 +1391,11 @@ pplx::task<std::shared_ptr<Slides>> SlidesApi::deleteSlidesCleanSlidesList(std::
 
 pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::deleteSlidesDocumentProperties(std::shared_ptr<DeleteSlidesDocumentPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/documentproperties");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -1187,6 +1430,16 @@ pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::deleteSlidesDocumentP
 
 pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::deleteSlidesDocumentProperty(std::shared_ptr<DeleteSlidesDocumentPropertyRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'propertyName' is set
+	if (request->getPropertyName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.propertyName");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/documentproperties/{propertyName}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "propertyName", request->getPropertyName());
@@ -1222,6 +1475,11 @@ pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::deleteSlidesDocumentP
 
 pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::deleteSlidesSlideBackground(std::shared_ptr<DeleteSlidesSlideBackgroundRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/background");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1257,6 +1515,11 @@ pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::deleteSlidesSlideBackgro
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteSubshapeParagraph(std::shared_ptr<DeleteSubshapeParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1295,6 +1558,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteSubshapeParagraph(std::
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteSubshapeParagraphs(std::shared_ptr<DeleteSubshapeParagraphsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1333,6 +1601,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::deleteSubshapeParagraphs(std:
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::deleteSubshapePortion(std::shared_ptr<DeleteSubshapePortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1372,6 +1645,11 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::deleteSubshapePortion(std::shar
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::deleteSubshapePortions(std::shared_ptr<DeleteSubshapePortionsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1538,6 +1816,11 @@ pplx::task<std::shared_ptr<FilesList>> SlidesApi::getFilesList(std::shared_ptr<G
 
 pplx::task<std::shared_ptr<LayoutSlide>> SlidesApi::getLayoutSlide(std::shared_ptr<GetLayoutSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/layoutSlides/{slideIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1573,6 +1856,11 @@ pplx::task<std::shared_ptr<LayoutSlide>> SlidesApi::getLayoutSlide(std::shared_p
 
 pplx::task<std::shared_ptr<LayoutSlides>> SlidesApi::getLayoutSlidesList(std::shared_ptr<GetLayoutSlidesListRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/layoutSlides");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -1607,6 +1895,11 @@ pplx::task<std::shared_ptr<LayoutSlides>> SlidesApi::getLayoutSlidesList(std::sh
 
 pplx::task<std::shared_ptr<MasterSlide>> SlidesApi::getMasterSlide(std::shared_ptr<GetMasterSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/masterSlides/{slideIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1642,6 +1935,11 @@ pplx::task<std::shared_ptr<MasterSlide>> SlidesApi::getMasterSlide(std::shared_p
 
 pplx::task<std::shared_ptr<MasterSlides>> SlidesApi::getMasterSlidesList(std::shared_ptr<GetMasterSlidesListRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/masterSlides");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -1676,6 +1974,11 @@ pplx::task<std::shared_ptr<MasterSlides>> SlidesApi::getMasterSlidesList(std::sh
 
 pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::getNotesSlide(std::shared_ptr<GetNotesSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1711,6 +2014,11 @@ pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::getNotesSlide(std::shared_ptr
 
 pplx::task<std::shared_ptr<EntityExists>> SlidesApi::getNotesSlideExists(std::shared_ptr<GetNotesSlideExistsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/exist");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1744,8 +2052,53 @@ pplx::task<std::shared_ptr<EntityExists>> SlidesApi::getNotesSlideExists(std::sh
 		});
 }
 
+pplx::task<std::shared_ptr<NotesSlideHeaderFooter>> SlidesApi::getNotesSlideHeaderFooter(std::shared_ptr<GetNotesSlideHeaderFooterRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/headerFooter");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling getNotesSlideHeaderFooter: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<NotesSlideHeaderFooter> result(new NotesSlideHeaderFooter());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::getNotesSlideShape(std::shared_ptr<GetNotesSlideShapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1782,6 +2135,11 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::getNotesSlideShape(std::shared
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::getNotesSlideShapeParagraph(std::shared_ptr<GetNotesSlideShapeParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1819,6 +2177,11 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::getNotesSlideShapeParagraph(st
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::getNotesSlideShapeParagraphs(std::shared_ptr<GetNotesSlideShapeParagraphsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1855,6 +2218,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::getNotesSlideShapeParagraphs(
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::getNotesSlideShapePortion(std::shared_ptr<GetNotesSlideShapePortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1893,6 +2261,11 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::getNotesSlideShapePortion(std::s
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::getNotesSlideShapePortions(std::shared_ptr<GetNotesSlideShapePortionsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1930,6 +2303,11 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::getNotesSlideShapePortions(std:
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::getNotesSlideShapes(std::shared_ptr<GetNotesSlideShapesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -1965,6 +2343,21 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::getNotesSlideShapes(std::shared_p
 
 pplx::task<HttpContent> SlidesApi::getNotesSlideWithFormat(std::shared_ptr<GetNotesSlideWithFormatRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2009,6 +2402,11 @@ pplx::task<HttpContent> SlidesApi::getNotesSlideWithFormat(std::shared_ptr<GetNo
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::getParagraphPortion(std::shared_ptr<GetParagraphPortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2047,6 +2445,11 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::getParagraphPortion(std::shared_
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::getParagraphPortions(std::shared_ptr<GetParagraphPortionsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2082,8 +2485,52 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::getParagraphPortions(std::share
 		});
 }
 
+pplx::task<std::shared_ptr<Sections>> SlidesApi::getSections(std::shared_ptr<GetSectionsRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/sections");
+	ApiClient::setPathParameter(path, "name", request->getName());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling getSections: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Sections> result(new Sections());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::getSlideAnimation(std::shared_ptr<GetSlideAnimationRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2121,8 +2568,53 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::getSlideAnimation(std::sh
 		});
 }
 
+pplx::task<std::shared_ptr<HeaderFooter>> SlidesApi::getSlideHeaderFooter(std::shared_ptr<GetSlideHeaderFooterRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/headerFooter");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("GET"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling getSlideHeaderFooter: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<HeaderFooter> result(new HeaderFooter());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::getSlideShape(std::shared_ptr<GetSlideShapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2159,6 +2651,11 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::getSlideShape(std::shared_ptr<
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::getSlideShapeParagraph(std::shared_ptr<GetSlideShapeParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2196,6 +2693,11 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::getSlideShapeParagraph(std::sh
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::getSlideShapeParagraphs(std::shared_ptr<GetSlideShapeParagraphsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2232,6 +2734,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::getSlideShapeParagraphs(std::
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::getSlideShapes(std::shared_ptr<GetSlideShapesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2267,6 +2774,11 @@ pplx::task<std::shared_ptr<Shapes>> SlidesApi::getSlideShapes(std::shared_ptr<Ge
 
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::getSlideSubshape(std::shared_ptr<GetSlideSubshapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2304,6 +2816,11 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::getSlideSubshape(std::shared_p
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::getSlideSubshapeParagraph(std::shared_ptr<GetSlideSubshapeParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2342,6 +2859,11 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::getSlideSubshapeParagraph(std:
 
 pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::getSlideSubshapeParagraphs(std::shared_ptr<GetSlideSubshapeParagraphsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2379,6 +2901,11 @@ pplx::task<std::shared_ptr<Paragraphs>> SlidesApi::getSlideSubshapeParagraphs(st
 
 pplx::task<std::shared_ptr<Shapes>> SlidesApi::getSlideSubshapes(std::shared_ptr<GetSlideSubshapesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2445,6 +2972,11 @@ pplx::task<std::shared_ptr<ApiInfo>> SlidesApi::getSlidesApiInfo()
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::getSlidesDocument(std::shared_ptr<GetSlidesDocumentRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -2479,6 +3011,11 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::getSlidesDocument(std::shared_p
 
 pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::getSlidesDocumentProperties(std::shared_ptr<GetSlidesDocumentPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/documentproperties");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -2513,6 +3050,16 @@ pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::getSlidesDocumentProp
 
 pplx::task<std::shared_ptr<DocumentProperty>> SlidesApi::getSlidesDocumentProperty(std::shared_ptr<GetSlidesDocumentPropertyRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'propertyName' is set
+	if (request->getPropertyName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.propertyName");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/documentproperties/{propertyName}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "propertyName", request->getPropertyName());
@@ -2548,6 +3095,11 @@ pplx::task<std::shared_ptr<DocumentProperty>> SlidesApi::getSlidesDocumentProper
 
 pplx::task<HttpContent> SlidesApi::getSlidesImageWithDefaultFormat(std::shared_ptr<GetSlidesImageWithDefaultFormatRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/images/{index}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "index", request->getIndex());
@@ -2582,6 +3134,21 @@ pplx::task<HttpContent> SlidesApi::getSlidesImageWithDefaultFormat(std::shared_p
 
 pplx::task<HttpContent> SlidesApi::getSlidesImageWithFormat(std::shared_ptr<GetSlidesImageWithFormatRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/images/{index}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "index", request->getIndex());
@@ -2617,6 +3184,11 @@ pplx::task<HttpContent> SlidesApi::getSlidesImageWithFormat(std::shared_ptr<GetS
 
 pplx::task<std::shared_ptr<Images>> SlidesApi::getSlidesImages(std::shared_ptr<GetSlidesImagesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/images");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -2651,6 +3223,11 @@ pplx::task<std::shared_ptr<Images>> SlidesApi::getSlidesImages(std::shared_ptr<G
 
 pplx::task<std::shared_ptr<Placeholder>> SlidesApi::getSlidesPlaceholder(std::shared_ptr<GetSlidesPlaceholderRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/placeholders/{placeholderIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2687,6 +3264,11 @@ pplx::task<std::shared_ptr<Placeholder>> SlidesApi::getSlidesPlaceholder(std::sh
 
 pplx::task<std::shared_ptr<Placeholders>> SlidesApi::getSlidesPlaceholders(std::shared_ptr<GetSlidesPlaceholdersRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/placeholders");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2722,6 +3304,11 @@ pplx::task<std::shared_ptr<Placeholders>> SlidesApi::getSlidesPlaceholders(std::
 
 pplx::task<std::shared_ptr<TextItems>> SlidesApi::getSlidesPresentationTextItems(std::shared_ptr<GetSlidesPresentationTextItemsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/textItems");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -2760,6 +3347,11 @@ pplx::task<std::shared_ptr<TextItems>> SlidesApi::getSlidesPresentationTextItems
 
 pplx::task<std::shared_ptr<Slide>> SlidesApi::getSlidesSlide(std::shared_ptr<GetSlidesSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2795,6 +3387,11 @@ pplx::task<std::shared_ptr<Slide>> SlidesApi::getSlidesSlide(std::shared_ptr<Get
 
 pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::getSlidesSlideBackground(std::shared_ptr<GetSlidesSlideBackgroundRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/background");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2830,6 +3427,11 @@ pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::getSlidesSlideBackground
 
 pplx::task<std::shared_ptr<SlideComments>> SlidesApi::getSlidesSlideComments(std::shared_ptr<GetSlidesSlideCommentsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/comments");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2865,6 +3467,11 @@ pplx::task<std::shared_ptr<SlideComments>> SlidesApi::getSlidesSlideComments(std
 
 pplx::task<std::shared_ptr<Images>> SlidesApi::getSlidesSlideImages(std::shared_ptr<GetSlidesSlideImagesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/images");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2900,6 +3507,11 @@ pplx::task<std::shared_ptr<Images>> SlidesApi::getSlidesSlideImages(std::shared_
 
 pplx::task<std::shared_ptr<TextItems>> SlidesApi::getSlidesSlideTextItems(std::shared_ptr<GetSlidesSlideTextItemsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/textItems");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -2939,6 +3551,11 @@ pplx::task<std::shared_ptr<TextItems>> SlidesApi::getSlidesSlideTextItems(std::s
 
 pplx::task<std::shared_ptr<Slides>> SlidesApi::getSlidesSlidesList(std::shared_ptr<GetSlidesSlidesListRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -2973,6 +3590,11 @@ pplx::task<std::shared_ptr<Slides>> SlidesApi::getSlidesSlidesList(std::shared_p
 
 pplx::task<std::shared_ptr<Theme>> SlidesApi::getSlidesTheme(std::shared_ptr<GetSlidesThemeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/theme");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3008,6 +3630,11 @@ pplx::task<std::shared_ptr<Theme>> SlidesApi::getSlidesTheme(std::shared_ptr<Get
 
 pplx::task<std::shared_ptr<ColorScheme>> SlidesApi::getSlidesThemeColorScheme(std::shared_ptr<GetSlidesThemeColorSchemeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/theme/colorScheme");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3043,6 +3670,11 @@ pplx::task<std::shared_ptr<ColorScheme>> SlidesApi::getSlidesThemeColorScheme(st
 
 pplx::task<std::shared_ptr<FontScheme>> SlidesApi::getSlidesThemeFontScheme(std::shared_ptr<GetSlidesThemeFontSchemeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/theme/fontScheme");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3078,6 +3710,11 @@ pplx::task<std::shared_ptr<FontScheme>> SlidesApi::getSlidesThemeFontScheme(std:
 
 pplx::task<std::shared_ptr<FormatScheme>> SlidesApi::getSlidesThemeFormatScheme(std::shared_ptr<GetSlidesThemeFormatSchemeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/theme/formatScheme");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3113,6 +3750,11 @@ pplx::task<std::shared_ptr<FormatScheme>> SlidesApi::getSlidesThemeFormatScheme(
 
 pplx::task<std::shared_ptr<ViewProperties>> SlidesApi::getSlidesViewProperties(std::shared_ptr<GetSlidesViewPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/viewProperties");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -3147,6 +3789,11 @@ pplx::task<std::shared_ptr<ViewProperties>> SlidesApi::getSlidesViewProperties(s
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::getSubshapeParagraphPortion(std::shared_ptr<GetSubshapeParagraphPortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3186,6 +3833,11 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::getSubshapeParagraphPortion(std:
 
 pplx::task<std::shared_ptr<Portions>> SlidesApi::getSubshapeParagraphPortions(std::shared_ptr<GetSubshapeParagraphPortionsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3224,6 +3876,16 @@ pplx::task<std::shared_ptr<Portions>> SlidesApi::getSubshapeParagraphPortions(st
 
 pplx::task<void> SlidesApi::moveFile(std::shared_ptr<MoveFileRequest> request)
 {
+	// verify the required parameter 'srcPath' is set
+	if (request->getSrcPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.srcPath");
+	}
+	// verify the required parameter 'destPath' is set
+	if (request->getDestPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.destPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/storage/file/move/{srcPath}");
 	ApiClient::setPathParameter(path, "srcPath", request->getSrcPath());
 
@@ -3256,6 +3918,16 @@ pplx::task<void> SlidesApi::moveFile(std::shared_ptr<MoveFileRequest> request)
 
 pplx::task<void> SlidesApi::moveFolder(std::shared_ptr<MoveFolderRequest> request)
 {
+	// verify the required parameter 'srcPath' is set
+	if (request->getSrcPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.srcPath");
+	}
+	// verify the required parameter 'destPath' is set
+	if (request->getDestPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.destPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/storage/folder/move/{srcPath}");
 	ApiClient::setPathParameter(path, "srcPath", request->getSrcPath());
 
@@ -3320,6 +3992,15 @@ pplx::task<std::shared_ptr<ObjectExist>> SlidesApi::objectExists(std::shared_ptr
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::postAddNewParagraph(std::shared_ptr<PostAddNewParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3364,6 +4045,15 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::postAddNewParagraph(std::share
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::postAddNewPortion(std::shared_ptr<PostAddNewPortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3409,6 +4099,11 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::postAddNewPortion(std::shared_pt
 
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::postAddNewShape(std::shared_ptr<PostAddNewShapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3456,6 +4151,11 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::postAddNewShape(std::shared_pt
 
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::postAddNewSubshape(std::shared_ptr<PostAddNewSubshapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3504,6 +4204,15 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::postAddNewSubshape(std::shared
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::postAddNewSubshapeParagraph(std::shared_ptr<PostAddNewSubshapeParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3549,6 +4258,15 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::postAddNewSubshapeParagraph(st
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::postAddNewSubshapePortion(std::shared_ptr<PostAddNewSubshapePortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3595,6 +4313,15 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::postAddNewSubshapePortion(std::s
 
 pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::postAddNotesSlide(std::shared_ptr<PostAddNotesSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3634,6 +4361,15 @@ pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::postAddNotesSlide(std::shared
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartCategory(std::shared_ptr<PostChartCategoryRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getCategory() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.category");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3674,6 +4410,15 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartCategory(std::shared_ptr<
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartDataPoint(std::shared_ptr<PostChartDataPointRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDataPoint() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dataPoint");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3715,6 +4460,15 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartDataPoint(std::shared_ptr
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartSeries(std::shared_ptr<PostChartSeriesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getSeries() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.series");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3755,6 +4509,16 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::postChartSeries(std::shared_ptr<Po
 
 pplx::task<std::shared_ptr<LayoutSlide>> SlidesApi::postCopyLayoutSlideFromSourcePresentation(std::shared_ptr<PostCopyLayoutSlideFromSourcePresentationRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'cloneFrom' is set
+	if (request->getCloneFrom().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.cloneFrom");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/layoutSlides");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -3793,6 +4557,16 @@ pplx::task<std::shared_ptr<LayoutSlide>> SlidesApi::postCopyLayoutSlideFromSourc
 
 pplx::task<std::shared_ptr<MasterSlide>> SlidesApi::postCopyMasterSlideFromSourcePresentation(std::shared_ptr<PostCopyMasterSlideFromSourcePresentationRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'cloneFrom' is set
+	if (request->getCloneFrom().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.cloneFrom");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/masterSlides");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -3835,6 +4609,10 @@ pplx::task<std::shared_ptr<MasterSlide>> SlidesApi::postCopyMasterSlideFromSourc
 
 pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::postGetNotesSlide(std::shared_ptr<PostGetNotesSlideRequest> request)
 {
+	if (request->getDocument() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.document");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/slides/{slideIndex}/notesSlide");
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
 
@@ -3868,6 +4646,10 @@ pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::postGetNotesSlide(std::shared
 
 pplx::task<std::shared_ptr<EntityExists>> SlidesApi::postGetNotesSlideExists(std::shared_ptr<PostGetNotesSlideExistsRequest> request)
 {
+	if (request->getDocument() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.document");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/slides/{slideIndex}/notesSlide/exist");
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
 
@@ -3901,6 +4683,20 @@ pplx::task<std::shared_ptr<EntityExists>> SlidesApi::postGetNotesSlideExists(std
 
 pplx::task<HttpContent> SlidesApi::postGetNotesSlideWithFormat(std::shared_ptr<PostGetNotesSlideWithFormatRequest> request)
 {
+	if (request->getDocument() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.document");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/slides/{slideIndex}/notesSlide/{format}");
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
 	ApiClient::setPathParameter(path, "format", request->getFormat());
@@ -3943,6 +4739,15 @@ pplx::task<HttpContent> SlidesApi::postGetNotesSlideWithFormat(std::shared_ptr<P
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::postNotesSlideAddNewParagraph(std::shared_ptr<PostNotesSlideAddNewParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -3987,6 +4792,15 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::postNotesSlideAddNewParagraph(
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::postNotesSlideAddNewPortion(std::shared_ptr<PostNotesSlideAddNewPortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4032,6 +4846,15 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::postNotesSlideAddNewPortion(std:
 
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::postNotesSlideAddNewShape(std::shared_ptr<PostNotesSlideAddNewShapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4079,6 +4902,21 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::postNotesSlideAddNewShape(std:
 
 pplx::task<HttpContent> SlidesApi::postNotesSlideShapeSaveAs(std::shared_ptr<PostNotesSlideShapeSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4129,6 +4967,15 @@ pplx::task<HttpContent> SlidesApi::postNotesSlideShapeSaveAs(std::shared_ptr<Pos
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::postPresentationMerge(std::shared_ptr<PostPresentationMergeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getRequest() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.request");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/merge");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4165,8 +5012,110 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::postPresentationMerge(std::shar
 		});
 }
 
+pplx::task<std::shared_ptr<Sections>> SlidesApi::postSection(std::shared_ptr<PostSectionRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'sectionName' is set
+	if (request->getSectionName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.sectionName");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/sections");
+	ApiClient::setPathParameter(path, "name", request->getName());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("sectionName"), request->getSectionName());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("slideIndex"), request->getSlideIndex());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling postSection: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Sections> result(new Sections());
+			result->fromJson(json);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<Sections>> SlidesApi::postSectionMove(std::shared_ptr<PostSectionMoveRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/sections/{sectionIndex}/move");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "sectionIndex", request->getSectionIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("newPosition"), request->getNewPosition());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("POST"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling postSectionMove: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Sections> result(new Sections());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<HttpContent> SlidesApi::postShapeSaveAs(std::shared_ptr<PostShapeSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4217,6 +5166,15 @@ pplx::task<HttpContent> SlidesApi::postShapeSaveAs(std::shared_ptr<PostShapeSave
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::postSlideAnimationEffect(std::shared_ptr<PostSlideAnimationEffectRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getEffect() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.effect");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/mainSequence");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4256,6 +5214,15 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::postSlideAnimationEffect(
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::postSlideAnimationInteractiveSequence(std::shared_ptr<PostSlideAnimationInteractiveSequenceRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getSequence() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.sequence");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/interactiveSequences");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4295,6 +5262,15 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::postSlideAnimationInterac
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::postSlideAnimationInteractiveSequenceEffect(std::shared_ptr<PostSlideAnimationInteractiveSequenceEffectRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getEffect() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.effect");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4335,6 +5311,21 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::postSlideAnimationInterac
 
 pplx::task<HttpContent> SlidesApi::postSlideSaveAs(std::shared_ptr<PostSlideSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4383,6 +5374,11 @@ pplx::task<HttpContent> SlidesApi::postSlideSaveAs(std::shared_ptr<PostSlideSave
 
 pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesAdd(std::shared_ptr<PostSlidesAddRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4422,6 +5418,20 @@ pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesAdd(std::shared_ptr<Pos
 
 pplx::task<HttpContent> SlidesApi::postSlidesConvert(std::shared_ptr<PostSlidesConvertRequest> request)
 {
+	if (request->getDocument() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.document");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/convert/{format}");
 	ApiClient::setPathParameter(path, "format", request->getFormat());
 
@@ -4455,6 +5465,11 @@ pplx::task<HttpContent> SlidesApi::postSlidesConvert(std::shared_ptr<PostSlidesC
 
 pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesCopy(std::shared_ptr<PostSlidesCopyRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/copy");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4497,6 +5512,11 @@ pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesCopy(std::shared_ptr<Po
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocument(std::shared_ptr<PostSlidesDocumentRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4533,6 +5553,11 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocument(std::shared_
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocumentFromHtml(std::shared_ptr<PostSlidesDocumentFromHtmlRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/fromHtml");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4571,6 +5596,11 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocumentFromHtml(std:
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocumentFromSource(std::shared_ptr<PostSlidesDocumentFromSourceRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/fromSource");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4608,6 +5638,16 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocumentFromSource(st
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocumentFromTemplate(std::shared_ptr<PostSlidesDocumentFromTemplateRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'templatePath' is set
+	if (request->getTemplatePath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.templatePath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/fromTemplate");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4653,6 +5693,10 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::postSlidesDocumentFromTemplate(
 
 pplx::task<HttpContent> SlidesApi::postSlidesPipeline(std::shared_ptr<PostSlidesPipelineRequest> request)
 {
+	if (request->getPipeline() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.pipeline");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/pipeline");
 
 	std::map<utility::string_t, utility::string_t> queryParams;
@@ -4686,6 +5730,21 @@ pplx::task<HttpContent> SlidesApi::postSlidesPipeline(std::shared_ptr<PostSlides
 
 pplx::task<std::shared_ptr<DocumentReplaceResult>> SlidesApi::postSlidesPresentationReplaceText(std::shared_ptr<PostSlidesPresentationReplaceTextRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'oldValue' is set
+	if (request->getOldValue().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.oldValue");
+	}
+	// verify the required parameter 'newValue' is set
+	if (request->getNewValue().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.newValue");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/replaceText");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4726,6 +5785,11 @@ pplx::task<std::shared_ptr<DocumentReplaceResult>> SlidesApi::postSlidesPresenta
 
 pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesReorder(std::shared_ptr<PostSlidesReorderRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/move");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4762,6 +5826,11 @@ pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesReorder(std::shared_ptr
 
 pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesReorderMany(std::shared_ptr<PostSlidesReorderManyRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/reorder");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4798,6 +5867,21 @@ pplx::task<std::shared_ptr<Slides>> SlidesApi::postSlidesReorderMany(std::shared
 
 pplx::task<HttpContent> SlidesApi::postSlidesSaveAs(std::shared_ptr<PostSlidesSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "format", request->getFormat());
@@ -4837,6 +5921,15 @@ pplx::task<HttpContent> SlidesApi::postSlidesSaveAs(std::shared_ptr<PostSlidesSa
 
 pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::postSlidesSetDocumentProperties(std::shared_ptr<PostSlidesSetDocumentPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getProperties() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.properties");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/documentproperties");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4875,6 +5968,21 @@ pplx::task<std::shared_ptr<DocumentProperties>> SlidesApi::postSlidesSetDocument
 
 pplx::task<std::shared_ptr<SlideReplaceResult>> SlidesApi::postSlidesSlideReplaceText(std::shared_ptr<PostSlidesSlideReplaceTextRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'oldValue' is set
+	if (request->getOldValue().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.oldValue");
+	}
+	// verify the required parameter 'newValue' is set
+	if (request->getNewValue().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.newValue");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/replaceText");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -4916,6 +6024,11 @@ pplx::task<std::shared_ptr<SlideReplaceResult>> SlidesApi::postSlidesSlideReplac
 
 pplx::task<std::shared_ptr<SplitDocumentResult>> SlidesApi::postSlidesSplit(std::shared_ptr<PostSlidesSplitRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/split");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -4973,6 +6086,21 @@ pplx::task<std::shared_ptr<SplitDocumentResult>> SlidesApi::postSlidesSplit(std:
 
 pplx::task<HttpContent> SlidesApi::postSubshapeSaveAs(std::shared_ptr<PostSubshapeSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5024,6 +6152,15 @@ pplx::task<HttpContent> SlidesApi::postSubshapeSaveAs(std::shared_ptr<PostSubsha
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartCategory(std::shared_ptr<PutChartCategoryRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getCategory() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.category");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/categories/{categoryIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5065,6 +6202,15 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartCategory(std::shared_ptr<P
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartDataPoint(std::shared_ptr<PutChartDataPointRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDataPoint() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dataPoint");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}/dataPoints/{pointIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5107,6 +6253,15 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartDataPoint(std::shared_ptr<
 
 pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartSeries(std::shared_ptr<PutChartSeriesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getSeries() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.series");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/series/{seriesIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5148,6 +6303,15 @@ pplx::task<std::shared_ptr<Chart>> SlidesApi::putChartSeries(std::shared_ptr<Put
 
 pplx::task<std::shared_ptr<LayoutSlide>> SlidesApi::putLayoutSlide(std::shared_ptr<PutLayoutSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getSlideDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.slideDto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/layoutSlides/{slideIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5185,8 +6349,76 @@ pplx::task<std::shared_ptr<LayoutSlide>> SlidesApi::putLayoutSlide(std::shared_p
 		});
 }
 
+pplx::task<std::shared_ptr<NotesSlideHeaderFooter>> SlidesApi::putNotesSlideHeaderFooter(std::shared_ptr<PutNotesSlideHeaderFooterRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/headerFooter");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getDto() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getDto()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling putNotesSlideHeaderFooter: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<NotesSlideHeaderFooter> result(new NotesSlideHeaderFooter());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<void> SlidesApi::putNotesSlideShapeSaveAs(std::shared_ptr<PutNotesSlideShapeSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'outPath' is set
+	if (request->getOutPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.outPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5236,6 +6468,15 @@ pplx::task<void> SlidesApi::putNotesSlideShapeSaveAs(std::shared_ptr<PutNotesSli
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::putPresentationMerge(std::shared_ptr<PutPresentationMergeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getRequest() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.request");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/merge");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -5272,8 +6513,110 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::putPresentationMerge(std::share
 		});
 }
 
+pplx::task<std::shared_ptr<Sections>> SlidesApi::putSection(std::shared_ptr<PutSectionRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'sectionName' is set
+	if (request->getSectionName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.sectionName");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/sections/{sectionIndex}");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "sectionIndex", request->getSectionIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("sectionName"), request->getSectionName());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling putSection: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Sections> result(new Sections());
+			result->fromJson(json);
+			return result;
+		});
+}
+
+pplx::task<std::shared_ptr<Sections>> SlidesApi::putSections(std::shared_ptr<PutSectionsRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getSections() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.sections");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/sections");
+	ApiClient::setPathParameter(path, "name", request->getName());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getSections() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getSections()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling putSections: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Sections> result(new Sections());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<std::shared_ptr<Portion>> SlidesApi::putSetParagraphPortionProperties(std::shared_ptr<PutSetParagraphPortionPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5316,6 +6659,15 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::putSetParagraphPortionProperties
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::putSetParagraphProperties(std::shared_ptr<PutSetParagraphPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5357,6 +6709,15 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::putSetParagraphProperties(std:
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::putSetSubshapeParagraphPortionProperties(std::shared_ptr<PutSetSubshapeParagraphPortionPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5400,6 +6761,15 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::putSetSubshapeParagraphPortionPr
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::putSetSubshapeParagraphProperties(std::shared_ptr<PutSetSubshapeParagraphPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5442,6 +6812,26 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::putSetSubshapeParagraphPropert
 
 pplx::task<void> SlidesApi::putShapeSaveAs(std::shared_ptr<PutShapeSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'outPath' is set
+	if (request->getOutPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.outPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5491,6 +6881,15 @@ pplx::task<void> SlidesApi::putShapeSaveAs(std::shared_ptr<PutShapeSaveAsRequest
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::putSlideAnimation(std::shared_ptr<PutSlideAnimationRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getAnimation() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.animation");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5530,6 +6929,15 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::putSlideAnimation(std::sh
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::putSlideAnimationEffect(std::shared_ptr<PutSlideAnimationEffectRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getEffect() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.effect");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/mainSequence/{effectIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5570,6 +6978,15 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::putSlideAnimationEffect(s
 
 pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::putSlideAnimationInteractiveSequenceEffect(std::shared_ptr<PutSlideAnimationInteractiveSequenceEffectRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getEffect() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.effect");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/animation/interactiveSequences/{sequenceIndex}/{effectIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5609,8 +7026,76 @@ pplx::task<std::shared_ptr<SlideAnimation>> SlidesApi::putSlideAnimationInteract
 		});
 }
 
+pplx::task<std::shared_ptr<HeaderFooter>> SlidesApi::putSlideHeaderFooter(std::shared_ptr<PutSlideHeaderFooterRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/headerFooter");
+	ApiClient::setPathParameter(path, "name", request->getName());
+	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getDto() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getDto()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling putSlideHeaderFooter: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<HeaderFooter> result(new HeaderFooter());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<void> SlidesApi::putSlideSaveAs(std::shared_ptr<PutSlideSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'outPath' is set
+	if (request->getOutPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.outPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5658,6 +7143,15 @@ pplx::task<void> SlidesApi::putSlideSaveAs(std::shared_ptr<PutSlideSaveAsRequest
 
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::putSlideShapeInfo(std::shared_ptr<PutSlideShapeInfoRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5698,6 +7192,15 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::putSlideShapeInfo(std::shared_
 
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::putSlideSubshapeInfo(std::shared_ptr<PutSlideSubshapeInfoRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5739,6 +7242,25 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::putSlideSubshapeInfo(std::shar
 
 pplx::task<void> SlidesApi::putSlidesConvert(std::shared_ptr<PutSlidesConvertRequest> request)
 {
+	if (request->getDocument() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.document");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'outPath' is set
+	if (request->getOutPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.outPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/convert/{format}");
 	ApiClient::setPathParameter(path, "format", request->getFormat());
 
@@ -5771,6 +7293,11 @@ pplx::task<void> SlidesApi::putSlidesConvert(std::shared_ptr<PutSlidesConvertReq
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::putSlidesDocumentFromHtml(std::shared_ptr<PutSlidesDocumentFromHtmlRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/fromHtml");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -5807,8 +7334,75 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::putSlidesDocumentFromHtml(std::
 		});
 }
 
+pplx::task<std::shared_ptr<Document>> SlidesApi::putSlidesHeaderFooter(std::shared_ptr<PutSlidesHeaderFooterRequest> request)
+{
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
+	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/headerFooter");
+	ApiClient::setPathParameter(path, "name", request->getName());
+
+	std::map<utility::string_t, utility::string_t> queryParams;
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("password"), request->getPassword());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("storage"), request->getStorage());
+	ApiClient::setQueryParameter(queryParams, utility::conversions::to_string_t("folder"), request->getFolder());
+
+	std::shared_ptr<IHttpBody> httpBody = nullptr;
+	if (request->getDto() != nullptr)
+	{
+		httpBody = std::shared_ptr<IHttpBody>(new JsonBody(request->getDto()->toJson()));
+	}
+
+	return m_ApiClient->callApi(path, utility::conversions::to_string_t("PUT"), queryParams, httpBody)
+		.then([=](web::http::http_response response)
+		{
+			if (response.status_code() >= 400)
+			{
+				throw ApiException(
+					response.status_code(),
+					utility::conversions::to_string_t("error calling putSlidesHeaderFooter: ") + response.reason_phrase(),
+					std::make_shared<std::stringstream>(response.extract_utf8string(true).get()));
+			}
+			return response.extract_string();
+		})
+		.then([=](utility::string_t response)
+		{
+			m_ApiClient->logString(response);
+			web::json::value json = web::json::value::parse(response);
+			std::shared_ptr<Document> result(new Document());
+			result->fromJson(json);
+			return result;
+		});
+}
+
 pplx::task<void> SlidesApi::putSlidesSaveAs(std::shared_ptr<PutSlidesSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'outPath' is set
+	if (request->getOutPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.outPath");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "format", request->getFormat());
@@ -5847,6 +7441,20 @@ pplx::task<void> SlidesApi::putSlidesSaveAs(std::shared_ptr<PutSlidesSaveAsReque
 
 pplx::task<std::shared_ptr<DocumentProperty>> SlidesApi::putSlidesSetDocumentProperty(std::shared_ptr<PutSlidesSetDocumentPropertyRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'propertyName' is set
+	if (request->getPropertyName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.propertyName");
+	}
+	if (request->getProperty() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.property");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/documentproperties/{propertyName}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "propertyName", request->getPropertyName());
@@ -5886,6 +7494,15 @@ pplx::task<std::shared_ptr<DocumentProperty>> SlidesApi::putSlidesSetDocumentPro
 
 pplx::task<std::shared_ptr<Slide>> SlidesApi::putSlidesSlide(std::shared_ptr<PutSlidesSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getSlideDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.slideDto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5925,6 +7542,15 @@ pplx::task<std::shared_ptr<Slide>> SlidesApi::putSlidesSlide(std::shared_ptr<Put
 
 pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::putSlidesSlideBackground(std::shared_ptr<PutSlidesSlideBackgroundRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getBackground() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.background");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/background");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -5964,6 +7590,16 @@ pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::putSlidesSlideBackground
 
 pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::putSlidesSlideBackgroundColor(std::shared_ptr<PutSlidesSlideBackgroundColorRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'color' is set
+	if (request->getColor().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.color");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/backgroundColor");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -6000,6 +7636,11 @@ pplx::task<std::shared_ptr<SlideBackground>> SlidesApi::putSlidesSlideBackground
 
 pplx::task<std::shared_ptr<Document>> SlidesApi::putSlidesSlideSize(std::shared_ptr<PutSlidesSlideSizeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slideSize");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -6044,6 +7685,15 @@ pplx::task<std::shared_ptr<Document>> SlidesApi::putSlidesSlideSize(std::shared_
 
 pplx::task<std::shared_ptr<ViewProperties>> SlidesApi::putSlidesViewProperties(std::shared_ptr<PutSlidesViewPropertiesRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/viewProperties");
 	ApiClient::setPathParameter(path, "name", request->getName());
 
@@ -6082,6 +7732,26 @@ pplx::task<std::shared_ptr<ViewProperties>> SlidesApi::putSlidesViewProperties(s
 
 pplx::task<void> SlidesApi::putSubshapeSaveAs(std::shared_ptr<PutSubshapeSaveAsRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'format' is set
+	if (request->getFormat().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.format");
+	}
+	// verify the required parameter 'outPath' is set
+	if (request->getOutPath().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.outPath");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/shapes/{path}/{shapeIndex}/{format}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -6132,6 +7802,15 @@ pplx::task<void> SlidesApi::putSubshapeSaveAs(std::shared_ptr<PutSubshapeSaveAsR
 
 pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::putUpdateNotesSlide(std::shared_ptr<PutUpdateNotesSlideRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -6171,6 +7850,15 @@ pplx::task<std::shared_ptr<NotesSlide>> SlidesApi::putUpdateNotesSlide(std::shar
 
 pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::putUpdateNotesSlideShape(std::shared_ptr<PutUpdateNotesSlideShapeRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -6211,6 +7899,15 @@ pplx::task<std::shared_ptr<ShapeBase>> SlidesApi::putUpdateNotesSlideShape(std::
 
 pplx::task<std::shared_ptr<Paragraph>> SlidesApi::putUpdateNotesSlideShapeParagraph(std::shared_ptr<PutUpdateNotesSlideShapeParagraphRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -6252,6 +7949,15 @@ pplx::task<std::shared_ptr<Paragraph>> SlidesApi::putUpdateNotesSlideShapeParagr
 
 pplx::task<std::shared_ptr<Portion>> SlidesApi::putUpdateNotesSlideShapePortion(std::shared_ptr<PutUpdateNotesSlideShapePortionRequest> request)
 {
+	// verify the required parameter 'name' is set
+	if (request->getName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.name");
+	}
+	if (request->getDto() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.dto");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/{name}/slides/{slideIndex}/notesSlide/shapes/{shapeIndex}/paragraphs/{paragraphIndex}/portions/{portionIndex}");
 	ApiClient::setPathParameter(path, "name", request->getName());
 	ApiClient::setPathParameter(path, "slideIndex", request->getSlideIndex());
@@ -6294,6 +8000,11 @@ pplx::task<std::shared_ptr<Portion>> SlidesApi::putUpdateNotesSlideShapePortion(
 
 pplx::task<std::shared_ptr<StorageExist>> SlidesApi::storageExists(std::shared_ptr<StorageExistsRequest> request)
 {
+	// verify the required parameter 'storageName' is set
+	if (request->getStorageName().empty())
+	{
+		throw std::invalid_argument("Missing required parameter: request.storageName");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/storage/{storageName}/exist");
 	ApiClient::setPathParameter(path, "storageName", request->getStorageName());
 
@@ -6325,6 +8036,10 @@ pplx::task<std::shared_ptr<StorageExist>> SlidesApi::storageExists(std::shared_p
 
 pplx::task<std::shared_ptr<FilesUploadResult>> SlidesApi::uploadFile(std::shared_ptr<UploadFileRequest> request)
 {
+	if (request->getFile() == nullptr)
+	{
+		throw std::invalid_argument("Missing required parameter: request.file");
+	}
 	utility::string_t path = utility::conversions::to_string_t("/slides/storage/file/{path}");
 	ApiClient::setPathParameter(path, "path", request->getPath());
 

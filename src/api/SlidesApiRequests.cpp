@@ -1353,6 +1353,166 @@ void DeletePortionsRequest::setStorage(utility::string_t value)
 	m_storage = value;
 }
 
+DeleteSectionRequest::DeleteSectionRequest()
+{
+	m_withSlidesIsSet = false;
+}
+
+DeleteSectionRequest::~DeleteSectionRequest()
+{
+}
+
+utility::string_t DeleteSectionRequest::getName() const
+{
+	return m_name;
+}
+
+void DeleteSectionRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t DeleteSectionRequest::getSectionIndex() const
+{
+	return m_sectionIndex;
+}
+
+void DeleteSectionRequest::setSectionIndex(int32_t value)
+{
+	m_sectionIndex = value;
+}
+
+bool DeleteSectionRequest::getWithSlides() const
+{
+	return m_withSlides;
+}
+
+void DeleteSectionRequest::setWithSlides(bool value)
+{
+	m_withSlides = value;
+	m_withSlidesIsSet = true;
+}
+
+bool DeleteSectionRequest::withSlidesIsSet() const
+{
+	return m_withSlidesIsSet;
+}
+
+void DeleteSectionRequest::unsetWithSlides()
+{
+	m_withSlidesIsSet = false;
+}
+
+utility::string_t DeleteSectionRequest::getPassword() const
+{
+	return m_password;
+}
+
+void DeleteSectionRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t DeleteSectionRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void DeleteSectionRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t DeleteSectionRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void DeleteSectionRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+DeleteSectionsRequest::DeleteSectionsRequest()
+{
+	m_withSlidesIsSet = false;
+}
+
+DeleteSectionsRequest::~DeleteSectionsRequest()
+{
+}
+
+utility::string_t DeleteSectionsRequest::getName() const
+{
+	return m_name;
+}
+
+void DeleteSectionsRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+std::vector<int32_t> DeleteSectionsRequest::getSections() const
+{
+	return m_sections;
+}
+
+void DeleteSectionsRequest::setSections(std::vector<int32_t> value)
+{
+	m_sections = value;
+}
+
+bool DeleteSectionsRequest::getWithSlides() const
+{
+	return m_withSlides;
+}
+
+void DeleteSectionsRequest::setWithSlides(bool value)
+{
+	m_withSlides = value;
+	m_withSlidesIsSet = true;
+}
+
+bool DeleteSectionsRequest::withSlidesIsSet() const
+{
+	return m_withSlidesIsSet;
+}
+
+void DeleteSectionsRequest::unsetWithSlides()
+{
+	m_withSlidesIsSet = false;
+}
+
+utility::string_t DeleteSectionsRequest::getPassword() const
+{
+	return m_password;
+}
+
+void DeleteSectionsRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t DeleteSectionsRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void DeleteSectionsRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t DeleteSectionsRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void DeleteSectionsRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 DeleteSlideAnimationRequest::DeleteSlideAnimationRequest()
 {
 }
@@ -3125,6 +3285,64 @@ void GetNotesSlideExistsRequest::setStorage(utility::string_t value)
 	m_storage = value;
 }
 
+GetNotesSlideHeaderFooterRequest::GetNotesSlideHeaderFooterRequest()
+{
+}
+
+GetNotesSlideHeaderFooterRequest::~GetNotesSlideHeaderFooterRequest()
+{
+}
+
+utility::string_t GetNotesSlideHeaderFooterRequest::getName() const
+{
+	return m_name;
+}
+
+void GetNotesSlideHeaderFooterRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t GetNotesSlideHeaderFooterRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void GetNotesSlideHeaderFooterRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+utility::string_t GetNotesSlideHeaderFooterRequest::getPassword() const
+{
+	return m_password;
+}
+
+void GetNotesSlideHeaderFooterRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t GetNotesSlideHeaderFooterRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void GetNotesSlideHeaderFooterRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+utility::string_t GetNotesSlideHeaderFooterRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void GetNotesSlideHeaderFooterRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
 GetNotesSlideShapeRequest::GetNotesSlideShapeRequest()
 {
 }
@@ -3851,6 +4069,54 @@ void GetParagraphPortionsRequest::setStorage(utility::string_t value)
 	m_storage = value;
 }
 
+GetSectionsRequest::GetSectionsRequest()
+{
+}
+
+GetSectionsRequest::~GetSectionsRequest()
+{
+}
+
+utility::string_t GetSectionsRequest::getName() const
+{
+	return m_name;
+}
+
+void GetSectionsRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+utility::string_t GetSectionsRequest::getPassword() const
+{
+	return m_password;
+}
+
+void GetSectionsRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t GetSectionsRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void GetSectionsRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t GetSectionsRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void GetSectionsRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 GetSlideAnimationRequest::GetSlideAnimationRequest()
 {
 	m_shapeIndexIsSet = false;
@@ -3927,6 +4193,64 @@ utility::string_t GetSlideAnimationRequest::getStorage() const
 }
 
 void GetSlideAnimationRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+GetSlideHeaderFooterRequest::GetSlideHeaderFooterRequest()
+{
+}
+
+GetSlideHeaderFooterRequest::~GetSlideHeaderFooterRequest()
+{
+}
+
+utility::string_t GetSlideHeaderFooterRequest::getName() const
+{
+	return m_name;
+}
+
+void GetSlideHeaderFooterRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t GetSlideHeaderFooterRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void GetSlideHeaderFooterRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+utility::string_t GetSlideHeaderFooterRequest::getPassword() const
+{
+	return m_password;
+}
+
+void GetSlideHeaderFooterRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t GetSlideHeaderFooterRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void GetSlideHeaderFooterRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t GetSlideHeaderFooterRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void GetSlideHeaderFooterRequest::setStorage(utility::string_t value)
 {
 	m_storage = value;
 }
@@ -7201,16 +7525,6 @@ PostGetNotesSlideRequest::~PostGetNotesSlideRequest()
 {
 }
 
-int32_t PostGetNotesSlideRequest::getSlideIndex() const
-{
-	return m_slideIndex;
-}
-
-void PostGetNotesSlideRequest::setSlideIndex(int32_t value)
-{
-	m_slideIndex = value;
-}
-
 std::shared_ptr<HttpContent> PostGetNotesSlideRequest::getDocument() const
 {
 	return m_document;
@@ -7219,6 +7533,16 @@ std::shared_ptr<HttpContent> PostGetNotesSlideRequest::getDocument() const
 void PostGetNotesSlideRequest::setDocument(std::shared_ptr<HttpContent> value)
 {
 	m_document = value;
+}
+
+int32_t PostGetNotesSlideRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PostGetNotesSlideRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
 }
 
 utility::string_t PostGetNotesSlideRequest::getPassword() const
@@ -7239,16 +7563,6 @@ PostGetNotesSlideExistsRequest::~PostGetNotesSlideExistsRequest()
 {
 }
 
-int32_t PostGetNotesSlideExistsRequest::getSlideIndex() const
-{
-	return m_slideIndex;
-}
-
-void PostGetNotesSlideExistsRequest::setSlideIndex(int32_t value)
-{
-	m_slideIndex = value;
-}
-
 std::shared_ptr<HttpContent> PostGetNotesSlideExistsRequest::getDocument() const
 {
 	return m_document;
@@ -7257,6 +7571,16 @@ std::shared_ptr<HttpContent> PostGetNotesSlideExistsRequest::getDocument() const
 void PostGetNotesSlideExistsRequest::setDocument(std::shared_ptr<HttpContent> value)
 {
 	m_document = value;
+}
+
+int32_t PostGetNotesSlideExistsRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PostGetNotesSlideExistsRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
 }
 
 utility::string_t PostGetNotesSlideExistsRequest::getPassword() const
@@ -7279,6 +7603,16 @@ PostGetNotesSlideWithFormatRequest::~PostGetNotesSlideWithFormatRequest()
 {
 }
 
+std::shared_ptr<HttpContent> PostGetNotesSlideWithFormatRequest::getDocument() const
+{
+	return m_document;
+}
+
+void PostGetNotesSlideWithFormatRequest::setDocument(std::shared_ptr<HttpContent> value)
+{
+	m_document = value;
+}
+
 int32_t PostGetNotesSlideWithFormatRequest::getSlideIndex() const
 {
 	return m_slideIndex;
@@ -7297,16 +7631,6 @@ utility::string_t PostGetNotesSlideWithFormatRequest::getFormat() const
 void PostGetNotesSlideWithFormatRequest::setFormat(utility::string_t value)
 {
 	m_format = value;
-}
-
-std::shared_ptr<HttpContent> PostGetNotesSlideWithFormatRequest::getDocument() const
-{
-	return m_document;
-}
-
-void PostGetNotesSlideWithFormatRequest::setDocument(std::shared_ptr<HttpContent> value)
-{
-	m_document = value;
 }
 
 int32_t PostGetNotesSlideWithFormatRequest::getWidth() const
@@ -7903,6 +8227,142 @@ void PostPresentationMergeRequest::setFolder(utility::string_t value)
 	m_folder = value;
 }
 
+PostSectionRequest::PostSectionRequest()
+{
+}
+
+PostSectionRequest::~PostSectionRequest()
+{
+}
+
+utility::string_t PostSectionRequest::getName() const
+{
+	return m_name;
+}
+
+void PostSectionRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+utility::string_t PostSectionRequest::getSectionName() const
+{
+	return m_sectionName;
+}
+
+void PostSectionRequest::setSectionName(utility::string_t value)
+{
+	m_sectionName = value;
+}
+
+int32_t PostSectionRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PostSectionRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+utility::string_t PostSectionRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PostSectionRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PostSectionRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PostSectionRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PostSectionRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PostSectionRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+PostSectionMoveRequest::PostSectionMoveRequest()
+{
+}
+
+PostSectionMoveRequest::~PostSectionMoveRequest()
+{
+}
+
+utility::string_t PostSectionMoveRequest::getName() const
+{
+	return m_name;
+}
+
+void PostSectionMoveRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PostSectionMoveRequest::getSectionIndex() const
+{
+	return m_sectionIndex;
+}
+
+void PostSectionMoveRequest::setSectionIndex(int32_t value)
+{
+	m_sectionIndex = value;
+}
+
+int32_t PostSectionMoveRequest::getNewPosition() const
+{
+	return m_newPosition;
+}
+
+void PostSectionMoveRequest::setNewPosition(int32_t value)
+{
+	m_newPosition = value;
+}
+
+utility::string_t PostSectionMoveRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PostSectionMoveRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PostSectionMoveRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PostSectionMoveRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PostSectionMoveRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PostSectionMoveRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 PostShapeSaveAsRequest::PostShapeSaveAsRequest()
 {
 	m_scaleXIsSet = false;
@@ -8489,16 +8949,6 @@ PostSlidesConvertRequest::~PostSlidesConvertRequest()
 {
 }
 
-utility::string_t PostSlidesConvertRequest::getFormat() const
-{
-	return m_format;
-}
-
-void PostSlidesConvertRequest::setFormat(utility::string_t value)
-{
-	m_format = value;
-}
-
 std::shared_ptr<HttpContent> PostSlidesConvertRequest::getDocument() const
 {
 	return m_document;
@@ -8507,6 +8957,16 @@ std::shared_ptr<HttpContent> PostSlidesConvertRequest::getDocument() const
 void PostSlidesConvertRequest::setDocument(std::shared_ptr<HttpContent> value)
 {
 	m_document = value;
+}
+
+utility::string_t PostSlidesConvertRequest::getFormat() const
+{
+	return m_format;
+}
+
+void PostSlidesConvertRequest::setFormat(utility::string_t value)
+{
+	m_format = value;
 }
 
 utility::string_t PostSlidesConvertRequest::getPassword() const
@@ -10113,6 +10573,74 @@ void PutLayoutSlideRequest::setStorage(utility::string_t value)
 	m_storage = value;
 }
 
+PutNotesSlideHeaderFooterRequest::PutNotesSlideHeaderFooterRequest()
+{
+}
+
+PutNotesSlideHeaderFooterRequest::~PutNotesSlideHeaderFooterRequest()
+{
+}
+
+utility::string_t PutNotesSlideHeaderFooterRequest::getName() const
+{
+	return m_name;
+}
+
+void PutNotesSlideHeaderFooterRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PutNotesSlideHeaderFooterRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PutNotesSlideHeaderFooterRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+std::shared_ptr<NotesSlideHeaderFooter> PutNotesSlideHeaderFooterRequest::getDto() const
+{
+	return m_dto;
+}
+
+void PutNotesSlideHeaderFooterRequest::setDto(std::shared_ptr<NotesSlideHeaderFooter> value)
+{
+	m_dto = value;
+}
+
+utility::string_t PutNotesSlideHeaderFooterRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutNotesSlideHeaderFooterRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutNotesSlideHeaderFooterRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutNotesSlideHeaderFooterRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+utility::string_t PutNotesSlideHeaderFooterRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutNotesSlideHeaderFooterRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
 PutNotesSlideShapeSaveAsRequest::PutNotesSlideShapeSaveAsRequest()
 {
 	m_scaleXIsSet = false;
@@ -10331,6 +10859,132 @@ utility::string_t PutPresentationMergeRequest::getFolder() const
 void PutPresentationMergeRequest::setFolder(utility::string_t value)
 {
 	m_folder = value;
+}
+
+PutSectionRequest::PutSectionRequest()
+{
+}
+
+PutSectionRequest::~PutSectionRequest()
+{
+}
+
+utility::string_t PutSectionRequest::getName() const
+{
+	return m_name;
+}
+
+void PutSectionRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PutSectionRequest::getSectionIndex() const
+{
+	return m_sectionIndex;
+}
+
+void PutSectionRequest::setSectionIndex(int32_t value)
+{
+	m_sectionIndex = value;
+}
+
+utility::string_t PutSectionRequest::getSectionName() const
+{
+	return m_sectionName;
+}
+
+void PutSectionRequest::setSectionName(utility::string_t value)
+{
+	m_sectionName = value;
+}
+
+utility::string_t PutSectionRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutSectionRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutSectionRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutSectionRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PutSectionRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutSectionRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+PutSectionsRequest::PutSectionsRequest()
+{
+}
+
+PutSectionsRequest::~PutSectionsRequest()
+{
+}
+
+utility::string_t PutSectionsRequest::getName() const
+{
+	return m_name;
+}
+
+void PutSectionsRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+std::shared_ptr<Sections> PutSectionsRequest::getSections() const
+{
+	return m_sections;
+}
+
+void PutSectionsRequest::setSections(std::shared_ptr<Sections> value)
+{
+	m_sections = value;
+}
+
+utility::string_t PutSectionsRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutSectionsRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutSectionsRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutSectionsRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PutSectionsRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutSectionsRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
 }
 
 PutSetParagraphPortionPropertiesRequest::PutSetParagraphPortionPropertiesRequest()
@@ -11121,6 +11775,74 @@ void PutSlideAnimationInteractiveSequenceEffectRequest::setStorage(utility::stri
 	m_storage = value;
 }
 
+PutSlideHeaderFooterRequest::PutSlideHeaderFooterRequest()
+{
+}
+
+PutSlideHeaderFooterRequest::~PutSlideHeaderFooterRequest()
+{
+}
+
+utility::string_t PutSlideHeaderFooterRequest::getName() const
+{
+	return m_name;
+}
+
+void PutSlideHeaderFooterRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+int32_t PutSlideHeaderFooterRequest::getSlideIndex() const
+{
+	return m_slideIndex;
+}
+
+void PutSlideHeaderFooterRequest::setSlideIndex(int32_t value)
+{
+	m_slideIndex = value;
+}
+
+std::shared_ptr<HeaderFooter> PutSlideHeaderFooterRequest::getDto() const
+{
+	return m_dto;
+}
+
+void PutSlideHeaderFooterRequest::setDto(std::shared_ptr<HeaderFooter> value)
+{
+	m_dto = value;
+}
+
+utility::string_t PutSlideHeaderFooterRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutSlideHeaderFooterRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutSlideHeaderFooterRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutSlideHeaderFooterRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+utility::string_t PutSlideHeaderFooterRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutSlideHeaderFooterRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
 PutSlideSaveAsRequest::PutSlideSaveAsRequest()
 {
 	m_widthIsSet = false;
@@ -11437,6 +12159,16 @@ PutSlidesConvertRequest::~PutSlidesConvertRequest()
 {
 }
 
+std::shared_ptr<HttpContent> PutSlidesConvertRequest::getDocument() const
+{
+	return m_document;
+}
+
+void PutSlidesConvertRequest::setDocument(std::shared_ptr<HttpContent> value)
+{
+	m_document = value;
+}
+
 utility::string_t PutSlidesConvertRequest::getFormat() const
 {
 	return m_format;
@@ -11455,16 +12187,6 @@ utility::string_t PutSlidesConvertRequest::getOutPath() const
 void PutSlidesConvertRequest::setOutPath(utility::string_t value)
 {
 	m_outPath = value;
-}
-
-std::shared_ptr<HttpContent> PutSlidesConvertRequest::getDocument() const
-{
-	return m_document;
-}
-
-void PutSlidesConvertRequest::setDocument(std::shared_ptr<HttpContent> value)
-{
-	m_document = value;
 }
 
 utility::string_t PutSlidesConvertRequest::getPassword() const
@@ -11541,6 +12263,64 @@ utility::string_t PutSlidesDocumentFromHtmlRequest::getFolder() const
 }
 
 void PutSlidesDocumentFromHtmlRequest::setFolder(utility::string_t value)
+{
+	m_folder = value;
+}
+
+PutSlidesHeaderFooterRequest::PutSlidesHeaderFooterRequest()
+{
+}
+
+PutSlidesHeaderFooterRequest::~PutSlidesHeaderFooterRequest()
+{
+}
+
+utility::string_t PutSlidesHeaderFooterRequest::getName() const
+{
+	return m_name;
+}
+
+void PutSlidesHeaderFooterRequest::setName(utility::string_t value)
+{
+	m_name = value;
+}
+
+std::shared_ptr<HeaderFooter> PutSlidesHeaderFooterRequest::getDto() const
+{
+	return m_dto;
+}
+
+void PutSlidesHeaderFooterRequest::setDto(std::shared_ptr<HeaderFooter> value)
+{
+	m_dto = value;
+}
+
+utility::string_t PutSlidesHeaderFooterRequest::getPassword() const
+{
+	return m_password;
+}
+
+void PutSlidesHeaderFooterRequest::setPassword(utility::string_t value)
+{
+	m_password = value;
+}
+
+utility::string_t PutSlidesHeaderFooterRequest::getStorage() const
+{
+	return m_storage;
+}
+
+void PutSlidesHeaderFooterRequest::setStorage(utility::string_t value)
+{
+	m_storage = value;
+}
+
+utility::string_t PutSlidesHeaderFooterRequest::getFolder() const
+{
+	return m_folder;
+}
+
+void PutSlidesHeaderFooterRequest::setFolder(utility::string_t value)
 {
 	m_folder = value;
 }

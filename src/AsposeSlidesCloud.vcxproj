@@ -209,6 +209,7 @@
     <ClCompile Include="model\FontScheme.cpp" />
     <ClCompile Include="model\FormatScheme.cpp" />
     <ClCompile Include="model\GradientFill.cpp" />
+    <ClCompile Include="model\HeaderFooter.cpp" />
     <ClCompile Include="model\HtmlExportOptions.cpp" />
     <ClCompile Include="model\Image.cpp" />
     <ClCompile Include="model\ImageExportOptions.cpp" />
@@ -220,6 +221,7 @@
     <ClCompile Include="model\Merge.cpp" />
     <ClCompile Include="model\NoFill.cpp" />
     <ClCompile Include="model\NotesSlide.cpp" />
+    <ClCompile Include="model\NotesSlideHeaderFooter.cpp" />
     <ClCompile Include="model\OneValueChartDataPoint.cpp" />
     <ClCompile Include="model\OneValueSeries.cpp" />
     <ClCompile Include="model\Paragraph.cpp" />
@@ -246,6 +248,8 @@
     <ClCompile Include="model\SaveSlide.cpp" />
     <ClCompile Include="model\ScatterChartDataPoint.cpp" />
     <ClCompile Include="model\ScatterSeries.cpp" />
+    <ClCompile Include="model\Section.cpp" />
+    <ClCompile Include="model\Sections.cpp" />
     <ClCompile Include="model\ShapeBase.cpp" />
     <ClCompile Include="model\Shapes.cpp" />
     <ClCompile Include="model\Slide.cpp" />
@@ -380,6 +384,7 @@
     <ClInclude Include="model\FontScheme.h" />
     <ClInclude Include="model\FormatScheme.h" />
     <ClInclude Include="model\GradientFill.h" />
+    <ClInclude Include="model\HeaderFooter.h" />
     <ClInclude Include="model\HtmlExportOptions.h" />
     <ClInclude Include="model\Image.h" />
     <ClInclude Include="model\ImageExportOptions.h" />
@@ -391,6 +396,7 @@
     <ClInclude Include="model\Merge.h" />
     <ClInclude Include="model\NoFill.h" />
     <ClInclude Include="model\NotesSlide.h" />
+    <ClInclude Include="model\NotesSlideHeaderFooter.h" />
     <ClInclude Include="model\OneValueChartDataPoint.h" />
     <ClInclude Include="model\OneValueSeries.h" />
     <ClInclude Include="model\Paragraph.h" />
@@ -417,6 +423,8 @@
     <ClInclude Include="model\SaveSlide.h" />
     <ClInclude Include="model\ScatterChartDataPoint.h" />
     <ClInclude Include="model\ScatterSeries.h" />
+    <ClInclude Include="model\Section.h" />
+    <ClInclude Include="model\Sections.h" />
     <ClInclude Include="model\ShapeBase.h" />
     <ClInclude Include="model\Shapes.h" />
     <ClInclude Include="model\Slide.h" />

@@ -25,27 +25,71 @@
 
 
 
-#include "IShapeExportOptions.h"
+#include "Sections.h"
 
 namespace asposeslidescloud {
 namespace model {
 
-IShapeExportOptions::IShapeExportOptions()
+Sections::Sections()
 {
 }
 
-IShapeExportOptions::~IShapeExportOptions()
+Sections::~Sections()
 {
 }
 
-web::json::value IShapeExportOptions::toJson() const
+std::vector<std::shared_ptr<Section>> Sections::getSectionList() const
 {
-	web::json::value val = web::json::value::object();
+	return m_SectionList;
+}
+
+void Sections::setSectionList(std::vector<std::shared_ptr<Section>> value)
+{
+	m_SectionList = value;
+	
+}
+
+web::json::value Sections::toJson() const
+{
+	web::json::value val = this->ResourceBase::toJson();
+	{
+		std::vector<web::json::value> jsonArray;
+		for (auto& item : m_SectionList)
+		{
+			jsonArray.push_back(ModelBase::toJson(item));
+		}
+		if (jsonArray.size() > 0)
+		{
+			val[utility::conversions::to_string_t("SectionList")] = web::json::value::array(jsonArray);
+		}
+	}
 	return val;
 }
 
-void IShapeExportOptions::fromJson(web::json::value& val)
+void Sections::fromJson(web::json::value& val)
 {
+	this->ResourceBase::fromJson(val);
+	web::json::value* jsonForSectionList = ModelBase::getField(val, "SectionList");
+	if(jsonForSectionList != nullptr && !jsonForSectionList->is_null())
+	{
+		{
+			m_SectionList.clear();
+			std::vector<web::json::value> jsonArray;
+			for(auto& item : jsonForSectionList->as_array())
+			{
+				if(item.is_null())
+				{
+					m_SectionList.push_back(std::shared_ptr<Section>(nullptr));
+				}
+				else
+				{
+					std::shared_ptr<Section> newItem(new Section());
+					newItem->fromJson(item);
+					m_SectionList.push_back( newItem );
+				}
+			}
+        	}
+	}
 }
 
 }

@@ -56,6 +56,7 @@
 #include "../model/FilesUploadResult.h"
 #include "../model/FontScheme.h"
 #include "../model/FormatScheme.h"
+#include "../model/HeaderFooter.h"
 #include "../HttpContent.h"
 #include "../model/IShapeExportOptions.h"
 #include "../model/Images.h"
@@ -65,6 +66,7 @@
 #include "../model/MasterSlide.h"
 #include "../model/MasterSlides.h"
 #include "../model/NotesSlide.h"
+#include "../model/NotesSlideHeaderFooter.h"
 #include "../model/ObjectExist.h"
 #include "../model/OrderedMergeRequest.h"
 #include "../model/Paragraph.h"
@@ -75,6 +77,7 @@
 #include "../model/Portion.h"
 #include "../model/Portions.h"
 #include "../model/PresentationsMergeRequest.h"
+#include "../model/Sections.h"
 #include "../model/Series.h"
 #include "../model/ShapeBase.h"
 #include "../model/Shapes.h"
@@ -197,6 +200,16 @@ public:
 	/// Remove a range of portions.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Portions>> deletePortions(std::shared_ptr<DeletePortionsRequest> request);
+
+	/// <summary>
+	/// Delete a presentation section.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Sections>> deleteSection(std::shared_ptr<DeleteSectionRequest> request);
+
+	/// <summary>
+	/// Delete presentation sections.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Sections>> deleteSections(std::shared_ptr<DeleteSectionsRequest> request);
 
 	/// <summary>
 	/// Remove animation from a slide.
@@ -344,6 +357,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<EntityExists>> getNotesSlideExists(std::shared_ptr<GetNotesSlideExistsRequest> request);
 
 	/// <summary>
+	/// Get header/footer info for the notes slide.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<NotesSlideHeaderFooter>> getNotesSlideHeaderFooter(std::shared_ptr<GetNotesSlideHeaderFooterRequest> request);
+
+	/// <summary>
 	/// Read slide shape info.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<ShapeBase>> getNotesSlideShape(std::shared_ptr<GetNotesSlideShapeRequest> request);
@@ -389,9 +407,19 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Portions>> getParagraphPortions(std::shared_ptr<GetParagraphPortionsRequest> request);
 
 	/// <summary>
+	/// Read presentation sections info.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Sections>> getSections(std::shared_ptr<GetSectionsRequest> request);
+
+	/// <summary>
 	/// Read slide animation effects.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<SlideAnimation>> getSlideAnimation(std::shared_ptr<GetSlideAnimationRequest> request);
+
+	/// <summary>
+	/// Get footer info for the slide.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<HeaderFooter>> getSlideHeaderFooter(std::shared_ptr<GetSlideHeaderFooterRequest> request);
 
 	/// <summary>
 	/// Read slide shape info.
@@ -664,6 +692,16 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Document>> postPresentationMerge(std::shared_ptr<PostPresentationMergeRequest> request);
 
 	/// <summary>
+	/// Create a section starting at a specified slide index.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Sections>> postSection(std::shared_ptr<PostSectionRequest> request);
+
+	/// <summary>
+	/// Move presentation section to a specified position.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Sections>> postSectionMove(std::shared_ptr<PostSectionMoveRequest> request);
+
+	/// <summary>
 	/// Render shape to specified picture format.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<HttpContent> postShapeSaveAs(std::shared_ptr<PostShapeSaveAsRequest> request);
@@ -789,6 +827,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<LayoutSlide>> putLayoutSlide(std::shared_ptr<PutLayoutSlideRequest> request);
 
 	/// <summary>
+	/// Set header/footer the notes slide.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<NotesSlideHeaderFooter>> putNotesSlideHeaderFooter(std::shared_ptr<PutNotesSlideHeaderFooterRequest> request);
+
+	/// <summary>
 	/// Render shape to specified picture format.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<void> putNotesSlideShapeSaveAs(std::shared_ptr<PutNotesSlideShapeSaveAsRequest> request);
@@ -797,6 +840,16 @@ public:
 	/// Merge the presentation with other presentations or some of their slides specified in the request parameter.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Document>> putPresentationMerge(std::shared_ptr<PutPresentationMergeRequest> request);
+
+	/// <summary>
+	/// Update section name.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Sections>> putSection(std::shared_ptr<PutSectionRequest> request);
+
+	/// <summary>
+	/// Replace existing presentation sections with the ones provided in the sections DTO.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Sections>> putSections(std::shared_ptr<PutSectionsRequest> request);
 
 	/// <summary>
 	/// Update portion properties.
@@ -839,6 +892,11 @@ public:
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<SlideAnimation>> putSlideAnimationInteractiveSequenceEffect(std::shared_ptr<PutSlideAnimationInteractiveSequenceEffectRequest> request);
 
 	/// <summary>
+	/// Set footer the slide.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<HeaderFooter>> putSlideHeaderFooter(std::shared_ptr<PutSlideHeaderFooterRequest> request);
+
+	/// <summary>
 	/// Save a slide to a specified format.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<void> putSlideSaveAs(std::shared_ptr<PutSlideSaveAsRequest> request);
@@ -862,6 +920,11 @@ public:
 	/// Update presentation document from html.
 	/// </summary>
 	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Document>> putSlidesDocumentFromHtml(std::shared_ptr<PutSlidesDocumentFromHtmlRequest> request);
+
+	/// <summary>
+	/// Set footers for all slides in a presentation.
+	/// </summary>
+	ASPOSE_DLL_EXPORT pplx::task<std::shared_ptr<Document>> putSlidesHeaderFooter(std::shared_ptr<PutSlidesHeaderFooterRequest> request);
 
 	/// <summary>
 	/// Save a presentation to a specified format.
