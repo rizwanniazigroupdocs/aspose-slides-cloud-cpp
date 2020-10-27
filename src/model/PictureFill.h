@@ -36,7 +36,7 @@
 
 #include <cpprest/details/basic_types.h>
 #include "../model/FillFormat.h"
-#include "../model/ResourceUriElement.h"
+#include "../model/ResourceUri.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -81,8 +81,8 @@ public:
 	/// <summary>
 	/// Internal image link.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getImage() const;
-	ASPOSE_DLL_EXPORT void setImage(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getImage() const;
+	ASPOSE_DLL_EXPORT void setImage(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Base 64 image data.
 	/// </summary>
@@ -105,7 +105,7 @@ protected:
 	double m_CropRight;
 	double m_CropTop;
 	int32_t m_Dpi;
-	std::shared_ptr<ResourceUriElement> m_Image;
+	std::shared_ptr<ResourceUri> m_Image;
 	utility::string_t m_Base64Data;
 	utility::string_t m_SvgData;
 	utility::string_t m_PictureFillMode;

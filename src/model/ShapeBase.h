@@ -41,7 +41,6 @@
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -116,8 +115,8 @@ public:
 	/// <summary>
 	/// Gets or sets the link to shapes.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getShapes() const;
-	ASPOSE_DLL_EXPORT void setShapes(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getShapes() const;
+	ASPOSE_DLL_EXPORT void setShapes(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Gets or sets the fill format.
 	/// </summary>
@@ -138,11 +137,6 @@ public:
 	/// </summary>
 	ASPOSE_DLL_EXPORT utility::string_t getType() const;
 	ASPOSE_DLL_EXPORT void setType(utility::string_t value);
-	/// <summary>
-	/// 
-	/// </summary>
-	ASPOSE_DLL_EXPORT utility::string_t getShapeType() const;
-	ASPOSE_DLL_EXPORT void setShapeType(utility::string_t value);
 
 protected:
 	utility::string_t m_Name;
@@ -159,12 +153,11 @@ protected:
 	double m_Y;
 	bool m_YIsSet;
 	int32_t m_ZOrderPosition;
-	std::shared_ptr<ResourceUriElement> m_Shapes;
+	std::shared_ptr<ResourceUri> m_Shapes;
 	std::shared_ptr<FillFormat> m_FillFormat;
 	std::shared_ptr<EffectFormat> m_EffectFormat;
 	std::shared_ptr<LineFormat> m_LineFormat;
 	utility::string_t m_Type;
-	utility::string_t m_ShapeType;
 };
 
 }

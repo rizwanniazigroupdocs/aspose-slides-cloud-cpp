@@ -38,7 +38,6 @@
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -63,24 +62,24 @@ public:
 	/// <summary>
 	/// Color scheme.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getColorScheme() const;
-	ASPOSE_DLL_EXPORT void setColorScheme(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getColorScheme() const;
+	ASPOSE_DLL_EXPORT void setColorScheme(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Font scheme.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getFontScheme() const;
-	ASPOSE_DLL_EXPORT void setFontScheme(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getFontScheme() const;
+	ASPOSE_DLL_EXPORT void setFontScheme(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Format scheme.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getFormatScheme() const;
-	ASPOSE_DLL_EXPORT void setFormatScheme(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getFormatScheme() const;
+	ASPOSE_DLL_EXPORT void setFormatScheme(std::shared_ptr<ResourceUri> value);
 
 protected:
 	utility::string_t m_Name;
-	std::shared_ptr<ResourceUriElement> m_ColorScheme;
-	std::shared_ptr<ResourceUriElement> m_FontScheme;
-	std::shared_ptr<ResourceUriElement> m_FormatScheme;
+	std::shared_ptr<ResourceUri> m_ColorScheme;
+	std::shared_ptr<ResourceUri> m_FontScheme;
+	std::shared_ptr<ResourceUri> m_FormatScheme;
 };
 
 }

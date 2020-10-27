@@ -38,12 +38,12 @@ LayoutSlides::~LayoutSlides()
 {
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> LayoutSlides::getSlideList() const
+std::vector<std::shared_ptr<ResourceUri>> LayoutSlides::getSlideList() const
 {
 	return m_SlideList;
 }
 
-void LayoutSlides::setSlideList(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void LayoutSlides::setSlideList(std::vector<std::shared_ptr<ResourceUri>> value)
 {
 	m_SlideList = value;
 	
@@ -79,11 +79,11 @@ void LayoutSlides::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_SlideList.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_SlideList.push_back(std::shared_ptr<ResourceUri>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 					newItem->fromJson(item);
 					m_SlideList.push_back( newItem );
 				}

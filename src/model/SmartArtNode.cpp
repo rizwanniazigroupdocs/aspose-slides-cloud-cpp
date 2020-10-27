@@ -49,12 +49,12 @@ void SmartArtNode::setNodes(std::vector<std::shared_ptr<SmartArtNode>> value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> SmartArtNode::getShapes() const
+std::shared_ptr<ResourceUri> SmartArtNode::getShapes() const
 {
 	return m_Shapes;
 }
 
-void SmartArtNode::setShapes(std::shared_ptr<ResourceUriElement> value)
+void SmartArtNode::setShapes(std::shared_ptr<ResourceUri> value)
 {
 	m_Shapes = value;
 	
@@ -149,7 +149,7 @@ void SmartArtNode::fromJson(web::json::value& val)
 	web::json::value* jsonForShapes = ModelBase::getField(val, "Shapes");
 	if(jsonForShapes != nullptr && !jsonForShapes->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForShapes);
 		setShapes(newItem);
 	}

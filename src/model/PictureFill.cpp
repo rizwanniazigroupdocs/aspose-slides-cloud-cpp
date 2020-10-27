@@ -93,12 +93,12 @@ void PictureFill::setDpi(int32_t value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> PictureFill::getImage() const
+std::shared_ptr<ResourceUri> PictureFill::getImage() const
 {
 	return m_Image;
 }
 
-void PictureFill::setImage(std::shared_ptr<ResourceUriElement> value)
+void PictureFill::setImage(std::shared_ptr<ResourceUri> value)
 {
 	m_Image = value;
 	
@@ -195,7 +195,7 @@ void PictureFill::fromJson(web::json::value& val)
 	web::json::value* jsonForImage = ModelBase::getField(val, "Image");
 	if(jsonForImage != nullptr && !jsonForImage->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForImage);
 		setImage(newItem);
 	}

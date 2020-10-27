@@ -41,7 +41,6 @@
 #include "../model/LineFormat.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -66,12 +65,12 @@ public:
 	/// <summary>
 	/// Get or sets list to paragraphs list
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getParagraphs() const;
-	ASPOSE_DLL_EXPORT void setParagraphs(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getParagraphs() const;
+	ASPOSE_DLL_EXPORT void setParagraphs(std::shared_ptr<ResourceUri> value);
 
 protected:
 	utility::string_t m_Text;
-	std::shared_ptr<ResourceUriElement> m_Paragraphs;
+	std::shared_ptr<ResourceUri> m_Paragraphs;
 };
 
 }

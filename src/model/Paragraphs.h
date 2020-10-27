@@ -37,7 +37,6 @@
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -57,11 +56,11 @@ public:
 	/// <summary>
 	/// List of paragraph links.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUriElement>> getParagraphLinks() const;
-	ASPOSE_DLL_EXPORT void setParagraphLinks(std::vector<std::shared_ptr<ResourceUriElement>> value);
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUri>> getParagraphLinks() const;
+	ASPOSE_DLL_EXPORT void setParagraphLinks(std::vector<std::shared_ptr<ResourceUri>> value);
 
 protected:
-	std::vector<std::shared_ptr<ResourceUriElement>> m_ParagraphLinks;
+	std::vector<std::shared_ptr<ResourceUri>> m_ParagraphLinks;
 };
 
 }

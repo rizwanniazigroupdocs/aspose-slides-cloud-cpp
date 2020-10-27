@@ -36,8 +36,8 @@
 
 #include "../model/SmartArtNode.h"
 #include <cpprest/details/basic_types.h>
+#include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -62,8 +62,8 @@ public:
 	/// <summary>
 	/// Gets or sets the link to shapes.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getShapes() const;
-	ASPOSE_DLL_EXPORT void setShapes(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getShapes() const;
+	ASPOSE_DLL_EXPORT void setShapes(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// True for and assistant node.
 	/// </summary>
@@ -82,7 +82,7 @@ public:
 
 protected:
 	std::vector<std::shared_ptr<SmartArtNode>> m_Nodes;
-	std::shared_ptr<ResourceUriElement> m_Shapes;
+	std::shared_ptr<ResourceUri> m_Shapes;
 	bool m_IsAssistant;
 	utility::string_t m_Text;
 	utility::string_t m_OrgChartLayout;

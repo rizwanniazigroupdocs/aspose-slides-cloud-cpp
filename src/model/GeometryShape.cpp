@@ -38,23 +38,23 @@ GeometryShape::~GeometryShape()
 {
 }
 
-utility::string_t GeometryShape::getGeometryShapeType() const
+utility::string_t GeometryShape::getShapeType() const
 {
-	return m_GeometryShapeType;
+	return m_ShapeType;
 }
 
-void GeometryShape::setGeometryShapeType(utility::string_t value)
+void GeometryShape::setShapeType(utility::string_t value)
 {
-	m_GeometryShapeType = value;
+	m_ShapeType = value;
 	
 }
 
 web::json::value GeometryShape::toJson() const
 {
 	web::json::value val = this->ShapeBase::toJson();
-	if (!m_GeometryShapeType.empty())
+	if (!m_ShapeType.empty())
 	{
-		val[utility::conversions::to_string_t("GeometryShapeType")] = ModelBase::toJson(m_GeometryShapeType);
+		val[utility::conversions::to_string_t("ShapeType")] = ModelBase::toJson(m_ShapeType);
 	}
 	return val;
 }
@@ -62,10 +62,10 @@ web::json::value GeometryShape::toJson() const
 void GeometryShape::fromJson(web::json::value& val)
 {
 	this->ShapeBase::fromJson(val);
-	web::json::value* jsonForGeometryShapeType = ModelBase::getField(val, "GeometryShapeType");
-	if(jsonForGeometryShapeType != nullptr && !jsonForGeometryShapeType->is_null())
+	web::json::value* jsonForShapeType = ModelBase::getField(val, "ShapeType");
+	if(jsonForShapeType != nullptr && !jsonForShapeType->is_null())
 	{
-		setGeometryShapeType(ModelBase::stringFromJson(*jsonForGeometryShapeType));
+		setShapeType(ModelBase::stringFromJson(*jsonForShapeType));
 	}
 }
 

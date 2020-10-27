@@ -176,7 +176,6 @@
     <ClCompile Include="model\ReflectionEffect.cpp" />
     <ClCompile Include="model\ResourceBase.cpp" />
     <ClCompile Include="model\ResourceUri.cpp" />
-    <ClCompile Include="model\ResourceUriElement.cpp" />
     <ClCompile Include="model\ScaleType.cpp" />
     <ClCompile Include="model\Series.cpp" />
     <ClCompile Include="model\SeriesMarker.cpp" />
@@ -278,7 +277,6 @@
     <ClCompile Include="model\OleObjectFrame.cpp" />
     <ClCompile Include="model\SlideReplaceResult.cpp" />
     <ClCompile Include="model\SmartArt.cpp" />
-    <ClCompile Include="model\SmartArtShape.cpp" />
     <ClCompile Include="model\Table.cpp" />
     <ClCompile Include="model\WaterfallChartDataPoint.cpp" />
     <ClCompile Include="model\WaterfallSeries.cpp" />
@@ -286,6 +284,7 @@
     <ClCompile Include="model\Connector.cpp" />
     <ClCompile Include="model\PictureFrame.cpp" />
     <ClCompile Include="model\Shape.cpp" />
+    <ClCompile Include="model\SmartArtShape.cpp" />
     <ClCompile Include="model\VideoFrame.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -351,7 +350,6 @@
     <ClInclude Include="model\ReflectionEffect.h" />
     <ClInclude Include="model\ResourceBase.h" />
     <ClInclude Include="model\ResourceUri.h" />
-    <ClInclude Include="model\ResourceUriElement.h" />
     <ClInclude Include="model\ScaleType.h" />
     <ClInclude Include="model\Series.h" />
     <ClInclude Include="model\SeriesMarker.h" />
@@ -453,7 +451,6 @@
     <ClInclude Include="model\OleObjectFrame.h" />
     <ClInclude Include="model\SlideReplaceResult.h" />
     <ClInclude Include="model\SmartArt.h" />
-    <ClInclude Include="model\SmartArtShape.h" />
     <ClInclude Include="model\Table.h" />
     <ClInclude Include="model\WaterfallChartDataPoint.h" />
     <ClInclude Include="model\WaterfallSeries.h" />
@@ -461,6 +458,7 @@
     <ClInclude Include="model\Connector.h" />
     <ClInclude Include="model\PictureFrame.h" />
     <ClInclude Include="model\Shape.h" />
+    <ClInclude Include="model\SmartArtShape.h" />
     <ClInclude Include="model\VideoFrame.h" />
   </ItemGroup>
   <ItemGroup>

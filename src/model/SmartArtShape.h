@@ -32,16 +32,15 @@
 #ifndef _SmartArtShape_H_
 #define _SmartArtShape_H_
 
-#include "ShapeBase.h"
+#include "GeometryShape.h"
 
+#include "../model/GeometryShape.h"
 #include "../model/EffectFormat.h"
-#include "../model/ShapeBase.h"
 #include <cpprest/details/basic_types.h>
 #include "../model/FillFormat.h"
 #include "../model/LineFormat.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -49,7 +48,7 @@ namespace model {
 /// <summary>
 /// Represents SmartArt resource.
 /// </summary>
-class  SmartArtShape : public ShapeBase
+class  SmartArtShape : public GeometryShape
 {
 public:
 	ASPOSE_DLL_EXPORT SmartArtShape();

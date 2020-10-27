@@ -38,7 +38,6 @@
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -63,12 +62,12 @@ public:
 	/// <summary>
 	/// Get or sets the  link to list notes slide shapes.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getShapes() const;
-	ASPOSE_DLL_EXPORT void setShapes(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getShapes() const;
+	ASPOSE_DLL_EXPORT void setShapes(std::shared_ptr<ResourceUri> value);
 
 protected:
 	utility::string_t m_Text;
-	std::shared_ptr<ResourceUriElement> m_Shapes;
+	std::shared_ptr<ResourceUri> m_Shapes;
 };
 
 }

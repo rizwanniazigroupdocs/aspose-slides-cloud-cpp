@@ -38,7 +38,6 @@
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -63,18 +62,18 @@ public:
 	/// <summary>
 	/// List of layout slide links.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUriElement>> getLayoutSlides() const;
-	ASPOSE_DLL_EXPORT void setLayoutSlides(std::vector<std::shared_ptr<ResourceUriElement>> value);
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUri>> getLayoutSlides() const;
+	ASPOSE_DLL_EXPORT void setLayoutSlides(std::vector<std::shared_ptr<ResourceUri>> value);
 	/// <summary>
 	/// List of depending slide links.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUriElement>> getDependingSlides() const;
-	ASPOSE_DLL_EXPORT void setDependingSlides(std::vector<std::shared_ptr<ResourceUriElement>> value);
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUri>> getDependingSlides() const;
+	ASPOSE_DLL_EXPORT void setDependingSlides(std::vector<std::shared_ptr<ResourceUri>> value);
 
 protected:
 	utility::string_t m_Name;
-	std::vector<std::shared_ptr<ResourceUriElement>> m_LayoutSlides;
-	std::vector<std::shared_ptr<ResourceUriElement>> m_DependingSlides;
+	std::vector<std::shared_ptr<ResourceUri>> m_LayoutSlides;
+	std::vector<std::shared_ptr<ResourceUri>> m_DependingSlides;
 };
 
 }

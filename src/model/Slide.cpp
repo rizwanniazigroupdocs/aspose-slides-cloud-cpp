@@ -71,89 +71,89 @@ void Slide::setShowMasterShapes(bool value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getLayoutSlide() const
+std::shared_ptr<ResourceUri> Slide::getLayoutSlide() const
 {
 	return m_LayoutSlide;
 }
 
-void Slide::setLayoutSlide(std::shared_ptr<ResourceUriElement> value)
+void Slide::setLayoutSlide(std::shared_ptr<ResourceUri> value)
 {
 	m_LayoutSlide = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getShapes() const
+std::shared_ptr<ResourceUri> Slide::getShapes() const
 {
 	return m_Shapes;
 }
 
-void Slide::setShapes(std::shared_ptr<ResourceUriElement> value)
+void Slide::setShapes(std::shared_ptr<ResourceUri> value)
 {
 	m_Shapes = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getTheme() const
+std::shared_ptr<ResourceUri> Slide::getTheme() const
 {
 	return m_Theme;
 }
 
-void Slide::setTheme(std::shared_ptr<ResourceUriElement> value)
+void Slide::setTheme(std::shared_ptr<ResourceUri> value)
 {
 	m_Theme = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getPlaceholders() const
+std::shared_ptr<ResourceUri> Slide::getPlaceholders() const
 {
 	return m_Placeholders;
 }
 
-void Slide::setPlaceholders(std::shared_ptr<ResourceUriElement> value)
+void Slide::setPlaceholders(std::shared_ptr<ResourceUri> value)
 {
 	m_Placeholders = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getImages() const
+std::shared_ptr<ResourceUri> Slide::getImages() const
 {
 	return m_Images;
 }
 
-void Slide::setImages(std::shared_ptr<ResourceUriElement> value)
+void Slide::setImages(std::shared_ptr<ResourceUri> value)
 {
 	m_Images = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getComments() const
+std::shared_ptr<ResourceUri> Slide::getComments() const
 {
 	return m_Comments;
 }
 
-void Slide::setComments(std::shared_ptr<ResourceUriElement> value)
+void Slide::setComments(std::shared_ptr<ResourceUri> value)
 {
 	m_Comments = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getBackground() const
+std::shared_ptr<ResourceUri> Slide::getBackground() const
 {
 	return m_Background;
 }
 
-void Slide::setBackground(std::shared_ptr<ResourceUriElement> value)
+void Slide::setBackground(std::shared_ptr<ResourceUri> value)
 {
 	m_Background = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Slide::getNotesSlide() const
+std::shared_ptr<ResourceUri> Slide::getNotesSlide() const
 {
 	return m_NotesSlide;
 }
 
-void Slide::setNotesSlide(std::shared_ptr<ResourceUriElement> value)
+void Slide::setNotesSlide(std::shared_ptr<ResourceUri> value)
 {
 	m_NotesSlide = value;
 	
@@ -221,56 +221,56 @@ void Slide::fromJson(web::json::value& val)
 	web::json::value* jsonForLayoutSlide = ModelBase::getField(val, "LayoutSlide");
 	if(jsonForLayoutSlide != nullptr && !jsonForLayoutSlide->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForLayoutSlide);
 		setLayoutSlide(newItem);
 	}
 	web::json::value* jsonForShapes = ModelBase::getField(val, "Shapes");
 	if(jsonForShapes != nullptr && !jsonForShapes->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForShapes);
 		setShapes(newItem);
 	}
 	web::json::value* jsonForTheme = ModelBase::getField(val, "Theme");
 	if(jsonForTheme != nullptr && !jsonForTheme->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForTheme);
 		setTheme(newItem);
 	}
 	web::json::value* jsonForPlaceholders = ModelBase::getField(val, "Placeholders");
 	if(jsonForPlaceholders != nullptr && !jsonForPlaceholders->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForPlaceholders);
 		setPlaceholders(newItem);
 	}
 	web::json::value* jsonForImages = ModelBase::getField(val, "Images");
 	if(jsonForImages != nullptr && !jsonForImages->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForImages);
 		setImages(newItem);
 	}
 	web::json::value* jsonForComments = ModelBase::getField(val, "Comments");
 	if(jsonForComments != nullptr && !jsonForComments->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForComments);
 		setComments(newItem);
 	}
 	web::json::value* jsonForBackground = ModelBase::getField(val, "Background");
 	if(jsonForBackground != nullptr && !jsonForBackground->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForBackground);
 		setBackground(newItem);
 	}
 	web::json::value* jsonForNotesSlide = ModelBase::getField(val, "NotesSlide");
 	if(jsonForNotesSlide != nullptr && !jsonForNotesSlide->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForNotesSlide);
 		setNotesSlide(newItem);
 	}

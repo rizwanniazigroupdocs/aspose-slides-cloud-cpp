@@ -38,12 +38,12 @@ Shapes::~Shapes()
 {
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> Shapes::getShapesLinks() const
+std::vector<std::shared_ptr<ResourceUri>> Shapes::getShapesLinks() const
 {
 	return m_ShapesLinks;
 }
 
-void Shapes::setShapesLinks(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void Shapes::setShapesLinks(std::vector<std::shared_ptr<ResourceUri>> value)
 {
 	m_ShapesLinks = value;
 	
@@ -79,11 +79,11 @@ void Shapes::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_ShapesLinks.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_ShapesLinks.push_back(std::shared_ptr<ResourceUri>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 					newItem->fromJson(item);
 					m_ShapesLinks.push_back( newItem );
 				}

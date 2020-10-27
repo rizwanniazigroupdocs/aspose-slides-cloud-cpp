@@ -41,7 +41,6 @@
 #include "../model/FillFormat.h"
 #include "../model/LineFormat.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 #include "../model/ChartTitle.h"
 #include "../model/Legend.h"
 #include "../model/ShapeBase.h"

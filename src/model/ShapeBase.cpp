@@ -192,12 +192,12 @@ void ShapeBase::setZOrderPosition(int32_t value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> ShapeBase::getShapes() const
+std::shared_ptr<ResourceUri> ShapeBase::getShapes() const
 {
 	return m_Shapes;
 }
 
-void ShapeBase::setShapes(std::shared_ptr<ResourceUriElement> value)
+void ShapeBase::setShapes(std::shared_ptr<ResourceUri> value)
 {
 	m_Shapes = value;
 	
@@ -244,17 +244,6 @@ utility::string_t ShapeBase::getType() const
 void ShapeBase::setType(utility::string_t value)
 {
 	m_Type = value;
-	
-}
-
-utility::string_t ShapeBase::getShapeType() const
-{
-	return m_ShapeType;
-}
-
-void ShapeBase::setShapeType(utility::string_t value)
-{
-	m_ShapeType = value;
 	
 }
 
@@ -314,10 +303,6 @@ web::json::value ShapeBase::toJson() const
 	{
 		val[utility::conversions::to_string_t("Type")] = ModelBase::toJson(m_Type);
 	}
-	if (!m_ShapeType.empty())
-	{
-		val[utility::conversions::to_string_t("ShapeType")] = ModelBase::toJson(m_ShapeType);
-	}
 	return val;
 }
 
@@ -372,7 +357,7 @@ void ShapeBase::fromJson(web::json::value& val)
 	web::json::value* jsonForShapes = ModelBase::getField(val, "Shapes");
 	if(jsonForShapes != nullptr && !jsonForShapes->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForShapes);
 		setShapes(newItem);
 	}
@@ -401,11 +386,6 @@ void ShapeBase::fromJson(web::json::value& val)
 	if(jsonForType != nullptr && !jsonForType->is_null())
 	{
 		setType(ModelBase::stringFromJson(*jsonForType));
-	}
-	web::json::value* jsonForShapeType = ModelBase::getField(val, "ShapeType");
-	if(jsonForShapeType != nullptr && !jsonForShapeType->is_null())
-	{
-		setShapeType(ModelBase::stringFromJson(*jsonForShapeType));
 	}
 }
 

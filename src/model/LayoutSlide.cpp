@@ -60,23 +60,23 @@ void LayoutSlide::setType(utility::string_t value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> LayoutSlide::getMasterSlide() const
+std::shared_ptr<ResourceUri> LayoutSlide::getMasterSlide() const
 {
 	return m_MasterSlide;
 }
 
-void LayoutSlide::setMasterSlide(std::shared_ptr<ResourceUriElement> value)
+void LayoutSlide::setMasterSlide(std::shared_ptr<ResourceUri> value)
 {
 	m_MasterSlide = value;
 	
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> LayoutSlide::getDependingSlides() const
+std::vector<std::shared_ptr<ResourceUri>> LayoutSlide::getDependingSlides() const
 {
 	return m_DependingSlides;
 }
 
-void LayoutSlide::setDependingSlides(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void LayoutSlide::setDependingSlides(std::vector<std::shared_ptr<ResourceUri>> value)
 {
 	m_DependingSlides = value;
 	
@@ -127,7 +127,7 @@ void LayoutSlide::fromJson(web::json::value& val)
 	web::json::value* jsonForMasterSlide = ModelBase::getField(val, "MasterSlide");
 	if(jsonForMasterSlide != nullptr && !jsonForMasterSlide->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForMasterSlide);
 		setMasterSlide(newItem);
 	}
@@ -141,11 +141,11 @@ void LayoutSlide::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_DependingSlides.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_DependingSlides.push_back(std::shared_ptr<ResourceUri>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 					newItem->fromJson(item);
 					m_DependingSlides.push_back( newItem );
 				}

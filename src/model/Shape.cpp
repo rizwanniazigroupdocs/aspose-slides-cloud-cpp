@@ -49,12 +49,12 @@ void Shape::setText(utility::string_t value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> Shape::getParagraphs() const
+std::shared_ptr<ResourceUri> Shape::getParagraphs() const
 {
 	return m_Paragraphs;
 }
 
-void Shape::setParagraphs(std::shared_ptr<ResourceUriElement> value)
+void Shape::setParagraphs(std::shared_ptr<ResourceUri> value)
 {
 	m_Paragraphs = value;
 	
@@ -85,7 +85,7 @@ void Shape::fromJson(web::json::value& val)
 	web::json::value* jsonForParagraphs = ModelBase::getField(val, "Paragraphs");
 	if(jsonForParagraphs != nullptr && !jsonForParagraphs->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForParagraphs);
 		setParagraphs(newItem);
 	}

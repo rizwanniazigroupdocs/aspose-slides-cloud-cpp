@@ -40,13 +40,13 @@ SmartArtShape::~SmartArtShape()
 
 web::json::value SmartArtShape::toJson() const
 {
-	web::json::value val = this->ShapeBase::toJson();
+	web::json::value val = this->GeometryShape::toJson();
 	return val;
 }
 
 void SmartArtShape::fromJson(web::json::value& val)
 {
-	this->ShapeBase::fromJson(val);
+	this->GeometryShape::fromJson(val);
 }
 
 }

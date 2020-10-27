@@ -37,7 +37,6 @@
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -57,41 +56,41 @@ public:
 	/// <summary>
 	/// Link to Document properties.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getDocumentProperties() const;
-	ASPOSE_DLL_EXPORT void setDocumentProperties(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getDocumentProperties() const;
+	ASPOSE_DLL_EXPORT void setDocumentProperties(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Link to Document properties.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getViewProperties() const;
-	ASPOSE_DLL_EXPORT void setViewProperties(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getViewProperties() const;
+	ASPOSE_DLL_EXPORT void setViewProperties(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Link to slides collection.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getSlides() const;
-	ASPOSE_DLL_EXPORT void setSlides(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getSlides() const;
+	ASPOSE_DLL_EXPORT void setSlides(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Link to images collection.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getImages() const;
-	ASPOSE_DLL_EXPORT void setImages(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getImages() const;
+	ASPOSE_DLL_EXPORT void setImages(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Link to layout slides collection.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getLayoutSlides() const;
-	ASPOSE_DLL_EXPORT void setLayoutSlides(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getLayoutSlides() const;
+	ASPOSE_DLL_EXPORT void setLayoutSlides(std::shared_ptr<ResourceUri> value);
 	/// <summary>
 	/// Link to master slides collection.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUriElement> getMasterSlides() const;
-	ASPOSE_DLL_EXPORT void setMasterSlides(std::shared_ptr<ResourceUriElement> value);
+	ASPOSE_DLL_EXPORT std::shared_ptr<ResourceUri> getMasterSlides() const;
+	ASPOSE_DLL_EXPORT void setMasterSlides(std::shared_ptr<ResourceUri> value);
 
 protected:
-	std::shared_ptr<ResourceUriElement> m_DocumentProperties;
-	std::shared_ptr<ResourceUriElement> m_ViewProperties;
-	std::shared_ptr<ResourceUriElement> m_Slides;
-	std::shared_ptr<ResourceUriElement> m_Images;
-	std::shared_ptr<ResourceUriElement> m_LayoutSlides;
-	std::shared_ptr<ResourceUriElement> m_MasterSlides;
+	std::shared_ptr<ResourceUri> m_DocumentProperties;
+	std::shared_ptr<ResourceUri> m_ViewProperties;
+	std::shared_ptr<ResourceUri> m_Slides;
+	std::shared_ptr<ResourceUri> m_Images;
+	std::shared_ptr<ResourceUri> m_LayoutSlides;
+	std::shared_ptr<ResourceUri> m_MasterSlides;
 };
 
 }

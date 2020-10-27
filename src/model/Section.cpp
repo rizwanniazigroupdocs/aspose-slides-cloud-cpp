@@ -60,12 +60,12 @@ void Section::setFirstSlideIndex(int32_t value)
 	
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> Section::getSlideList() const
+std::vector<std::shared_ptr<ResourceUri>> Section::getSlideList() const
 {
 	return m_SlideList;
 }
 
-void Section::setSlideList(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void Section::setSlideList(std::vector<std::shared_ptr<ResourceUri>> value)
 {
 	m_SlideList = value;
 	
@@ -116,11 +116,11 @@ void Section::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_SlideList.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_SlideList.push_back(std::shared_ptr<ResourceUri>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 					newItem->fromJson(item);
 					m_SlideList.push_back( newItem );
 				}

@@ -38,12 +38,12 @@ Paragraphs::~Paragraphs()
 {
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> Paragraphs::getParagraphLinks() const
+std::vector<std::shared_ptr<ResourceUri>> Paragraphs::getParagraphLinks() const
 {
 	return m_ParagraphLinks;
 }
 
-void Paragraphs::setParagraphLinks(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void Paragraphs::setParagraphLinks(std::vector<std::shared_ptr<ResourceUri>> value)
 {
 	m_ParagraphLinks = value;
 	
@@ -79,11 +79,11 @@ void Paragraphs::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_ParagraphLinks.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_ParagraphLinks.push_back(std::shared_ptr<ResourceUri>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 					newItem->fromJson(item);
 					m_ParagraphLinks.push_back( newItem );
 				}

@@ -49,23 +49,23 @@ void MasterSlide::setName(utility::string_t value)
 	
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> MasterSlide::getLayoutSlides() const
+std::vector<std::shared_ptr<ResourceUri>> MasterSlide::getLayoutSlides() const
 {
 	return m_LayoutSlides;
 }
 
-void MasterSlide::setLayoutSlides(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void MasterSlide::setLayoutSlides(std::vector<std::shared_ptr<ResourceUri>> value)
 {
 	m_LayoutSlides = value;
 	
 }
 
-std::vector<std::shared_ptr<ResourceUriElement>> MasterSlide::getDependingSlides() const
+std::vector<std::shared_ptr<ResourceUri>> MasterSlide::getDependingSlides() const
 {
 	return m_DependingSlides;
 }
 
-void MasterSlide::setDependingSlides(std::vector<std::shared_ptr<ResourceUriElement>> value)
+void MasterSlide::setDependingSlides(std::vector<std::shared_ptr<ResourceUri>> value)
 {
 	m_DependingSlides = value;
 	
@@ -121,11 +121,11 @@ void MasterSlide::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_LayoutSlides.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_LayoutSlides.push_back(std::shared_ptr<ResourceUri>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 					newItem->fromJson(item);
 					m_LayoutSlides.push_back( newItem );
 				}
@@ -142,11 +142,11 @@ void MasterSlide::fromJson(web::json::value& val)
 			{
 				if(item.is_null())
 				{
-					m_DependingSlides.push_back(std::shared_ptr<ResourceUriElement>(nullptr));
+					m_DependingSlides.push_back(std::shared_ptr<ResourceUri>(nullptr));
 				}
 				else
 				{
-					std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+					std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 					newItem->fromJson(item);
 					m_DependingSlides.push_back( newItem );
 				}

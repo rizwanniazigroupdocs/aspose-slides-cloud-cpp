@@ -49,12 +49,12 @@ void NotesSlide::setText(utility::string_t value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> NotesSlide::getShapes() const
+std::shared_ptr<ResourceUri> NotesSlide::getShapes() const
 {
 	return m_Shapes;
 }
 
-void NotesSlide::setShapes(std::shared_ptr<ResourceUriElement> value)
+void NotesSlide::setShapes(std::shared_ptr<ResourceUri> value)
 {
 	m_Shapes = value;
 	
@@ -85,7 +85,7 @@ void NotesSlide::fromJson(web::json::value& val)
 	web::json::value* jsonForShapes = ModelBase::getField(val, "Shapes");
 	if(jsonForShapes != nullptr && !jsonForShapes->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForShapes);
 		setShapes(newItem);
 	}

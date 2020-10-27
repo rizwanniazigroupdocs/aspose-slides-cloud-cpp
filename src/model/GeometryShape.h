@@ -41,7 +41,6 @@
 #include "../model/LineFormat.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -59,13 +58,13 @@ public:
 	ASPOSE_DLL_EXPORT void fromJson(web::json::value& json) override;
 
 	/// <summary>
-	/// Geometry shape type.
+	/// Combined shape type.
 	/// </summary>
-	ASPOSE_DLL_EXPORT utility::string_t getGeometryShapeType() const;
-	ASPOSE_DLL_EXPORT void setGeometryShapeType(utility::string_t value);
+	ASPOSE_DLL_EXPORT utility::string_t getShapeType() const;
+	ASPOSE_DLL_EXPORT void setShapeType(utility::string_t value);
 
 protected:
-	utility::string_t m_GeometryShapeType;
+	utility::string_t m_ShapeType;
 };
 
 }

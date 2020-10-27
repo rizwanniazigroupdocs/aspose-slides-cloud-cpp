@@ -38,7 +38,6 @@
 #include "../model/ResourceBase.h"
 #include "../model/ResourceUri.h"
 #include <vector>
-#include "../model/ResourceUriElement.h"
 
 namespace asposeslidescloud {
 namespace model {
@@ -68,13 +67,13 @@ public:
 	/// <summary>
 	/// Links to the shapes contained in the section.
 	/// </summary>
-	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUriElement>> getSlideList() const;
-	ASPOSE_DLL_EXPORT void setSlideList(std::vector<std::shared_ptr<ResourceUriElement>> value);
+	ASPOSE_DLL_EXPORT std::vector<std::shared_ptr<ResourceUri>> getSlideList() const;
+	ASPOSE_DLL_EXPORT void setSlideList(std::vector<std::shared_ptr<ResourceUri>> value);
 
 protected:
 	utility::string_t m_Name;
 	int32_t m_FirstSlideIndex;
-	std::vector<std::shared_ptr<ResourceUriElement>> m_SlideList;
+	std::vector<std::shared_ptr<ResourceUri>> m_SlideList;
 };
 
 }

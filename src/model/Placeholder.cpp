@@ -82,12 +82,12 @@ void Placeholder::setType(utility::string_t value)
 	
 }
 
-std::shared_ptr<ResourceUriElement> Placeholder::getShape() const
+std::shared_ptr<ResourceUri> Placeholder::getShape() const
 {
 	return m_Shape;
 }
 
-void Placeholder::setShape(std::shared_ptr<ResourceUriElement> value)
+void Placeholder::setShape(std::shared_ptr<ResourceUri> value)
 {
 	m_Shape = value;
 	
@@ -142,7 +142,7 @@ void Placeholder::fromJson(web::json::value& val)
 	web::json::value* jsonForShape = ModelBase::getField(val, "Shape");
 	if(jsonForShape != nullptr && !jsonForShape->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForShape);
 		setShape(newItem);
 	}

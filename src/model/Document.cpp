@@ -38,67 +38,67 @@ Document::~Document()
 {
 }
 
-std::shared_ptr<ResourceUriElement> Document::getDocumentProperties() const
+std::shared_ptr<ResourceUri> Document::getDocumentProperties() const
 {
 	return m_DocumentProperties;
 }
 
-void Document::setDocumentProperties(std::shared_ptr<ResourceUriElement> value)
+void Document::setDocumentProperties(std::shared_ptr<ResourceUri> value)
 {
 	m_DocumentProperties = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Document::getViewProperties() const
+std::shared_ptr<ResourceUri> Document::getViewProperties() const
 {
 	return m_ViewProperties;
 }
 
-void Document::setViewProperties(std::shared_ptr<ResourceUriElement> value)
+void Document::setViewProperties(std::shared_ptr<ResourceUri> value)
 {
 	m_ViewProperties = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Document::getSlides() const
+std::shared_ptr<ResourceUri> Document::getSlides() const
 {
 	return m_Slides;
 }
 
-void Document::setSlides(std::shared_ptr<ResourceUriElement> value)
+void Document::setSlides(std::shared_ptr<ResourceUri> value)
 {
 	m_Slides = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Document::getImages() const
+std::shared_ptr<ResourceUri> Document::getImages() const
 {
 	return m_Images;
 }
 
-void Document::setImages(std::shared_ptr<ResourceUriElement> value)
+void Document::setImages(std::shared_ptr<ResourceUri> value)
 {
 	m_Images = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Document::getLayoutSlides() const
+std::shared_ptr<ResourceUri> Document::getLayoutSlides() const
 {
 	return m_LayoutSlides;
 }
 
-void Document::setLayoutSlides(std::shared_ptr<ResourceUriElement> value)
+void Document::setLayoutSlides(std::shared_ptr<ResourceUri> value)
 {
 	m_LayoutSlides = value;
 	
 }
 
-std::shared_ptr<ResourceUriElement> Document::getMasterSlides() const
+std::shared_ptr<ResourceUri> Document::getMasterSlides() const
 {
 	return m_MasterSlides;
 }
 
-void Document::setMasterSlides(std::shared_ptr<ResourceUriElement> value)
+void Document::setMasterSlides(std::shared_ptr<ResourceUri> value)
 {
 	m_MasterSlides = value;
 	
@@ -140,42 +140,42 @@ void Document::fromJson(web::json::value& val)
 	web::json::value* jsonForDocumentProperties = ModelBase::getField(val, "DocumentProperties");
 	if(jsonForDocumentProperties != nullptr && !jsonForDocumentProperties->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForDocumentProperties);
 		setDocumentProperties(newItem);
 	}
 	web::json::value* jsonForViewProperties = ModelBase::getField(val, "ViewProperties");
 	if(jsonForViewProperties != nullptr && !jsonForViewProperties->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForViewProperties);
 		setViewProperties(newItem);
 	}
 	web::json::value* jsonForSlides = ModelBase::getField(val, "Slides");
 	if(jsonForSlides != nullptr && !jsonForSlides->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForSlides);
 		setSlides(newItem);
 	}
 	web::json::value* jsonForImages = ModelBase::getField(val, "Images");
 	if(jsonForImages != nullptr && !jsonForImages->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForImages);
 		setImages(newItem);
 	}
 	web::json::value* jsonForLayoutSlides = ModelBase::getField(val, "LayoutSlides");
 	if(jsonForLayoutSlides != nullptr && !jsonForLayoutSlides->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForLayoutSlides);
 		setLayoutSlides(newItem);
 	}
 	web::json::value* jsonForMasterSlides = ModelBase::getField(val, "MasterSlides");
 	if(jsonForMasterSlides != nullptr && !jsonForMasterSlides->is_null())
 	{
-		std::shared_ptr<ResourceUriElement> newItem(new ResourceUriElement());
+		std::shared_ptr<ResourceUri> newItem(new ResourceUri());
 		newItem->fromJson(*jsonForMasterSlides);
 		setMasterSlides(newItem);
 	}
