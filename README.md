@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/api-v3.0-lightgrey) ![Nuget](https://img.shields.io/nuget/v/Aspose.slides-Cloud) ![Nuget](https://img.shields.io/nuget/dt/Aspose.slides-Cloud) [![GitHub license](https://img.shields.io/github/license/aspose-slides-cloud/aspose-slides-cloud-cpp)](https://github.com/aspose-slides-cloud/aspose-slides-cloud-cpp/blob/master/LICENSE)
-# Aspose.Slides Cloud SDK for C++ [![NuGet](https://img.shields.io/nuget/v/Aspose.Slides-Cloud.svg)](https://www.nuget.org/packages/Aspose.Slides-Cloud.Cpp/)
+# Aspose.Slides Cloud SDK for C++
 This repository contains Aspose.Slides Cloud SDK for C++ source code. This SDK allows you to work with Aspose.Slides Cloud REST APIs in your .NET applications.
 
 ## Key Features
